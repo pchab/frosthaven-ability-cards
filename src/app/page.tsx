@@ -1,34 +1,22 @@
 'use client';
 
-import { GeminateCard, GeminateForm, geminateCards } from '@/domain/geminate/cards';
+import { GeminateForm, geminateCards } from '@/domain/geminate/cards';
 import { CardComponent } from './_components/card';
-import { useEffect, useState } from 'react';
+import { useCards } from './useCards';
 
 export default function Home() {
   const currentLevel = 2;
   const cards = geminateCards.filter(card => card.level === 'X' || card.level <= currentLevel);
-  const [currentHand, setCurrentHand] = useState<GeminateCard[]>(cards);
-  const [currentForm, setCurrentForm] = useState<GeminateForm>(GeminateForm.melee);
 
-  const discardCard = (card: GeminateCard) => {
-    const newCurrentHand = currentHand.filter(c => c !== card);
-    setCurrentHand([...newCurrentHand, { ...card, isDiscarded: true }]);
-  }
-
-  const loseCard = (card: GeminateCard) => {
-    const newCurrentHand = currentHand.filter(c => c !== card);
-    setCurrentHand([...newCurrentHand, { ...card, isLost: true }]);
-  }
-
-  const recoverLostCard = (card: GeminateCard) => {
-    const newCurrentHand = currentHand.filter(c => c !== card);
-    setCurrentHand([...newCurrentHand, { ...card, isLost: false }]);
-  }
-
-  const recoverDiscardedCard = (card: GeminateCard) => {
-    const newCurrentHand = currentHand.filter(c => c !== card);
-    setCurrentHand([...newCurrentHand, { ...card, isDiscarded: false }]);
-  }
+  const {
+    currentHand,
+    currentForm,
+    setCurrentForm,
+    discardCard,
+    loseCard,
+    recoverLostCard,
+    recoverDiscardedCard,
+  } = useCards(cards);
 
   return (<>
     <label>Select form</label>
