@@ -1,10 +1,9 @@
-import { Card } from './cards.type';
+import { Card, CardStatus } from './cards.type';
 
-export function createCard<X extends Card>(card: Omit<X, 'isLost' | 'isDiscarded'>): X {
+export function createCard<X extends Card>(card: Omit<X, 'status'>): X {
   const newCard = {
     ...card,
-    isDiscarded: false,
-    isLost: false,
+    status: CardStatus.normal,
   } as X;
   return newCard;
 }

@@ -1,10 +1,12 @@
 'use client';
 
+import { CardStatus } from '@/domain/cards.type';
 import { GeminateForm, geminateCards } from '@/domain/geminate/cards';
-import { useCards } from './useCards';
-import ChangeForm from './_components/geminate/ChangeForm';
-import { CardComponent } from './_components/Card';
 import { useState } from 'react';
+import { CardComponent } from './_components/Card';
+import ShortRestButton from './_components/ShortRestButton';
+import ChangeForm from './_components/geminate/ChangeForm';
+import { useCards } from './useCards';
 
 
 export default function Home() {
@@ -13,12 +15,22 @@ export default function Home() {
 
   const [currentForm, setCurrentForm] = useState<GeminateForm>(GeminateForm.melee);
   const {
-    currentHand,
+    currentCards,
     discardCard,
     loseCard,
-    recoverLostCard,
-    recoverDiscardedCard,
+    recoverCard,
+    makeShortRest,
   } = useCards(cards);
+
+  const currentHand = currentCards
+    .filter(card => card.form === currentForm)
+    .filter(card => card.status === CardStatus.normal);
+
+  const lostPile = currentCards
+    .filter(card => card.status === CardStatus.lost);
+
+  const discardPile = currentCards
+    .filter(card => card.status === CardStatus.discarded);
 
   return (<div className='p-8'>
     <ChangeForm form={currentForm} setForm={setCurrentForm} />
@@ -27,8 +39,6 @@ export default function Home() {
       <p>Current hand</p>
       <div className='flex gap-4'>
         {currentHand
-          .filter(card => card.form === currentForm)
-          .filter(card => !card.isLost && !card.isDiscarded)
           .map((card, index) => <CardComponent key={`card-${index}`} card={card}
             onClickLeft={discardCard} onClickRight={loseCard}
             leftInfo='Discard Card' rightInfo='Lose Card' />)}
@@ -38,10 +48,9 @@ export default function Home() {
     <div className='p-4'>
       <p>Lost cards</p>
       <div className='flex gap-4'>
-        {currentHand
-          .filter(card => card.isLost)
+        {lostPile
           .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            onClickLeft={recoverLostCard} onClickRight={recoverLostCard}
+            onClickLeft={recoverCard} onClickRight={recoverCard}
             leftInfo='Recover Card' rightInfo='Recover Card' />)}
       </div>
     </div>
@@ -49,11 +58,11 @@ export default function Home() {
     <div className='p-4'>
       <p>Discarded cards</p>
       <div className='flex gap-4'>
-        {currentHand
-          .filter(card => card.isDiscarded)
+        {discardPile
           .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            onClickLeft={recoverDiscardedCard} onClickRight={recoverDiscardedCard}
+            onClickLeft={recoverCard} onClickRight={recoverCard}
             leftInfo='Recover Card' rightInfo='Recover Card' />)}
+        {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
       </div>
     </div>
   </div>);
