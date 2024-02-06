@@ -30,7 +30,8 @@ export default function Home() {
           .filter(card => card.form === currentForm)
           .filter(card => !card.isLost && !card.isDiscarded)
           .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            onClickLeft={discardCard} onClickRight={loseCard} />)}
+            onClickLeft={discardCard} onClickRight={loseCard}
+            leftInfo='Discard Card' rightInfo='Lose Card' />)}
       </div>
     </div>
 
@@ -40,7 +41,8 @@ export default function Home() {
         {currentHand
           .filter(card => card.isLost)
           .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            onClickLeft={recoverLostCard} onClickRight={recoverLostCard} />)}
+            onClickLeft={recoverLostCard} onClickRight={recoverLostCard}
+            leftInfo='Recover Card' rightInfo='Recover Card' />)}
       </div>
     </div>
 
@@ -50,7 +52,8 @@ export default function Home() {
         {currentHand
           .filter(card => card.isDiscarded)
           .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            onClickLeft={recoverDiscardedCard} onClickRight={recoverDiscardedCard} />)}
+            onClickLeft={recoverDiscardedCard} onClickRight={recoverDiscardedCard}
+            leftInfo='Recover Card' rightInfo='Recover Card' />)}
       </div>
     </div>
   </div>);
