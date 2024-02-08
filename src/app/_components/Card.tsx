@@ -20,12 +20,13 @@ export function CardComponent<X extends Card>({
   rightInfo: string;
 }) {
   const [hoverArea, setHoverArea] = useState<HoverArea>('none');
+  const uuid = crypto.randomUUID();
 
   const handleMouseLeave = () => {
     setHoverArea('none');
   };
 
-  const clickAreasName = `click-${card.path}`;
+  const clickAreasName = `click-${uuid}`;
   return <div>
     {hoverArea === 'left' && <p>{leftInfo}</p>}
     {hoverArea === 'right' && <p>{rightInfo}</p>}
