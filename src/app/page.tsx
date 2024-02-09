@@ -1,6 +1,7 @@
 'use client';
 
 import { bannerSpear } from '@/domain/banner-spear/class';
+import { deathwalker } from '@/domain/deathwalker/class';
 import { geminate } from '@/domain/geminate/class';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import Image from 'next/image';
@@ -11,8 +12,9 @@ export default function SelectClassPage() {
   const selectClass = useFrosthavenStore((state) => state.selectClass);
 
   const frosthavenClasses = [
-    geminate,
     bannerSpear,
+    deathwalker,
+    geminate,
   ];
 
   return (<div className="flex flex-col p-32 items-center w-full">

@@ -15,7 +15,7 @@ export const useFrosthavenStore = create<AbilityCardsState>()(
     (set) => ({
       selectedClass: undefined,
       cards: [],
-      selectClass: (playerClass: FrosthavenClass<Card>) => set({ selectedClass: playerClass }),
+      selectClass: (playerClass: FrosthavenClass<Card>) => set({ selectedClass: playerClass, cards: [] }),
       selectCards: (cards: Card[]) => set({ cards }),
     }),
     {

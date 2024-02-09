@@ -1,10 +1,9 @@
-import { bannerSpear } from './banner-spear/class';
 import { type Card } from './cards.type';
-import { geminate } from './geminate/class';
 
 export enum FrosthavenClassNames {
-  Geminate = 'Geminate',
   BannerSpear = 'Banner Spear',
+  Deathwalker = 'Deathwalker',
+  Geminate = 'Geminate',
 }
 
 export type FrosthavenClass<X extends Card> = {
