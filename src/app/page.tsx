@@ -1,8 +1,8 @@
 'use client';
 
 import { frosthavenClasses } from '@/domain/frosthaven-class.type';
-import Image from 'next/image';
 import { useFrosthavenStore } from '@/stores/cards.store';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function SelectClassPage() {

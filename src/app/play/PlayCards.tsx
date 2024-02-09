@@ -1,11 +1,8 @@
 'use client';
 
-import { Card, CardStatus } from '@/domain/cards.type';
-import { GeminateCard, GeminateForm } from '@/domain/geminate/cards';
-import { useState } from 'react';
+import { CardStatus, type Card } from '@/domain/cards.type';
 import { CardComponent, HoverArea } from '../_components/Card';
 import ShortRestButton from '../_components/ShortRestButton';
-import ChangeForm from '../_components/geminate/ChangeForm';
 import { useCards } from './useCards';
 
 

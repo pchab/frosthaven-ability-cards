@@ -1,10 +1,10 @@
-import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { type Card } from '@/domain/cards.type';
+import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
+import { useFrosthavenStore } from '@/stores/cards.store';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { CardComponent, HoverArea } from '../_components/Card';
 import { SelectedCards } from '../_components/SelectedCards';
-import { useRouter } from 'next/navigation';
-import { useFrosthavenStore } from '@/stores/cards.store';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,

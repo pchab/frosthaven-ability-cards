@@ -1,11 +1,11 @@
 'use client';
 
-import { isGeminate } from '@/domain/frosthaven-class.type';
-import { SelectCards } from './SelectCards';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
-import { SelectedGeminateCards } from '../_components/geminate/SelectedGeminateCards';
+import { isGeminate } from '@/domain/geminate/class';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { redirect } from 'next/navigation';
+import { SelectedGeminateCards } from '../_components/geminate/SelectedGeminateCards';
+import { SelectCards } from './SelectCards';
 
 export default function SelectCardPage() {
   const selectedClass = useFrosthavenStore((state) => state.selectedClass);

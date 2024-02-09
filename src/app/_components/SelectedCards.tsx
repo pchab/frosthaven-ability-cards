@@ -1,4 +1,4 @@
-import { Card } from '@/domain/cards.type';
+import { type Card } from '@/domain/cards.type';
 import { CardComponent, HoverArea } from './Card';
 
 export function SelectedCards<X extends Card>({

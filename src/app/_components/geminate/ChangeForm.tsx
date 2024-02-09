@@ -1,5 +1,5 @@
-import { GeminateForm } from "@/domain/geminate/cards";
-import Image from "next/image";
+import { GeminateForm } from '@/domain/geminate/cards';
+import Image from 'next/image';
 
 const meleeFormPath = '/geminate/icons/fh-geminate-melee-color-icon.png';
 const rangedFormPath = '/geminate/icons/fh-geminate-ranged-color-icon.png';
