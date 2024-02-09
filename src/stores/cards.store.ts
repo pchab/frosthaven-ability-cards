@@ -12,10 +12,14 @@ interface AbilityCardsState {
 
 export const useFrosthavenStore = create<AbilityCardsState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       selectedClass: undefined,
       cards: [],
-      selectClass: (playerClass: FrosthavenClass<Card>) => set({ selectedClass: playerClass, cards: [] }),
+      selectClass: (playerClass: FrosthavenClass<Card>) => {
+        if (playerClass.name !== get().selectedClass?.name) {
+          set({ selectedClass: playerClass, cards: [] });
+        }
+      },
       selectCards: (cards: Card[]) => set({ cards }),
     }),
     {
