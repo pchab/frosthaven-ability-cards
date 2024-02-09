@@ -9,7 +9,7 @@ export default function SelectClassPage() {
   const router = useRouter();
   const selectClass = useFrosthavenStore((state) => state.selectClass);
 
-  return (<div className="flex items-center justify-center w-full h-full">
+  return (<div className="flex p-32 justify-center w-full">
     {frosthavenClasses.map((fhClass) => {
       const { name, path } = fhClass;
       return <Image

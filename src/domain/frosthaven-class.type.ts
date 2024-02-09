@@ -16,6 +16,6 @@ export function isGeminate(frosthavenClass: FrosthavenClass<Card>): frosthavenCl
 export const frosthavenClasses: FrosthavenClass<Card>[] = [{
   name: 'Geminate',
   handSize: 7,
-  path: '/geminate/icons/fh-geminate-bw-icon.png',
+  path: '/geminate/icons/fh-geminate-color-icon.png',
   cards: geminateCards,
 }];

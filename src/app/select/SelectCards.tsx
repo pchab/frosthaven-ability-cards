@@ -19,8 +19,11 @@ export function SelectCards<X extends Card>({
   }) => JSX.Element;
 }) {
   const [currentLevel, setCurrentLevel] = useState(2);
-  const [selectedCards, setSelectedCards] = useState<X[]>([]);
-  const selectCards = useFrosthavenStore((state) => state.selectCards);
+  const { cards, selectCards } = useFrosthavenStore((state) => ({
+    cards: state.cards,
+    selectCards: state.selectCards,
+  }));
+  const [selectedCards, setSelectedCards] = useState<X[]>(cards as X[]);
   const router = useRouter();
 
   const selectCard = (card: X) => {
