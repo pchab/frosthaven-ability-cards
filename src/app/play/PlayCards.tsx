@@ -3,7 +3,7 @@
 import { CardStatus } from '@/domain/cards.type';
 import { GeminateForm, geminateCards } from '@/domain/geminate/cards';
 import { useState } from 'react';
-import { CardComponent } from '../_components/Card';
+import { CardComponent, HoverArea } from '../_components/Card';
 import ShortRestButton from '../_components/ShortRestButton';
 import ChangeForm from '../_components/geminate/ChangeForm';
 import { useCards } from './useCards';
@@ -32,6 +32,22 @@ export default function PlayCards() {
   const discardPile = currentCards
     .filter(card => card.status === CardStatus.discarded);
 
+  const discardClickProps = {
+    zone: HoverArea.left,
+    onClick: discardCard,
+    info: 'Discard Card',
+  };
+  const loseClickProps = {
+    zone: HoverArea.right,
+    onClick: loseCard,
+    info: 'Lose Card',
+  };
+  const recoverClickProps = {
+    zone: HoverArea.all,
+    onClick: recoverCard,
+    info: 'Recover Card',
+  };
+
   return (<div className='p-8'>
     <ChangeForm form={currentForm} setForm={setCurrentForm} />
 
@@ -40,8 +56,7 @@ export default function PlayCards() {
       <div className='flex gap-4'>
         {currentHand
           .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            onClickLeft={discardCard} onClickRight={loseCard}
-            leftInfo='Discard Card' rightInfo='Lose Card' />)}
+            clickableAreasProps={[discardClickProps, loseClickProps]} />)}
       </div>
     </div>
 
@@ -50,8 +65,7 @@ export default function PlayCards() {
       <div className='flex gap-4'>
         {lostPile
           .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            onClickLeft={recoverCard} onClickRight={recoverCard}
-            leftInfo='Recover Card' rightInfo='Recover Card' />)}
+            clickableAreasProps={[recoverClickProps]} />)}
       </div>
     </div>
 
@@ -60,8 +74,7 @@ export default function PlayCards() {
       <div className='flex gap-4'>
         {discardPile
           .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            onClickLeft={recoverCard} onClickRight={recoverCard}
-            leftInfo='Recover Card' rightInfo='Recover Card' />)}
+            clickableAreasProps={[recoverClickProps]} />)}
         {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
       </div>
     </div>

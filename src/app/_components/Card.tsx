@@ -4,56 +4,54 @@ import { Card } from '@/domain/cards.type';
 import Image from 'next/image';
 import { useState } from 'react';
 
-type HoverArea = 'none' | 'left' | 'right';
+export enum HoverArea {
+  none,
+  left,
+  right,
+  all,
+}
+
+type ClickableAreasProps<X extends Card> = { zone: HoverArea, onClick: (card: X) => void; info: string; }[];
+const clickableArea: Record<HoverArea, string> = {
+  [HoverArea.none]: '0,0,0,0',
+  [HoverArea.left]: '0,0,72,200',
+  [HoverArea.right]: '73,0,143,200',
+  [HoverArea.all]: '0,0,143,200',
+};
 
 export function CardComponent<X extends Card>({
   card,
-  onClickLeft,
-  onClickRight,
-  leftInfo,
-  rightInfo,
+  clickableAreasProps,
 }: {
   card: X;
-  onClickLeft: (card: X) => void;
-  onClickRight: (card: X) => void;
-  leftInfo: string;
-  rightInfo: string;
+  clickableAreasProps: ClickableAreasProps<X>;
 }) {
-  const [hoverArea, setHoverArea] = useState<HoverArea>('none');
+  const [hoverArea, setHoverArea] = useState<HoverArea>(HoverArea.none);
   const uuid = crypto.randomUUID();
 
   const handleMouseLeave = () => {
-    setHoverArea('none');
+    setHoverArea(HoverArea.none);
   };
 
   const clickAreasName = `click-${uuid}`;
   return <div>
-    {hoverArea === 'left' && <p>{leftInfo}</p>}
-    {hoverArea === 'right' && <p>{rightInfo}</p>}
     <div
       onMouseLeave={handleMouseLeave}
       className={'hover:border-solid hover:border-white hover:border'}>
       <map name={clickAreasName}>
-        <area
-          href='#'
-          onClick={(event) => {
-            event.preventDefault();
-            onClickLeft(card);
-          }}
-          coords={'0,0,71,200'}
-          shape={'rect'}
-          onMouseEnter={() => setHoverArea('left')}
-        />
-        <area
-          href='#'
-          onClick={(event) => {
-            event.preventDefault();
-            onClickRight(card);
-          }}
-          coords={'73,0,143,200'}
-          shape={'rect'}
-          onMouseEnter={() => setHoverArea('right')}
-        />
+        {clickableAreasProps.map(({ zone, onClick }) => (
+          <area
+            href='#'
+            key={`${zone}-area`}
+            onClick={(event) => {
+              event.preventDefault();
+              onClick(card);
+            }}
+            coords={clickableArea[zone]}
+            shape={'rect'}
+            onMouseEnter={() => setHoverArea(zone)}
+          />
+        ))}
       </map><Image
         useMap={`#${clickAreasName}`}
         src={card.path}
@@ -62,5 +60,7 @@ export function CardComponent<X extends Card>({
         height={200}
       />
     </div>
+    {clickableAreasProps.map(({ zone, info }) => hoverArea === zone && <p key={`${zone}-info`}>{info}</p>)}
+    {hoverArea === HoverArea.none && <div className='p-4'></div>}
   </div>;
 }

@@ -1,7 +1,7 @@
 import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { type Card } from '@/domain/cards.type';
 import { useState } from 'react';
-import { CardComponent } from '../_components/Card';
+import { CardComponent, HoverArea } from '../_components/Card';
 import { SelectedCards } from '../_components/SelectedCards';
 
 export function SelectCards<X extends Card>({
@@ -28,7 +28,13 @@ export function SelectCards<X extends Card>({
 
   const removeCard = (card: X) => setSelectedCards(selectedCards.filter(c => c !== card));
 
-  return (<div className='p-8 flex flex-row'>
+  const selectClickProps = {
+    zone: HoverArea.all,
+    onClick: selectCard,
+    info: 'Select Card',
+  };
+
+  return (<div className='p-4 flex flex-row'>
 
     <div className='basis-3/4'>
 
@@ -44,12 +50,11 @@ export function SelectCards<X extends Card>({
           .map((_, level) => level === 0 ? 'X' : level)
           .map((level) => (<>
             <p>{`Cards level ${level}`}</p>
-            <div key={`cards-level-${level}`} className='flex gap-4'>
+            <div key={`cards-level-${level}`} className='flex  flex-wrap gap-4'>
               {frosthavenClass.cards
                 .filter((card) => card.level === level)
                 .map((card, index) => <CardComponent key={`card-${level}-${index}`} card={card}
-                  onClickLeft={selectCard} onClickRight={selectCard}
-                  leftInfo={'select Card'} rightInfo={'select Card'}
+                  clickableAreasProps={[selectClickProps]}
                 />)}
             </div>
           </>))}
