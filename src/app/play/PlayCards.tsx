@@ -1,7 +1,7 @@
 'use client';
 
-import { CardStatus } from '@/domain/cards.type';
-import { GeminateForm, geminateCards } from '@/domain/geminate/cards';
+import { Card, CardStatus } from '@/domain/cards.type';
+import { GeminateCard, GeminateForm } from '@/domain/geminate/cards';
 import { useState } from 'react';
 import { CardComponent, HoverArea } from '../_components/Card';
 import ShortRestButton from '../_components/ShortRestButton';
@@ -9,11 +9,13 @@ import ChangeForm from '../_components/geminate/ChangeForm';
 import { useCards } from './useCards';
 
 
-export default function PlayCards() {
-  const currentLevel = 2;
-  const cards = geminateCards.filter(card => card.level === 'X' || card.level <= currentLevel);
-
-  const [currentForm, setCurrentForm] = useState<GeminateForm>(GeminateForm.melee);
+export default function PlayCards<X extends Card>({
+  cards,
+  filterCard = () => true,
+}: {
+  cards: X[];
+  filterCard?: (card: X) => boolean;
+}) {
   const {
     currentCards,
     discardCard,
@@ -23,7 +25,7 @@ export default function PlayCards() {
   } = useCards(cards);
 
   const currentHand = currentCards
-    .filter(card => card.form === currentForm)
+    .filter(filterCard)
     .filter(card => card.status === CardStatus.normal);
 
   const lostPile = currentCards
@@ -48,9 +50,7 @@ export default function PlayCards() {
     info: 'Recover Card',
   };
 
-  return (<div className='p-8'>
-    <ChangeForm form={currentForm} setForm={setCurrentForm} />
-
+  return (<>
     <div className='p-4'>
       <p>Current hand</p>
       <div className='flex gap-4'>
@@ -78,5 +78,5 @@ export default function PlayCards() {
         {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
       </div>
     </div>
-  </div>);
+  </>);
 }

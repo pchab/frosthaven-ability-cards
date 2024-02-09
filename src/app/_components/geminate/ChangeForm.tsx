@@ -1,8 +1,8 @@
 import { GeminateForm } from "@/domain/geminate/cards";
 import Image from "next/image";
 
-const meleeFormPath = '/geminate/fh-geminate-melee-color-icon.png';
-const rangedFormPath = '/geminate/fh-geminate-ranged-color-icon.png';
+const meleeFormPath = '/geminate/icons/fh-geminate-melee-color-icon.png';
+const rangedFormPath = '/geminate/icons/fh-geminate-ranged-color-icon.png';
 
 export default function ChangeForm({
   form,

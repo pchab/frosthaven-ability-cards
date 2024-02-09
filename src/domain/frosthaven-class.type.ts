@@ -1,19 +1,21 @@
 import { type Card } from './cards.type';
-import { geminateCards } from './geminate/cards';
+import { GeminateCard, geminateCards } from './geminate/cards';
 
-type FrosthavenClassNames = 'geminate';
+type FrosthavenClassNames = 'Geminate';
 export type FrosthavenClass<X extends Card> = {
-  name: string;
+  name: FrosthavenClassNames;
   handSize: number;
   path: string;
   cards: X[];
 }
 
-export const frosthavenClasses: Record<FrosthavenClassNames, FrosthavenClass<Card>> = {
-  geminate: {
-    name: 'Geminate',
-    handSize: 7,
-    path: '/geminate/icons/fh-geminate-bw-icon.png',
-    cards: geminateCards,
-  },
-};
+export function isGeminate(frosthavenClass: FrosthavenClass<Card>): frosthavenClass is FrosthavenClass<GeminateCard> {
+  return frosthavenClass.name === 'Geminate';
+}
+
+export const frosthavenClasses: FrosthavenClass<Card>[] = [{
+  name: 'Geminate',
+  handSize: 7,
+  path: '/geminate/icons/fh-geminate-bw-icon.png',
+  cards: geminateCards,
+}];

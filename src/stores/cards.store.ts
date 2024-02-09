@@ -10,7 +10,7 @@ interface AbilityCardsState {
   selectCards: (cards: Card[]) => void;
 }
 
-export const usePayTicketStore = create<AbilityCardsState>()(
+export const useFrosthavenStore = create<AbilityCardsState>()(
   persist(
     (set) => ({
       selectedClass: undefined,

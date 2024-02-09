@@ -3,6 +3,8 @@ import { type Card } from '@/domain/cards.type';
 import { useState } from 'react';
 import { CardComponent, HoverArea } from '../_components/Card';
 import { SelectedCards } from '../_components/SelectedCards';
+import { useRouter } from 'next/navigation';
+import { useFrosthavenStore } from '@/stores/cards.store';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,
@@ -18,6 +20,8 @@ export function SelectCards<X extends Card>({
 }) {
   const [currentLevel, setCurrentLevel] = useState(2);
   const [selectedCards, setSelectedCards] = useState<X[]>([]);
+  const selectCards = useFrosthavenStore((state) => state.selectCards);
+  const router = useRouter();
 
   const selectCard = (card: X) => {
     const newSelectedCards = [...selectedCards, card];
@@ -33,6 +37,11 @@ export function SelectCards<X extends Card>({
     onClick: selectCard,
     info: 'Select Card',
   };
+
+  const validateSelection = () => {
+    selectCards(selectedCards);
+    router.push('/play');
+  }
 
   return (<div className='p-4 flex flex-row'>
 
@@ -63,6 +72,7 @@ export function SelectCards<X extends Card>({
     </div>
 
     <div className='basis-1/4'>
+      <button onClick={validateSelection}>Validate Selection</button>
       {selectedCardComponent({ cards: selectedCards, onRemoveCard: removeCard })}
     </div>
   </div>);
