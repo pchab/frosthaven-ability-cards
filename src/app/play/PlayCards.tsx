@@ -18,6 +18,7 @@ export default function PlayCards<X extends Card>({
 }) {
   const {
     currentCards,
+    selectCard,
     discardCard,
     loseCard,
     recoverCard,
@@ -26,7 +27,10 @@ export default function PlayCards<X extends Card>({
 
   const currentHand = currentCards
     .filter(filterCard)
-    .filter(card => card.status === CardStatus.normal);
+    .filter(card => card.status === CardStatus.inHand);
+
+  const selectedCards = currentCards
+    .filter(card => card.status === CardStatus.selected);
 
   const lostPile = currentCards
     .filter(card => card.status === CardStatus.lost);
@@ -34,6 +38,11 @@ export default function PlayCards<X extends Card>({
   const discardPile = currentCards
     .filter(card => card.status === CardStatus.discarded);
 
+  const selectClickProps = {
+    zone: HoverArea.left,
+    onClick: selectCard,
+    info: 'Select Card',
+  };
   const discardClickProps = {
     zone: HoverArea.left,
     onClick: discardCard,
@@ -50,33 +59,48 @@ export default function PlayCards<X extends Card>({
     info: 'Recover Card',
   };
 
-  return (<>
-    <div className='p-4'>
-      <p>Current hand</p>
-      <div className='flex gap-4'>
-        {currentHand
-          .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            clickableAreasProps={[discardClickProps, loseClickProps]} />)}
+  return (<div className='p-4 flex flex-row'>
+
+    <div className='basis-3/4'>
+      <div className='p-4'>
+        <p>Current hand</p>
+        <div className='flex gap-4'>
+          {currentHand
+            .map((card, index) => <CardComponent key={`card-${index}`} card={card}
+              clickableAreasProps={[selectClickProps, loseClickProps]} />)}
+        </div>
+      </div>
+
+      <div className='p-4'>
+        <p>Lost cards</p>
+        <div className='flex gap-4'>
+          {lostPile
+            .map((card, index) => <CardComponent key={`card-${index}`} card={card}
+              clickableAreasProps={[recoverClickProps]} />)}
+        </div>
+      </div>
+
+      <div className='p-4'>
+        <p>Discarded cards</p>
+        <div className='flex gap-4'>
+          {discardPile
+            .map((card, index) => <CardComponent key={`card-${index}`} card={card}
+              clickableAreasProps={[recoverClickProps]} />)}
+          {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
+        </div>
       </div>
     </div>
 
-    <div className='p-4'>
-      <p>Lost cards</p>
-      <div className='flex gap-4'>
-        {lostPile
-          .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            clickableAreasProps={[recoverClickProps]} />)}
+    <div className='basis-1/4'>
+      <div className='p-4'>
+        <p>Selected cards</p>
+        <div className='flex gap-4'>
+          {selectedCards
+            .map((card, index) => <CardComponent key={`card-${index}`} card={card}
+              clickableAreasProps={[discardClickProps, loseClickProps]} />)}
+          {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
+        </div>
       </div>
     </div>
-
-    <div className='p-4'>
-      <p>Discarded cards</p>
-      <div className='flex gap-4'>
-        {discardPile
-          .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-            clickableAreasProps={[recoverClickProps]} />)}
-        {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
-      </div>
-    </div>
-  </>);
+  </div>);
 }

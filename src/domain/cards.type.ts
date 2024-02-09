@@ -1,7 +1,8 @@
 export enum CardStatus {
   'lost',
   'discarded',
-  'normal',
+  'inHand',
+  'selected',
 }
 
 export type Card = {

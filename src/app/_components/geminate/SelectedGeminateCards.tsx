@@ -1,7 +1,7 @@
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { CardComponent, HoverArea } from '../Card';
 
-export function GeminateSelectedCards({
+export function SelectedGeminateCards({
   cards,
   onRemoveCard,
 }: {

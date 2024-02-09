@@ -3,17 +3,15 @@
 import { isGeminate } from '@/domain/frosthaven-class.type';
 import { SelectCards } from './SelectCards';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
-import { GeminateSelectedCards } from '../_components/geminate/SelectedGeminateCards';
+import { SelectedGeminateCards } from '../_components/geminate/SelectedGeminateCards';
 import { useFrosthavenStore } from '@/stores/cards.store';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 export default function SelectCardPage() {
   const selectedClass = useFrosthavenStore((state) => state.selectedClass);
-  const router = useRouter();
 
   if (selectedClass === undefined) {
-    router.push('/');
-    return <></>;
+    redirect('/');
   }
 
   return isGeminate(selectedClass)
@@ -23,7 +21,7 @@ export default function SelectCardPage() {
         cards.filter((card) => card.form === GeminateForm.melee).length <= selectedClass.handSize
         && cards.filter((card) => card.form === GeminateForm.ranged).length <= selectedClass.handSize
       )}
-      selectedCardComponent={GeminateSelectedCards}
+      selectedCardComponent={SelectedGeminateCards}
     />
     : <SelectCards frosthavenClass={selectedClass} />;
 }
