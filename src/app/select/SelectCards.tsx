@@ -65,6 +65,7 @@ export function SelectCards<X extends Card>({
             <div key={`cards-level-${level}`} className='flex  flex-wrap gap-4'>
               {frosthavenClass.cards
                 .filter((card) => card.level === level)
+                .filter((card) => selectedCards.every((selectedCard) => selectedCard.path !== card.path))
                 .map((card, index) => <CardComponent key={`card-${level}-${index}`} card={card}
                   clickableAreasProps={[selectClickProps]}
                 />)}
