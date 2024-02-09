@@ -7,10 +7,6 @@ export enum GeminateForm {
 };
 export type GeminateCard = Card & { form: GeminateForm };
 
-export function isGeminateCard(card: Card): card is GeminateCard {
-  return card.path.includes('/geminate/');
-}
-
 export const geminateCards: GeminateCard[] = [
   createCard({ level: 'X', path: '/geminate/abilities/fh-feeding-frenzy.png', form: GeminateForm.melee }),
   createCard({ level: 'X', path: '/geminate/abilities/fh-reckless-jab.png', form: GeminateForm.melee }),

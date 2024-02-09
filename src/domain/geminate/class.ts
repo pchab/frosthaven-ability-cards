@@ -10,5 +10,6 @@ export const geminate = {
   name: FrosthavenClassNames.Geminate,
   handSize: 7,
   path: '/geminate/icons/fh-geminate-color-icon.png',
+  iconSize: { width: 58, height: 60 },
   cards: geminateCards,
 };
