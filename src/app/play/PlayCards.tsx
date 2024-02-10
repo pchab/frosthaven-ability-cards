@@ -95,7 +95,6 @@ export default function PlayCards<X extends Card>({
           {selectedCards
             .map((card, index) => <CardComponent key={`card-${index}`} card={card}
               clickableAreasProps={[discardClickProps, loseClickProps]} />)}
-          {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
         </div>
       </div>
     </div>
