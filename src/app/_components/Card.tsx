@@ -2,12 +2,14 @@
 
 import { Card } from '@/domain/cards.type';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export enum HoverArea {
   none,
   left,
   right,
+  top,
+  bottom,
   all,
 }
 
@@ -16,6 +18,8 @@ const clickableArea: Record<HoverArea, string> = {
   [HoverArea.none]: '0,0,0,0',
   [HoverArea.left]: '0,0,72,200',
   [HoverArea.right]: '73,0,143,200',
+  [HoverArea.top]: '0,0,143,107',
+  [HoverArea.bottom]: '0,108,143,200',
   [HoverArea.all]: '0,0,143,200',
 };
 
@@ -26,6 +30,7 @@ export function CardComponent<X extends Card>({
   card: X;
   clickableAreasProps: ClickableAreasProps<X>;
 }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hoverArea, setHoverArea] = useState<HoverArea>(HoverArea.none);
   const uuid = crypto.randomUUID();
 
@@ -33,16 +38,41 @@ export function CardComponent<X extends Card>({
     setHoverArea(HoverArea.none);
   };
 
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const context = canvas.getContext('2d');
+    if (!context) return;
+
+
+    context.reset();
+    if (hoverArea === HoverArea.none) {
+      return;
+    }
+
+    const coords = clickableArea[hoverArea].split(',').map(Number);
+    context.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+    context.lineWidth = 3;
+    context.strokeRect(coords[0], coords[1], coords[2], coords[3]);
+  }, [hoverArea]);
+
   const clickAreasName = `click-${uuid}`;
   return <div>
     <div
       onMouseLeave={handleMouseLeave}
-      className={'hover:border-solid hover:border-white hover:border'}>
+    >
+      <canvas
+        ref={canvasRef}
+        className='absolute pointer-events-none'
+        width={143}
+        height={200}
+      />
       <map name={clickAreasName}>
         {clickableAreasProps.map(({ zone, onClick }) => (
           <area
             href='#'
-            key={`${zone}-area`}
+            key={`${clickAreasName}-${zone}-area`}
             onClick={(event) => {
               event.preventDefault();
               onClick(card);
