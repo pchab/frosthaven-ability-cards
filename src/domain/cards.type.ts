@@ -3,6 +3,7 @@ export enum CardStatus {
   'discarded',
   'inHand',
   'selected',
+  'active',
 }
 
 export type Card = {

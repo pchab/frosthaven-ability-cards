@@ -11,10 +11,10 @@ export function useCards<X extends Card>(cards: X[]) {
     }
   };
 
-  const discardCard = (card: X) => {
-    const newCurrentCards = currentCards.filter(c => c !== card);
-    setCurrentCards([...newCurrentCards, { ...card, status: CardStatus.discarded }]);
-  };
+  const discardCard = (card: X) => setCurrentCards([
+    ...currentCards.filter(c => c !== card),
+    { ...card, status: CardStatus.discarded }
+  ]);
 
   const loseCard = (card: X) => setCurrentCards([
     ...currentCards.filter(c => c !== card),
@@ -26,6 +26,12 @@ export function useCards<X extends Card>(cards: X[]) {
     { ...card, status: CardStatus.inHand },
   ]);
 
+  // todo: move card according to top or bottom text
+  const playCard = (card: X) => setCurrentCards([
+    ...currentCards.filter(c => c !== card),
+    { ...card, status: CardStatus.active },
+  ]);
+
   const makeShortRest = ({ recovered, lost }: { recovered: X[], lost: X }) => setCurrentCards([
     ...currentCards.filter(c => c.status !== CardStatus.discarded),
     ...recovered.map(c => ({ ...c, status: CardStatus.inHand })),
@@ -35,6 +41,7 @@ export function useCards<X extends Card>(cards: X[]) {
   return {
     currentCards,
     selectCard,
+    playCard,
     discardCard,
     loseCard,
     recoverCard,

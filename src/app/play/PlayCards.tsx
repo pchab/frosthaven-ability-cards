@@ -17,6 +17,7 @@ export default function PlayCards<X extends Card>({
   const {
     currentCards,
     selectCard,
+    playCard,
     discardCard,
     loseCard,
     recoverCard,
@@ -35,6 +36,9 @@ export default function PlayCards<X extends Card>({
 
   const discardPile = currentCards
     .filter(card => card.status === CardStatus.discarded);
+
+  const activeEffects = currentCards
+    .filter(card => card.status === CardStatus.active);
 
   const selectClickProps = {
     zone: HoverArea.left,
@@ -55,6 +59,16 @@ export default function PlayCards<X extends Card>({
     zone: HoverArea.all,
     onClick: recoverCard,
     info: 'Recover Card',
+  };
+  const playTopClickProps = {
+    zone: HoverArea.top,
+    onClick: playCard,
+    info: 'Play top',
+  };
+  const playBottomClickProps = {
+    zone: HoverArea.bottom,
+    onClick: playCard,
+    info: 'Play bottom',
   };
 
   return (<div className='p-4 flex flex-row'>
@@ -91,6 +105,15 @@ export default function PlayCards<X extends Card>({
         <p>Selected cards</p>
         <div className='flex gap-4'>
           {selectedCards
+            .map((card, index) => <CardComponent key={`card-${index}`} card={card}
+              clickableAreasProps={[playTopClickProps, playBottomClickProps]} />)}
+        </div>
+      </div>
+
+      <div className='p-4'>
+        <p>Active effects</p>
+        <div className='flex gap-4'>
+          {activeEffects
             .map((card, index) => <CardComponent key={`card-${index}`} card={card}
               clickableAreasProps={[discardClickProps, loseClickProps]} />)}
         </div>
