@@ -4,6 +4,7 @@ import { bannerSpear } from '@/domain/banner-spear/class';
 import { boneshaper } from '@/domain/boneshaper/class';
 import { deathwalker } from '@/domain/deathwalker/class';
 import { geminate } from '@/domain/geminate/class';
+import { snowdancer } from '@/domain/snowdancer/class';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -17,6 +18,7 @@ export default function SelectClassPage() {
     boneshaper,
     deathwalker,
     geminate,
+    snowdancer,
   ];
 
   return (<div className="flex flex-col p-32 items-center w-full">
