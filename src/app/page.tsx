@@ -1,6 +1,7 @@
 'use client';
 
 import { bannerSpear } from '@/domain/banner-spear/class';
+import { blinkblade } from '@/domain/blinkblade/class';
 import { boneshaper } from '@/domain/boneshaper/class';
 import { deathwalker } from '@/domain/deathwalker/class';
 import { geminate } from '@/domain/geminate/class';
@@ -15,6 +16,7 @@ export default function SelectClassPage() {
 
   const frosthavenClasses = [
     bannerSpear,
+    blinkblade,
     boneshaper,
     deathwalker,
     geminate,

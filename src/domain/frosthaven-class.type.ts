@@ -2,6 +2,7 @@ import { type Card } from './cards.type';
 
 export enum FrosthavenClassNames {
   BannerSpear = 'Banner Spear',
+  Blinkblade = 'Blinkblade',
   Boneshaper = 'Boneshaper',
   Deathwalker = 'Deathwalker',
   Geminate = 'Geminate',
