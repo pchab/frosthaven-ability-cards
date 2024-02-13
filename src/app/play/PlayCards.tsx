@@ -38,17 +38,12 @@ export default function PlayCards<X extends Card>({
     .filter(card => card.status === CardStatus.discarded);
 
   const activeEffects = currentCards
-    .filter(card => card.status === CardStatus.active);
+    .filter(card => [CardStatus.activeDiscard, CardStatus.activeLost].includes(card.status));
 
   const selectClickProps = {
     zone: HoverArea.left,
     onClick: selectCard,
     info: 'Select Card',
-  };
-  const discardClickProps = {
-    zone: HoverArea.left,
-    onClick: discardCard,
-    info: 'Discard Card',
   };
   const loseClickProps = {
     zone: HoverArea.right,
@@ -62,13 +57,18 @@ export default function PlayCards<X extends Card>({
   };
   const playTopClickProps = {
     zone: HoverArea.top,
-    onClick: playCard,
+    onClick: playCard('top'),
     info: 'Play top',
   };
   const playBottomClickProps = {
     zone: HoverArea.bottom,
-    onClick: playCard,
+    onClick: playCard('bottom'),
     info: 'Play bottom',
+  };
+  const RemoveEffectClickProps = {
+    zone: HoverArea.all,
+    onClick: (card: X) => (card.status === CardStatus.activeDiscard ? discardCard(card) : loseCard(card)),
+    info: 'Remove effect',
   };
 
   return (<div className='p-4 flex flex-row'>
@@ -113,9 +113,10 @@ export default function PlayCards<X extends Card>({
       <div className='p-4'>
         <p>Active effects</p>
         <div className='flex gap-4'>
-          {activeEffects
-            .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-              clickableAreasProps={[discardClickProps, loseClickProps]} />)}
+          <CardPile
+            cards={activeEffects}
+            clickProps={[RemoveEffectClickProps]}
+          />
         </div>
       </div>
     </div>

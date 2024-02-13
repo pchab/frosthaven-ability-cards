@@ -1,5 +1,18 @@
-import { CardStatus, type Card } from '@/domain/cards.type';
+import { CardStatus, type Card, CardActions } from '@/domain/cards.type';
 import { useState } from 'react';
+
+function newStatusAfterAction(action: CardActions): CardStatus {
+  switch (action) {
+    case CardActions.discard:
+      return CardStatus.discarded;
+    case CardActions.lose:
+      return CardStatus.lost;
+    case CardActions.activeDiscard:
+      return CardStatus.activeDiscard;
+    case CardActions.activeLost:
+      return CardStatus.activeLost;
+  }
+}
 
 export function useCards<X extends Card>(cards: X[]) {
   const [currentCards, setCurrentCards] = useState<X[]>(cards);
@@ -26,10 +39,9 @@ export function useCards<X extends Card>(cards: X[]) {
     { ...card, status: CardStatus.inHand },
   ]);
 
-  // todo: move card according to top or bottom text
-  const playCard = (card: X) => setCurrentCards([
+  const playCard = (action: 'top' | 'bottom') => (card: X) => setCurrentCards([
     ...currentCards.filter(c => c !== card),
-    { ...card, status: CardStatus.active },
+    { ...card, status: newStatusAfterAction(card.actions[action]) },
   ]);
 
   const makeShortRest = ({ recovered, lost }: { recovered: X[], lost: X }) => setCurrentCards([

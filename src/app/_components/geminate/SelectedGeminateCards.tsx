@@ -1,5 +1,5 @@
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
-import { CardComponent, HoverArea } from '../Card';
+import { HoverArea } from '../Card';
 import CardPile from '../CardPile';
 
 export function SelectedGeminateCards({
@@ -26,6 +26,7 @@ export function SelectedGeminateCards({
       <CardPile
         cards={meleeCards}
         clickProps={[clickProps]}
+        vertical
       />
     </div>
     <div key={'geminate-ranged-cards'} className='flex flex-col gap-4'>
@@ -33,6 +34,7 @@ export function SelectedGeminateCards({
       <CardPile
         cards={rangedCards}
         clickProps={[clickProps]}
+        vertical
       />
     </div>
   </div>;
