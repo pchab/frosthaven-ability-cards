@@ -4,6 +4,7 @@ import { CardStatus, type Card } from '@/domain/cards.type';
 import { CardComponent, HoverArea } from '../_components/Card';
 import ShortRestButton from '../_components/ShortRestButton';
 import { useCards } from './useCards';
+import CardPile from '../_components/CardPile';
 
 
 export default function PlayCards<X extends Card>({
@@ -61,30 +62,27 @@ export default function PlayCards<X extends Card>({
     <div className='basis-3/4'>
       <div className='p-4'>
         <p>Current hand</p>
-        <div className='flex gap-4'>
-          {currentHand
-            .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-              clickableAreasProps={[selectClickProps, loseClickProps]} />)}
-        </div>
+        <CardPile
+          cards={currentHand}
+          clickProps={[selectClickProps, loseClickProps]}
+        />
       </div>
 
       <div className='p-4'>
         <p>Lost cards</p>
-        <div className='flex gap-4'>
-          {lostPile
-            .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-              clickableAreasProps={[recoverClickProps]} />)}
-        </div>
+        <CardPile
+          cards={lostPile}
+          clickProps={[recoverClickProps]}
+        />
       </div>
 
       <div className='p-4'>
         <p>Discarded cards</p>
-        <div className='flex gap-4'>
-          {discardPile
-            .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-              clickableAreasProps={[recoverClickProps]} />)}
-          {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
-        </div>
+        <CardPile
+          cards={discardPile}
+          clickProps={[recoverClickProps]}
+        />
+        {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
       </div>
     </div>
 

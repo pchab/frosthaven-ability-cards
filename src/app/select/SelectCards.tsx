@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { CardComponent, HoverArea } from '../_components/Card';
 import { SelectedCards } from '../_components/SelectedCards';
+import CardPile from '../_components/CardPile';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,
@@ -62,14 +63,12 @@ export function SelectCards<X extends Card>({
           .map((_, level) => level === 0 ? 'X' : level)
           .map((level) => (<>
             <p>{`Cards level ${level}`}</p>
-            <div key={`cards-level-${level}`} className='flex  flex-wrap gap-4'>
-              {frosthavenClass.cards
+            <CardPile
+              cards={frosthavenClass.cards
                 .filter((card) => card.level === level)
-                .filter((card) => selectedCards.every((selectedCard) => selectedCard.path !== card.path))
-                .map((card, index) => <CardComponent key={`card-${level}-${index}`} card={card}
-                  clickableAreasProps={[selectClickProps]}
-                />)}
-            </div>
+                .filter((card) => selectedCards.every((selectedCard) => selectedCard.path !== card.path))}
+              clickProps={[selectClickProps]}
+            />
           </>))}
       </div>
 

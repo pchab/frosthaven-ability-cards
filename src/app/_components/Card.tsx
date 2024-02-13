@@ -11,7 +11,7 @@ export enum HoverArea {
   all,
 }
 
-type ClickableAreasProps<X extends Card> = { zone: HoverArea, onClick: (card: X) => void; info: string; }[];
+export type ClickableAreasProps<X extends Card> = { zone: HoverArea, onClick: (card: X) => void; info: string; }[];
 const clickableArea: Record<HoverArea, string> = {
   [HoverArea.none]: '0,0,0,0',
   [HoverArea.left]: '0,0,72,200',

@@ -1,5 +1,6 @@
 import { type Card } from '@/domain/cards.type';
-import { CardComponent, HoverArea } from './Card';
+import { HoverArea } from './Card';
+import CardPile from './CardPile';
 
 export function SelectedCards<X extends Card>({
   cards,
@@ -14,11 +15,12 @@ export function SelectedCards<X extends Card>({
     info: 'Remove Card',
   };
 
-  return <div key={'selected-cards'} className='flex flex-col gap-4'>
+  return <div className='flex flex-col gap-4'>
     Selected Cards: {cards.length}
-    {cards
-      .map((card, index) => <CardComponent key={`selected-card-${index}`} card={card}
-        clickableAreasProps={[clickProps]}
-      />)}
+    <CardPile
+      cards={cards}
+      clickProps={[clickProps]}
+      vertical
+    />
   </div>;
 }
