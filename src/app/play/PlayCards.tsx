@@ -74,7 +74,7 @@ export default function PlayCards<X extends Card>({
   return (<div className='p-4 flex flex-row'>
 
     <div className='basis-3/4'>
-      <div className='p-4'>
+      <div className='p-2'>
         <p>Current hand</p>
         <CardPile
           cards={currentHand}
@@ -82,7 +82,7 @@ export default function PlayCards<X extends Card>({
         />
       </div>
 
-      <div className='p-4'>
+      <div className='p-2'>
         <p>Lost cards</p>
         <CardPile
           cards={lostPile}
@@ -90,7 +90,7 @@ export default function PlayCards<X extends Card>({
         />
       </div>
 
-      <div className='p-4'>
+      <div className='p-2'>
         <p>Discarded cards</p>
         <CardPile
           cards={discardPile}
@@ -101,13 +101,16 @@ export default function PlayCards<X extends Card>({
     </div>
 
     <div className='basis-1/4'>
-      <div className='p-4'>
-        <p>Selected cards</p>
-        <div className='flex gap-4'>
-          {selectedCards
-            .map((card, index) => <CardComponent key={`card-${index}`} card={card}
-              clickableAreasProps={[playTopClickProps, playBottomClickProps]} />)}
-        </div>
+      <p>Selected cards</p>
+      <div className='flex gap-4'>
+        {selectedCards
+          .map((card, index) => <div
+            key={`select-card-${index}`}
+            className='flex flex-col'>
+            <CardComponent card={card}
+              clickableAreasProps={[playTopClickProps, playBottomClickProps]} />
+            <button onClick={() => discardCard(card)}>Default Action</button>
+          </div>)}
       </div>
 
       <div className='p-4'>

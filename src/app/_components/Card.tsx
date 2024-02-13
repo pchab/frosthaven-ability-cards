@@ -18,8 +18,8 @@ const clickableArea: Record<HoverArea, string> = {
   [HoverArea.none]: '0,0,0,0',
   [HoverArea.left]: '0,0,72,200',
   [HoverArea.right]: '73,0,143,200',
-  [HoverArea.top]: '0,0,143,107',
-  [HoverArea.bottom]: '0,108,143,200',
+  [HoverArea.top]: '7,7,136,107',
+  [HoverArea.bottom]: '7,108,136,193',
   [HoverArea.all]: '0,0,143,200',
 };
 
@@ -54,7 +54,8 @@ export function CardComponent<X extends Card>({
     const coords = clickableArea[hoverArea].split(',').map(Number);
     context.strokeStyle = 'rgba(255, 255, 255, 0.5)';
     context.lineWidth = 3;
-    context.strokeRect(coords[0], coords[1], coords[2], coords[3]);
+    const [x1, y1, x2, y2] = coords;
+    context.strokeRect(x1, y1, x2 - x1, y2 - y1);
   }, [hoverArea]);
 
   const clickAreasName = `click-${uuid}`;
@@ -91,6 +92,6 @@ export function CardComponent<X extends Card>({
       />
     </div>
     {clickableAreasProps.map(({ zone, info }) => hoverArea === zone && <p key={`${zone}-info`}>{info}</p>)}
-    {hoverArea === HoverArea.none && <div className='p-4'></div>}
+    {hoverArea === HoverArea.none && <div className='p-3'></div>}
   </div>;
 }
