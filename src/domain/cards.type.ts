@@ -6,8 +6,20 @@ export enum CardStatus {
   'active',
 }
 
+export enum CardActions {
+  'activeDiscard',
+  'activeLost',
+  'discard',
+  'lose',
+}
+
 export type Card = {
+  name: string;
   level: number | 'X';
   path: string;
   status: CardStatus;
+  actions: {
+    top: CardActions;
+    bottom: CardActions;
+  };
 }

@@ -1,9 +1,13 @@
 import { Card, CardStatus } from './cards.type';
 
-export function createCard<X extends Card>(card: Omit<X, 'status'>): X {
-  const newCard = {
-    ...card,
+function nameToImagePath(name: string): string {
+  return name.toLowerCase().replace(/ /g, '-');
+}
+
+export function createCards<X extends Card>(cards: Omit<X, 'status' | 'path'>[], basePath: string): X[] {
+  return cards.map((card) => ({
     status: CardStatus.inHand,
-  } as X;
-  return newCard;
+    path: `${basePath}/fh-${nameToImagePath(card.name)}.png`,
+    ...card,
+  } as X));
 }
