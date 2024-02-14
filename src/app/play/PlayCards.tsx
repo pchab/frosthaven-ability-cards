@@ -88,13 +88,6 @@ export default function PlayCards<X extends Card>({
         />
       </BoardArea>
 
-      <BoardArea title='Lost cards'>
-        <CardPile
-          cards={lostPile}
-          clickProps={[recoverClickProps]}
-        />
-      </BoardArea>
-
       <BoardArea title='Discarded cards'>
         <div className='flex justify-between'>
           <CardPile
@@ -103,6 +96,13 @@ export default function PlayCards<X extends Card>({
           />
           {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
         </div>
+      </BoardArea>
+
+      <BoardArea title='Lost cards'>
+        <CardPile
+          cards={lostPile}
+          clickProps={[recoverClickProps]}
+        />
       </BoardArea>
     </div>
 
