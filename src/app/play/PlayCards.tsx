@@ -105,7 +105,7 @@ export default function PlayCards<X extends Card>({
 
     <div className='basis-1/4'>
       <p>Selected cards</p>
-      <div className='flex gap-4'>
+      <div className='flex gap-4 min-w-36 min-h-[266px]'>
         {selectedCards
           .map((card, index) => <div
             key={`select-card-${index}`}

@@ -12,7 +12,7 @@ export default function ChangeForm({
   setForm: (form: GeminateForm) => void;
 }) {
   const formPath = form === GeminateForm.melee ? meleeFormPath : rangedFormPath;
-  return <div className='p-4 flex items-center gap-4'>
+  return <div className='p-2 flex items-center gap-4'>
     <label>Change form</label>
     <Image
       src={formPath}

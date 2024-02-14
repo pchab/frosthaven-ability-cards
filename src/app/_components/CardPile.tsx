@@ -11,13 +11,13 @@ export default function CardPile<X extends Card>({
   clickProps: ClickableAreasProps<X>;
   vertical?: boolean;
 }) {
-  const uuid = crypto.randomUUID();
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | undefined>(undefined);
 
+  const uuid = crypto.randomUUID();
   const overlap = vertical ? '-mb-36' : '-mr-24';
 
   return <div
-    className={`flex flex-wrap ${vertical ? 'flex-col' : ''} gap-4`}
+    className={`flex flex-wrap ${vertical ? 'flex-col' : ''} gap-4 min-w-36 min-h-56`}
     onMouseLeave={() => setHoveredCardIndex(undefined)}
   >
     {cards

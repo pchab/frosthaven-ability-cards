@@ -51,7 +51,8 @@ export function SelectCards<X extends Card>({
 
     <div className='basis-3/4'>
 
-      <div className='flex flex-col gap-4'>
+      <div className='flex items-center gap-4 p-3'>
+        <p>{frosthavenClass.name}</p>
         <label htmlFor='level'>Level {currentLevel}</label>
         <input type='range' id='level' name='level' min='1' max='9'
           value={currentLevel} onChange={e => setCurrentLevel(Number(e.target.value))}
@@ -74,7 +75,7 @@ export function SelectCards<X extends Card>({
 
     </div>
 
-    <div className='basis-1/4'>
+    <div className='flex flex-col items-center basis-1/4'>
       <button onClick={validateSelection}>Validate Selection</button>
       {selectedCardComponent({ cards: selectedCards, onRemoveCard: removeCard })}
     </div>
