@@ -1,10 +1,10 @@
 'use client';
 
-import { CardStatus, type Card } from '@/domain/cards.type';
+import { CardStatus, type Card, CardActions } from '@/domain/cards.type';
 import { CardComponent, HoverArea } from '../_components/Card';
+import CardPile from '../_components/CardPile';
 import ShortRestButton from '../_components/ShortRestButton';
 import { useCards } from './useCards';
-import CardPile from '../_components/CardPile';
 
 
 export default function PlayCards<X extends Card>({
@@ -38,36 +38,39 @@ export default function PlayCards<X extends Card>({
     .filter(card => card.status === CardStatus.discarded);
 
   const activeEffects = currentCards
-    .filter(card => [CardStatus.activeDiscard, CardStatus.activeLost].includes(card.status));
+    .filter(card => [CardStatus.activeTop, CardStatus.activeBottom].includes(card.status));
 
   const selectClickProps = {
-    zone: HoverArea.left,
+    getZone: () => HoverArea.left,
     onClick: selectCard,
     info: 'Select Card',
   };
   const loseClickProps = {
-    zone: HoverArea.right,
+    getZone: () => HoverArea.right,
     onClick: loseCard,
     info: 'Lose Card',
   };
   const recoverClickProps = {
-    zone: HoverArea.all,
+    getZone: () => HoverArea.all,
     onClick: recoverCard,
     info: 'Recover Card',
   };
   const playTopClickProps = {
-    zone: HoverArea.top,
+    getZone: () => HoverArea.top,
     onClick: playCard('top'),
     info: 'Play top',
   };
   const playBottomClickProps = {
-    zone: HoverArea.bottom,
+    getZone: () => HoverArea.bottom,
     onClick: playCard('bottom'),
     info: 'Play bottom',
   };
   const RemoveEffectClickProps = {
-    zone: HoverArea.all,
-    onClick: (card: X) => (card.status === CardStatus.activeDiscard ? discardCard(card) : loseCard(card)),
+    getZone: (card: X) => card.status === CardStatus.activeTop ? HoverArea.top : HoverArea.bottom,
+    onClick: (card: X) => {
+      const action = card.status === CardStatus.activeTop ? card.actions.top : card.actions.bottom;
+      action === CardActions.activeDiscard ? discardCard(card) : loseCard(card)
+    },
     info: 'Remove effect',
   };
 

@@ -10,7 +10,7 @@ export function SelectedCards<X extends Card>({
   onRemoveCard: (card: X) => void;
 }) {
   const clickProps = {
-    zone: HoverArea.all,
+    getZone: () => HoverArea.all,
     onClick: onRemoveCard,
     info: 'Remove Card',
   };

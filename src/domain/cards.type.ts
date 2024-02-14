@@ -3,8 +3,8 @@ export enum CardStatus {
   'discarded',
   'inHand',
   'selected',
-  'activeDiscard',
-  'activeLost',
+  'activeTop',
+  'activeBottom',
 }
 
 export enum CardActions {

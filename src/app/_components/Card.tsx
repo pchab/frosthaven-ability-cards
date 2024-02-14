@@ -13,7 +13,11 @@ export enum HoverArea {
   all,
 }
 
-export type ClickableAreasProps<X extends Card> = { zone: HoverArea, onClick: (card: X) => void; info: string; }[];
+export type ClickableAreasProps<X extends Card> = {
+  getZone: (card: X) => HoverArea;
+  onClick: (card: X) => void;
+  info: string;
+}[];
 const clickableArea: Record<HoverArea, string> = {
   [HoverArea.none]: '0,0,0,0',
   [HoverArea.left]: '0,0,72,200',
@@ -26,17 +30,15 @@ const clickableArea: Record<HoverArea, string> = {
 export function CardComponent<X extends Card>({
   card,
   clickableAreasProps,
+  fixedArea,
 }: {
   card: X;
   clickableAreasProps: ClickableAreasProps<X>;
+  fixedArea?: HoverArea;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [hoverArea, setHoverArea] = useState<HoverArea>(HoverArea.none);
+  const [hoverArea, setHoverArea] = useState<HoverArea>(fixedArea ?? HoverArea.none);
   const uuid = crypto.randomUUID();
-
-  const handleMouseLeave = () => {
-    setHoverArea(HoverArea.none);
-  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -58,6 +60,14 @@ export function CardComponent<X extends Card>({
     context.strokeRect(x1, y1, x2 - x1, y2 - y1);
   }, [hoverArea]);
 
+  const changeArea = (zone: HoverArea) => () => {
+    if (!fixedArea) {
+      setHoverArea(zone);
+    }
+  }
+
+  const handleMouseLeave = changeArea(HoverArea.none);
+
   const clickAreasName = `click-${uuid}`;
   return <div>
     <div
@@ -70,19 +80,22 @@ export function CardComponent<X extends Card>({
         height={200}
       />
       <map name={clickAreasName}>
-        {clickableAreasProps.map(({ zone, onClick }) => (
-          <area
+        {clickableAreasProps.map(({ getZone, onClick }) => {
+          const zone = getZone(card);
+          return <area
             href='#'
             key={`${clickAreasName}-${zone}-area`}
             onClick={(event) => {
               event.preventDefault();
-              onClick(card);
+              if (zone === hoverArea) {
+                onClick(card);
+              }
             }}
             coords={clickableArea[zone]}
             shape={'rect'}
-            onMouseEnter={() => setHoverArea(zone)}
-          />
-        ))}
+            onMouseEnter={changeArea(zone)}
+          />;
+        })}
       </map><Image
         useMap={`#${clickAreasName}`}
         src={card.path}
@@ -91,7 +104,7 @@ export function CardComponent<X extends Card>({
         height={200}
       />
     </div>
-    {clickableAreasProps.map(({ zone, info }) => hoverArea === zone && <p key={`${zone}-info`}>{info}</p>)}
+    {clickableAreasProps.map(({ getZone, info }) => hoverArea === getZone(card) && <p key={`${getZone(card)}-info`}>{info}</p>)}
     {hoverArea === HoverArea.none && <div className='p-3'></div>}
   </div>;
 }

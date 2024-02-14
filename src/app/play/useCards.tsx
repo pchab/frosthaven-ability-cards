@@ -1,16 +1,17 @@
 import { CardStatus, type Card, CardActions } from '@/domain/cards.type';
 import { useState } from 'react';
 
-function newStatusAfterAction(action: CardActions): CardStatus {
-  switch (action) {
+type Action = 'top' | 'bottom';
+
+function newStatusAfterAction(cardAction: CardActions, action: Action): CardStatus {
+  switch (cardAction) {
     case CardActions.discard:
       return CardStatus.discarded;
     case CardActions.lose:
       return CardStatus.lost;
     case CardActions.activeDiscard:
-      return CardStatus.activeDiscard;
     case CardActions.activeLost:
-      return CardStatus.activeLost;
+      return action === 'top' ? CardStatus.activeTop : CardStatus.activeBottom;
   }
 }
 
@@ -41,7 +42,7 @@ export function useCards<X extends Card>(cards: X[]) {
 
   const playCard = (action: 'top' | 'bottom') => (card: X) => setCurrentCards([
     ...currentCards.filter(c => c !== card),
-    { ...card, status: newStatusAfterAction(card.actions[action]) },
+    { ...card, status: newStatusAfterAction(card.actions[action], action) },
   ]);
 
   const makeShortRest = ({ recovered, lost }: { recovered: X[], lost: X }) => setCurrentCards([

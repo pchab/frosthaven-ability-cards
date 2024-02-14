@@ -15,7 +15,7 @@ export function SelectedGeminateCards({
     .filter((card) => card.form === GeminateForm.ranged);
 
   const clickProps = {
-    zone: HoverArea.all,
+    getZone: () => HoverArea.all,
     onClick: onRemoveCard,
     info: 'Remove Card',
   };
