@@ -45,7 +45,7 @@ export function useCards<X extends Card>(cards: X[]) {
     { ...card, status: newStatusAfterAction(card.actions[action], action) },
   ]);
 
-  const makeShortRest = ({ recovered, lost }: { recovered: X[], lost: X }) => setCurrentCards([
+  const makeRest = ({ recovered, lost }: { recovered: X[], lost: X }) => setCurrentCards([
     ...currentCards.filter(c => c.status !== CardStatus.discarded),
     ...recovered.map(c => ({ ...c, status: CardStatus.inHand })),
     { ...lost, status: CardStatus.lost },
@@ -58,6 +58,6 @@ export function useCards<X extends Card>(cards: X[]) {
     discardCard,
     loseCard,
     recoverCard,
-    makeShortRest,
+    makeRest,
   };
 }

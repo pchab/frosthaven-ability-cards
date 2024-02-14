@@ -1,6 +1,6 @@
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
-import { HoverArea } from '../Card';
-import CardPile from '../CardPile';
+import { HoverArea } from '../cards/Card';
+import CardPile from '../cards/CardPile';
 
 export function SelectedGeminateCards({
   cards,

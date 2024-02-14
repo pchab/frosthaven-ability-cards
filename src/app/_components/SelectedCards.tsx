@@ -1,6 +1,6 @@
 import { type Card } from '@/domain/cards.type';
-import { HoverArea } from './Card';
-import CardPile from './CardPile';
+import { HoverArea } from './cards/Card';
+import CardPile from './cards/CardPile';
 
 export function SelectedCards<X extends Card>({
   cards,

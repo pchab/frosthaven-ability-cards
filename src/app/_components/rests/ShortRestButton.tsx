@@ -1,7 +1,8 @@
 import { type Card } from '@/domain/cards.type';
 import { useState } from 'react';
-import { CardComponent, HoverArea } from './Card';
+import { CardComponent, HoverArea } from '../cards/Card';
 import Image from 'next/image';
+import Modal from '../Modal';
 
 function getRandomCard<X extends Card>(arr: X[]) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -27,7 +28,7 @@ export default function ShortRestButton<X extends Card>({
   };
 
   return <>
-    {lostCard && <div className='absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center bg-black/80'>
+    {lostCard && <Modal>
       {!hasRerolled && <button
         className='m-4'
         onClick={() => {
@@ -43,7 +44,7 @@ export default function ShortRestButton<X extends Card>({
       </button>}
       <CardComponent card={lostCard} clickableAreasProps={[confirmShortRestProps]} />
 
-    </div >}
+    </Modal>}
     <button
       className='m-4'
       onClick={() => setLostCard(getRandomCard(cards))}

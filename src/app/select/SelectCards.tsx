@@ -3,9 +3,9 @@ import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { HoverArea } from '../_components/Card';
+import { HoverArea } from '../_components/cards/Card';
 import { SelectedCards } from '../_components/SelectedCards';
-import CardPile from '../_components/CardPile';
+import CardPile from '../_components/cards/CardPile';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,

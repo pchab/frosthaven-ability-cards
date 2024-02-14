@@ -1,12 +1,13 @@
 'use client';
 
 import { CardStatus, type Card, CardActions } from '@/domain/cards.type';
-import { CardComponent, HoverArea } from '../_components/Card';
-import CardPile from '../_components/CardPile';
-import ShortRestButton from '../_components/ShortRestButton';
+import { CardComponent, HoverArea } from '../_components/cards/Card';
+import CardPile from '../_components/cards/CardPile';
+import ShortRestButton from '../_components/rests/ShortRestButton';
 import { useCards } from './useCards';
 import type { ReactNode } from 'react';
 import BoardArea from '../_components/BoardArea';
+import LongRestButton from '../_components/rests/LongRestButton';
 
 
 export default function PlayCards<X extends Card>({
@@ -25,7 +26,7 @@ export default function PlayCards<X extends Card>({
     discardCard,
     loseCard,
     recoverCard,
-    makeShortRest,
+    makeRest,
   } = useCards(cards);
 
   const currentHand = currentCards
@@ -94,7 +95,10 @@ export default function PlayCards<X extends Card>({
             cards={discardPile}
             clickProps={[recoverClickProps]}
           />
-          {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
+          {discardPile.length > 1 && <div className='flex flex-col justify-between'>
+            <ShortRestButton cards={discardPile} onShortRest={makeRest} />
+            <LongRestButton cards={discardPile} onLongRest={makeRest} />
+          </div>}
         </div>
       </BoardArea>
 
