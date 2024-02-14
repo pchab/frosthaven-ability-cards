@@ -5,14 +5,18 @@ import { CardComponent, HoverArea } from '../_components/Card';
 import CardPile from '../_components/CardPile';
 import ShortRestButton from '../_components/ShortRestButton';
 import { useCards } from './useCards';
+import type { ReactNode } from 'react';
+import BoardArea from '../_components/BoardArea';
 
 
 export default function PlayCards<X extends Card>({
   cards,
   filterCard = () => true,
+  children,
 }: {
   cards: X[];
   filterCard?: (card: X) => boolean;
+  children?: ReactNode;
 }) {
   const {
     currentCards,
@@ -76,55 +80,54 @@ export default function PlayCards<X extends Card>({
 
   return (<div className='p-4 flex flex-row'>
 
-    <div className='basis-3/4'>
-      <div className='p-2'>
-        <p>Current hand</p>
+    <div className='basis-2/3'>
+      <BoardArea title='Current hand'>
         <CardPile
           cards={currentHand}
           clickProps={[selectClickProps, loseClickProps]}
         />
-      </div>
+      </BoardArea>
 
-      <div className='p-2'>
-        <p>Lost cards</p>
+      <BoardArea title='Lost cards'>
         <CardPile
           cards={lostPile}
           clickProps={[recoverClickProps]}
         />
-      </div>
+      </BoardArea>
 
-      <div className='p-2'>
-        <p>Discarded cards</p>
-        <CardPile
-          cards={discardPile}
-          clickProps={[recoverClickProps]}
-        />
-        {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
-      </div>
+      <BoardArea title='Discarded cards'>
+        <div className='flex justify-between'>
+          <CardPile
+            cards={discardPile}
+            clickProps={[recoverClickProps]}
+          />
+          {discardPile.length > 1 && <ShortRestButton cards={discardPile} onShortRest={makeShortRest} />}
+        </div>
+      </BoardArea>
     </div>
 
-    <div className='basis-1/4'>
-      <p>Selected cards</p>
-      <div className='flex gap-4 min-w-36 min-h-[266px]'>
-        {selectedCards
-          .map((card, index) => <div
-            key={`select-card-${index}`}
-            className='flex flex-col'>
-            <CardComponent card={card}
-              clickableAreasProps={[playTopClickProps, playBottomClickProps]} />
-            <button onClick={() => discardCard(card)}>Default Action</button>
-          </div>)}
-      </div>
+    <div className='basis-1/3 p-2 flex flex-col items-center'>
+      {children}
 
-      <div className='p-4'>
-        <p>Active effects</p>
-        <div className='flex gap-4'>
-          <CardPile
-            cards={activeEffects}
-            clickProps={[RemoveEffectClickProps]}
-          />
+      <BoardArea title='Selected cards'>
+        <div className='flex gap-4 justify-center min-h-[266px]'>
+          {selectedCards
+            .map((card, index) => <div
+              key={`select-card-${index}`}
+              className='flex flex-col'>
+              <CardComponent card={card}
+                clickableAreasProps={[playTopClickProps, playBottomClickProps]} />
+              <button onClick={() => discardCard(card)}>Default Action</button>
+            </div>)}
         </div>
-      </div>
+      </BoardArea>
+
+      <BoardArea title='Active effects'>
+        <CardPile
+          cards={activeEffects}
+          clickProps={[RemoveEffectClickProps]}
+        />
+      </BoardArea>
     </div>
   </div>);
 }

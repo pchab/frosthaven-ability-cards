@@ -9,9 +9,7 @@ export default function PlayGeminateCards({ cards }: { cards: GeminateCard[] }) 
   const [currentForm, setCurrentForm] = useState<GeminateForm>(GeminateForm.melee);
   const filterCard = (card: GeminateCard) => card.form === currentForm;
 
-  return (<div>
+  return <PlayCards cards={cards} filterCard={filterCard}>
     <ChangeForm form={currentForm} setForm={setCurrentForm} />
-
-    <PlayCards cards={cards} filterCard={filterCard}></PlayCards>
-  </div>);
+  </PlayCards>;
 }
