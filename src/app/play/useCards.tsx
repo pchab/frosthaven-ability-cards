@@ -1,9 +1,13 @@
 import { CardStatus, type Card, CardActions } from '@/domain/cards.type';
 import { useState } from 'react';
 
-type Action = 'top' | 'bottom';
+export type Action = 'top' | 'bottom' | 'default';
 
-function newStatusAfterAction(cardAction: CardActions, action: Action): CardStatus {
+function newStatusAfterAction(cardActions: Card['actions'], action: Action): CardStatus {
+  if (action === 'default') {
+    return CardStatus.discarded;
+  }
+  const cardAction = cardActions[action];
   switch (cardAction) {
     case CardActions.discard:
       return CardStatus.discarded;
@@ -40,9 +44,9 @@ export function useCards<X extends Card>(cards: X[]) {
     { ...card, status: CardStatus.inHand },
   ]);
 
-  const playCard = (action: 'top' | 'bottom') => (card: X) => setCurrentCards([
-    ...currentCards.filter(c => c !== card),
-    { ...card, status: newStatusAfterAction(card.actions[action], action) },
+  const playCards = (cardsPlayed: { action: Action; card: X }[]) => setCurrentCards([
+    ...currentCards.filter(card => !cardsPlayed.map(({ card }) => card).includes(card)),
+    ...cardsPlayed.map(({ action, card }) => ({ ...card, status: newStatusAfterAction(card.actions, action) })),
   ]);
 
   const makeRest = ({ recovered, lost }: { recovered: X[], lost: X }) => setCurrentCards([
@@ -54,7 +58,7 @@ export function useCards<X extends Card>(cards: X[]) {
   return {
     currentCards,
     selectCard,
-    playCard,
+    playCards,
     discardCard,
     loseCard,
     recoverCard,

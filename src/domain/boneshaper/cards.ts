@@ -11,7 +11,7 @@ export const boneshaperCards: Card[] = createCards([
   { level: 1, name: 'command the wretched', actions: { top: CardActions.discard, bottom: CardActions.lose } },
   { level: 1, name: 'damned horde', actions: { top: CardActions.activeDiscard, bottom: CardActions.discard } },
   { level: 1, name: 'dark tidings', actions: { top: CardActions.lose, bottom: CardActions.discard } },
-  { level: 1, name: 'decaying will', actions: { top: CardActions.discard, bottom: CardActions.lose } },
+  { level: 1, name: 'decaying will', actions: { top: CardActions.discard, bottom: CardActions.activeLost } },
   { level: 1, name: 'eternal torment', actions: { top: CardActions.discard, bottom: CardActions.discard } },
   { level: 1, name: 'fell remedy', actions: { top: CardActions.discard, bottom: CardActions.discard } },
   { level: 1, name: 'flow of the black river', actions: { top: CardActions.discard, bottom: CardActions.discard } },

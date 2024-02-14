@@ -8,6 +8,7 @@ import { useCards } from './useCards';
 import type { ReactNode } from 'react';
 import BoardArea from '../_components/BoardArea';
 import LongRestButton from '../_components/rests/LongRestButton';
+import PlayedCard from '../_components/cards/PlayedCard';
 
 
 export default function PlayCards<X extends Card>({
@@ -22,7 +23,7 @@ export default function PlayCards<X extends Card>({
   const {
     currentCards,
     selectCard,
-    playCard,
+    playCards,
     discardCard,
     loseCard,
     recoverCard,
@@ -59,16 +60,6 @@ export default function PlayCards<X extends Card>({
     getZone: () => HoverArea.all,
     onClick: recoverCard,
     info: 'Recover Card',
-  };
-  const playTopClickProps = {
-    getZone: () => HoverArea.top,
-    onClick: playCard('top'),
-    info: 'Play top',
-  };
-  const playBottomClickProps = {
-    getZone: () => HoverArea.bottom,
-    onClick: playCard('bottom'),
-    info: 'Play bottom',
   };
   const RemoveEffectClickProps = {
     getZone: (card: X) => card.status === CardStatus.activeTop ? HoverArea.top : HoverArea.bottom,
@@ -110,20 +101,11 @@ export default function PlayCards<X extends Card>({
       </BoardArea>
     </div>
 
-    <div className='basis-1/3 p-2 flex flex-col items-center'>
+    <div className='basis-1/3 p-2 m-2 flex flex-col items-center'>
       {children}
 
       <BoardArea title='Selected cards'>
-        <div className='flex gap-4 justify-center min-h-[266px]'>
-          {selectedCards
-            .map((card, index) => <div
-              key={`select-card-${index}`}
-              className='flex flex-col'>
-              <CardComponent card={card}
-                clickableAreasProps={[playTopClickProps, playBottomClickProps]} />
-              <button onClick={() => discardCard(card)}>Default Action</button>
-            </div>)}
-        </div>
+        <PlayedCard cards={selectedCards} playCards={playCards} />
       </BoardArea>
 
       <BoardArea title='Active effects'>

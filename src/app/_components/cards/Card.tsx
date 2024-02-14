@@ -47,7 +47,6 @@ export function CardComponent<X extends Card>({
     const context = canvas.getContext('2d');
     if (!context) return;
 
-
     context.reset();
     if (hoverArea === HoverArea.none) {
       return;
