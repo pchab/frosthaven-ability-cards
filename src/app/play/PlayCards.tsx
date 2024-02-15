@@ -28,6 +28,8 @@ export default function PlayCards<X extends Card>({
     loseCard,
     recoverCard,
     makeRest,
+    undo,
+    redo,
   } = useCards(cards);
 
   const currentHand = currentCards
@@ -102,7 +104,11 @@ export default function PlayCards<X extends Card>({
     </div>
 
     <div className='basis-1/3 p-2 m-2 flex flex-col items-center'>
-      {children}
+      <div className='flex gap-4'>
+        {children}
+        <button onClick={undo}>Undo</button>
+        <button onClick={redo}>Redo</button>
+      </div>
 
       <BoardArea title='Selected cards'>
         <PlayedCard cards={selectedCards} playCards={playCards} />

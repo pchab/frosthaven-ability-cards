@@ -1,5 +1,5 @@
 import { CardStatus, type Card, CardActions } from '@/domain/cards.type';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export type Action = 'top' | 'bottom' | 'default';
 
@@ -20,40 +20,54 @@ function newStatusAfterAction(cardActions: Card['actions'], action: Action): Car
 }
 
 export function useCards<X extends Card>(cards: X[]) {
-  const [currentCards, setCurrentCards] = useState<X[]>(cards);
+  const [states, setStates] = useState<X[][]>([cards]);
+  const [stateIndex, setStateIndex] = useState(0);
+  const currentCards = useMemo(() => states[stateIndex], [states, stateIndex]);
+  useEffect(() => {
+    setStateIndex(states.length - 1);
+  }, [states]);
 
-  const selectCard = (card: X) => {
-    if (currentCards.filter(c => c.status === CardStatus.selected).length < 2) {
-      const newCurrentCards = currentCards.filter(c => c !== card);
-      setCurrentCards([...newCurrentCards, { ...card, status: CardStatus.selected }]);
-    }
+  const changeCardStatus = (newStatus: CardStatus, condition?: () => boolean) => (card: X) => {
+    if (condition && !condition()) return;
+    const otherCards = currentCards.filter(c => c !== card);
+    const newState = [...otherCards, { ...card, status: newStatus }];
+    setStates([...states.slice(0, stateIndex + 1), newState]);
   };
 
-  const discardCard = (card: X) => setCurrentCards([
-    ...currentCards.filter(c => c !== card),
-    { ...card, status: CardStatus.discarded }
-  ]);
-
-  const loseCard = (card: X) => setCurrentCards([
-    ...currentCards.filter(c => c !== card),
-    { ...card, status: CardStatus.lost }],
+  const selectCard = changeCardStatus(
+    CardStatus.selected,
+    () => currentCards.filter(c => c.status === CardStatus.selected).length < 2,
   );
+  const discardCard = changeCardStatus(CardStatus.discarded);
+  const loseCard = changeCardStatus(CardStatus.lost);
+  const recoverCard = changeCardStatus(CardStatus.inHand);
 
-  const recoverCard = (card: X) => setCurrentCards([
-    ...currentCards.filter(c => c !== card),
-    { ...card, status: CardStatus.inHand },
-  ]);
+  const playCards = (cardsPlayed: { action: Action; card: X }[]) => {
+    const newState = [
+      ...currentCards.filter(card => !cardsPlayed.map(({ card }) => card).includes(card)),
+      ...cardsPlayed.map(({ action, card }) => ({ ...card, status: newStatusAfterAction(card.actions, action) })),
+    ];
+    setStates([...states.slice(0, stateIndex + 1), newState]);
+  };
 
-  const playCards = (cardsPlayed: { action: Action; card: X }[]) => setCurrentCards([
-    ...currentCards.filter(card => !cardsPlayed.map(({ card }) => card).includes(card)),
-    ...cardsPlayed.map(({ action, card }) => ({ ...card, status: newStatusAfterAction(card.actions, action) })),
-  ]);
+  const makeRest = ({ recovered, lost }: { recovered: X[], lost: X }) => {
+    const newState = [
+      ...currentCards.filter(c => c.status !== CardStatus.discarded),
+      ...recovered.map(c => ({ ...c, status: CardStatus.inHand })),
+      { ...lost, status: CardStatus.lost },
+    ];
+    setStates([...states.slice(0, stateIndex + 1), newState]);
+  };
 
-  const makeRest = ({ recovered, lost }: { recovered: X[], lost: X }) => setCurrentCards([
-    ...currentCards.filter(c => c.status !== CardStatus.discarded),
-    ...recovered.map(c => ({ ...c, status: CardStatus.inHand })),
-    { ...lost, status: CardStatus.lost },
-  ]);
+  const undo = () => {
+    if (stateIndex === 0) return;
+    setStateIndex(stateIndex - 1);
+  };
+
+  const redo = () => {
+    if (stateIndex === states.length - 1) return;
+    setStateIndex(stateIndex + 1);
+  };
 
   return {
     currentCards,
@@ -63,5 +77,7 @@ export function useCards<X extends Card>(cards: X[]) {
     loseCard,
     recoverCard,
     makeRest,
+    undo,
+    redo,
   };
 }
