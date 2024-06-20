@@ -5,6 +5,7 @@ export enum FrosthavenClassNames {
   Blinkblade = 'Blinkblade',
   Boneshaper = 'Boneshaper',
   Deathwalker = 'Deathwalker',
+  Drifter = 'Drifter',
   Geminate = 'Geminate',
   Snowdancer = 'Snowdancer',
   Trapper = 'Trapper',
