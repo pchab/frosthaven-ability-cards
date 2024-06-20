@@ -1,5 +1,3 @@
-'use client';
-
 import { bannerSpear } from '@/domain/banner-spear/class';
 import { blinkblade } from '@/domain/blinkblade/class';
 import { boneshaper } from '@/domain/boneshaper/class';
@@ -8,14 +6,10 @@ import { drifter } from '@/domain/drifter/class';
 import { geminate } from '@/domain/geminate/class';
 import { snowdancer } from '@/domain/snowdancer/class';
 import { trapper } from '@/domain/trapper/class';
-import { useFrosthavenStore } from '@/stores/cards.store';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import SelectClass from './SelectClass';
 
 export default function SelectClassPage() {
-  const router = useRouter();
-  const selectClass = useFrosthavenStore((state) => state.selectClass);
-
   const starterClasses = [
     bannerSpear,
     blinkblade,
@@ -35,25 +29,17 @@ export default function SelectClassPage() {
       <div className="flex p-6 justify-center w-full gap-8">
         {starterClasses.map((fhClass) => {
           const { name, path, iconSize } = fhClass;
-          return <Image
-            key={name} src={path} alt={name}
-            {...iconSize}
-            onClick={() => {
-              selectClass(fhClass);
-              router.push('/select');
-            }} />;
+          return <SelectClass key={name} fhClass={fhClass}>
+            <Image src={path} alt={name} {...iconSize} />
+          </SelectClass>;
         })}
       </div>
       <div className="flex p-6 justify-center w-full gap-8">
         {unlockedClasses.map((fhClass) => {
           const { name, path, iconSize } = fhClass;
-          return <Image
-            key={name} src={path} alt={name}
-            {...iconSize}
-            onClick={() => {
-              selectClass(fhClass);
-              router.push('/select');
-            }} />;
+          return <SelectClass key={name} fhClass={fhClass}>
+            <Image src={path} alt={name} {...iconSize} />
+          </SelectClass>;
         })}
       </div>
     </div>
