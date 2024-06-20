@@ -7,6 +7,7 @@ export enum FrosthavenClassNames {
   Deathwalker = 'Deathwalker',
   Geminate = 'Geminate',
   Snowdancer = 'Snowdancer',
+  Trapper = 'Trapper',
 }
 
 export type FrosthavenClass<X extends Card> = {
