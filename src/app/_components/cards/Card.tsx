@@ -2,7 +2,7 @@
 
 import { Card } from '@/domain/cards.type';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { PredefinedHoverArea, drawHoverArea, getHoverAreaProps, type HoverArea } from './hover-area';
 
 export type ClickableAreasProps<X extends Card> = {
@@ -15,10 +15,12 @@ export function CardComponent<X extends Card>({
   card,
   clickableAreasProps,
   fixedArea,
+  children,
 }: {
   card: X;
   clickableAreasProps: ClickableAreasProps<X>;
   fixedArea?: HoverArea;
+  children?: ReactNode;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hoverArea, setHoverArea] = useState<HoverArea>(fixedArea ?? PredefinedHoverArea.none);
@@ -49,9 +51,7 @@ export function CardComponent<X extends Card>({
 
   const clickAreasName = `click-${uuid}`;
   return <div>
-    <div
-      onMouseLeave={handleMouseLeave}
-    >
+    <div onMouseLeave={handleMouseLeave} className='relative'>
       <canvas
         ref={canvasRef}
         className='absolute pointer-events-none'
@@ -59,12 +59,12 @@ export function CardComponent<X extends Card>({
         height={200}
       />
       <map name={clickAreasName}>
-        {clickableAreasProps.map(({ getZone, onClick }) => {
+        {clickableAreasProps.map(({ getZone, onClick }, index) => {
           const zone = getZone(card);
           const props = getHoverAreaProps(zone);
           return <area
             href='#'
-            key={`${clickAreasName}-${zone}-area`}
+            key={`${clickAreasName}-${index}-area`}
             onClick={(event) => {
               event.preventDefault();
               if (zone === hoverArea) {
@@ -75,13 +75,15 @@ export function CardComponent<X extends Card>({
             onMouseEnter={changeArea(zone)}
           />;
         })}
-      </map><Image
+      </map>
+      <Image
         useMap={`#${clickAreasName}`}
         src={card.path}
         alt='card'
         width={143}
         height={200}
       />
+      {children ?? <></>}
     </div>
     {clickableAreasProps.map(({ getZone, info }) => hoverArea === getZone(card) && <p key={`${getZone(card)}-info`}>{info}</p>)}
     {hoverArea === PredefinedHoverArea.none && <div className='p-3'></div>}

@@ -2,8 +2,15 @@
 
 import { drifterCards } from '@/domain/drifter/cards';
 import { CardComponent } from '../_components/cards/Card';
+import Image from 'next/image';
+import { useState } from 'react';
 
 export default function TestCard() {
+  const [tokenPosition, setTokenPosition] = useState<{
+    visibility?: 'hidden';
+    left?: number;
+    top?: number;
+  }>({ visibility: 'hidden' })
   const card = drifterCards.find(({ name }) => name === 'accurate strikes');
 
   if (!card) {
@@ -19,11 +26,23 @@ export default function TestCard() {
     { x: 93, y: 82, radius: 10 },
   ].map((coords, index) => ({
     getZone: () => coords,
-    onClick: () => console.log('move slot', index),
+    onClick: () => {
+      const { x, y, radius } = coords;
+      setTokenPosition({ left: x - radius, top: y - radius });
+    },
     info: `Move Slot ${index}`,
   }));
 
   return <div className="flex flex-col p-32 items-center w-full">
-    <CardComponent card={card} clickableAreasProps={moveSlotProps} />
+    <CardComponent card={card} clickableAreasProps={moveSlotProps}>
+      <Image
+        src={'/drifter/icons/fh-drifter-character-token.png'}
+        alt='token'
+        width={20}
+        height={20}
+        className='absolute'
+        style={tokenPosition}
+      />
+    </CardComponent>
   </div>;
 }
