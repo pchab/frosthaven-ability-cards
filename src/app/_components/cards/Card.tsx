@@ -3,29 +3,13 @@
 import { Card } from '@/domain/cards.type';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-
-export enum HoverArea {
-  none,
-  left,
-  right,
-  top,
-  bottom,
-  all,
-}
+import { HoverAreaNone, drawHoverArea, isHoverCircleArea, type HoverArea } from './hover-area';
 
 export type ClickableAreasProps<X extends Card> = {
   getZone: (card: X) => HoverArea;
   onClick: (card: X) => void;
   info: string;
 }[];
-const clickableArea: Record<HoverArea, string> = {
-  [HoverArea.none]: '0,0,0,0',
-  [HoverArea.left]: '0,0,72,200',
-  [HoverArea.right]: '73,0,143,200',
-  [HoverArea.top]: '7,7,136,107',
-  [HoverArea.bottom]: '7,108,136,193',
-  [HoverArea.all]: '0,0,143,200',
-};
 
 export function CardComponent<X extends Card>({
   card,
@@ -37,7 +21,7 @@ export function CardComponent<X extends Card>({
   fixedArea?: HoverArea;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [hoverArea, setHoverArea] = useState<HoverArea>(fixedArea ?? HoverArea.none);
+  const [hoverArea, setHoverArea] = useState<HoverArea>(fixedArea ?? HoverAreaNone);
   const uuid = crypto.randomUUID();
 
   useEffect(() => {
@@ -48,15 +32,11 @@ export function CardComponent<X extends Card>({
     if (!context) return;
 
     context.reset();
-    if (hoverArea === HoverArea.none) {
+    if (hoverArea === HoverAreaNone) {
       return;
     }
 
-    const coords = clickableArea[hoverArea].split(',').map(Number);
-    context.strokeStyle = 'rgba(255, 255, 255, 0.5)';
-    context.lineWidth = 3;
-    const [x1, y1, x2, y2] = coords;
-    context.strokeRect(x1, y1, x2 - x1, y2 - y1);
+    drawHoverArea(hoverArea, context);
   }, [hoverArea]);
 
   const changeArea = (zone: HoverArea) => () => {
@@ -65,7 +45,7 @@ export function CardComponent<X extends Card>({
     }
   }
 
-  const handleMouseLeave = changeArea(HoverArea.none);
+  const handleMouseLeave = changeArea(HoverAreaNone);
 
   const clickAreasName = `click-${uuid}`;
   return <div>
@@ -81,6 +61,20 @@ export function CardComponent<X extends Card>({
       <map name={clickAreasName}>
         {clickableAreasProps.map(({ getZone, onClick }) => {
           const zone = getZone(card);
+          const props = {};
+          if (isHoverCircleArea(zone)) {
+            const { x, y, radius } = zone;
+            Object.assign(props, {
+              coords: `${x},${y},${radius}`,
+              shape: 'circle',
+            });
+          } else {
+            const { x1, x2, y1, y2 } = zone;
+            Object.assign(props, {
+              coords: `${x1},${y1},${x2},${y2}`,
+              shape: 'rect',
+            });
+          }
           return <area
             href='#'
             key={`${clickAreasName}-${zone}-area`}
@@ -90,8 +84,7 @@ export function CardComponent<X extends Card>({
                 onClick(card);
               }
             }}
-            coords={clickableArea[zone]}
-            shape={'rect'}
+            {...props}
             onMouseEnter={changeArea(zone)}
           />;
         })}
@@ -104,6 +97,6 @@ export function CardComponent<X extends Card>({
       />
     </div>
     {clickableAreasProps.map(({ getZone, info }) => hoverArea === getZone(card) && <p key={`${getZone(card)}-info`}>{info}</p>)}
-    {hoverArea === HoverArea.none && <div className='p-3'></div>}
+    {hoverArea === HoverAreaNone && <div className='p-3'></div>}
   </div>;
 }
