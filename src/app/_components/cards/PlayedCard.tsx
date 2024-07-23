@@ -66,7 +66,7 @@ export default function PlayedCard<X extends Card>({
   return <div className='flex gap-4 min-h-[266px]'>
     {cards
       .map((card, index) => <div
-        key={`select-card-${index}`}
+        key={card.name}
         className='flex flex-col'>
         <CardComponent card={card}
           clickableAreasProps={getPlayableActions(index)}

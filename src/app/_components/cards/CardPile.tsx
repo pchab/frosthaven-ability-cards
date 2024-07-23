@@ -12,8 +12,6 @@ export default function CardPile<X extends Card>({
   vertical?: boolean;
 }) {
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | undefined>(undefined);
-
-  const uuid = crypto.randomUUID();
   const overlap = vertical ? '-mb-36' : '-mr-24';
 
   return <div
@@ -22,7 +20,7 @@ export default function CardPile<X extends Card>({
   >
     {cards
       .map((card, index) => <div
-        key={`pile-${uuid}-${index}`}
+        key={card.name}
         onMouseEnter={() => setHoveredCardIndex(index)}
         className={`w-fit ${hoveredCardIndex === index ? '' : overlap}`}
       >

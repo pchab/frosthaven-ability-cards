@@ -65,7 +65,7 @@ export function SelectCards<X extends Card>({
           .map((level) => (<>
             <p>{`Cards level ${level}`}</p>
             <CardPile
-              key={level}
+              key={`cards-level-${level}`}
               cards={frosthavenClass.cards
                 .filter((card) => card.level === level)
                 .filter((card) => selectedCards.every((selectedCard) => selectedCard.path !== card.path))}

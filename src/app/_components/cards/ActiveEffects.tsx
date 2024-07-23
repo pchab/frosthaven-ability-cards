@@ -19,10 +19,10 @@ export default function ActiveEffects<X extends Card>({
     className={`flex flex-wrap ${vertical ? 'flex-col' : ''} gap-4 min-w-36 min-h-56`}
   >
     {cards
-      .map((card, index) => {
+      .map((card) => {
         const cardElement = !!card.slots
-          ? <CardWithSlot key={index} card={card} fhClass={fhClass} clickableAreasProps={clickProps} />
-          : <CardComponent key={index} card={card} clickableAreasProps={clickProps} />;
+          ? <CardWithSlot key={card.name} card={card} fhClass={fhClass} clickableAreasProps={clickProps} />
+          : <CardComponent key={card.name} card={card} clickableAreasProps={clickProps} />;
         return cardElement;
       })
     }

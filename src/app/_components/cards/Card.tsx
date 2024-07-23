@@ -24,7 +24,6 @@ export function CardComponent<X extends Card>({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hoverArea, setHoverArea] = useState<HoverArea>(fixedArea ?? PredefinedHoverArea.none);
-  const uuid = crypto.randomUUID();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -49,7 +48,7 @@ export function CardComponent<X extends Card>({
 
   const handleMouseLeave = changeArea(PredefinedHoverArea.none);
 
-  const clickAreasName = `click-${uuid}`;
+  const clickAreasName = `click-${card.name}`;
   return <div>
     <div onMouseLeave={handleMouseLeave} className='relative'>
       <canvas
@@ -64,7 +63,7 @@ export function CardComponent<X extends Card>({
           const props = getHoverAreaProps(zone);
           return <area
             href='#'
-            key={`${clickAreasName}-${index}-area`}
+            key={`${clickAreasName}-area-${index}`}
             onClick={(event) => {
               event.preventDefault();
               if (zone === hoverArea) {
@@ -85,7 +84,9 @@ export function CardComponent<X extends Card>({
       />
       {children ?? <></>}
     </div>
-    {clickableAreasProps.map(({ getZone, info }) => hoverArea === getZone(card) && <p key={`${getZone(card)}-info`}>{info}</p>)}
+    {clickableAreasProps.map(({ getZone, info }, index) => hoverArea === getZone(card)
+      && <p key={`${clickAreasName}-area-${index}-info`}>{info}</p>
+    )}
     {hoverArea === PredefinedHoverArea.none && <div className='p-3'></div>}
   </div>;
 }
