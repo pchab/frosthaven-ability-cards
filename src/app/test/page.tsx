@@ -1,7 +1,7 @@
 'use client';
 
 import { drifterCards } from '@/domain/drifter/cards';
-import { CardComponent, HoverArea } from '../_components/cards/Card';
+import { CardComponent } from '../_components/cards/Card';
 
 export default function TestCard() {
   const card = drifterCards.find(({ name }) => name === 'accurate strikes');

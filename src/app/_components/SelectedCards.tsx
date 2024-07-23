@@ -1,6 +1,6 @@
 import { type Card } from '@/domain/cards.type';
-import { HoverArea } from './cards/Card';
 import CardPile from './cards/CardPile';
+import { PredefinedHoverArea } from './cards/hover-area';
 
 export function SelectedCards<X extends Card>({
   cards,
@@ -10,7 +10,7 @@ export function SelectedCards<X extends Card>({
   onRemoveCard: (card: X) => void;
 }) {
   const clickProps = {
-    getZone: () => HoverArea.all,
+    getZone: () => PredefinedHoverArea.all,
     onClick: onRemoveCard,
     info: 'Remove Card',
   };

@@ -1,7 +1,8 @@
 import type { Card } from '@/domain/cards.type';
-import { CardComponent, HoverArea } from './Card';
+import { CardComponent } from './Card';
 import type { Action } from '@/app/play/useCards';
 import { useState } from 'react';
+import { PredefinedHoverArea } from './hover-area';
 
 type SelectedActions = Action[];
 
@@ -22,12 +23,12 @@ export default function PlayedCard<X extends Card>({
   };
 
   const playTopClickProps = {
-    getZone: () => HoverArea.top,
+    getZone: () => PredefinedHoverArea.top,
     onClick: selectAction('top'),
     info: 'Play top',
   };
   const playBottomClickProps = {
-    getZone: () => HoverArea.bottom,
+    getZone: () => PredefinedHoverArea.bottom,
     onClick: selectAction('bottom'),
     info: 'Play bottom',
   };
@@ -48,7 +49,7 @@ export default function PlayedCard<X extends Card>({
     if (!action || action === 'default') {
       return {};
     }
-    return { fixedArea: action === 'top' ? HoverArea.top : HoverArea.bottom };
+    return { fixedArea: action === 'top' ? PredefinedHoverArea.top : PredefinedHoverArea.bottom };
   };
 
   const getPlayableActions = (index: number) => {

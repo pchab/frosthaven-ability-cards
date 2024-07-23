@@ -1,7 +1,6 @@
 'use client';
 
 import { CardStatus, type Card, CardActions } from '@/domain/cards.type';
-import { CardComponent, HoverArea } from '../_components/cards/Card';
 import CardPile from '../_components/cards/CardPile';
 import ShortRestButton from '../_components/rests/ShortRestButton';
 import { useCards } from './useCards';
@@ -9,6 +8,7 @@ import type { ReactNode } from 'react';
 import BoardArea from '../_components/BoardArea';
 import LongRestButton from '../_components/rests/LongRestButton';
 import PlayedCard from '../_components/cards/PlayedCard';
+import { PredefinedHoverArea } from '../_components/cards/hover-area';
 
 
 export default function PlayCards<X extends Card>({
@@ -49,22 +49,22 @@ export default function PlayCards<X extends Card>({
     .filter(card => [CardStatus.activeTop, CardStatus.activeBottom].includes(card.status));
 
   const selectClickProps = {
-    getZone: () => HoverArea.left,
+    getZone: () => PredefinedHoverArea.left,
     onClick: selectCard,
     info: 'Select Card',
   };
   const loseClickProps = {
-    getZone: () => HoverArea.right,
+    getZone: () => PredefinedHoverArea.right,
     onClick: loseCard,
     info: 'Lose Card',
   };
   const recoverClickProps = {
-    getZone: () => HoverArea.all,
+    getZone: () => PredefinedHoverArea.all,
     onClick: recoverCard,
     info: 'Recover Card',
   };
   const RemoveEffectClickProps = {
-    getZone: (card: X) => card.status === CardStatus.activeTop ? HoverArea.top : HoverArea.bottom,
+    getZone: (card: X) => card.status === CardStatus.activeTop ? PredefinedHoverArea.top : PredefinedHoverArea.bottom,
     onClick: (card: X) => {
       const action = card.status === CardStatus.activeTop ? card.actions.top : card.actions.bottom;
       action === CardActions.activeDiscard ? discardCard(card) : loseCard(card)

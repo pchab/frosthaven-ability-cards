@@ -1,6 +1,6 @@
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
-import { HoverArea } from '../cards/Card';
 import CardPile from '../cards/CardPile';
+import { PredefinedHoverArea } from '../cards/hover-area';
 
 export function SelectedGeminateCards({
   cards,
@@ -15,7 +15,7 @@ export function SelectedGeminateCards({
     .filter((card) => card.form === GeminateForm.ranged);
 
   const clickProps = {
-    getZone: () => HoverArea.all,
+    getZone: () => PredefinedHoverArea.all,
     onClick: onRemoveCard,
     info: 'Remove Card',
   };

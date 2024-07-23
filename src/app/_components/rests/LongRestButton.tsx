@@ -1,8 +1,8 @@
 import { type Card } from '@/domain/cards.type';
 import { useState } from 'react';
-import { HoverArea } from '../cards/Card';
 import CardPile from '../cards/CardPile';
 import Modal from '../Modal';
+import { PredefinedHoverArea } from '../cards/hover-area';
 
 export default function LongRestButton<X extends Card>({
   cards,
@@ -14,7 +14,7 @@ export default function LongRestButton<X extends Card>({
   const [doesLongRest, setDoesLongRest] = useState(false);
 
   const confirmLongRestProps = {
-    getZone: () => HoverArea.all,
+    getZone: () => PredefinedHoverArea.all,
     onClick: (card: X) => {
       const recoveredCard = cards.filter(c => c !== card);
       onLongRest({ recovered: recoveredCard, lost: card });

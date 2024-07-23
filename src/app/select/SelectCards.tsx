@@ -3,9 +3,9 @@ import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { HoverArea } from '../_components/cards/Card';
 import { SelectedCards } from '../_components/SelectedCards';
 import CardPile from '../_components/cards/CardPile';
+import { PredefinedHoverArea } from '../_components/cards/hover-area';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,
@@ -37,7 +37,7 @@ export function SelectCards<X extends Card>({
   const removeCard = (card: X) => setSelectedCards(selectedCards.filter(c => c !== card));
 
   const selectClickProps = {
-    getZone: () => HoverArea.all,
+    getZone: () => PredefinedHoverArea.all,
     onClick: selectCard,
     info: 'Select Card',
   };

@@ -1,8 +1,9 @@
 import { type Card } from '@/domain/cards.type';
 import { useState } from 'react';
-import { CardComponent, HoverArea } from '../cards/Card';
+import { CardComponent } from '../cards/Card';
 import Image from 'next/image';
 import Modal from '../Modal';
+import { PredefinedHoverArea } from '../cards/hover-area';
 
 function getRandomCard<X extends Card>(arr: X[]) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -19,7 +20,7 @@ export default function ShortRestButton<X extends Card>({
   const [hasRerolled, setHasRerolled] = useState(false);
 
   const confirmShortRestProps = {
-    getZone: () => HoverArea.all,
+    getZone: () => PredefinedHoverArea.all,
     onClick: (card: X) => {
       const recoveredCard = cards.filter(c => c !== card);
       onShortRest({ recovered: recoveredCard, lost: card });
