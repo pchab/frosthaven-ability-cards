@@ -5,7 +5,7 @@ import { drifter } from '@/domain/drifter/class';
 import CardWithSlot from '../_components/cards/CardWithSlot';
 
 export default function TestCard() {
-  const card = drifterCards.find(({ name }) => name === 'accurate strikes');
+  const card = drifterCards.find(({ name }) => name === 'sustained momentum');
 
   if (!card) {
     return <>Missing Card</>

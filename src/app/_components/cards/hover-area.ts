@@ -1,5 +1,5 @@
 function isHoverCircleArea(hoverArea: HoverArea): hoverArea is HoverCircleArea {
-  return 'radius' in hoverArea;
+  return 'x' in hoverArea && 'y' in hoverArea;
 }
 
 export type HoverCircleArea = {
