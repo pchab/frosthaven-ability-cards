@@ -2,7 +2,7 @@ function isHoverCircleArea(hoverArea: HoverArea): hoverArea is HoverCircleArea {
   return 'radius' in hoverArea;
 }
 
-type HoverCircleArea = {
+export type HoverCircleArea = {
   x: number;
   y: number;
   radius?: number;

@@ -9,13 +9,16 @@ import BoardArea from '../_components/BoardArea';
 import LongRestButton from '../_components/rests/LongRestButton';
 import PlayedCard from '../_components/cards/PlayedCard';
 import { PredefinedHoverArea } from '../_components/cards/hover-area';
+import type { FrosthavenClass } from '@/domain/frosthaven-class.type';
 
 
 export default function PlayCards<X extends Card>({
+  fhClass,
   cards,
   filterCard = () => true,
   children,
 }: {
+  fhClass: FrosthavenClass<X>;
   cards: X[];
   filterCard?: (card: X) => boolean;
   children?: ReactNode;
@@ -63,7 +66,7 @@ export default function PlayCards<X extends Card>({
     onClick: recoverCard,
     info: 'Recover Card',
   };
-  const RemoveEffectClickProps = {
+  const removeEffectClickProps = {
     getZone: (card: X) => card.status === CardStatus.activeTop ? PredefinedHoverArea.top : PredefinedHoverArea.bottom,
     onClick: (card: X) => {
       const action = card.status === CardStatus.activeTop ? card.actions.top : card.actions.bottom;
@@ -117,7 +120,7 @@ export default function PlayCards<X extends Card>({
       <BoardArea title='Active effects'>
         <CardPile
           cards={activeEffects}
-          clickProps={[RemoveEffectClickProps]}
+          clickProps={[removeEffectClickProps]}
         />
       </BoardArea>
     </div>

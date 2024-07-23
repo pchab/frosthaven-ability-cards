@@ -4,7 +4,17 @@ import { Card, CardActions } from '../cards.type';
 const drifterPath = '/drifter/abilities';
 
 export const drifterCards: Card[] = createCards([
-  { level: 6, name: 'accurate strikes', actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard } },
+  {
+    level: 6, name: 'accurate strikes', actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
+    slots: [
+      { x: 42, y: 58 },
+      { x: 72, y: 58 },
+      { x: 101, y: 58 },
+      { x: 34, y: 82 },
+      { x: 64, y: 82 },
+      { x: 93, y: 82 },
+    ],
+  },
   { level: 8, name: 'against all odds', actions: { top: CardActions.discard, bottom: CardActions.activeLost } },
   { level: 1, name: 'bloodletting', actions: { top: CardActions.discard, bottom: CardActions.discard } },
   { level: 5, name: 'break through', actions: { top: CardActions.discard, bottom: CardActions.discard } },

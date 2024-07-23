@@ -23,5 +23,5 @@ export default function PlayCardsPage() {
 
   return isGeminate(selectedClass)
     ? <PlayGeminateCards cards={cards as GeminateCard[]} />
-    : <PlayCards cards={cards} />;
+    : <PlayCards cards={cards} fhClass={selectedClass} />;
 }
