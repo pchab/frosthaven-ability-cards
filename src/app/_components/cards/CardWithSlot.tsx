@@ -1,6 +1,6 @@
 'use client';
 
-import { CardComponent } from './Card';
+import { CardComponent, type ClickableAreasProps } from './Card';
 import Image from 'next/image';
 import { useState } from 'react';
 import type { Card } from '@/domain/cards.type';
@@ -9,9 +9,11 @@ import type { FrosthavenClass } from '@/domain/frosthaven-class.type';
 export default function CardWithSlot<X extends Card>({
   fhClass,
   card,
+  clickableAreasProps,
 }: {
   fhClass: FrosthavenClass<X>;
   card: X;
+  clickableAreasProps: ClickableAreasProps<X>;
 }) {
   const [tokenPosition, setTokenPosition] = useState<{
     visibility?: 'hidden';
@@ -23,7 +25,7 @@ export default function CardWithSlot<X extends Card>({
     throw new Error(`Card ${card.name} doest not have slots`)
   }
 
-  const moveSlotProps = card.slots?.map((coords, index) => ({
+  const moveSlotProps = card.slots?.map((coords) => ({
     getZone: () => coords,
     onClick: () => {
       const { x, y, radius = 10 } = coords;
@@ -32,9 +34,12 @@ export default function CardWithSlot<X extends Card>({
     info: 'Move token',
   }));
 
-  return <CardComponent card={card} clickableAreasProps={moveSlotProps}>
+  const fhClassName = fhClass.name.toLocaleLowerCase();
+  const tokenPath = `/${fhClassName}/icons/fh-${fhClassName}-character-token.png`
+
+  return <CardComponent card={card} clickableAreasProps={[...moveSlotProps, ...clickableAreasProps]}>
     <Image
-      src={`/${fhClass.name}/icons/fh-${fhClass.name}-character-token.png`}
+      src={tokenPath}
       alt='token'
       width={20}
       height={20}

@@ -10,6 +10,7 @@ import LongRestButton from '../_components/rests/LongRestButton';
 import PlayedCard from '../_components/cards/PlayedCard';
 import { PredefinedHoverArea } from '../_components/cards/hover-area';
 import type { FrosthavenClass } from '@/domain/frosthaven-class.type';
+import ActiveEffects from '../_components/cards/ActiveEffects';
 
 
 export default function PlayCards<X extends Card>({
@@ -118,7 +119,8 @@ export default function PlayCards<X extends Card>({
       </BoardArea>
 
       <BoardArea title='Active effects'>
-        <CardPile
+        <ActiveEffects
+          fhClass={fhClass}
           cards={activeEffects}
           clickProps={[removeEffectClickProps]}
         />

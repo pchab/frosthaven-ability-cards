@@ -12,6 +12,6 @@ export default function TestCard() {
   }
 
   return <div className="flex flex-col p-32 items-center w-full">
-    <CardWithSlot card={card} fhClass={drifter} />
+    <CardWithSlot card={card} fhClass={drifter} clickableAreasProps={[]} />
   </div>;
 }
