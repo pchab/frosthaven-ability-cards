@@ -24,7 +24,7 @@ export default function LongRestButton<X extends Card>({
 
   return <>
     {doesLongRest && <Modal>
-      <CardPile cards={cards} clickProps={[confirmLongRestProps]} />
+      <CardPile name='confirm-long-rest' cards={cards} clickProps={[confirmLongRestProps]} />
     </Modal>}
     <button
       className='m-4'

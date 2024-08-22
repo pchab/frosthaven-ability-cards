@@ -6,10 +6,12 @@ export default function CardPile<X extends Card>({
   cards,
   clickProps,
   vertical,
+  name,
 }: {
   cards: X[];
   clickProps: ClickableAreasProps<X>;
   vertical?: boolean;
+  name?: string;
 }) {
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number | undefined>(undefined);
   const overlap = vertical ? '-mb-36' : '-mr-24';
@@ -24,7 +26,10 @@ export default function CardPile<X extends Card>({
         onMouseEnter={() => setHoveredCardIndex(index)}
         className={`w-fit ${hoveredCardIndex === index ? '' : overlap}`}
       >
-        <CardComponent card={card} clickableAreasProps={clickProps} />
+        <CardComponent
+          name={name ? `${name}-${card.name.replaceAll(' ', '-')}` : card.name}
+          card={card}
+          clickableAreasProps={clickProps} />
       </div>)}
   </div>
 }

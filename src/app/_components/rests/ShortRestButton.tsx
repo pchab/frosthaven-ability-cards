@@ -43,7 +43,7 @@ export default function ShortRestButton<X extends Card>({
           <Image src="/icons/fh-damage-color-icon.png" alt="Suffer damage" width={24} height={23} />
         </div>
       </button>}
-      <CardComponent card={lostCard} clickableAreasProps={[confirmShortRestProps]} />
+      <CardComponent name='confirm-short-rest' card={lostCard} clickableAreasProps={[confirmShortRestProps]} />
 
     </Modal>}
     <button

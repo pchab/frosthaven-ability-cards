@@ -16,11 +16,13 @@ export function CardComponent<X extends Card>({
   clickableAreasProps,
   fixedArea,
   children,
+  name = card.name,
 }: {
   card: X;
   clickableAreasProps: ClickableAreasProps<X>;
   fixedArea?: HoverArea;
   children?: ReactNode;
+  name?: string;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hoverArea, setHoverArea] = useState<HoverArea>(fixedArea ?? PredefinedHoverArea.none);
@@ -48,7 +50,6 @@ export function CardComponent<X extends Card>({
 
   const handleMouseLeave = changeArea(PredefinedHoverArea.none);
 
-  const clickAreasName = `click-${card.name}`;
   return <div>
     <div onMouseLeave={handleMouseLeave} className='relative'>
       <canvas
@@ -57,13 +58,13 @@ export function CardComponent<X extends Card>({
         width={143}
         height={200}
       />
-      <map name={clickAreasName}>
-        {clickableAreasProps.map(({ getZone, onClick }, index) => {
+      <map name={name}>
+        {clickableAreasProps.map(({ getZone, onClick, info }, index) => {
           const zone = getZone(card);
           const props = getHoverAreaProps(zone);
           return <area
             href='#'
-            key={`${clickAreasName}-area-${index}`}
+            key={`${name}-area-${info.replaceAll(' ', '-')}`}
             onClick={(event) => {
               event.preventDefault();
               if (zone === hoverArea) {
@@ -76,7 +77,7 @@ export function CardComponent<X extends Card>({
         })}
       </map>
       <Image
-        useMap={`#${clickAreasName}`}
+        useMap={`#${name}`}
         src={card.path}
         alt='card'
         width={143}
@@ -85,7 +86,7 @@ export function CardComponent<X extends Card>({
       {children ?? <></>}
     </div>
     {clickableAreasProps.map(({ getZone, info }, index) => hoverArea === getZone(card)
-      && <p key={`${clickAreasName}-area-${index}-info`}>{info}</p>
+      && <p key={`${name}-area-${index}-info`}>{info}</p>
     )}
     {hoverArea === PredefinedHoverArea.none && <div className='p-3'></div>}
   </div>;
