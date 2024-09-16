@@ -3,6 +3,7 @@ import { blinkblade } from '@/domain/blinkblade/class';
 import { boneshaper } from '@/domain/boneshaper/class';
 import { deathwalker } from '@/domain/deathwalker/class';
 import { drifter } from '@/domain/drifter/class';
+import { fist } from '@/domain/fist/class';
 import { geminate } from '@/domain/geminate/class';
 import { snowdancer } from '@/domain/snowdancer/class';
 import { trapper } from '@/domain/trapper/class';
@@ -19,6 +20,7 @@ export default function SelectClassPage() {
     geminate,
   ];
   const unlockedClasses = [
+    fist,
     snowdancer,
     trapper,
   ];
