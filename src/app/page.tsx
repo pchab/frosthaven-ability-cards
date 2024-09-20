@@ -2,6 +2,7 @@ import { bannerSpear } from '@/domain/banner-spear/class';
 import { blinkblade } from '@/domain/blinkblade/class';
 import { boneshaper } from '@/domain/boneshaper/class';
 import { deathwalker } from '@/domain/deathwalker/class';
+import { deepwraith } from "@/domain/deepwraith/class";
 import { drifter } from '@/domain/drifter/class';
 import { fist } from '@/domain/fist/class';
 import { geminate } from '@/domain/geminate/class';
@@ -20,6 +21,7 @@ export default function SelectClassPage() {
     geminate,
   ];
   const unlockedClasses = [
+    deepwraith,
     fist,
     snowdancer,
     trapper,
