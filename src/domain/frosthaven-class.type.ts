@@ -5,11 +5,12 @@ export enum FrosthavenClassNames {
   Blinkblade = 'Blinkblade',
   Boneshaper = 'Boneshaper',
   Deathwalker = 'Deathwalker',
+  Deepwraith = 'Deepwraith',
   Drifter = 'Drifter',
+  Fist = 'Fist',
   Geminate = 'Geminate',
   Snowdancer = 'Snowdancer',
   Trapper = 'Trapper',
-  Fist = 'Fist',
 }
 
 export type FrosthavenClass<X extends Card> = {
