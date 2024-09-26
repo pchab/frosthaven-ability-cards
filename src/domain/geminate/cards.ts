@@ -18,7 +18,15 @@ export const geminateCards: GeminateCard[] = createCards([
   { level: 1, name: 'drag down', actions: { top: CardActions.discard, bottom: CardActions.lose }, form: GeminateForm.melee },
   { level: 1, name: 'draining pincers', actions: { top: CardActions.lose, bottom: CardActions.discard }, form: GeminateForm.melee },
   { level: 1, name: 'flailing tendrils', actions: { top: CardActions.discard, bottom: CardActions.lose }, form: GeminateForm.melee },
-  { level: 1, name: 'hornbeetle carapace', actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard }, form: GeminateForm.melee },
+  {
+    level: 1, name: 'hornbeetle carapace', actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard }, form: GeminateForm.melee,
+    slots: [
+      { x: 24, y: 67 },
+      { x: 54, y: 67 },
+      { x: 84, y: 67 },
+      { x: 113, y: 67 },
+    ],
+  },
   { level: 1, name: 'hornet stingers', actions: { top: CardActions.discard, bottom: CardActions.activeDiscard }, form: GeminateForm.melee },
   { level: 1, name: 'icebound quills', actions: { top: CardActions.lose, bottom: CardActions.activeDiscard }, form: GeminateForm.melee },
   { level: 1, name: 'firefly swarm', actions: { top: CardActions.lose, bottom: CardActions.discard }, form: GeminateForm.ranged },
@@ -26,7 +34,15 @@ export const geminateCards: GeminateCard[] = createCards([
   { level: 1, name: 'harvest the essence', actions: { top: CardActions.activeLost, bottom: CardActions.discard }, form: GeminateForm.ranged },
   { level: 1, name: 'into my embrace', actions: { top: CardActions.discard, bottom: CardActions.lose }, form: GeminateForm.ranged },
   { level: 1, name: 'mind spike', actions: { top: CardActions.lose, bottom: CardActions.discard }, form: GeminateForm.ranged },
-  { level: 1, name: 'scarab flight', actions: { top: CardActions.discard, bottom: CardActions.activeLost }, form: GeminateForm.ranged },
+  {
+    level: 1, name: 'scarab flight', actions: { top: CardActions.discard, bottom: CardActions.activeLost }, form: GeminateForm.ranged,
+    slots: [
+      { x: 21, y: 161 },
+      { x: 51, y: 161 },
+      { x: 81, y: 161 },
+      { x: 110, y: 161 },
+    ],
+  },
   { level: 1, name: 'selfless offering', actions: { top: CardActions.discard, bottom: CardActions.discard }, form: GeminateForm.ranged },
   { level: 2, name: 'venomous barbs', actions: { top: CardActions.activeLost, bottom: CardActions.discard }, form: GeminateForm.melee },
   { level: 2, name: 'locust host', actions: { top: CardActions.activeLost, bottom: CardActions.discard }, form: GeminateForm.ranged },
@@ -42,6 +58,22 @@ export const geminateCards: GeminateCard[] = createCards([
   { level: 7, name: 'alluring pheromones', actions: { top: CardActions.discard, bottom: CardActions.lose }, form: GeminateForm.ranged },
   { level: 8, name: 'accelerated metabolism', actions: { top: CardActions.discard, bottom: CardActions.activeLost }, form: GeminateForm.melee },
   { level: 8, name: 'oscillating entity', actions: { top: CardActions.activeLost, bottom: CardActions.discard }, form: GeminateForm.ranged },
-  { level: 9, name: 'harbinger of ruin', actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard }, form: GeminateForm.melee },
-  { level: 9, name: 'voice of salvation', actions: { top: CardActions.activeDiscard, bottom: CardActions.activeLost }, form: GeminateForm.ranged },
+  {
+    level: 9, name: 'harbinger of ruin', actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard }, form: GeminateForm.melee,
+    slots: [
+      { x: 24, y: 73 },
+      { x: 54, y: 73 },
+      { x: 84, y: 73 },
+      { x: 113, y: 73 },
+    ],
+  },
+  {
+    level: 9, name: 'voice of salvation', actions: { top: CardActions.activeDiscard, bottom: CardActions.activeLost }, form: GeminateForm.ranged,
+    slots: [
+      { x: 21, y: 160 },
+      { x: 51, y: 160 },
+      { x: 81, y: 160 },
+      { x: 110, y: 160 },
+    ],
+  },
 ], geminatePath);
