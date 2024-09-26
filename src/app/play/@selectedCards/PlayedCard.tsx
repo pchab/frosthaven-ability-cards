@@ -1,22 +1,25 @@
-import type { Card } from '@/domain/cards.type';
-import { CardComponent } from './Card';
-import type { Action } from '@/app/play/useCards';
+'use client';
+
+import { CardStatus, type Card } from '@/domain/cards.type';
+import { CardComponent } from '../../_components/cards/Card';
+import { useCards, type Action } from '@/app/play/useCards';
 import { useState } from 'react';
-import { PredefinedHoverArea } from './hover-area';
+import { PredefinedHoverArea } from '../../_components/cards/hover-area';
 
 type SelectedActions = Action[];
 
-export default function PlayedCard<X extends Card>({
-  cards,
-  playCards,
-}: {
-  cards: X[];
-  playCards: (cardsPlayed: { action: Action; card: X }[]) => void;
-}) {
+export default function PlayedCard<X extends Card>() {
+  const {
+    currentCards,
+    playCards,
+  } = useCards<X>();
   const [selectedActions, setSelectedActions] = useState<SelectedActions>([]);
 
+  const selectedCards = currentCards
+    .filter(card => card.status === CardStatus.selected);
+
   const selectAction = (action: Action) => (card: X) => {
-    const cardIndex = cards.indexOf(card);
+    const cardIndex = selectedCards.indexOf(card);
     const newSelectedActions = [...selectedActions];
     newSelectedActions[cardIndex] = action;
     setSelectedActions(newSelectedActions);
@@ -35,7 +38,7 @@ export default function PlayedCard<X extends Card>({
 
   const endTurn = () => {
     if (selectedActions.length === 2) {
-      const [firstCard, secondCard] = cards;
+      const [firstCard, secondCard] = selectedCards;
       const [firstAction, secondAction] = selectedActions;
       setSelectedActions([]);
       playCards([
@@ -53,7 +56,7 @@ export default function PlayedCard<X extends Card>({
   };
 
   const getPlayableActions = (index: number) => {
-    if (cards.length < 2) {
+    if (selectedCards.length < 2) {
       return [];
     }
     const otherSelectedAction = selectedActions[index === 0 ? 1 : 0];
@@ -64,7 +67,7 @@ export default function PlayedCard<X extends Card>({
   }
 
   return <div className='flex gap-4 min-h-[266px]'>
-    {cards
+    {selectedCards
       .map((card, index) => <div
         key={card.name}
         className='flex flex-col'>
@@ -77,6 +80,6 @@ export default function PlayedCard<X extends Card>({
           onClick={() => selectAction('default')(card)}
         >Default Action</button>
       </div>)}
-    {cards.length === 2 && <button onClick={endTurn}>End Turn</button>}
+    {selectedCards.length === 2 && <button onClick={endTurn}>End Turn</button>}
   </div>;
 }
