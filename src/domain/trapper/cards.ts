@@ -17,7 +17,12 @@ export const trapperCards: Card[] = createCards([
   { level: 1, name: 'honeypot', actions: { top: CardActions.discard, bottom: CardActions.discard } },
   { level: 1, name: 'spike pit', actions: { top: CardActions.discard, bottom: CardActions.discard } },
   { level: 2, name: 'path of pain', actions: { top: CardActions.discard, bottom: CardActions.discard } },
-  { level: 2, name: 'unavoidable outcome', actions: { top: CardActions.discard, bottom: CardActions.activeDiscard } },
+  {
+    level: 2, name: 'unavoidable outcome', actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    slots: [
+      { x: 71, y: 174 },
+    ],
+  },
   { level: 3, name: 'extra teeth', actions: { top: CardActions.discard, bottom: CardActions.discard } },
   { level: 3, name: 'pyrotechnics', actions: { top: CardActions.discard, bottom: CardActions.activeDiscard } },
   { level: 4, name: 'dangerous ground', actions: { top: CardActions.discard, bottom: CardActions.lose } },
