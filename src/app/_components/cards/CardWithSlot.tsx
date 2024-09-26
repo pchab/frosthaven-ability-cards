@@ -7,11 +7,11 @@ import type { Card } from '@/domain/cards.type';
 import type { FrosthavenClass } from '@/domain/frosthaven-class.type';
 
 export default function CardWithSlot<X extends Card>({
-  fhClass,
+  className,
   card,
   clickableAreasProps,
 }: {
-  fhClass: FrosthavenClass<X>;
+  className: FrosthavenClass<X>['name'];
   card: X;
   clickableAreasProps: ClickableAreasProps<X>;
 }) {
@@ -34,7 +34,7 @@ export default function CardWithSlot<X extends Card>({
     info: `Move token to slot ${index}`,
   }));
 
-  const fhClassName = fhClass.name.toLocaleLowerCase();
+  const fhClassName = className.toLocaleLowerCase();
   const tokenPath = `/${fhClassName}/icons/fh-${fhClassName}-character-token.png`
 
   return <CardComponent card={card} clickableAreasProps={[...moveSlotProps, ...clickableAreasProps]}>

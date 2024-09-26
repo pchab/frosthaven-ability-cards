@@ -1,4 +1,5 @@
 import { CardStatus, type Card, CardActions } from '@/domain/cards.type';
+import { useFrosthavenStore } from '@/stores/cards.store';
 import { useEffect, useMemo, useState } from 'react';
 
 export type Action = 'top' | 'bottom' | 'default';
@@ -19,10 +20,13 @@ function newStatusAfterAction(cardActions: Card['actions'], action: Action): Car
   }
 }
 
-export function useCards<X extends Card>(cards: X[]) {
-  const [states, setStates] = useState<X[][]>([cards]);
+export function useCards<X extends Card>() {
+  const { states, setStates } = useFrosthavenStore((store) => ({
+    states: store.states,
+    setStates: store.setStates,
+  }));
   const [stateIndex, setStateIndex] = useState(0);
-  const currentCards = useMemo(() => states[stateIndex], [states, stateIndex]);
+  const currentCards = useMemo(() => states[stateIndex] as X[], [states, stateIndex]);
   useEffect(() => {
     setStateIndex(states.length - 1);
   }, [states]);
@@ -31,6 +35,7 @@ export function useCards<X extends Card>(cards: X[]) {
     if (condition && !condition()) return;
     const otherCards = currentCards.filter(c => c !== card);
     const newState = [...otherCards, { ...card, status: newStatus }];
+    console.log({ states: states });
     setStates([...states.slice(0, stateIndex + 1), newState]);
   };
 
@@ -44,7 +49,7 @@ export function useCards<X extends Card>(cards: X[]) {
 
   const playCards = (cardsPlayed: { action: Action; card: X }[]) => {
     const newState = [
-      ...currentCards.filter(card => !cardsPlayed.map(({ card }) => card).includes(card)),
+      ...currentCards.filter(card => !cardsPlayed.map(({ card }) => card.name).includes(card.name)),
       ...cardsPlayed.map(({ action, card }) => ({ ...card, status: newStatusAfterAction(card.actions, action) })),
     ];
     setStates([...states.slice(0, stateIndex + 1), newState]);

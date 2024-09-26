@@ -1,27 +1,34 @@
 'use client';
 
-import { type GeminateCard } from '@/domain/geminate/cards';
-import { isGeminate } from '@/domain/geminate/class';
+import { type Card } from '@/domain/cards.type';
+import { useCards } from './useCards';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { redirect } from 'next/navigation';
-import PlayGeminateCards from '../_components/geminate/PlayGeminateCards';
-import PlayCards from './PlayCards';
+import { isGeminate } from '@/domain/geminate/class';
+import ChangeForm from '@/app/_components/geminate/ChangeForm';
 
-export default function PlayCardsPage() {
-  const { cards, selectedClass } = useFrosthavenStore((state) => ({
+export default function PlayPage<X extends Card>() {
+  const {
+    selectedClass,
+    currentForm,
+    setForm,
+  } = useFrosthavenStore((state) => ({
     selectedClass: state.selectedClass,
-    cards: state.cards,
+    currentForm: state.currentForm,
+    setForm: state.setForm,
   }));
+  const {
+    undo,
+    redo,
+  } = useCards<X>();
 
-  if (selectedClass === undefined) {
-    redirect('/');
+  if (!selectedClass) {
+    return redirect('/');
   }
 
-  if (cards.length === 0) {
-    redirect('/select');
-  }
-
-  return isGeminate(selectedClass)
-    ? <PlayGeminateCards cards={cards as GeminateCard[]} />
-    : <PlayCards cards={cards} fhClass={selectedClass} />;
+  return <div className='flex gap-4'>
+    {isGeminate(selectedClass) && <ChangeForm form={currentForm} setForm={setForm} />}
+    <button onClick={undo}>Undo</button>
+    <button onClick={redo}>Redo</button>
+  </div>;
 }

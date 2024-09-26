@@ -1,16 +1,15 @@
 import { Card } from '@/domain/cards.type';
 import { CardComponent, type ClickableAreasProps } from './Card';
-import { useState } from 'react';
 import type { FrosthavenClass } from '@/domain/frosthaven-class.type';
 import CardWithSlot from './CardWithSlot';
 
 export default function ActiveEffects<X extends Card>({
-  fhClass,
+  className,
   cards,
   clickProps,
   vertical,
 }: {
-  fhClass: FrosthavenClass<X>;
+  className: FrosthavenClass<X>['name'];
   cards: X[];
   clickProps: ClickableAreasProps<X>;
   vertical?: boolean;
@@ -21,7 +20,7 @@ export default function ActiveEffects<X extends Card>({
     {cards
       .map((card) => {
         const cardElement = !!card.slots
-          ? <CardWithSlot key={card.name} card={card} fhClass={fhClass} clickableAreasProps={clickProps} />
+          ? <CardWithSlot key={card.name} card={card} className={className} clickableAreasProps={clickProps} />
           : <CardComponent key={card.name} card={card} clickableAreasProps={clickProps} />;
         return cardElement;
       })
