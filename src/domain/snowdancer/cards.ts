@@ -16,7 +16,16 @@ export const snowdancerCards: Card[] = createCards([
   { level: 1, name: 'gathering force', actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard } },
   { level: 1, name: 'lifting gust', actions: { top: CardActions.discard, bottom: CardActions.lose } },
   { level: 1, name: 'natures breath', actions: { top: CardActions.activeLost, bottom: CardActions.discard } },
-  { level: 1, name: 'snowball', actions: { top: CardActions.discard, bottom: CardActions.activeLost } },
+  {
+    level: 1, name: 'snowball', actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    slots: [
+      { x: 29, y: 155 },
+      { x: 58, y: 155 },
+      { x: 88, y: 155 },
+      { x: 44, y: 178 },
+      { x: 74, y: 178 },
+    ],
+  },
   { level: 1, name: 'whiteout', actions: { top: CardActions.lose, bottom: CardActions.discard } },
   { level: 2, name: 'birds in a tempest', actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard } },
   { level: 2, name: 'tornado', actions: { top: CardActions.lose, bottom: CardActions.discard } },
