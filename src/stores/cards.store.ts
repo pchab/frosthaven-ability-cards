@@ -20,7 +20,7 @@ export const useFrosthavenStore = create<AbilityCardsState>()(
     (set, get) => ({
       selectedClass: undefined,
       cards: [],
-      states: [],
+      states: [[]],
       currentForm: GeminateForm.melee,
       selectClass: (playerClass: FrosthavenClass<Card>) => {
         if (playerClass.name !== get().selectedClass?.name) {

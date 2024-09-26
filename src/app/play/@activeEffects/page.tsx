@@ -5,7 +5,6 @@ import BoardArea from '@/app/_components/BoardArea';
 import { useCards } from '../useCards';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import ActiveEffects from '@/app/_components/cards/ActiveEffects';
-import { redirect } from 'next/navigation';
 import { PredefinedHoverArea } from '@/app/_components/cards/hover-area';
 
 export default function ActiveEffectsPage<X extends Card>() {
@@ -17,10 +16,6 @@ export default function ActiveEffectsPage<X extends Card>() {
     discardCard,
     loseCard,
   } = useCards<X>();
-
-  if (!selectedClass) {
-    return redirect('/');
-  }
 
   const activeEffects = currentCards
     .filter(card => [CardStatus.activeTop, CardStatus.activeBottom].includes(card.status));
@@ -35,10 +30,10 @@ export default function ActiveEffectsPage<X extends Card>() {
   };
 
   return <BoardArea title='Active effects'>
-    <ActiveEffects
+    {selectedClass && <ActiveEffects
       className={selectedClass.name}
       cards={activeEffects}
       clickProps={[removeEffectClickProps]}
-    />
+    />}
   </BoardArea>;
 }
