@@ -59,12 +59,12 @@ export function CardComponent<X extends Card>({
         height={200}
       />
       <map name={name}>
-        {clickableAreasProps.map(({ getZone, onClick, info }, index) => {
+        {clickableAreasProps.map(({ getZone, onClick, info }) => {
           const zone = getZone(card);
           const props = getHoverAreaProps(zone);
           return <area
             href='#'
-            key={`${name}-area-${info.replaceAll(' ', '-')}`}
+            key={[name, 'area', ...info.split(' ')].join('-')}
             onClick={(event) => {
               event.preventDefault();
               if (zone === hoverArea) {

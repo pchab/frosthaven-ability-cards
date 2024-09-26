@@ -25,13 +25,13 @@ export default function CardWithSlot<X extends Card>({
     throw new Error(`Card ${card.name} doest not have slots`)
   }
 
-  const moveSlotProps = card.slots?.map((coords) => ({
+  const moveSlotProps = card.slots?.map((coords, index) => ({
     getZone: () => coords,
     onClick: () => {
       const { x, y, radius = 10 } = coords;
       setTokenPosition({ left: x - radius, top: y - radius });
     },
-    info: 'Move token',
+    info: `Move token to slot ${index}`,
   }));
 
   const fhClassName = fhClass.name.toLocaleLowerCase();
