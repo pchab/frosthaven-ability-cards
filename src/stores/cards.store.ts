@@ -10,9 +10,9 @@ interface AbilityCardsState {
   cards: Card[];
   selectCards: (cards: Card[]) => void;
   states: Card[][];
-  setStates: <X extends Card>(states: X[][]) => void;
   currentStateIndex: number;
   setStateIndex: (index: number) => void;
+  updateStates: <X extends Card>(states: X[][]) => void;
   currentForm: GeminateForm;
   setForm: (form: GeminateForm) => void;
 }
@@ -29,7 +29,7 @@ export const useFrosthavenStore = create<AbilityCardsState>()(
       cards: [],
       selectCards: (cards: Card[]) => set({ cards, states: [cards] }),
       states: [[]],
-      setStates: <X extends Card>(states: X[][]) => set({ states }),
+      updateStates: <X extends Card>(states: X[][]) => set({ states, currentStateIndex: states.length - 1 }),
       currentStateIndex: 0,
       setStateIndex: (index: number) => set({ currentStateIndex: index }),
       currentForm: GeminateForm.melee,

@@ -1,6 +1,6 @@
 import { CardStatus, type Card, CardActions } from '@/domain/cards.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 export type Action = 'top' | 'bottom' | 'default';
 
@@ -23,30 +23,22 @@ function newStatusAfterAction(cardActions: Card['actions'], action: Action): Car
 export function useCards<X extends Card>() {
   const {
     states,
-    setStates,
+    updateStates,
     currentStateIndex,
     setStateIndex,
   } = useFrosthavenStore((store) => ({
     states: store.states,
-    setStates: store.setStates,
+    updateStates: store.updateStates,
     currentStateIndex: store.currentStateIndex,
     setStateIndex: store.setStateIndex,
   }));
   const currentCards = useMemo(() => states[currentStateIndex] as X[], [states, currentStateIndex]);
-  useEffect(() => {
-    setStateIndex(states.length - 1);
-  }, [setStateIndex, states]);
-
-  const updateState = (newStates: X[][]) => {
-    setStates(newStates);
-    setStateIndex(newStates.length - 1);
-  };
 
   const changeCardStatus = (newStatus: CardStatus, condition?: () => boolean) => (card: X) => {
     if (condition && !condition()) return;
     const otherCards = currentCards.filter(c => c !== card);
     const newState = [...otherCards, { ...card, status: newStatus }];
-    updateState([...states.slice(0, currentStateIndex + 1), newState] as X[][]);
+    updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };
 
   const selectCard = changeCardStatus(
@@ -63,7 +55,7 @@ export function useCards<X extends Card>() {
       ...cardsPlayed.map(({ action, card }) => ({ ...card, status: newStatusAfterAction(card.actions, action) })),
     ];
 
-    updateState([...states.slice(0, currentStateIndex + 1), newState] as X[][]);
+    updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };
 
   const makeRest = ({ recovered, lost }: { recovered: X[], lost: X }) => {
@@ -72,7 +64,7 @@ export function useCards<X extends Card>() {
       ...recovered.map(c => ({ ...c, status: CardStatus.inHand })),
       { ...lost, status: CardStatus.lost },
     ];
-    updateState([...states.slice(0, currentStateIndex + 1), newState] as X[][]);
+    updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };
 
   const undo = () => {
