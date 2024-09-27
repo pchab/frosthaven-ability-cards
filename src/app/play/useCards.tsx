@@ -73,15 +73,15 @@ export function useCards<X extends Card>() {
       throw new Error(`Card ${card.name} doest not have slots`)
     }
 
-    const otherCards = currentCards.filter(c => c !== card);
+    const cardIndex = currentCards.findIndex(c => c === card);
     const newTokenPosition = (card.tokenPosition ?? 0) + 1;
     const action = getActiveAction(card.status);
     if (newTokenPosition >= card.slots.length) {
       const newStatus = card.actions[action] === CardActions.activeDiscard ? CardStatus.discarded : CardStatus.lost;
-      const newState = [...otherCards, { ...card, status: newStatus, tokenPosition: 0 }];
+      const newState = currentCards.with(cardIndex, { ...card, status: newStatus, tokenPosition: 0 });
       updateStates([...states.slice(0, currentStateIndex + 1), newState]);
     } else {
-      const newState = [...otherCards, { ...card, tokenPosition: newTokenPosition }];
+      const newState = currentCards.with(cardIndex, { ...card, tokenPosition: newTokenPosition });
       updateStates([...states.slice(0, currentStateIndex + 1), newState]);
     }
   };
@@ -91,9 +91,9 @@ export function useCards<X extends Card>() {
       throw new Error(`Card ${card.name} doest not have slots`)
     }
 
-    const otherCards = currentCards.filter(c => c !== card);
+    const cardIndex = currentCards.findIndex(c => c === card);
     const newTokenPosition = Math.max(card.tokenPosition ? card.tokenPosition - 1 : 0, 0);
-    const newState = [...otherCards, { ...card, tokenPosition: newTokenPosition }];
+    const newState = currentCards.with(cardIndex, { ...card, tokenPosition: newTokenPosition });
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };
 
