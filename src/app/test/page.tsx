@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react';
 import CardWithSlot from '../_components/cards/CardWithSlot';
 import { CardComponent } from '../_components/cards/Card';
 import { useFrosthavenStore } from '@/stores/cards.store';
+import { CardActions } from '@/domain/cards.type';
 
 function capitalize(str: string): string {
   return str.split(' ').map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`).join(' ');
@@ -65,9 +66,18 @@ export default function TestCard() {
         return <option key={card.name} value={card.name}>{capitalize(card.name)}</option>;
       })}
     </select>
-    {currentCard.slots
-      ? <CardWithSlot card={currentCard} clickableAreasProps={[]} />
-      : <CardComponent card={currentCard} clickableAreasProps={[]} />
-    }
+    <div className="flex gap-4 border border-white p-4">
+      {currentCard.slots
+        ? <CardWithSlot card={currentCard} clickableAreasProps={[]} />
+        : <CardComponent card={currentCard} clickableAreasProps={[]} />
+      }
+
+      <div>
+        <h3 className='font-bold'>Details:</h3>
+        <div>Level: {currentCard.level}</div>
+        <div>Top: {CardActions[currentCard.actions.top]}</div>
+        <div>Bottom: {CardActions[currentCard.actions.bottom]}</div>
+      </div>
+    </div>
   </div>;
 }
