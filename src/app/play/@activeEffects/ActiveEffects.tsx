@@ -58,8 +58,8 @@ export default function ActiveEffects<X extends Card>({
             && card.tokenPosition
             && card.tokenPosition > 0
           )
-            ? [moveTokenForwardAction(card), moveTokenBackwardAction(card)]
-            : [moveTokenForwardAction(card)]
+            ? [removeEffectAction(card), moveTokenBackwardAction(card), moveTokenForwardAction(card)]
+            : [removeEffectAction(card), moveTokenForwardAction(card)]
           } />
           : <CardComponent key={card.name} card={card} actions={[removeEffectAction(card)]} />;
         return cardElement;
