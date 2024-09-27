@@ -17,7 +17,7 @@ export default function SelectClass({
   const selectClass = useFrosthavenStore((state) => state.selectClass);
 
   return (<button
-    className='border-0'
+    className='border-0 flex items-center justify-center'
     onClick={() => {
       selectClass(fhClass);
       router.push('/select');

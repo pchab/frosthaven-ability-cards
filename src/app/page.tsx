@@ -29,19 +29,11 @@ export default function SelectClassPage() {
     trapper,
   ];
 
-  return (<div className="flex flex-col p-32 items-center w-full">
+  return (<div className="flex flex-col pt-32 px-8 items-center w-full">
     <Image src="/fh-frosthaven-logo.png" alt="Forsthaven logo" width={600} height={87} />
-    <div className="p-32">
-      <div className="flex p-6 justify-center w-full gap-8">
-        {starterClasses.map((fhClass) => {
-          const { name, path, iconSize } = fhClass;
-          return <SelectClass key={name} fhClass={fhClass}>
-            <Image src={path} alt={name} {...iconSize} />
-          </SelectClass>;
-        })}
-      </div>
-      <div className="flex p-6 justify-center w-full gap-8">
-        {unlockedClasses.map((fhClass) => {
+    <div className="p-16">
+      <div className="flex flex-wrap p-6 justify-center w-full gap-8">
+        {[...starterClasses, ...unlockedClasses].map((fhClass) => {
           const { name, path, iconSize } = fhClass;
           return <SelectClass key={name} fhClass={fhClass}>
             <Image src={path} alt={name} {...iconSize} />
