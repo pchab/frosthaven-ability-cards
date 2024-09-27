@@ -5,7 +5,7 @@ import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { SelectedCards } from '../_components/SelectedCards';
+import { SelectedCards } from './SelectedCards';
 import CardPile from '../_components/cards/CardPile';
 import { PredefinedHoverArea } from '../_components/cards/hover-area';
 
