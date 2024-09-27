@@ -26,4 +26,5 @@ export type Card = {
     bottom: CardActions;
   };
   slots?: HoverCircleArea[];
+  tokenPosition?: number;
 }

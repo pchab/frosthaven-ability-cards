@@ -23,11 +23,11 @@ export const useFrosthavenStore = create<AbilityCardsState>()(
       selectedClass: undefined,
       selectClass: (playerClass: FrosthavenClass<Card>) => {
         if (playerClass.name !== get().selectedClass?.name) {
-          set({ selectedClass: playerClass, cards: [] });
+          set({ selectedClass: playerClass, cards: [], states: [], currentStateIndex: 0 });
         }
       },
       cards: [],
-      selectCards: (cards: Card[]) => set({ cards, states: [cards] }),
+      selectCards: (cards: Card[]) => set({ cards, states: [cards], currentStateIndex: 0 }),
       states: [[]],
       updateStates: <X extends Card>(states: X[][]) => set({ states, currentStateIndex: states.length - 1 }),
       currentStateIndex: 0,

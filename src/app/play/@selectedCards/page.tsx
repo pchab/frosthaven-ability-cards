@@ -1,8 +1,8 @@
 import BoardArea from '@/app/_components/BoardArea';
-import PlayedCard from './PlayedCard';
+import PlayedCards from './PlayedCards';
 
 export default function SelectedCardsPage() {
   return <BoardArea title='Selected cards'>
-    <PlayedCard />
+    <PlayedCards />
   </BoardArea>;
 }

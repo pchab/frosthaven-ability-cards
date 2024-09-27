@@ -26,9 +26,7 @@ export default function PlayLayout({
 
       <div className='basis-1/3 p-2 m-2 flex flex-col items-center'>
         {children}
-
         {selectedCards}
-
         {activeEffects}
       </div>
     </div>

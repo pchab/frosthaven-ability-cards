@@ -8,7 +8,7 @@ import { PredefinedHoverArea } from '../../_components/cards/hover-area';
 
 type SelectedActions = Action[];
 
-export default function PlayedCard<X extends Card>() {
+export default function PlayedCards<X extends Card>() {
   const {
     currentCards,
     playCards,
