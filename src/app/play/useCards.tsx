@@ -21,22 +21,32 @@ function newStatusAfterAction(cardActions: Card['actions'], action: Action): Car
 }
 
 export function useCards<X extends Card>() {
-  const { states, setStates } = useFrosthavenStore((store) => ({
+  const {
+    states,
+    setStates,
+    currentStateIndex,
+    setStateIndex,
+  } = useFrosthavenStore((store) => ({
     states: store.states,
     setStates: store.setStates,
+    currentStateIndex: store.currentStateIndex,
+    setStateIndex: store.setStateIndex,
   }));
-  const [stateIndex, setStateIndex] = useState(0);
-  const currentCards = useMemo(() => states[stateIndex] as X[], [states, stateIndex]);
+  const currentCards = useMemo(() => states[currentStateIndex] as X[], [states, currentStateIndex]);
   useEffect(() => {
     setStateIndex(states.length - 1);
-  }, [states]);
+  }, [setStateIndex, states]);
+
+  const updateState = (newStates: X[][]) => {
+    setStates(newStates);
+    setStateIndex(newStates.length - 1);
+  };
 
   const changeCardStatus = (newStatus: CardStatus, condition?: () => boolean) => (card: X) => {
     if (condition && !condition()) return;
     const otherCards = currentCards.filter(c => c !== card);
     const newState = [...otherCards, { ...card, status: newStatus }];
-    console.log({ states: states });
-    setStates([...states.slice(0, stateIndex + 1), newState]);
+    updateState([...states.slice(0, currentStateIndex + 1), newState] as X[][]);
   };
 
   const selectCard = changeCardStatus(
@@ -52,7 +62,8 @@ export function useCards<X extends Card>() {
       ...currentCards.filter(card => !cardsPlayed.map(({ card }) => card.name).includes(card.name)),
       ...cardsPlayed.map(({ action, card }) => ({ ...card, status: newStatusAfterAction(card.actions, action) })),
     ];
-    setStates([...states.slice(0, stateIndex + 1), newState]);
+
+    updateState([...states.slice(0, currentStateIndex + 1), newState] as X[][]);
   };
 
   const makeRest = ({ recovered, lost }: { recovered: X[], lost: X }) => {
@@ -61,17 +72,17 @@ export function useCards<X extends Card>() {
       ...recovered.map(c => ({ ...c, status: CardStatus.inHand })),
       { ...lost, status: CardStatus.lost },
     ];
-    setStates([...states.slice(0, stateIndex + 1), newState]);
+    updateState([...states.slice(0, currentStateIndex + 1), newState] as X[][]);
   };
 
   const undo = () => {
-    if (stateIndex === 0) return;
-    setStateIndex(stateIndex - 1);
+    if (currentStateIndex === 0) return;
+    setStateIndex(currentStateIndex - 1);
   };
 
   const redo = () => {
-    if (stateIndex === states.length - 1) return;
-    setStateIndex(stateIndex + 1);
+    if (currentStateIndex === states.length - 1) return;
+    setStateIndex(currentStateIndex + 1);
   };
 
   return {
