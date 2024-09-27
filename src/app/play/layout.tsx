@@ -16,7 +16,7 @@ export default function PlayLayout({
   activeEffects: ReactNode;
 }) {
   return (
-    <div className='p-4 flex flex-row'>
+    <div className='p-2 flex flex-row'>
 
       <div className='basis-2/3'>
         {currentHand}

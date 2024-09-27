@@ -5,7 +5,7 @@ import { blinkblade } from '@/domain/blinkblade/class';
 import { boneshaper } from '@/domain/boneshaper/class';
 import { deathwalker } from '@/domain/deathwalker/class';
 import { deepwraith } from '@/domain/deepwraith/class';
-import { drifter } from '@/domain/drifter/class';
+import { drifter, isDrifter } from '@/domain/drifter/class';
 import { fist } from '@/domain/fist/class';
 import { geminate } from '@/domain/geminate/class';
 import { hive } from '@/domain/hive/class';
@@ -46,6 +46,30 @@ export default function TestCard() {
     trapper,
   ];
 
+  const moveTokenForwardAction = {
+    name: 'Move token forward',
+    onClick: () => {
+      const card = { ...currentCard };
+      if (!card.slots) {
+        return;
+      }
+      card.tokenPosition = Math.min((card.tokenPosition ?? 0) + 1, card.slots.length - 1);
+      setCard(card);
+    },
+  };
+
+  const moveTokenBackwardAction = {
+    name: 'Move token backward',
+    onClick: () => {
+      const card = { ...currentCard };
+      if (!card.slots) {
+        return;
+      }
+      card.tokenPosition = Math.max((card.tokenPosition ?? 0) - 1, 0);
+      setCard(card);
+    },
+  };
+
   return <div className="flex flex-col p-32 items-center w-full gap-4">
     <select
       className='p-4 bg-black'
@@ -68,8 +92,12 @@ export default function TestCard() {
     </select>
     <div className="flex gap-4 border border-white p-4">
       {currentCard.slots
-        ? <CardWithSlot card={currentCard} clickableAreasProps={[]} />
-        : <CardComponent card={currentCard} clickableAreasProps={[]} />
+        ? <CardWithSlot card={currentCard} actions={
+          isDrifter(selectedClass)
+            ? [moveTokenForwardAction, moveTokenBackwardAction]
+            : [moveTokenForwardAction]
+        } />
+        : <CardComponent card={currentCard} actions={[]} />
       }
 
       <div>

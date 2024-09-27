@@ -58,6 +58,35 @@ export function useCards<X extends Card>() {
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };
 
+  const moveTokenForward = (card: X) => {
+    if (!card.slots) {
+      throw new Error(`Card ${card.name} doest not have slots`)
+    }
+
+    const otherCards = currentCards.filter(c => c !== card);
+    const newTokenPosition = (card.tokenPosition ?? 0) + 1;
+    const action = [CardActions.activeDiscard, CardActions.activeLost].includes(card.actions.top) ? 'top' : 'bottom';
+    if (newTokenPosition >= card.slots.length) {
+      const newStatus = card.actions[action] === CardActions.activeDiscard ? CardStatus.discarded : CardStatus.lost;
+      const newState = [...otherCards, { ...card, status: newStatus, tokenPosition: 0 }];
+      updateStates([...states.slice(0, currentStateIndex + 1), newState]);
+    } else {
+      const newState = [...otherCards, { ...card, tokenPosition: newTokenPosition }];
+      updateStates([...states.slice(0, currentStateIndex + 1), newState]);
+    }
+  };
+
+  const moveTokenBackward = (card: X) => {
+    if (!card.slots) {
+      throw new Error(`Card ${card.name} doest not have slots`)
+    }
+
+    const otherCards = currentCards.filter(c => c !== card);
+    const newTokenPosition = Math.max(card.tokenPosition ? card.tokenPosition - 1 : 0, 0);
+    const newState = [...otherCards, { ...card, tokenPosition: newTokenPosition }];
+    updateStates([...states.slice(0, currentStateIndex + 1), newState]);
+  };
+
   const makeRest = ({ recovered, lost }: { recovered: X[], lost: X }) => {
     const newState = [
       ...currentCards.filter(c => c.status !== CardStatus.discarded),
@@ -84,6 +113,8 @@ export function useCards<X extends Card>() {
     discardCard,
     loseCard,
     recoverCard,
+    moveTokenForward,
+    moveTokenBackward,
     makeRest,
     undo,
     redo,

@@ -2,7 +2,6 @@ import { type Card } from '@/domain/cards.type';
 import { useState } from 'react';
 import CardPile from '../cards/CardPile';
 import Modal from '../Modal';
-import { PredefinedHoverArea } from '../cards/hover-area';
 
 export default function LongRestButton<X extends Card>({
   cards,
@@ -13,18 +12,17 @@ export default function LongRestButton<X extends Card>({
 }) {
   const [doesLongRest, setDoesLongRest] = useState(false);
 
-  const confirmLongRestProps = {
-    getZone: () => PredefinedHoverArea.all,
-    onClick: (card: X) => {
+  const confirmLongRestAction = (card: X) => ({
+    name: 'Confirm Long Rest',
+    onClick: () => {
       const recoveredCard = cards.filter(c => c !== card);
       onLongRest({ recovered: recoveredCard, lost: card });
     },
-    info: 'Confirm Long Rest',
-  };
+  });
 
   return <>
     {doesLongRest && <Modal>
-      <CardPile name='confirm-long-rest' cards={cards} clickProps={[confirmLongRestProps]} />
+      <CardPile name='confirm-long-rest' cards={cards} actions={[confirmLongRestAction]} />
     </Modal>}
     <button
       className='m-4'

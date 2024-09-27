@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { CardComponent } from '../cards/Card';
 import Image from 'next/image';
 import Modal from '../Modal';
-import { PredefinedHoverArea } from '../cards/hover-area';
 
 function getRandomCard<X extends Card>(arr: X[]) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -19,13 +18,13 @@ export default function ShortRestButton<X extends Card>({
   const [lostCard, setLostCard] = useState<X | undefined>(undefined);
   const [hasRerolled, setHasRerolled] = useState(false);
 
-  const confirmShortRestProps = {
-    getZone: () => PredefinedHoverArea.all,
-    onClick: (card: X) => {
-      const recoveredCard = cards.filter(c => c !== card);
-      onShortRest({ recovered: recoveredCard, lost: card });
+  const confirmShortRestAction = {
+    name: 'Confirm Short Rest',
+    onClick: () => {
+      if (!lostCard) return;
+      const recoveredCard = cards.filter(c => c !== lostCard);
+      onShortRest({ recovered: recoveredCard, lost: lostCard });
     },
-    info: 'Confirm Short Rest',
   };
 
   return <>
@@ -43,7 +42,7 @@ export default function ShortRestButton<X extends Card>({
           <Image src="/icons/fh-damage-color-icon.png" alt="Suffer damage" width={24} height={23} />
         </div>
       </button>}
-      <CardComponent name='confirm-short-rest' card={lostCard} clickableAreasProps={[confirmShortRestProps]} />
+      <CardComponent name='confirm-short-rest' card={lostCard} actions={[confirmShortRestAction]} />
 
     </Modal>}
     <button

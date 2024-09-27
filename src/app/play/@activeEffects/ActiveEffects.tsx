@@ -4,30 +4,47 @@ import { Card, CardActions, CardStatus } from '@/domain/cards.type';
 import { CardComponent } from '../../_components/cards/Card';
 import CardWithSlot from '../../_components/cards/CardWithSlot';
 import { useCards } from '@/app/play/useCards';
-import { PredefinedHoverArea } from '../../_components/cards/hover-area';
+import { useFrosthavenStore } from '@/stores/cards.store';
+import { isDrifter } from '@/domain/drifter/class';
 
 export default function ActiveEffects<X extends Card>({
   vertical,
 }: {
   vertical?: boolean;
 }) {
+  const selectedClass = useFrosthavenStore((state) => state.selectedClass);
   const {
     currentCards,
     discardCard,
     loseCard,
+    moveTokenForward,
+    moveTokenBackward,
   } = useCards<X>();
 
   const activeEffects = currentCards
     .filter(card => [CardStatus.activeTop, CardStatus.activeBottom].includes(card.status));
 
-  const removeEffectClickProps = {
-    getZone: (card: X) => card.status === CardStatus.activeTop ? PredefinedHoverArea.top : PredefinedHoverArea.bottom,
-    onClick: (card: X) => {
+  const removeEffectAction = (card: X) => ({
+    name: 'Remove effect',
+    onClick: () => {
       const action = card.status === CardStatus.activeTop ? card.actions.top : card.actions.bottom;
       action === CardActions.activeDiscard ? discardCard(card) : loseCard(card)
     },
-    info: 'Remove effect',
-  };
+  });
+
+  const moveTokenForwardAction = (card: X) => ({
+    name: 'Move token forward',
+    onClick: () => {
+      moveTokenForward(card);
+    },
+  });
+
+  const moveTokenBackwardAction = (card: X) => ({
+    name: 'Move token backward',
+    onClick: () => {
+      moveTokenBackward(card);
+    },
+  });
 
   return <div
     className={`flex flex-wrap ${vertical ? 'flex-col' : ''} gap-4 min-w-36 min-h-56`}
@@ -35,8 +52,16 @@ export default function ActiveEffects<X extends Card>({
     {activeEffects
       .map((card) => {
         const cardElement = !!card.slots
-          ? <CardWithSlot key={card.name} card={card} clickableAreasProps={[removeEffectClickProps]} />
-          : <CardComponent key={card.name} card={card} clickableAreasProps={[removeEffectClickProps]} />;
+          ? <CardWithSlot key={card.name} card={card} actions={(
+            selectedClass
+            && isDrifter(selectedClass)
+            && card.tokenPosition
+            && card.tokenPosition > 0
+          )
+            ? [moveTokenForwardAction(card), moveTokenBackwardAction(card)]
+            : [moveTokenForwardAction(card)]
+          } />
+          : <CardComponent key={card.name} card={card} actions={[removeEffectAction(card)]} />;
         return cardElement;
       })
     }

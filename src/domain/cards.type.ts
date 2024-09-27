@@ -1,4 +1,8 @@
-import type { HoverCircleArea } from '@/app/_components/cards/hover-area';
+type SlotArea = {
+  x: number;
+  y: number;
+  radius?: number
+}
 
 export enum CardStatus {
   'lost',
@@ -25,6 +29,6 @@ export type Card = {
     top: CardActions;
     bottom: CardActions;
   };
-  slots?: HoverCircleArea[];
+  slots?: SlotArea[];
   tokenPosition?: number;
 }

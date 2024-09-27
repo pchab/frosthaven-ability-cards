@@ -1,6 +1,5 @@
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import CardPile from '../cards/CardPile';
-import { PredefinedHoverArea } from '../cards/hover-area';
 
 export function SelectedGeminateCards({
   cards,
@@ -14,18 +13,17 @@ export function SelectedGeminateCards({
   const rangedCards = cards
     .filter((card) => card.form === GeminateForm.ranged);
 
-  const clickProps = {
-    getZone: () => PredefinedHoverArea.all,
-    onClick: onRemoveCard,
-    info: 'Remove Card',
-  };
+  const clickProps = (card: GeminateCard) => ({
+    name: 'Remove Card',
+    onClick: () => onRemoveCard(card),
+  });
 
   return <div className='p-4 flex flex-row gap-4'>
     <div key={'geminate-melee-cards'} className='flex flex-col gap-4'>
       Melee form: {meleeCards.length}
       <CardPile
         cards={meleeCards}
-        clickProps={[clickProps]}
+        actions={[clickProps]}
         vertical
       />
     </div>
@@ -33,7 +31,7 @@ export function SelectedGeminateCards({
       Ranged form: {rangedCards.length}
       <CardPile
         cards={rangedCards}
-        clickProps={[clickProps]}
+        actions={[clickProps]}
         vertical
       />
     </div>

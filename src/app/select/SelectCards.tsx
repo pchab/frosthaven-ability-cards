@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SelectedCards } from './SelectedCards';
 import CardPile from '../_components/cards/CardPile';
-import { PredefinedHoverArea } from '../_components/cards/hover-area';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,
@@ -38,11 +37,10 @@ export function SelectCards<X extends Card>({
 
   const removeCard = (card: X) => setSelectedCards(selectedCards.filter(c => c !== card));
 
-  const selectClickProps = {
-    getZone: () => PredefinedHoverArea.all,
-    onClick: selectCard,
-    info: 'Select Card',
-  };
+  const selectAction = (card: X) => ({
+    name: 'Select Card',
+    onClick: () => selectCard(card),
+  });
 
   const validateSelection = () => {
     selectCards(selectedCards);
@@ -65,13 +63,13 @@ export function SelectCards<X extends Card>({
         {Array.from({ length: currentLevel + 1 })
           .map((_, level) => level === 0 ? 'X' : level)
           .map((level) => (<>
-            <p>{`Cards level ${level}`}</p>
+            <p key={level}>{`Cards level ${level}`}</p>
             <CardPile
               key={`cards-level-${level}`}
               cards={frosthavenClass.cards
                 .filter((card) => card.level === level)
                 .filter((card) => selectedCards.every((selectedCard) => selectedCard.path !== card.path))}
-              clickProps={[selectClickProps]}
+              actions={[selectAction]}
             />
           </>))}
       </div>

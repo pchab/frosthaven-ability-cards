@@ -4,7 +4,6 @@ import { CardStatus, type Card } from '@/domain/cards.type';
 import { CardComponent } from '../../_components/cards/Card';
 import { useCards, type Action } from '@/app/play/useCards';
 import { useState } from 'react';
-import { PredefinedHoverArea } from '../../_components/cards/hover-area';
 
 type SelectedActions = Action[];
 
@@ -25,16 +24,18 @@ export default function PlayedCards<X extends Card>() {
     setSelectedActions(newSelectedActions);
   };
 
-  const playTopClickProps = {
-    getZone: () => PredefinedHoverArea.top,
-    onClick: selectAction('top'),
-    info: 'Play top',
-  };
-  const playBottomClickProps = {
-    getZone: () => PredefinedHoverArea.bottom,
-    onClick: selectAction('bottom'),
-    info: 'Play bottom',
-  };
+  const playTopAction = (card: X) => ({
+    name: 'Play top',
+    onClick: () => selectAction('top')(card),
+  });
+  const playBottomAction = (card: X) => ({
+    name: 'Play bottom',
+    onClick: () => selectAction('bottom')(card),
+  });
+  const playDefaultAction = (card: X) => ({
+    name: 'Play default',
+    onClick: () => selectAction('default')(card),
+  });
 
   const endTurn = () => {
     if (selectedActions.length === 2) {
@@ -48,22 +49,17 @@ export default function PlayedCards<X extends Card>() {
     }
   };
 
-  const fixedAreaProps = (action: Action) => {
-    if (!action || action === 'default') {
-      return {};
-    }
-    return { fixedArea: action === 'top' ? PredefinedHoverArea.top : PredefinedHoverArea.bottom };
-  };
-
-  const getPlayableActions = (index: number) => {
+  const getPlayableActions = (index: number, card: X) => {
     if (selectedCards.length < 2) {
       return [];
     }
     const otherSelectedAction = selectedActions[index === 0 ? 1 : 0];
     if (!otherSelectedAction || otherSelectedAction === 'default') {
-      return [playTopClickProps, playBottomClickProps];
+      return [playDefaultAction(card), playBottomAction(card), playTopAction(card)];
     }
-    return otherSelectedAction === 'top' ? [playBottomClickProps] : [playTopClickProps];
+    return otherSelectedAction === 'top'
+      ? [playDefaultAction(card), playBottomAction(card)]
+      : [playDefaultAction(card), playTopAction(card)];
   }
 
   return <div className='flex gap-4 min-h-[266px]'>
@@ -72,13 +68,9 @@ export default function PlayedCards<X extends Card>() {
         key={card.name}
         className='flex flex-col'>
         <CardComponent card={card}
-          clickableAreasProps={getPlayableActions(index)}
-          {...fixedAreaProps(selectedActions[index])}
+          actions={getPlayableActions(index, card)}
         />
-        <button
-          className={selectedActions[index] === 'default' ? 'text-red-500' : ''}
-          onClick={() => selectAction('default')(card)}
-        >Default Action</button>
+        <div className='text-xs'>Selected Action: {selectedActions[index]}</div>
       </div>)}
     {selectedCards.length === 2 && <button onClick={endTurn}>End Turn</button>}
   </div>;
