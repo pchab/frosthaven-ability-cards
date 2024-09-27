@@ -20,6 +20,16 @@ function newStatusAfterAction(cardActions: Card['actions'], action: Action): Car
   }
 }
 
+function getActiveAction(cardStatus: Card['status']) {
+  if (cardStatus === CardStatus.activeTop) {
+    return 'top';
+  }
+  if (cardStatus === CardStatus.activeBottom) {
+    return 'bottom';
+  }
+  throw new Error('Invalid card status');
+}
+
 export function useCards<X extends Card>() {
   const {
     states,
@@ -65,7 +75,7 @@ export function useCards<X extends Card>() {
 
     const otherCards = currentCards.filter(c => c !== card);
     const newTokenPosition = (card.tokenPosition ?? 0) + 1;
-    const action = [CardActions.activeDiscard, CardActions.activeLost].includes(card.actions.top) ? 'top' : 'bottom';
+    const action = getActiveAction(card.status);
     if (newTokenPosition >= card.slots.length) {
       const newStatus = card.actions[action] === CardActions.activeDiscard ? CardStatus.discarded : CardStatus.lost;
       const newState = [...otherCards, { ...card, status: newStatus, tokenPosition: 0 }];
