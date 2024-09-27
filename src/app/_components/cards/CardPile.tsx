@@ -1,15 +1,16 @@
 import { Card } from '@/domain/cards.type';
-import { CardComponent, type ClickableAreasProps } from './Card';
+import { CardComponent } from './Card';
 import { useState } from 'react';
+import type { WheelAction } from '../ActionWheel';
 
 export default function CardPile<X extends Card>({
   cards,
-  clickProps,
+  actions,
   vertical,
   name,
 }: {
   cards: X[];
-  clickProps: ClickableAreasProps<X>;
+  actions: ((card: X) => WheelAction)[];
   vertical?: boolean;
   name?: string;
 }) {
@@ -17,7 +18,7 @@ export default function CardPile<X extends Card>({
   const overlap = vertical ? '-mb-36' : '-mr-24';
 
   return <div
-    className={`flex flex-wrap ${vertical ? 'flex-col' : ''} gap-4 min-w-36 min-h-56`}
+    className={`flex flex-wrap ${vertical ? 'flex-col' : ''} gap-4 min-h-48 min-w-36`}
     onMouseLeave={() => setHoveredCardIndex(undefined)}
   >
     {cards
@@ -29,7 +30,7 @@ export default function CardPile<X extends Card>({
         <CardComponent
           name={name ? `${name}-${card.name.replaceAll(' ', '-')}` : card.name}
           card={card}
-          clickableAreasProps={clickProps} />
+          actions={actions.map((action) => action(card))} />
       </div>)}
   </div>
 }
