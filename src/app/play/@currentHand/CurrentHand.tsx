@@ -12,6 +12,7 @@ export default function CurrentHand<X extends Card>({
   const {
     currentCards,
     selectCard,
+    discardCard,
     loseCard,
   } = useCards<X>();
 
@@ -23,6 +24,10 @@ export default function CurrentHand<X extends Card>({
     name: 'Select Card',
     onClick: () => selectCard(card),
   });
+  const discardAction = (card: X) => ({
+    name: 'Discard Card',
+    onClick: () => discardCard(card),
+  });
   const loseAction = (card: X) => ({
     name: 'Lose Card',
     onClick: () => loseCard(card),
@@ -30,6 +35,6 @@ export default function CurrentHand<X extends Card>({
 
   return <CardPile
     cards={currentHand}
-    actions={[loseAction, selectAction]}
+    actions={[discardAction, loseAction, selectAction]}
   />;
 }
