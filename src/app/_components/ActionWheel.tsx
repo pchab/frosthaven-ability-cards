@@ -16,13 +16,14 @@ export default function ActionWheel({
 }) {
 
   return (
-    <div className='absolute px-12 py-20 bg-transparent'>
+    <div className='absolute w-full h-full bg-transparent'>
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
+            className='w-full h-full'
+            initial={{ scale: 0, opacity: 0, rotate: 180 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            exit={{ scale: 0, opacity: 0, rotate: 180 }}
             transition={{ duration: 0.3 }}
           >
             {actions.map((action, index) => {
@@ -36,8 +37,8 @@ export default function ActionWheel({
                   key={action.name}
                   className={`absolute w-16 h-16 rounded-full text-white flex items-center justify-center shadow-lg text-xs font-medium bg-black/80`}
                   style={{
-                    left: `calc(50% + ${x}px)`,
-                    top: `calc(50% + ${y}px)`,
+                    left: `calc(50% + ${x}px - 2rem)`, // 2rem is the width of the button (w-16)
+                    top: `calc(50% + ${y}px - 2rem)`, // 2rem is the height of the button (h-16)
                   }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}

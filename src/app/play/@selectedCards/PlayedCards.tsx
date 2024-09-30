@@ -70,7 +70,10 @@ export default function PlayedCards<X extends Card>() {
         <CardComponent card={card}
           actions={getPlayableActions(index, card)}
         />
-        <div className='text-xs'>Selected Action: {selectedActions[index]}</div>
+        <div className='flex flex-col items-center p-4'>
+          <div className='text-xs'>Selected Action:</div>
+          <div className='text-sm uppercase'>{selectedActions[index]}</div>
+        </div>
       </div>)}
     {selectedCards.length === 2 && <button onClick={endTurn}>End Turn</button>}
   </div>;

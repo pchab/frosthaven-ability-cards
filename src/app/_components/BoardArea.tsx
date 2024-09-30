@@ -8,7 +8,7 @@ export default function BoardArea({
   children: ReactNode;
 }) {
   return <div className='m-1 p-2 border-solid border-2 rounded w-full'>
-    <p>{title}</p>
+    <p className='text-lg'>{title}</p>
     {children}
   </div>;
 }
