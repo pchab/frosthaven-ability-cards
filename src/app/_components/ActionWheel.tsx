@@ -14,16 +14,15 @@ export default function ActionWheel({
   isOpen: boolean;
   actions: WheelAction[];
 }) {
-
   return (
     <div className='absolute w-full h-full bg-transparent'>
       <AnimatePresence>
         {isOpen && (
           <motion.div
             className='w-full h-full'
-            initial={{ scale: 0, opacity: 0, rotate: 180 }}
+            initial={{ scale: 0, opacity: 0, rotate: 90 }}
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
-            exit={{ scale: 0, opacity: 0, rotate: 180 }}
+            exit={{ scale: 0, opacity: 0, rotate: 90 }}
             transition={{ duration: 0.3 }}
           >
             {actions.map((action, index) => {

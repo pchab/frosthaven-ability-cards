@@ -31,17 +31,15 @@ export function CardComponent<X extends Card>({
     toggleWheel();
   };
 
-  return <div>
-    <div onClick={onClickCard} className='relative'>
-      <ActionWheel isOpen={isActionWheelOpen} actions={actions} />
-      <Image
-        useMap={`#${name}`}
-        src={card.path}
-        alt='card'
-        width={143}
-        height={200}
-      />
-      {children ?? <></>}
-    </div>
+  return <div onClick={onClickCard} className='relative'>
+    <ActionWheel isOpen={isActionWheelOpen} actions={actions} />
+    <Image
+      useMap={`#${name}`}
+      src={card.path}
+      alt='card'
+      width={143}
+      height={200}
+    />
+    {children}
   </div>;
 }
