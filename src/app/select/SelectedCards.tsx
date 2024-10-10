@@ -18,7 +18,6 @@ export function SelectedCards<X extends Card>({
     <CardPile
       cards={cards}
       actions={[removeAction]}
-      vertical
     />
   </div>;
 }

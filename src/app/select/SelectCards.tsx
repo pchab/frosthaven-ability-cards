@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { SelectedCards } from './SelectedCards';
 import CardPile from '../_components/cards/CardPile';
+import Image from 'next/image';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,
@@ -48,38 +49,48 @@ export function SelectCards<X extends Card>({
     router.push('/play');
   }
 
-  return (<div className='p-4 flex flex-row'>
+  const remainingCards = frosthavenClass.cards
+    .filter((card) => selectedCards.every((selectedCard) => selectedCard.path !== card.path))
 
-    <div className='basis-3/4'>
+  const AvailableCardsByLevel = (level: Card['level']) => (<div key={level} className='flex flex-col'>
+    <p>{`Cards level ${level}`}</p>
+    <CardPile
+      key={`cards-level-${level}`}
+      cards={remainingCards
+        .filter((card) => card.level === level)}
+      actions={[selectAction]}
+    />
+  </div>);
+  const { name, path, iconSize } = frosthavenClass;
 
+  return (<div className='p-4 flex flex-col gap-4 items-center'>
+    <div className='flex justify-between items-center gap-4'>
+      <p>{frosthavenClass.name}</p>
+      <Image src={path} alt={name} {...iconSize} />
       <div className='flex items-center gap-4 p-3'>
-        <p>{frosthavenClass.name}</p>
         <label htmlFor='level'>Level {level}</label>
         <input type='range' id='level' name='level' min='1' max='9'
           value={level} onChange={e => setLevel(Number(e.target.value))}
         />
       </div>
-
-      <div className='flex flex-col gap-4'>
-        {Array.from({ length: level + 1 })
-          .map((_, level) => level === 0 ? 'X' : level)
-          .map((level) => (<>
-            <p key={level}>{`Cards level ${level}`}</p>
-            <CardPile
-              key={`cards-level-${level}`}
-              cards={frosthavenClass.cards
-                .filter((card) => card.level === level)
-                .filter((card) => selectedCards.every((selectedCard) => selectedCard.path !== card.path))}
-              actions={[selectAction]}
-            />
-          </>))}
-      </div>
-
+      <button onClick={validateSelection}>Validate Selection</button>
     </div>
 
-    <div className='flex flex-col items-center basis-1/4'>
-      <button onClick={validateSelection}>Validate Selection</button>
+    <div className='flex items-center'>
       {selectedCardComponent({ cards: selectedCards, onRemoveCard: removeCard })}
     </div>
+
+    <div className='flex gap-4'>
+      {AvailableCardsByLevel('X')}
+
+      {AvailableCardsByLevel(1)}
+    </div>
+
+    {level > 1 && <div className='flex flex-wrap'>
+      {Array.from({ length: level - 1 })
+        .map((_, level) => level + 2)
+        .map((level) => (AvailableCardsByLevel(level)))}
+    </div>}
+
   </div>);
 }

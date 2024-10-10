@@ -24,7 +24,6 @@ export function SelectedGeminateCards({
       <CardPile
         cards={meleeCards}
         actions={[clickProps]}
-        vertical
       />
     </div>
     <div key={'geminate-ranged-cards'} className='flex flex-col gap-4'>
@@ -32,7 +31,6 @@ export function SelectedGeminateCards({
       <CardPile
         cards={rangedCards}
         actions={[clickProps]}
-        vertical
       />
     </div>
   </div>;
