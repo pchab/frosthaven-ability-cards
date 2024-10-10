@@ -20,8 +20,9 @@ export function SelectCards<X extends Card>({
     onRemoveCard: (card: X) => void;
   }) => JSX.Element;
 }) {
-  const [currentLevel, setCurrentLevel] = useState(2);
-  const { cards, selectCards } = useFrosthavenStore((state) => ({
+  const { level, setLevel, cards, selectCards } = useFrosthavenStore((state) => ({
+    level: state.level,
+    setLevel: state.setLevel,
     cards: state.cards,
     selectCards: state.selectCards,
   }));
@@ -53,14 +54,14 @@ export function SelectCards<X extends Card>({
 
       <div className='flex items-center gap-4 p-3'>
         <p>{frosthavenClass.name}</p>
-        <label htmlFor='level'>Level {currentLevel}</label>
+        <label htmlFor='level'>Level {level}</label>
         <input type='range' id='level' name='level' min='1' max='9'
-          value={currentLevel} onChange={e => setCurrentLevel(Number(e.target.value))}
+          value={level} onChange={e => setLevel(Number(e.target.value))}
         />
       </div>
 
       <div className='flex flex-col gap-4'>
-        {Array.from({ length: currentLevel + 1 })
+        {Array.from({ length: level + 1 })
           .map((_, level) => level === 0 ? 'X' : level)
           .map((level) => (<>
             <p key={level}>{`Cards level ${level}`}</p>

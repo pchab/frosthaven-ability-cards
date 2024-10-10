@@ -5,6 +5,8 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface AbilityCardsState {
+  level: number;
+  setLevel: (level: number) => void;
   selectedClass: FrosthavenClass<Card> | undefined;
   selectClass: (playerClass: FrosthavenClass<Card>) => void;
   cards: Card[];
@@ -20,10 +22,12 @@ interface AbilityCardsState {
 export const useFrosthavenStore = create<AbilityCardsState>()(
   persist(
     (set, get) => ({
+      level: 1,
+      setLevel: (level: number) => set({ level }),
       selectedClass: undefined,
       selectClass: (playerClass: FrosthavenClass<Card>) => {
         if (playerClass.name !== get().selectedClass?.name) {
-          set({ selectedClass: playerClass, cards: [], states: [], currentStateIndex: 0 });
+          set({ level: 1, selectedClass: playerClass, cards: [], states: [], currentStateIndex: 0 });
         }
       },
       cards: [],
