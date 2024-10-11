@@ -33,12 +33,7 @@ export default function SelectClassPage() {
     <Image src='/fh-frosthaven-logo.png' alt='Forsthaven logo' width={600} height={87} />
     <div className='p-16'>
       <div className='flex flex-wrap p-6 justify-center w-full gap-8 bg-gradient-to-b from-black to-blue-500 rounded-lg'>
-        {[...starterClasses, ...unlockedClasses].map((fhClass) => {
-          const { name, path, iconSize } = fhClass;
-          return <SelectClass key={name} fhClass={fhClass}>
-            <Image src={path} alt={name} {...iconSize} />
-          </SelectClass>;
-        })}
+        {[...starterClasses, ...unlockedClasses].map((fhClass) => <SelectClass key={fhClass.name} fhClass={fhClass} />)}
       </div>
     </div>
   </div>);

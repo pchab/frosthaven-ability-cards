@@ -2,6 +2,7 @@ import { type Card } from '@/domain/cards.type';
 import { useState } from 'react';
 import CardPile from '../cards/CardPile';
 import Modal from '../Modal';
+import Button from '../Button';
 
 export default function LongRestButton<X extends Card>({
   cards,
@@ -24,9 +25,6 @@ export default function LongRestButton<X extends Card>({
     {doesLongRest && <Modal>
       <CardPile name='confirm-long-rest' cards={cards} actions={[confirmLongRestAction]} />
     </Modal>}
-    <button
-      className='m-4'
-      onClick={() => setDoesLongRest(true)}
-    >Long Rest</button>
+    <Button onClick={() => setDoesLongRest(true)}>Long Rest</Button>
   </>;
 }

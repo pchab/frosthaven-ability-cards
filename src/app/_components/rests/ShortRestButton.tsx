@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { CardComponent } from '../cards/Card';
 import Image from 'next/image';
 import Modal from '../Modal';
+import Button from '../Button';
 
 function getRandomCard<X extends Card>(arr: X[]) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -29,25 +30,23 @@ export default function ShortRestButton<X extends Card>({
 
   return <>
     {lostCard && <Modal>
-      {!hasRerolled && <button
-        className='m-4'
-        onClick={() => {
-          setHasRerolled(true);
-          const newLostCard = getRandomCard(cards.filter(c => c !== lostCard));
-          setLostCard(newLostCard);
-        }}
-      >
-        <div className='flex gap-2 items-center'>
-          Reroll Short Rest
-          <Image src='/icons/fh-damage-color-icon.png' alt='Suffer damage' width={24} height={23} />
-        </div>
-      </button>}
-      <CardComponent name='confirm-short-rest' card={lostCard} actions={[confirmShortRestAction]} />
-
+      <div className='flex flex-col gap-4 items-center'>
+        {!hasRerolled &&
+          <Button
+            onClick={() => {
+              setHasRerolled(true);
+              const newLostCard = getRandomCard(cards.filter(c => c !== lostCard));
+              setLostCard(newLostCard);
+            }}
+          >
+            <div className='flex gap-2 items-center'>
+              Reroll Short Rest
+              <Image src='/icons/fh-damage-color-icon.png' alt='Suffer damage' width={24} height={23} />
+            </div>
+          </Button>}
+        <CardComponent name='confirm-short-rest' card={lostCard} actions={[confirmShortRestAction]} />
+      </div>
     </Modal>}
-    <button
-      className='m-4'
-      onClick={() => setLostCard(getRandomCard(cards))}
-    >Short Rest</button>
+    <Button onClick={() => setLostCard(getRandomCard(cards))}>Short Rest</Button>
   </>;
 }

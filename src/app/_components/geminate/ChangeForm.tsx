@@ -1,5 +1,6 @@
 import { GeminateForm } from '@/domain/geminate/cards';
 import Image from 'next/image';
+import Button from '../Button';
 
 const meleeFormPath = '/geminate/icons/fh-geminate-melee-color-icon.png';
 const rangedFormPath = '/geminate/icons/fh-geminate-ranged-color-icon.png';
@@ -12,12 +13,11 @@ export default function ChangeForm({
   setForm: (form: GeminateForm) => void;
 }) {
   const formPath = form === GeminateForm.melee ? meleeFormPath : rangedFormPath;
-  return <div className='p-2 flex justify-center items-center'>
-    <button
-      className='flex justify-center items-center gap-4 min-h-24'
-      onClick={() => setForm(form === GeminateForm.melee
-        ? GeminateForm.ranged
-        : GeminateForm.melee)}>
+  return <Button
+    onClick={() => setForm(form === GeminateForm.melee
+      ? GeminateForm.ranged
+      : GeminateForm.melee)}>
+    <div className='flex justify-center items-center gap-2 min-h-24'>
       <label>Change form</label>
       <Image
         src={formPath}
@@ -25,6 +25,6 @@ export default function ChangeForm({
         width={33}
         height={60}
       />
-    </button>
-  </div>;
+    </div>
+  </Button>;
 }
