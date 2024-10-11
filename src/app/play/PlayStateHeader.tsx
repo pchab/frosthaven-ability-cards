@@ -5,6 +5,7 @@ import { useCards } from './useCards';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { isGeminate } from '@/domain/geminate/class';
 import ChangeForm from '@/app/_components/geminate/ChangeForm';
+import Button from '../_components/Button';
 
 export default function PlayStateHeader<X extends Card>() {
   const {
@@ -23,7 +24,7 @@ export default function PlayStateHeader<X extends Card>() {
 
   return <>
     {!selectedClass || isGeminate(selectedClass) && <ChangeForm form={currentForm} setForm={setForm} />}
-    <button onClick={undo}>Undo</button>
-    <button onClick={redo}>Redo</button>
+    <Button onClick={undo}>Undo</Button>
+    <Button onClick={redo}>Redo</Button>
   </>;
 }

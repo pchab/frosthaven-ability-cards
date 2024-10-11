@@ -1,5 +1,6 @@
 import { type Card } from '@/domain/cards.type';
 import CardPile from '../_components/cards/CardPile';
+import BoardArea from '../_components/BoardArea';
 
 export function SelectedCards<X extends Card>({
   cards,
@@ -15,12 +16,11 @@ export function SelectedCards<X extends Card>({
     onClick: () => onRemoveCard(card),
   });
 
-  return <div className='flex flex-col border-solid border-2 rounded p-4'>
-    <p className='text-lg'>Selected Cards: {cards.length}/{maxHandSize}</p>
+  return <BoardArea title={`Selected Cards: ${cards.length}/${maxHandSize}`}>
     <CardPile
       cards={cards}
       actions={[removeAction]}
       maxCardLength={maxHandSize}
     />
-  </div>;
+  </BoardArea>;
 }

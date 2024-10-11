@@ -4,6 +4,7 @@ import { CardStatus, type Card } from '@/domain/cards.type';
 import { CardComponent } from '../../_components/cards/Card';
 import { useCards, type Action } from '@/app/play/useCards';
 import { useState } from 'react';
+import Button from '@/app/_components/Button';
 
 type SelectedActions = Action[];
 
@@ -75,6 +76,6 @@ export default function PlayedCards<X extends Card>() {
           <div className='text-sm uppercase'>{selectedActions[index]}</div>
         </div>
       </div>)}
-    {selectedCards.length === 2 && <button onClick={endTurn}>End Turn</button>}
+    {selectedCards.length === 2 && <Button onClick={endTurn}>End Turn</Button>}
   </div>;
 }

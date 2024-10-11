@@ -20,7 +20,7 @@ export function SelectedGeminateCards({
     onClick: () => onRemoveCard(card),
   });
 
-  return <div className='flex flex-row justify-between border-solid border-2 rounded p-4 gap-4'>
+  return <div className='flex flex-row justify-between border-solid border-2 rounded-lg p-4 gap-4 bg-gradient-to-r from-slate-700 to-blue-300'>
     <div key={'geminate-melee-cards'} className='flex flex-col gap-4'>
       <p className='text-lg'>Melee form: {meleeCards.length}/{maxHandSize}</p>
       <CardPile

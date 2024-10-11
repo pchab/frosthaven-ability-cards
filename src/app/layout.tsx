@@ -17,7 +17,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body
+        className={inter.className}
+        style={{
+          backgroundImage: 'url(/fh-background.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+        }}
+      >
         <main>
           {children}
           <SpeedInsights />

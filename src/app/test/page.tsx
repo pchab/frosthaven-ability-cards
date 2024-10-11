@@ -70,7 +70,7 @@ export default function TestCard() {
     },
   };
 
-  return <div className="flex flex-col p-32 items-center w-full gap-4">
+  return <div className='flex flex-col p-32 items-center w-full gap-4'>
     <select
       className='p-4 bg-black'
       onChange={(e) => {
@@ -89,7 +89,7 @@ export default function TestCard() {
         return <option key={card.name} value={card.name}>{capitalize(card.name)}</option>;
       })}
     </select>
-    <div className="flex gap-4 border border-white p-4">
+    <div className='flex gap-4 border border-white p-4'>
       {currentCard.slots
         ? <CardWithSlot card={currentCard} actions={
           isDrifter(selectedClass)

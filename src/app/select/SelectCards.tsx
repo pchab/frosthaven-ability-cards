@@ -8,6 +8,8 @@ import { useState } from 'react';
 import { SelectedCards } from './SelectedCards';
 import CardPile from '../_components/cards/CardPile';
 import Image from 'next/image';
+import BoardArea from '../_components/BoardArea';
+import Button from '../_components/Button';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,
@@ -54,8 +56,7 @@ export function SelectCards<X extends Card>({
 
   const AvailableCardsByLevel = (level: Card['level']) => {
     const levelCards = frosthavenClass.cards.filter((card) => card.level === level);
-    return <div className={`flex flex-col border-solid border-2 rounded p-4`}>
-      <p className='text-lg'>{`Cards level ${level}`}</p>
+    return <BoardArea title={`Cards level ${level}`}>
       <CardPile
         key={`cards-level-${level}`}
         cards={levelCards
@@ -63,12 +64,12 @@ export function SelectCards<X extends Card>({
         actions={[selectAction]}
         maxCardLength={levelCards.length}
       />
-    </div>;
+    </BoardArea>;
   };
   const { name, path, iconSize } = frosthavenClass;
 
   return (<div className='p-4 flex flex-col gap-4 items-center'>
-    <div className='flex justify-between items-center gap-4'>
+    <div className='flex justify-between items-center gap-4 border-solid border-2 rounded-lg p-4 bg-gradient-to-r from-slate-700 to-blue-300'>
       <p>{frosthavenClass.name}</p>
       <Image src={path} alt={name} {...iconSize} />
       <div className='flex items-center gap-4 p-3'>
@@ -77,7 +78,7 @@ export function SelectCards<X extends Card>({
           value={level} onChange={e => setLevel(Number(e.target.value))}
         />
       </div>
-      <button onClick={validateSelection}>Validate Selection</button>
+      <Button onClick={validateSelection}>Validate Selection</Button>
     </div>
 
     <div className='grid grid-cols-4 gap-4'>

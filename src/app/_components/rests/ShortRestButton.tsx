@@ -39,7 +39,7 @@ export default function ShortRestButton<X extends Card>({
       >
         <div className='flex gap-2 items-center'>
           Reroll Short Rest
-          <Image src="/icons/fh-damage-color-icon.png" alt="Suffer damage" width={24} height={23} />
+          <Image src='/icons/fh-damage-color-icon.png' alt='Suffer damage' width={24} height={23} />
         </div>
       </button>}
       <CardComponent name='confirm-short-rest' card={lostCard} actions={[confirmShortRestAction]} />
