@@ -52,8 +52,11 @@ export default function CardPile<X extends Card>({
       .map((card, index) => <motion.div
         key={card.name}
         onMouseEnter={() => setHoveredCardIndex(index)}
+        onTouchMove={() => setHoveredCardIndex(index)}
+        onFocus={() => setHoveredCardIndex(index)}
         onTap={() => setHoveredCardIndex(index)}
         whileHover={{ scale: 1.1 }}
+        whileFocus={{ scale: 1.1 }}
         className={`w-fit ${overlap}`}
         style={{ zIndex: getZIndex(index) }}
       >
