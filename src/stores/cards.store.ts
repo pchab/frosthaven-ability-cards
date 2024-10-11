@@ -3,6 +3,7 @@ import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { GeminateForm } from '@/domain/geminate/cards';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+import { indexedDBStorage } from './indexed-db.storage';
 
 interface AbilityCardsState {
   level: number;
@@ -41,7 +42,7 @@ export const useFrosthavenStore = create<AbilityCardsState>()(
     }),
     {
       name: 'frosthaven-ability-cards-storage',
-      storage: createJSONStorage(() => sessionStorage),
+      storage: createJSONStorage(() => indexedDBStorage),
     }
   )
 );
