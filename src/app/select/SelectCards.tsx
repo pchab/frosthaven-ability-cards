@@ -54,7 +54,6 @@ export function SelectCards<X extends Card>({
 
   const AvailableCardsByLevel = (level: Card['level']) => {
     const levelCards = frosthavenClass.cards.filter((card) => card.level === level);
-    //min-w-cards-${levelCards.length}
     return <div className={`flex flex-col border-solid border-2 rounded p-4`}>
       <p className='text-lg'>{`Cards level ${level}`}</p>
       <CardPile

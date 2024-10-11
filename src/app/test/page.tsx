@@ -74,7 +74,6 @@ export default function TestCard() {
     <select
       className='p-4 bg-black'
       onChange={(e) => {
-        console.log(e.target.value);
         selectClass(allClasses.find(({ name }) => name === e.target.value) ?? bannerSpear)
       }}
     >

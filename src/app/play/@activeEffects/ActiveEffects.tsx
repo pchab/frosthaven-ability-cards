@@ -7,11 +7,7 @@ import { useCards } from '@/app/play/useCards';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { isDrifter } from '@/domain/drifter/class';
 
-export default function ActiveEffects<X extends Card>({
-  vertical,
-}: {
-  vertical?: boolean;
-}) {
+export default function ActiveEffects<X extends Card>() {
   const selectedClass = useFrosthavenStore((state) => state.selectedClass);
   const {
     currentCards,
@@ -47,7 +43,7 @@ export default function ActiveEffects<X extends Card>({
   });
 
   return <div
-    className={`flex flex-wrap ${vertical ? 'flex-col' : ''} gap-4 min-w-36 min-h-56`}
+    className='flex flex-wrap gap-4 min-w-cards-2 min-h-card'
   >
     {activeEffects
       .map((card) => {
