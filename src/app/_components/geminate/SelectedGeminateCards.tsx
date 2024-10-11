@@ -3,9 +3,11 @@ import CardPile from '../cards/CardPile';
 
 export function SelectedGeminateCards({
   cards,
+  maxHandSize,
   onRemoveCard,
 }: {
   cards: GeminateCard[];
+  maxHandSize: number;
   onRemoveCard: (card: GeminateCard) => void;
 }) {
   const meleeCards = cards
@@ -18,19 +20,21 @@ export function SelectedGeminateCards({
     onClick: () => onRemoveCard(card),
   });
 
-  return <div className='p-4 flex flex-row gap-4'>
+  return <div className='flex flex-row justify-between border-solid border-2 rounded p-4 gap-4'>
     <div key={'geminate-melee-cards'} className='flex flex-col gap-4'>
-      Melee form: {meleeCards.length}
+      <p className='text-lg'>Melee form: {meleeCards.length}/{maxHandSize}</p>
       <CardPile
         cards={meleeCards}
         actions={[clickProps]}
+        maxCardLength={maxHandSize}
       />
     </div>
     <div key={'geminate-ranged-cards'} className='flex flex-col gap-4'>
-      Ranged form: {rangedCards.length}
+      <p className='text-lg'>Ranged form: {rangedCards.length}/{maxHandSize}</p>
       <CardPile
         cards={rangedCards}
         actions={[clickProps]}
+        maxCardLength={maxHandSize}
       />
     </div>
   </div>;

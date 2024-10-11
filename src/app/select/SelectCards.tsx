@@ -18,6 +18,7 @@ export function SelectCards<X extends Card>({
   checkHandSize?: (cards: X[]) => boolean;
   selectedCardComponent?: (props: {
     cards: X[];
+    maxHandSize: number;
     onRemoveCard: (card: X) => void;
   }) => JSX.Element;
 }) {
@@ -49,18 +50,22 @@ export function SelectCards<X extends Card>({
     router.push('/play');
   }
 
-  const remainingCards = frosthavenClass.cards
-    .filter((card) => selectedCards.every((selectedCard) => selectedCard.path !== card.path))
+  const filterRemainingCards = (card: X) => selectedCards.every((selectedCard) => selectedCard.path !== card.path);
 
-  const AvailableCardsByLevel = (level: Card['level']) => (<div key={level} className='flex flex-col'>
-    <p>{`Cards level ${level}`}</p>
-    <CardPile
-      key={`cards-level-${level}`}
-      cards={remainingCards
-        .filter((card) => card.level === level)}
-      actions={[selectAction]}
-    />
-  </div>);
+  const AvailableCardsByLevel = (level: Card['level']) => {
+    const levelCards = frosthavenClass.cards.filter((card) => card.level === level);
+    //min-w-cards-${levelCards.length}
+    return <div className={`flex flex-col border-solid border-2 rounded p-4`}>
+      <p className='text-lg'>{`Cards level ${level}`}</p>
+      <CardPile
+        key={`cards-level-${level}`}
+        cards={levelCards
+          .filter(filterRemainingCards)}
+        actions={[selectAction]}
+        maxCardLength={levelCards.length}
+      />
+    </div>;
+  };
   const { name, path, iconSize } = frosthavenClass;
 
   return (<div className='p-4 flex flex-col gap-4 items-center'>
@@ -76,21 +81,31 @@ export function SelectCards<X extends Card>({
       <button onClick={validateSelection}>Validate Selection</button>
     </div>
 
-    <div className='flex items-center'>
-      {selectedCardComponent({ cards: selectedCards, onRemoveCard: removeCard })}
-    </div>
+    <div className='grid grid-cols-4 gap-4'>
+      <div className='col-span-full'>
+        {selectedCardComponent({
+          cards: selectedCards,
+          onRemoveCard: removeCard,
+          maxHandSize: frosthavenClass.handSize,
+        })}
+      </div>
 
-    <div className='flex gap-4'>
-      {AvailableCardsByLevel('X')}
 
-      {AvailableCardsByLevel(1)}
-    </div>
+      <div className='col-span-full flex flex-row gap-4 w-full justify-between'>
+        {AvailableCardsByLevel('X')}
 
-    {level > 1 && <div className='flex flex-wrap'>
-      {Array.from({ length: level - 1 })
+        <div className='grow'>
+          {AvailableCardsByLevel(1)}
+        </div>
+      </div>
+
+      {level > 1 && Array.from({ length: level - 1 })
         .map((_, level) => level + 2)
-        .map((level) => (AvailableCardsByLevel(level)))}
-    </div>}
-
+        .map((level) => (
+          <div key={level} className='col-span-1'>
+            {AvailableCardsByLevel(level)}
+          </div>
+        ))}
+    </div>
   </div>);
 }
