@@ -34,7 +34,7 @@ export default function CardPile<X extends Card>({
 }) {
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number>(cards.length - 1);
   function getZIndex(index: number) {
-    return 200 - Math.abs(((hoveredCardIndex ?? 0) - index) * 10);
+    return 20 - Math.abs(((hoveredCardIndex ?? 0) - index));
   }
 
   useEffect(() => {

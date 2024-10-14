@@ -19,7 +19,7 @@ export default function ActionWheel({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className='w-full h-full'
+            className='relative w-full h-full z-30'
             initial={{ scale: 0, opacity: 0, rotate: 90 }}
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
             exit={{ scale: 0, opacity: 0, rotate: 90 }}
