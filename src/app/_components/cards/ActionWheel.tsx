@@ -34,14 +34,14 @@ export default function ActionWheel({
               return (
                 <motion.button
                   key={action.name}
-                  className={`absolute w-16 h-16 rounded-full text-white flex items-center justify-center shadow-lg text-xs font-medium bg-black/80`}
+                  className={`absolute w-16 h-16 border-2 border-white rounded-full flex items-center justify-center text-xs font-medium bg-black/80`}
                   style={{
                     left: `calc(50% + ${x}px - 2rem)`, // 2rem is the width of the button (w-16)
                     top: `calc(50% + ${y}px - 2rem)`, // 2rem is the height of the button (h-16)
                   }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={action.onClick}
+                  onTap={action.onClick}
                 >
                   {action.name}
                 </motion.button>
