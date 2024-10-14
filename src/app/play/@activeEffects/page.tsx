@@ -1,4 +1,4 @@
-import BoardArea from '@/app/_components/BoardArea';
+import BoardArea from '@/app/_components/layout/BoardArea';
 import ActiveEffects from './ActiveEffects';
 
 export default function ActiveEffectsPage() {

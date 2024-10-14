@@ -8,8 +8,8 @@ import { useState } from 'react';
 import { SelectedCards } from './SelectedCards';
 import CardPile from '../_components/cards/CardPile';
 import Image from 'next/image';
-import BoardArea from '../_components/BoardArea';
-import Button from '../_components/Button';
+import BoardArea from '../_components/layout/BoardArea';
+import Button from '../_components/inputs/Button';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,

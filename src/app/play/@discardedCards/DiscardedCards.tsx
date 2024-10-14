@@ -3,8 +3,8 @@
 import { CardStatus, type Card } from '@/domain/cards.type';
 import { useCards } from '../useCards';
 import CardPile from '@/app/_components/cards/CardPile';
-import ShortRestButton from '@/app/_components/rests/ShortRestButton';
-import LongRestButton from '@/app/_components/rests/LongRestButton';
+import ShortRestButton from '@/app/_components/inputs/rests/ShortRestButton';
+import LongRestButton from '@/app/_components/inputs/rests/LongRestButton';
 
 export default function DiscardedCards() {
   const {

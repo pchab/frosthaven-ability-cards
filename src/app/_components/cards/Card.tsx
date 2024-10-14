@@ -3,7 +3,7 @@
 import { Card } from '@/domain/cards.type';
 import Image from 'next/image';
 import { useState, type ReactNode } from 'react';
-import ActionWheel, { type WheelAction } from '../ActionWheel';
+import ActionWheel, { type WheelAction } from './ActionWheel';
 
 export function CardComponent<X extends Card>({
   card,

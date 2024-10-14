@@ -1,7 +1,7 @@
 import { type Card } from '@/domain/cards.type';
 import { useState } from 'react';
-import CardPile from '../cards/CardPile';
-import Modal from '../Modal';
+import CardPile from '../../cards/CardPile';
+import Modal from '../../layout/Modal';
 import Button from '../Button';
 
 export default function LongRestButton<X extends Card>({

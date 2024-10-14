@@ -1,7 +1,7 @@
 import { Card } from '@/domain/cards.type';
 import { CardComponent } from './Card';
 import { useEffect, useState } from 'react';
-import type { WheelAction } from '../ActionWheel';
+import type { WheelAction } from './ActionWheel';
 import { motion } from 'framer-motion';
 
 const minWidthValues = [

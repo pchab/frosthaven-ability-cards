@@ -4,7 +4,7 @@ import { CardStatus, type Card } from '@/domain/cards.type';
 import { CardComponent } from '../../_components/cards/Card';
 import { useCards, type Action } from '@/app/play/useCards';
 import { useState } from 'react';
-import Button from '@/app/_components/Button';
+import Button from '@/app/_components/inputs/Button';
 
 type SelectedActions = Action[];
 

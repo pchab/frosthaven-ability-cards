@@ -1,6 +1,6 @@
 import { type Card } from '@/domain/cards.type';
 import CardPile from '../_components/cards/CardPile';
-import BoardArea from '../_components/BoardArea';
+import BoardArea from '../_components/layout/BoardArea';
 
 export function SelectedCards<X extends Card>({
   cards,

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import type { Card } from '@/domain/cards.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
-import type { WheelAction } from '../ActionWheel';
+import type { WheelAction } from './ActionWheel';
 
 export default function CardWithSlot<X extends Card>({
   card,

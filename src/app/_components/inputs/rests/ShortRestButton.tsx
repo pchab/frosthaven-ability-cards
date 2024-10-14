@@ -1,8 +1,8 @@
 import { type Card } from '@/domain/cards.type';
 import { useState } from 'react';
-import { CardComponent } from '../cards/Card';
+import { CardComponent } from '../../cards/Card';
 import Image from 'next/image';
-import Modal from '../Modal';
+import Modal from '../../layout/Modal';
 import Button from '../Button';
 
 function getRandomCard<X extends Card>(arr: X[]) {
