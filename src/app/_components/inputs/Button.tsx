@@ -6,7 +6,7 @@ export default function Button({
   onClick: () => void;
 }) {
   return <button
-    className='bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-lg border-2 border-solid'
+    className='bg-slate-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-lg border-2 border-solid'
     onClick={onClick}
   >
     {children}

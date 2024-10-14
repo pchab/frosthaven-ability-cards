@@ -6,23 +6,40 @@ import { useCards, type Action } from '@/app/play/useCards';
 import { useState } from 'react';
 import Button from '@/app/_components/inputs/Button';
 
-type SelectedActions = Action[];
+type SelectedActions = [
+  Action | undefined,
+  Action | undefined,
+];
+
+function areAllActionsSelected(actions: SelectedActions): actions is [Action, Action] {
+  return actions.every(action => action !== undefined);
+}
 
 export default function PlayedCards<X extends Card>() {
   const {
     currentCards,
     playCards,
   } = useCards<X>();
-  const [selectedActions, setSelectedActions] = useState<SelectedActions>([]);
+  const [selectedActions, setSelectedActions] = useState<SelectedActions>([undefined, undefined]);
 
   const selectedCards = currentCards
     .filter(card => card.status === CardStatus.selected);
 
   const selectAction = (action: Action) => (card: X) => {
     const cardIndex = selectedCards.indexOf(card);
-    const newSelectedActions = [...selectedActions];
-    newSelectedActions[cardIndex] = action;
-    setSelectedActions(newSelectedActions);
+    const [firstAction, secondAction] = [...selectedActions];
+
+    setSelectedActions(cardIndex
+      ? [
+        action !== 'default' && action === firstAction
+          ? undefined : firstAction,
+        action,
+      ]
+      : [
+        action,
+        action !== 'default' && action === secondAction
+          ? undefined : secondAction,
+      ]);
   };
 
   const playTopAction = (card: X) => ({
@@ -38,11 +55,12 @@ export default function PlayedCards<X extends Card>() {
     onClick: () => selectAction('default')(card),
   });
 
+
   const endTurn = () => {
-    if (selectedActions.length === 2) {
+    if (areAllActionsSelected(selectedActions)) {
       const [firstCard, secondCard] = selectedCards;
       const [firstAction, secondAction] = selectedActions;
-      setSelectedActions([]);
+      setSelectedActions([undefined, undefined]);
       playCards([
         { action: firstAction, card: firstCard },
         { action: secondAction, card: secondCard },
@@ -50,18 +68,11 @@ export default function PlayedCards<X extends Card>() {
     }
   };
 
-  const getPlayableActions = (index: number, card: X) => {
-    if (selectedCards.length < 2) {
-      return [];
-    }
-    const otherSelectedAction = selectedActions[index === 0 ? 1 : 0];
-    if (!otherSelectedAction || otherSelectedAction === 'default') {
-      return [playDefaultAction(card), playBottomAction(card), playTopAction(card)];
-    }
-    return otherSelectedAction === 'top'
-      ? [playDefaultAction(card), playBottomAction(card)]
-      : [playDefaultAction(card), playTopAction(card)];
-  }
+  const getPlayableActions = (card: X) => [
+    playDefaultAction(card),
+    playBottomAction(card),
+    playTopAction(card),
+  ];
 
   return <div className='flex gap-4 min-h-[266px]'>
     {selectedCards
@@ -69,13 +80,17 @@ export default function PlayedCards<X extends Card>() {
         key={card.name}
         className='flex flex-col'>
         <CardComponent card={card}
-          actions={getPlayableActions(index, card)}
+          actions={getPlayableActions(card)}
         />
         <div className='flex flex-col items-center p-4'>
           <div className='text-xs'>Selected Action:</div>
           <div className='text-sm uppercase'>{selectedActions[index]}</div>
         </div>
       </div>)}
-    {selectedCards.length === 2 && <Button onClick={endTurn}>End Turn</Button>}
+    <div className='place-self-center'>
+      {selectedCards.length === 2 && areAllActionsSelected(selectedActions) &&
+        <Button onClick={endTurn}>End Turn</Button>
+      }
+    </div>
   </div>;
 }
