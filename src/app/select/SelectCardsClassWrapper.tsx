@@ -3,7 +3,7 @@
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { isGeminate } from '@/domain/geminate/class';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
-import { SelectedGeminateCards } from '../_components/geminate/SelectedGeminateCards';
+import { SelectedGeminateCards } from '../_components/class/geminate/SelectedGeminateCards';
 import { SelectCards } from './SelectCards';
 import Link from 'next/link';
 

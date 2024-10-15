@@ -1,6 +1,6 @@
 import { GeminateForm } from '@/domain/geminate/cards';
 import Image from 'next/image';
-import Button from '../inputs/Button';
+import Button from '../../inputs/Button';
 
 const meleeFormPath = '/geminate/icons/fh-geminate-melee-color-icon.png';
 const rangedFormPath = '/geminate/icons/fh-geminate-ranged-color-icon.png';

@@ -4,7 +4,7 @@ import { type Card } from '@/domain/cards.type';
 import { useCards } from './useCards';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { isGeminate } from '@/domain/geminate/class';
-import ChangeForm from '@/app/_components/geminate/ChangeForm';
+import ChangeForm from '@/app/_components/class/geminate/ChangeForm';
 import Button from '../_components/inputs/Button';
 
 export default function PlayStateHeader<X extends Card>() {

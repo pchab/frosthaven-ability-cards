@@ -1,11 +1,13 @@
 'use client';
 
 import { CardComponent } from './Card';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import type { Card } from '@/domain/cards.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import type { WheelAction } from './ActionWheel';
+import { useCards } from '@/app/play/useCards';
+import { isDrifter } from '@/domain/drifter/class';
+import CharacterToken from '../class/CharacterToken';
 
 export default function CardWithSlot<X extends Card>({
   card,
@@ -19,8 +21,9 @@ export default function CardWithSlot<X extends Card>({
     left?: number;
     top?: number;
   }>();
+  const { moveTokenForward, moveTokenBackward } = useCards<X>();
 
-  if (!card.slots) {
+  if (!card.slots || !selectedClass) {
     throw new Error(`Card ${card.name} doest not have slots`)
   }
 
@@ -32,17 +35,28 @@ export default function CardWithSlot<X extends Card>({
     setTokenPosition({ left: x - radius, top: y - radius });
   }, [card]);
 
-  const fhClassName = selectedClass?.name.toLocaleLowerCase();
-  const tokenPath = `/${fhClassName}/icons/fh-${fhClassName}-character-token.png`
+  const moveTokenForwardAction = (card: X) => ({
+    name: 'Move token forward',
+    onClick: () => {
+      moveTokenForward(card);
+    },
+  });
 
-  return <CardComponent card={card} actions={actions}>
-    <Image
-      src={tokenPath}
-      alt='token'
-      width={20}
-      height={20}
-      className='absolute'
-      style={tokenPosition}
-    />
+  const moveTokenBackwardAction = (card: X) => ({
+    name: 'Move token backward',
+    onClick: () => {
+      moveTokenBackward(card);
+    },
+  });
+
+  const tokenActions = selectedClass
+    && isDrifter(selectedClass)
+    && card.tokenPosition
+    && card.tokenPosition > 0
+    ? [moveTokenForwardAction(card), moveTokenBackwardAction(card)]
+    : [moveTokenForwardAction(card)];
+
+  return <CardComponent card={card} actions={[...actions, ...tokenActions]}>
+    <CharacterToken className={selectedClass.name} position={tokenPosition} />
   </CardComponent>;
 }

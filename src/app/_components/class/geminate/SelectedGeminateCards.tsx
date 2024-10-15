@@ -1,5 +1,5 @@
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
-import CardPile from '../cards/CardPile';
+import CardPile from '../../cards/CardPile';
 
 export function SelectedGeminateCards({
   cards,
