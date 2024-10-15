@@ -1,3 +1,5 @@
+import type { Enhancement, EnhancementSlot } from './enhancement/enhancement.type';
+
 type SlotArea = {
   x: number;
   y: number;
@@ -31,4 +33,6 @@ export type Card = {
   };
   slots?: SlotArea[];
   tokenPosition?: number;
+  availableEnhancements?: EnhancementSlot[];
+  enhancements?: Enhancement[];
 }
