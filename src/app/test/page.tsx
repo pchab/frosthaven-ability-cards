@@ -5,33 +5,24 @@ import { blinkblade } from '@/domain/blinkblade/class';
 import { boneshaper } from '@/domain/boneshaper/class';
 import { deathwalker } from '@/domain/deathwalker/class';
 import { deepwraith } from '@/domain/deepwraith/class';
-import { drifter, isDrifter } from '@/domain/drifter/class';
+import { drifter } from '@/domain/drifter/class';
 import { fist } from '@/domain/fist/class';
 import { geminate } from '@/domain/geminate/class';
 import { hive } from '@/domain/hive/class';
 import { snowdancer } from '@/domain/snowdancer/class';
 import { trapper } from '@/domain/trapper/class';
-import { useEffect, useState } from 'react';
-import CardWithSlot from '../_components/cards/CardWithSlot';
 import { CardComponent } from '../_components/cards/Card';
-import { useFrosthavenStore } from '@/stores/cards.store';
 import { CardActions } from '@/domain/cards.type';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { enhancements } from '@/domain/enhancement/enhancements';
+import type { Enhancement } from '@/domain/enhancement/enhancement.type';
 
 function capitalize(str: string): string {
   return str.split(' ').map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`).join(' ');
 }
 
-export default function TestCard() {
-  const { selectedClass, selectClass } = useFrosthavenStore((state) => ({
-    selectedClass: state.selectedClass ?? bannerSpear,
-    selectClass: state.selectClass,
-  }));
-  const [currentCard, setCard] = useState(selectedClass.cards[0]);
-
-  useEffect(() => {
-    setCard(selectedClass.cards[0]);
-  }, [selectedClass]);
-
+export default function TestCard({ searchParams: { className, cardName } }: { searchParams: { className: string; cardName: string; } }) {
   const allClasses = [
     bannerSpear,
     blinkblade,
@@ -45,59 +36,78 @@ export default function TestCard() {
     snowdancer,
     trapper,
   ];
+  const selectedClass = allClasses.find(({ name }) => name === className);
+  const selectedCard = selectedClass?.cards.find(({ name }) => name === cardName) ?? selectedClass?.cards[0];
+  const [currentCard, setCard] = useState(selectedCard);
+  const router = useRouter();
 
-  const moveTokenForwardAction = {
-    name: 'Move token forward',
-    onClick: () => {
-      const card = { ...currentCard };
-      if (!card.slots) {
-        return;
-      }
-      card.tokenPosition = Math.min((card.tokenPosition ?? 0) + 1, card.slots.length - 1);
-      setCard(card);
-    },
+  useEffect(() => {
+    setCard(selectedCard);
+  }, [selectedCard]);
+
+  if (!selectedClass || !currentCard) {
+    return;
+  }
+
+  const changeTest = ({ newClassName = className, newCardName = cardName }: { newClassName?: string; newCardName?: string; }) => {
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('className', newClassName);
+    searchParams.set('cardName', newCardName);
+    router.replace(`/test?${searchParams.toString()}`);
   };
 
-  const moveTokenBackwardAction = {
-    name: 'Move token backward',
-    onClick: () => {
-      const card = { ...currentCard };
-      if (!card.slots) {
-        return;
-      }
-      card.tokenPosition = Math.max((card.tokenPosition ?? 0) - 1, 0);
-      setCard(card);
-    },
-  };
+  const addEnchant = (index: number, enchantName: Enhancement['name']) => {
+    const newCard = { ...currentCard };
+    const newEnhancements = [...(newCard.enhancements ?? Array.from({ length: newCard.availableEnhancements?.length ?? 0 }))];
+    const newEnhancement = enchantName
+      ? enhancements.find(({ name }) => name === enchantName)
+      : undefined;
+    newEnhancements[index] = newEnhancement;
+    newCard.enhancements = newEnhancements;
+    setCard(newCard);
+  }
 
   return <div className='flex flex-col p-32 items-center w-full gap-4'>
     <select
       className='p-4 bg-black'
       onChange={(e) => {
-        selectClass(allClasses.find(({ name }) => name === e.target.value) ?? bannerSpear)
+        changeTest({ newClassName: e.target.value })
       }}
+      defaultValue={className}
     >
       {allClasses.map((fhClass) => {
-        return <option key={fhClass.name} value={fhClass.name}>{fhClass.name}</option>;
+        return <option
+          key={fhClass.name}
+          value={fhClass.name}>{fhClass.name}</option>;
       })}
     </select>
     <select
       className='p-4 bg-black'
-      onChange={(e) => setCard(selectedClass.cards.find(({ name }) => name === e.target.value) ?? selectedClass.cards[0])}
+      onChange={(e) => changeTest({ newCardName: e.target.value })}
+      defaultValue={cardName}
     >
       {selectedClass.cards.map((card) => {
-        return <option key={card.name} value={card.name}>{capitalize(card.name)}</option>;
+        return <option
+          key={card.name}
+          value={card.name}>{capitalize(card.name)}</option>;
       })}
     </select>
     <div className='flex gap-4 border border-white p-4'>
-      {currentCard.slots
-        ? <CardWithSlot card={currentCard} actions={
-          isDrifter(selectedClass)
-            ? [moveTokenForwardAction, moveTokenBackwardAction]
-            : [moveTokenForwardAction]
-        } />
-        : <CardComponent card={currentCard} actions={[]} />
-      }
+      <div className='flex flex-col gap-2'>
+        <h3 className='font-bold'>Enchant:</h3>
+        {!currentCard.availableEnhancements
+          ? <div>No enchant slots</div>
+          : currentCard.availableEnhancements.map((slot, index) => {
+            const enhancementOptions = enhancements.filter((enhancement) => enhancement.type === slot.type);
+            return <select key={index} className='p-4 bg-black' onChange={(e) => addEnchant(index, e.target.value)}>
+              <option value={undefined}>{'no enchant'}</option>
+              {enhancementOptions.map(({ name }) => <option key={name} value={name}>{name}</option>)}
+            </select>
+          })
+        }
+      </div>
+
+      {<CardComponent card={currentCard} actions={[]} />}
 
       <div>
         <h3 className='font-bold'>Details:</h3>

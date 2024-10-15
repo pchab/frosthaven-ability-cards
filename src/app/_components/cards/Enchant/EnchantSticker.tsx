@@ -14,8 +14,8 @@ export default function EnchantSticker({
   return <Image
     src={tokenPath}
     alt='token'
-    width={5}
-    height={5}
+    width={10}
+    height={10}
     className='absolute'
     style={{ left, top }}
   />;

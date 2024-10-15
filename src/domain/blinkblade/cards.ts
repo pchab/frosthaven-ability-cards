@@ -35,7 +35,14 @@ export const blinkbladeCards: Card[] = createCards([
   { level: 1, name: 'power leak', actions: { top: CardActions.discard, bottom: CardActions.lose } },
   { level: 1, name: 'sap speed', actions: { top: CardActions.discard, bottom: CardActions.discard } },
   { level: 1, name: 'temporal displacement', actions: { top: CardActions.discard, bottom: CardActions.discard } },
-  { level: 1, name: 'twin strike', actions: { top: CardActions.discard, bottom: CardActions.discard } },
+  {
+    level: 1, name: 'twin strike', actions: { top: CardActions.discard, bottom: CardActions.discard },
+    availableEnhancements: [
+      { type: 'square', position: { x: 84, y: 29 } },
+      { type: 'diamond', position: { x: 84, y: 78 } },
+      { type: 'circle', position: { x: 84, y: 125 } },
+    ],
+  },
   { level: 2, name: 'reckless augmentation', actions: { top: CardActions.discard, bottom: CardActions.discard } },
   { level: 2, name: 'systems reboot', actions: { top: CardActions.lose, bottom: CardActions.discard } },
   {

@@ -34,5 +34,5 @@ export type Card = {
   slots?: SlotArea[];
   tokenPosition?: number;
   availableEnhancements?: EnhancementSlot[];
-  enhancements?: Enhancement[];
+  enhancements?: (Enhancement | undefined)[];
 }
