@@ -3,10 +3,10 @@ import Image from 'next/image';
 
 export default function EnchantSticker({
   enhancement,
-  position,
+  position: { x: left, y: top },
 }: {
   enhancement: Enhancement;
-  position?: { left?: number; top?: number; };
+  position: { x: number; y: number; };
 }) {
   const { name } = enhancement;
   const tokenPath = `/enhancement-stickers/fh-${name}-sticker.png`;
@@ -17,6 +17,6 @@ export default function EnchantSticker({
     width={5}
     height={5}
     className='absolute'
-    style={position}
+    style={{ left, top }}
   />;
 }
