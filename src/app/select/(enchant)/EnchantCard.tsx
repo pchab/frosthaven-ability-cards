@@ -83,25 +83,27 @@ export default function EnchantCardModal<X extends Card>({
   const getAreaName = (index: number) => ['enchant', ...card.name.split(' '), 'slot', index].join('-');
 
   return <Modal>
-    <CardComponent card={currentCard} mapName={mapName} actions={getEnhancementActions(currentEnchantSlot)}>
-      <canvas
-        ref={canvasRef}
-        className='absolute pointer-events-none'
-        width={143}
-        height={200}
-      />
-      <map name={mapName}>
-        {card.availableEnhancements.map(({ position: { x, y } }, index) => {
-          return <area
-            href='#'
-            key={getAreaName(index)}
-            coords={`${x + RADIUS / 2},${y + RADIUS / 2},${RADIUS}`}
-            shape='circle'
-            onMouseEnter={() => setCurrentEnchantSlot(index)}
-          />;
-        })}
-      </map>
-    </CardComponent>
-    <Button onClick={() => onEnchantCard(currentCard)}>Enchant</Button>
+    <div className='flex flex-col gap-4'>
+      <CardComponent card={currentCard} mapName={mapName} actions={getEnhancementActions(currentEnchantSlot)}>
+        <canvas
+          ref={canvasRef}
+          className='absolute pointer-events-none'
+          width={143}
+          height={200}
+        />
+        <map name={mapName}>
+          {card.availableEnhancements.map(({ position: { x, y } }, index) => {
+            return <area
+              href='#'
+              key={getAreaName(index)}
+              coords={`${x + RADIUS / 2},${y + RADIUS / 2},${RADIUS}`}
+              shape='circle'
+              onMouseEnter={() => setCurrentEnchantSlot(index)}
+            />;
+          })}
+        </map>
+      </CardComponent>
+      <Button onClick={() => onEnchantCard(currentCard)}>Enchant</Button>
+    </div>
   </Modal>;
 }

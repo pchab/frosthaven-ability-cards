@@ -27,13 +27,22 @@ export function SelectCards<X extends Card>({
   }) => JSX.Element;
 }) {
   const level = useFrosthavenStore(state => state.level);
-  const { cards, setLevel, selectCards } = useFrosthavenStore(useShallow((state) => ({
+  const {
+    cards,
+    availableCards,
+    setLevel,
+    selectCards,
+    setAvailableCards,
+  } = useFrosthavenStore(useShallow((state) => ({
     cards: state.cards,
+    availableCards: state.availableCards as X[],
     setLevel: state.setLevel,
     selectCards: state.selectCards,
+    setAvailableCards: state.setAvailableCards,
   })));
   const [selectedCards, setSelectedCards] = useState<X[]>(cards as X[]);
   const router = useRouter();
+  const allCards = availableCards.length > 0 ? availableCards : frosthavenClass.cards;
 
   useEffect(() => {
     setSelectedCards(cards as X[]);
@@ -50,6 +59,9 @@ export function SelectCards<X extends Card>({
   const enchantCard = (card: X) => {
     const index = selectedCards.findIndex(({ name }) => name === card.name);
     setSelectedCards(selectedCards.with(index, card));
+
+    const indexInAvailableCards = allCards.findIndex(({ name }) => name === card.name);
+    setAvailableCards(allCards.with(indexInAvailableCards, card));
   };
 
   const selectAction = (card: X) => ({
@@ -65,7 +77,7 @@ export function SelectCards<X extends Card>({
   const filterRemainingCards = (card: X) => selectedCards.every((selectedCard) => selectedCard.path !== card.path);
 
   const AvailableCardsByLevel = (level: Card['level']) => {
-    const levelCards = frosthavenClass.cards.filter((card) => card.level === level);
+    const levelCards = allCards.filter((card) => card.level === level);
     return <BoardArea title={`Cards level ${level}`}>
       <CardPile
         key={`cards-level-${level}`}
