@@ -19,23 +19,19 @@ async function startTransaction() {
   return (await db).transaction(STORE_NAME, 'readwrite');
 }
 
-const get = async (name: string): Promise<string | null> => {
-  const transaction = await startTransaction();
-  const request = transaction.objectStore(STORE_NAME).get(name);
-  return new Promise((resolve) => {
-    transaction.oncomplete = () => {
-      resolve(request.result);
-    };
-  });
-};
-
 export const indexedDBStorage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
     const selectedClass = await getClass();
     if (!selectedClass) {
       return null;
     }
-    return get(selectedClass.name);
+    const transaction = await startTransaction();
+    const request = transaction.objectStore(STORE_NAME).get(selectedClass.name);
+    return new Promise((resolve) => {
+      transaction.oncomplete = () => {
+        resolve(request.result);
+      };
+    });
   },
   setItem: async (name: string, value: string): Promise<void> => {
     const selectedClass = await getClass();

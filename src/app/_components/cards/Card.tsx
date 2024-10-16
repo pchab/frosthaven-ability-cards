@@ -46,11 +46,11 @@ export function CardComponent<X extends Card>({
       const enhancement = card.enhancements?.[index];
       return enhancement
         ? <EnchantSticker
-          key={enhancement.name ?? index}
+          key={`${card.name}-enchant-slot-${index}`}
           enhancement={enhancement}
           position={slot.position}
         />
-        : <></>;
+        : <div key={`${card.name}-enchant-slot-${index}`}></div>;
     })}
   </div>;
 }
