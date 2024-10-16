@@ -7,11 +7,11 @@ import { isGeminate } from '@/domain/geminate/class';
 import ChangeForm from '@/app/_components/class/geminate/ChangeForm';
 import Button from '../_components/inputs/Button';
 import { useShallow } from 'zustand/shallow';
-import { getClass } from '@/stores/class.store';
+import { useClassHook } from '@/stores/class.store';
 import { useRouter } from 'next/navigation';
 
 export default function PlayStateHeader<X extends Card>() {
-  const selectedClass = getClass();
+  const selectedClass = useClassHook();
   const {
     currentForm,
     setForm,
@@ -26,7 +26,6 @@ export default function PlayStateHeader<X extends Card>() {
   const router = useRouter();
 
   if (!selectedClass) {
-    router.push('/');
     return <></>;
   }
 

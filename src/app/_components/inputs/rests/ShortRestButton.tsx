@@ -44,7 +44,7 @@ export default function ShortRestButton<X extends Card>({
               <Image src='/icons/fh-damage-color-icon.png' alt='Suffer damage' width={24} height={23} />
             </div>
           </Button>}
-        <CardComponent name='confirm-short-rest' card={lostCard} actions={[confirmShortRestAction]} />
+        <CardComponent card={lostCard} actions={[confirmShortRestAction]} />
       </div>
     </Modal>}
     <Button onClick={() => setLostCard(getRandomCard(cards))}>Short Rest</Button>

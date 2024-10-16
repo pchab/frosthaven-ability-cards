@@ -4,15 +4,14 @@ import { isGeminate } from '@/domain/geminate/class';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { SelectedGeminateCards } from '../_components/class/geminate/SelectedGeminateCards';
 import { SelectCards } from './SelectCards';
-import { getClass } from '@/stores/class.store';
+import { useClassHook } from '@/stores/class.store';
 import { useRouter } from 'next/navigation';
 
 export default function SelectCardsClassWrapper() {
-  const selectedClass = getClass();
+  const selectedClass = useClassHook();
   const router = useRouter();
 
   if (!selectedClass) {
-    router.push('/');
     return <></>;
   }
 
