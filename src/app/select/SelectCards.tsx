@@ -4,7 +4,7 @@ import { type Card } from '@/domain/cards.type';
 import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SelectedCards } from './SelectedCards';
 import CardPile from '../_components/cards/CardPile';
 import Image from 'next/image';
@@ -23,6 +23,7 @@ export function SelectCards<X extends Card>({
     cards: X[];
     maxHandSize: number;
     onRemoveCard: (card: X) => void;
+    onEnchantCard: (card: X) => void;
   }) => JSX.Element;
 }) {
   const level = useFrosthavenStore(state => state.level);
@@ -34,6 +35,10 @@ export function SelectCards<X extends Card>({
   const [selectedCards, setSelectedCards] = useState<X[]>(cards as X[]);
   const router = useRouter();
 
+  useEffect(() => {
+    setSelectedCards(cards as X[]);
+  }, [cards]);
+
   const selectCard = (card: X) => {
     const newSelectedCards = [...selectedCards, card];
     if (!selectedCards.includes(card) && checkHandSize(newSelectedCards)) {
@@ -42,6 +47,10 @@ export function SelectCards<X extends Card>({
   };
 
   const removeCard = (card: X) => setSelectedCards(selectedCards.filter(c => c !== card));
+  const enchantCard = (card: X) => {
+    const index = selectedCards.findIndex(({ name }) => name === card.name);
+    setSelectedCards(selectedCards.with(index, card));
+  };
 
   const selectAction = (card: X) => ({
     name: 'Select Card',
@@ -87,6 +96,7 @@ export function SelectCards<X extends Card>({
         {selectedCardComponent({
           cards: selectedCards,
           onRemoveCard: removeCard,
+          onEnchantCard: enchantCard,
           maxHandSize: frosthavenClass.handSize,
         })}
       </div>

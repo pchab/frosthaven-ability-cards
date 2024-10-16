@@ -24,12 +24,10 @@ const minWidthValues = [
 export default function CardPile<X extends Card>({
   cards,
   actions,
-  name,
   maxCardLength = 1,
 }: {
   cards: X[];
   actions: ((card: X) => WheelAction)[];
-  name?: string;
   maxCardLength?: number;
 }) {
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number>(cards.length - 1);
@@ -60,7 +58,6 @@ export default function CardPile<X extends Card>({
         style={{ zIndex: getZIndex(index) }}
       >
         <CardComponent
-          name={name ? `${name}-${card.name.replaceAll(' ', '-')}` : card.name}
           card={card}
           actions={actions.map((action) => action(card))} />
       </motion.div>)}

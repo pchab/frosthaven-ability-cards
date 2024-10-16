@@ -1,9 +1,10 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import type { ReactNode } from 'react';
 
 export type WheelAction = {
-  name: string
+  name: ReactNode;
   onClick: () => void;
 }
 
@@ -15,7 +16,7 @@ export default function ActionWheel({
   actions: WheelAction[];
 }) {
   return (
-    <div className='absolute w-full h-full bg-transparent'>
+    <div className={`absolute w-full h-full bg-transparent ${isOpen ? '' : 'hidden'}`}>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -27,13 +28,13 @@ export default function ActionWheel({
           >
             {actions.map((action, index) => {
               const angle = (index / actions.length) * 360
-              const radius = 50
+              const radius = actions.length > 6 ? 80 : 50;
               const x = radius * Math.cos((angle * Math.PI) / 180)
               const y = radius * Math.sin((angle * Math.PI) / 180)
 
               return (
                 <motion.button
-                  key={action.name}
+                  key={`action-${index}`}
                   className={`absolute w-16 h-16 border-2 border-white rounded-full flex items-center justify-center text-xs font-medium bg-black/80`}
                   style={{
                     left: `calc(50% + ${x}px - 2rem)`, // 2rem is the width of the button (w-16)

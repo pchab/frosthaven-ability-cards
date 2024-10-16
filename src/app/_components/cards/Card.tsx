@@ -9,13 +9,13 @@ import EnchantSticker from './Enchant/EnchantSticker';
 export function CardComponent<X extends Card>({
   card,
   children,
-  name = card.name,
   actions = [],
+  mapName,
 }: {
   card: X;
   children?: ReactNode;
-  name?: string;
   actions?: WheelAction[];
+  mapName?: string;
 }) {
   const [isActionWheelOpen, setIsActionWheelOpen] = useState(false);
 
@@ -34,8 +34,9 @@ export function CardComponent<X extends Card>({
 
   return <div onClick={onClickCard} className='relative' >
     <ActionWheel isOpen={isActionWheelOpen} actions={actions} />
+    {children}
     <Image
-      useMap={`#${name}`}
+      useMap={`#${mapName}`}
       src={card.path}
       alt={`card ${card.name}`}
       width={143}
@@ -45,12 +46,11 @@ export function CardComponent<X extends Card>({
       const enhancement = card.enhancements?.[index];
       return enhancement
         ? <EnchantSticker
-          key={enhancement.name}
+          key={enhancement.name ?? index}
           enhancement={enhancement}
           position={slot.position}
         />
         : <></>;
     })}
-    {children}
   </div>;
 }
