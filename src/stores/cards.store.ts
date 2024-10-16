@@ -48,7 +48,7 @@ export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions
       setForm: (currentForm: GeminateForm) => set({ currentForm }),
     }),
     {
-      name: 'frosthaven-ability-cards-storage',
+      name: 'test-storage',
       storage: createJSONStorage(() => indexedDBStorage),
     }
   )

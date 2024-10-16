@@ -102,7 +102,7 @@ export default function TestCard({ searchParams: { className, cardName } }: { se
             return <select key={index} className='p-4 bg-black' onChange={(e) => addEnchant(index, e.target.value)}>
               <option value={undefined}>{'no enchant'}</option>
               {enhancementOptions.map(({ name }) => <option key={name} value={name}>{name}</option>)}
-            </select>
+            </select>;
           })
         }
       </div>
