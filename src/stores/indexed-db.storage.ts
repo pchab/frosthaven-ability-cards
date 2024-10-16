@@ -1,4 +1,5 @@
 import type { StateStorage } from 'zustand/middleware';
+import { getClass } from './class.store';
 
 const STORE_NAME = 'fh-cards-store';
 
@@ -30,23 +31,19 @@ const get = async (name: string): Promise<string | null> => {
 
 export const indexedDBStorage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
-    const selectedClassString = await get('selectedClass');
-    if (!selectedClassString) {
+    const selectedClass = await getClass();
+    if (!selectedClass) {
       return null;
     }
-    const selectedClass = JSON.parse(selectedClassString);
-    const stateString = await get(JSON.parse(selectedClass).name);
-    if (!stateString) {
-      return null;
-    }
-    const state = JSON.parse(stateString);
-    return JSON.stringify({ state: { ...state, selectedClass } });
+    return get(selectedClass.name);
   },
   setItem: async (name: string, value: string): Promise<void> => {
+    const selectedClass = await getClass();
+    if (!selectedClass) {
+      return;
+    }
     const transaction = await startTransaction();
-    const { state: { selectedClass, ...state } } = JSON.parse(value);
-    transaction.objectStore(STORE_NAME).put(JSON.stringify({ state }), selectedClass.name);
-    transaction.objectStore(STORE_NAME).put(JSON.stringify(selectedClass), 'selectedClass');
+    transaction.objectStore(STORE_NAME).put(value, selectedClass.name);
     return new Promise((resolve) => {
       transaction.oncomplete = () => {
         resolve();
@@ -54,12 +51,12 @@ export const indexedDBStorage: StateStorage = {
     });
   },
   removeItem: async (name: string): Promise<void> => {
-    const selectedClass = await get('selectedClass');
+    const selectedClass = await getClass();
     if (!selectedClass) {
       return;
     }
     const transaction = await startTransaction();
-    transaction.objectStore(STORE_NAME).delete(JSON.parse(selectedClass).name);
+    transaction.objectStore(STORE_NAME).delete(selectedClass.name);
     return new Promise((resolve) => {
       transaction.oncomplete = () => {
         resolve();

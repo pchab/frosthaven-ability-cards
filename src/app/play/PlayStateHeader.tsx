@@ -7,14 +7,15 @@ import { isGeminate } from '@/domain/geminate/class';
 import ChangeForm from '@/app/_components/class/geminate/ChangeForm';
 import Button from '../_components/inputs/Button';
 import { useShallow } from 'zustand/shallow';
+import { getClass } from '@/stores/class.store';
+import { useRouter } from 'next/navigation';
 
 export default function PlayStateHeader<X extends Card>() {
+  const selectedClass = getClass();
   const {
-    selectedClass,
     currentForm,
     setForm,
   } = useFrosthavenStore(useShallow((state) => ({
-    selectedClass: state.selectedClass,
     currentForm: state.currentForm,
     setForm: state.setForm,
   })));
@@ -22,9 +23,15 @@ export default function PlayStateHeader<X extends Card>() {
     undo,
     redo,
   } = useCards<X>();
+  const router = useRouter();
+
+  if (!selectedClass) {
+    router.push('/');
+    return <></>;
+  }
 
   return <>
-    {!selectedClass || isGeminate(selectedClass) && <ChangeForm form={currentForm} setForm={setForm} />}
+    {isGeminate(selectedClass) && <ChangeForm form={currentForm} setForm={setForm} />}
     <Button onClick={undo}>Undo</Button>
     <Button onClick={redo}>Redo</Button>
   </>;

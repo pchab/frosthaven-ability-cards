@@ -9,6 +9,7 @@ import { useCards } from '@/app/play/useCards';
 import { isDrifter } from '@/domain/drifter/class';
 import CharacterToken from '../class/CharacterToken';
 import { useShallow } from 'zustand/shallow';
+import { getClass } from '@/stores/class.store';
 
 export default function CardWithSlot<X extends Card>({
   card,
@@ -17,7 +18,7 @@ export default function CardWithSlot<X extends Card>({
   card: X;
   actions: WheelAction[];
 }) {
-  const selectedClass = useFrosthavenStore(useShallow((state) => state.selectedClass));
+  const selectedClass = getClass();
   const [tokenPosition, setTokenPosition] = useState<{
     left?: number;
     top?: number;

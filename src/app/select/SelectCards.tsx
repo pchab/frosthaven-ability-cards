@@ -25,9 +25,9 @@ export function SelectCards<X extends Card>({
     onRemoveCard: (card: X) => void;
   }) => JSX.Element;
 }) {
-  const { cards, level, setLevel, selectCards } = useFrosthavenStore(useShallow((state) => ({
+  const level = useFrosthavenStore(state => state.level);
+  const { cards, setLevel, selectCards } = useFrosthavenStore(useShallow((state) => ({
     cards: state.cards,
-    level: state.level,
     setLevel: state.setLevel,
     selectCards: state.selectCards,
   })));

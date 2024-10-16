@@ -1,17 +1,19 @@
 'use client';
 
-import { useFrosthavenStore } from '@/stores/cards.store';
 import { isGeminate } from '@/domain/geminate/class';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { SelectedGeminateCards } from '../_components/class/geminate/SelectedGeminateCards';
 import { SelectCards } from './SelectCards';
-import Link from 'next/link';
+import { getClass } from '@/stores/class.store';
+import { useRouter } from 'next/navigation';
 
 export default function SelectCardsClassWrapper() {
-  const selectedClass = useFrosthavenStore((state) => state.selectedClass);
+  const selectedClass = getClass();
+  const router = useRouter();
 
   if (!selectedClass) {
-    return <Link href={'/'}>Select a class</Link>;
+    router.push('/');
+    return <></>;
   }
 
   return isGeminate(selectedClass)
