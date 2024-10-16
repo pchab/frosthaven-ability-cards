@@ -6,17 +6,18 @@ import { useFrosthavenStore } from '@/stores/cards.store';
 import { isGeminate } from '@/domain/geminate/class';
 import ChangeForm from '@/app/_components/class/geminate/ChangeForm';
 import Button from '../_components/inputs/Button';
+import { useShallow } from 'zustand/shallow';
 
 export default function PlayStateHeader<X extends Card>() {
   const {
     selectedClass,
     currentForm,
     setForm,
-  } = useFrosthavenStore((state) => ({
+  } = useFrosthavenStore(useShallow((state) => ({
     selectedClass: state.selectedClass,
     currentForm: state.currentForm,
     setForm: state.setForm,
-  }));
+  })));
   const {
     undo,
     redo,

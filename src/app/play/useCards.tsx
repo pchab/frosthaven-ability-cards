@@ -1,6 +1,7 @@
 import { CardStatus, type Card, CardActions } from '@/domain/cards.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useMemo } from 'react';
+import { useShallow } from 'zustand/shallow';
 
 export type Action = 'top' | 'bottom' | 'default';
 
@@ -36,12 +37,12 @@ export function useCards<X extends Card>() {
     updateStates,
     currentStateIndex,
     setStateIndex,
-  } = useFrosthavenStore((store) => ({
+  } = useFrosthavenStore(useShallow((store) => ({
     states: store.states,
     updateStates: store.updateStates,
     currentStateIndex: store.currentStateIndex,
     setStateIndex: store.setStateIndex,
-  }));
+  })));
   const currentCards = useMemo(() => states[currentStateIndex] as X[], [states, currentStateIndex]);
 
   const changeCardStatus = (newStatus: CardStatus, condition?: () => boolean) => (card: X) => {

@@ -10,6 +10,7 @@ import CardPile from '../_components/cards/CardPile';
 import Image from 'next/image';
 import BoardArea from '../_components/layout/BoardArea';
 import Button from '../_components/inputs/Button';
+import { useShallow } from 'zustand/shallow';
 
 export function SelectCards<X extends Card>({
   frosthavenClass,
@@ -24,12 +25,12 @@ export function SelectCards<X extends Card>({
     onRemoveCard: (card: X) => void;
   }) => JSX.Element;
 }) {
-  const { level, setLevel, cards, selectCards } = useFrosthavenStore((state) => ({
+  const { cards, level, setLevel, selectCards } = useFrosthavenStore(useShallow((state) => ({
+    cards: state.cards,
     level: state.level,
     setLevel: state.setLevel,
-    cards: state.cards,
     selectCards: state.selectCards,
-  }));
+  })));
   const [selectedCards, setSelectedCards] = useState<X[]>(cards as X[]);
   const router = useRouter();
 
