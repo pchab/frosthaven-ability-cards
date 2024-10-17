@@ -7,6 +7,7 @@ import { drifter } from '@/domain/drifter/class';
 import { fist } from '@/domain/fist/class';
 import { geminate } from '@/domain/geminate/class';
 import { hive } from '@/domain/hive/class';
+import { painConduit } from "@/domain/pain-conduit/class";
 import { snowdancer } from '@/domain/snowdancer/class';
 import { trapper } from '@/domain/trapper/class';
 import Image from 'next/image';
@@ -25,6 +26,7 @@ export default function SelectClassPage() {
     deepwraith,
     fist,
     hive,
+    painConduit,
     snowdancer,
     trapper,
   ];
