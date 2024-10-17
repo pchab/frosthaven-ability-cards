@@ -13,17 +13,17 @@ export default function LongRestButton<X extends Card>({
 }) {
   const [doesLongRest, setDoesLongRest] = useState(false);
 
-  const confirmLongRestAction = (card: X) => ({
+  const confirmLongRestAction = (card: X) => [{
     name: 'Confirm Long Rest',
     onClick: () => {
       const recoveredCard = cards.filter(c => c !== card);
       onLongRest({ recovered: recoveredCard, lost: card });
     },
-  });
+  }];
 
   return <>
     {doesLongRest && <Modal>
-      <CardPile cards={cards} actions={[confirmLongRestAction]} />
+      <CardPile cards={cards} actions={confirmLongRestAction} />
     </Modal>}
     <Button onClick={() => setDoesLongRest(true)}>Long Rest</Button>
   </>;

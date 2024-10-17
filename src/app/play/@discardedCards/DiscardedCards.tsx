@@ -17,19 +17,18 @@ export default function DiscardedCards() {
   const discardPile = currentCards
     .filter(card => card.status === CardStatus.discarded);
 
-  const recoverAction = (card: Card) => ({
+  const actions = (card: Card) => [{
     name: 'Recover Card',
     onClick: () => recoverCard(card),
-  });
-  const loseAction = (card: Card) => ({
+  }, {
     name: 'Lose Card',
     onClick: () => loseCard(card),
-  });
+  }];
 
   return <div className='flex justify-between'>
     <CardPile
       cards={discardPile}
-      actions={[loseAction, recoverAction]}
+      actions={actions}
     />
     {discardPile.length > 1 && <div className='flex flex-col justify-between'>
       <ShortRestButton cards={discardPile} onShortRest={makeRest} />

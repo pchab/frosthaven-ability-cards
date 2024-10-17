@@ -20,21 +20,19 @@ export default function CurrentHand<X extends Card>({
     .filter(card => classFilter(card))
     .filter(card => card.status === CardStatus.inHand);
 
-  const selectAction = (card: X) => ({
+  const actions = (card: X) => [{
     name: 'Select Card',
     onClick: () => selectCard(card),
-  });
-  const discardAction = (card: X) => ({
+  }, {
     name: 'Discard Card',
     onClick: () => discardCard(card),
-  });
-  const loseAction = (card: X) => ({
+  }, {
     name: 'Lose Card',
     onClick: () => loseCard(card),
-  });
+  }];
 
   return <CardPile
     cards={currentHand}
-    actions={[discardAction, loseAction, selectAction]}
+    actions={actions}
   />;
 }

@@ -27,7 +27,7 @@ export default function CardPile<X extends Card>({
   maxCardLength = 1,
 }: {
   cards: X[];
-  actions: ((card: X) => WheelAction)[];
+  actions: (card: X) => WheelAction[];
   maxCardLength?: number;
 }) {
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number>(cards.length - 1);
@@ -59,7 +59,7 @@ export default function CardPile<X extends Card>({
       >
         <CardComponent
           card={card}
-          actions={actions.map((action) => action(card))} />
+          actions={actions(card)} />
       </motion.div>)}
   </div>
 }

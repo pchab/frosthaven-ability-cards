@@ -21,11 +21,13 @@ export function SelectedCards<X extends Card>({
     name: 'Remove Card',
     onClick: () => onRemoveCard(card),
   });
-
   const enchantAction = (card: X) => ({
     name: 'Enchant Card',
     onClick: () => setEnchantingCard(card),
   });
+  const actions = (card: X) => card.availableEnhancements
+    ? [removeAction(card), enchantAction(card)]
+    : [removeAction(card)];
 
   return <>
     {enchantingCard && <EnchantCardModal card={enchantingCard} onEnchantCard={(card: X) => {
@@ -35,7 +37,7 @@ export function SelectedCards<X extends Card>({
     <BoardArea title={`Selected Cards: ${cards.length}/${maxHandSize}`}>
       <CardPile
         cards={cards}
-        actions={[removeAction, enchantAction]}
+        actions={actions}
         maxCardLength={maxHandSize}
       />
     </BoardArea>

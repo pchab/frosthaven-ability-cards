@@ -24,11 +24,13 @@ export function SelectedGeminateCards({
     name: 'Remove Card',
     onClick: () => onRemoveCard(card),
   });
-
   const enchantAction = (card: GeminateCard) => ({
     name: 'Enchant Card',
     onClick: () => setEnchantingCard(card),
   });
+  const actions = (card: GeminateCard) => card.availableEnhancements
+    ? [removeAction(card), enchantAction(card)]
+    : [removeAction(card)];
 
   return <div className='flex flex-row justify-between border-solid border-2 rounded-lg p-4 gap-4 bg-gradient-to-r from-slate-700 to-blue-300'>
     {enchantingCard && <EnchantCardModal card={enchantingCard} onEnchantCard={(card: GeminateCard) => {
@@ -39,7 +41,7 @@ export function SelectedGeminateCards({
       <p className='text-lg'>Melee form: {meleeCards.length}/{maxHandSize}</p>
       <CardPile
         cards={meleeCards}
-        actions={[removeAction, enchantAction]}
+        actions={actions}
         maxCardLength={maxHandSize}
       />
     </div>
@@ -47,7 +49,7 @@ export function SelectedGeminateCards({
       <p className='text-lg'>Ranged form: {rangedCards.length}/{maxHandSize}</p>
       <CardPile
         cards={rangedCards}
-        actions={[removeAction, enchantAction]}
+        actions={actions}
         maxCardLength={maxHandSize}
       />
     </div>

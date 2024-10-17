@@ -13,13 +13,13 @@ export default function LostCards() {
   const lostPile = currentCards
     .filter(card => card.status === CardStatus.lost);
 
-  const recoverAction = (card: Card) => ({
+  const recoverAction = (card: Card) => [{
     name: 'Recover Card',
     onClick: () => recoverCard(card),
-  });
+  }];
 
   return <CardPile
     cards={lostPile}
-    actions={[recoverAction]}
+    actions={recoverAction}
   />;
 }

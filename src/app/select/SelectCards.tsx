@@ -64,10 +64,10 @@ export function SelectCards<X extends Card>({
     setAvailableCards(allCards.with(indexInAvailableCards, card));
   };
 
-  const selectAction = (card: X) => ({
+  const selectAction = (card: X) => [{
     name: 'Select Card',
     onClick: () => selectCard(card),
-  });
+  }];
 
   const validateSelection = () => {
     selectCards(selectedCards);
@@ -83,7 +83,7 @@ export function SelectCards<X extends Card>({
         key={`cards-level-${level}`}
         cards={levelCards
           .filter(filterRemainingCards)}
-        actions={[selectAction]}
+        actions={selectAction}
         maxCardLength={levelCards.length}
       />
     </BoardArea>;
