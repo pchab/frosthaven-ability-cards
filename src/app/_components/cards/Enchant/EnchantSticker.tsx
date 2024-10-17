@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function EnchantSticker({
   enhancement,
-  position: { x: left, y: top },
+  position: { x, y },
   size = 10,
 }: {
   enhancement: Enhancement;
@@ -19,6 +19,6 @@ export default function EnchantSticker({
     width={size}
     height={size}
     className='absolute'
-    style={{ left, top }}
+    style={{ left: x - size / 2, top: y - size / 2 }}
   />;
 }

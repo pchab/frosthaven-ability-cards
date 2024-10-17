@@ -27,7 +27,7 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'sand in the hourglass',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'circle', position: { x: 56, y: 124 } },
+      { type: 'circle', position: { x: 61, y: 129 } },
     ],
   },
   {
@@ -35,8 +35,8 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'blurry jab',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'diamond', position: { x: 84, y: 40 } },
-      { type: 'circle', position: { x: 84, y: 134 } },
+      { type: 'diamond', position: { x: 89, y: 46 } },
+      { type: 'circle', position: { x: 89, y: 139 } },
     ],
   },
   {
@@ -44,9 +44,9 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'cascading reaction',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 29 } },
-      { type: 'circle', position: { x: 84, y: 54 } },
-      { type: 'circle', position: { x: 84, y: 78 } },
+      { type: 'circle', position: { x: 89, y: 34 } },
+      { type: 'circle', position: { x: 89, y: 59 } },
+      { type: 'circle', position: { x: 89, y: 83 } },
     ],
   },
   {
@@ -66,7 +66,7 @@ export const blinkbladeCards: Card[] = createCards([
       { x: 84, y: 174 },
     ],
     availableEnhancements: [
-      { type: 'circle', position: { x: 68, y: 38 } },
+      { type: 'circle', position: { x: 73, y: 44 } },
     ],
   },
   {
@@ -74,9 +74,9 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'kinetic transfer',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 30 } },
-      { type: 'diamond', position: { x: 84, y: 56 } },
-      { type: 'circle', position: { x: 84, y: 125 } },
+      { type: 'circle', position: { x: 90, y: 36 } },
+      { type: 'diamond', position: { x: 90, y: 61 } },
+      { type: 'circle', position: { x: 90, y: 130 } },
     ],
   },
   {
@@ -89,7 +89,7 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'power leak',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 126 } },
+      { type: 'circle', position: { x: 89, y: 131 } },
     ],
   },
   {
@@ -102,7 +102,7 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'temporal displacement',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 146 } },
+      { type: 'circle', position: { x: 89, y: 151 } },
     ],
   },
   {
@@ -110,9 +110,9 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'twin strike',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'square', position: { x: 84, y: 29 } },
-      { type: 'diamond', position: { x: 84, y: 78 } },
-      { type: 'circle', position: { x: 84, y: 125 } },
+      { type: 'square', position: { x: 89, y: 34 } },
+      { type: 'diamond', position: { x: 89, y: 84 } },
+      { type: 'circle', position: { x: 89, y: 131 } },
     ],
   },
   {
@@ -120,8 +120,8 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'reckless augmentation',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'diamond', position: { x: 84, y: 39 } },
-      { type: 'circle', position: { x: 84, y: 123 } },
+      { type: 'diamond', position: { x: 89, y: 45 } },
+      { type: 'circle', position: { x: 89, y: 128 } },
     ],
   },
   {
@@ -129,7 +129,7 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'systems reboot',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'diamond', position: { x: 66, y: 39 } },
+      { type: 'diamond', position: { x: 71, y: 46 } },
     ],
   },
   {
@@ -142,8 +142,8 @@ export const blinkbladeCards: Card[] = createCards([
       { x: 70, y: 174 },
     ],
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 29 } },
-      { type: 'diamond', position: { x: 84, y: 52 } },
+      { type: 'circle', position: { x: 89, y: 35 } },
+      { type: 'diamond', position: { x: 89, y: 58 } },
     ],
   },
   {
@@ -151,8 +151,8 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'make it count',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'circle', position: { x: 58, y: 29 } },
-      { type: 'circle', position: { x: 84, y: 160 } },
+      { type: 'circle', position: { x: 64, y: 34 } },
+      { type: 'circle', position: { x: 89, y: 165 } },
     ],
   },
   {
@@ -160,8 +160,8 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'potential energy',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'diamond', position: { x: 90, y: 46 } },
-      { type: 'circle', position: { x: 90, y: 140 } },
+      { type: 'diamond', position: { x: 95, y: 51 } },
+      { type: 'circle', position: { x: 95, y: 145 } },
     ],
   },
   {
@@ -169,8 +169,8 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'precision timing',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 125 } },
-      { type: 'circle', position: { x: 84, y: 175 } },
+      { type: 'circle', position: { x: 89, y: 130 } },
+      { type: 'circle', position: { x: 89, y: 180 } },
     ],
   },
   {
@@ -184,7 +184,7 @@ export const blinkbladeCards: Card[] = createCards([
       { x: 113, y: 78 },
     ],
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 132 } },
+      { type: 'circle', position: { x: 89, y: 137 } },
     ],
   },
   {
@@ -192,7 +192,7 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'flashing flurry',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
     availableEnhancements: [
-      { type: 'diamond', position: { x: 55, y: 135 } },
+      { type: 'diamond', position: { x: 60, y: 140 } },
     ],
   },
   {
@@ -200,8 +200,8 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'stab them all',
     actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 54 } },
-      { type: 'diamond', position: { x: 84, y: 85 } },
+      { type: 'circle', position: { x: 89, y: 59 } },
+      { type: 'diamond', position: { x: 89, y: 90 } },
     ],
   },
   {
@@ -209,7 +209,7 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'the knifes edge',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'square', position: { x: 66, y: 132 } },
+      { type: 'square', position: { x: 71, y: 137 } },
     ],
   },
   {
@@ -217,7 +217,7 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'phasing blades',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 136 } },
+      { type: 'circle', position: { x: 89, y: 141 } },
     ],
   },
   {
@@ -225,9 +225,9 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'rushed to the end',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'diamond', position: { x: 84, y: 46 } },
-      { type: 'circle', position: { x: 84, y: 139 } },
-      { type: 'circle', position: { x: 84, y: 171 } },
+      { type: 'diamond', position: { x: 89, y: 51 } },
+      { type: 'circle', position: { x: 89, y: 144 } },
+      { type: 'circle', position: { x: 89, y: 176 } },
     ],
   },
   {
@@ -235,7 +235,7 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'fastest alive',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 146 } },
+      { type: 'circle', position: { x: 89, y: 151 } },
     ],
   },
   {
@@ -243,8 +243,8 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'quantum uncertainty',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'diamond', position: { x: 84, y: 34 } },
-      { type: 'circle', position: { x: 84, y: 136 } },
+      { type: 'diamond', position: { x: 89, y: 39 } },
+      { type: 'circle', position: { x: 89, y: 141 } },
     ],
   },
   {
@@ -252,7 +252,7 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'fractured timeline',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'circle', position: { x: 84, y: 129 } },
+      { type: 'circle', position: { x: 89, y: 134 } },
     ],
   },
   {

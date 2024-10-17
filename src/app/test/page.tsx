@@ -13,16 +13,42 @@ import { snowdancer } from '@/domain/snowdancer/class';
 import { trapper } from '@/domain/trapper/class';
 import { CardComponent } from '../_components/cards/Card';
 import { CardActions } from '@/domain/cards.type';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { enhancements } from '@/domain/enhancement/enhancements';
 import type { Enhancement } from '@/domain/enhancement/enhancement.type';
+import { bannerSpearCards } from '@/domain/banner-spear/cards';
+
+const RADIUS = 5;
+
+type HoverCircleArea = {
+  x: number;
+  y: number;
+  radius?: number;
+}
+
+function drawCircleArea(hoverArea: HoverCircleArea, context: CanvasRenderingContext2D) {
+  context.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+  context.lineWidth = 3;
+  const { x, y, radius = RADIUS } = hoverArea;
+  context.beginPath();
+  context.arc(x, y, radius, 0, 2 * Math.PI);
+  context.stroke();
+}
 
 function capitalize(str: string): string {
   return str.split(' ').map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`).join(' ');
 }
 
-export default function TestCard({ searchParams: { className, cardName } }: { searchParams: { className: string; cardName: string; } }) {
+export default function TestCard({ searchParams: {
+  className = bannerSpear.name,
+  cardName = bannerSpearCards[0].name,
+} }: {
+  searchParams: {
+    className: string;
+    cardName: string;
+  }
+}) {
   const allClasses = [
     bannerSpear,
     blinkblade,
@@ -40,10 +66,20 @@ export default function TestCard({ searchParams: { className, cardName } }: { se
   const selectedCard = selectedClass?.cards.find(({ name }) => name === cardName) ?? selectedClass?.cards[0];
   const [currentCard, setCard] = useState(selectedCard);
   const router = useRouter();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     setCard(selectedCard);
   }, [selectedCard]);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const context = canvas.getContext('2d');
+    if (!context) return;
+    context.reset();
+    drawCircleArea(position, context);
+  }, [position]);
 
   if (!selectedClass || !currentCard) {
     return;
@@ -94,20 +130,27 @@ export default function TestCard({ searchParams: { className, cardName } }: { se
     </select>
     <div className='flex gap-4 border border-white p-4'>
       <div className='flex flex-col gap-2'>
-        <h3 className='font-bold'>Enchant:</h3>
-        {!currentCard.availableEnhancements
-          ? <div>No enchant slots</div>
-          : currentCard.availableEnhancements.map((slot, index) => {
-            const enhancementOptions = enhancements.filter((enhancement) => enhancement.type === slot.type);
-            return <select key={index} className='p-4 bg-black' onChange={(e) => addEnchant(index, e.target.value)}>
-              <option value={undefined}>{'no enchant'}</option>
-              {enhancementOptions.map(({ name }) => <option key={name} value={name}>{name}</option>)}
-            </select>;
-          })
-        }
+        <h3 className='font-bold'>Position:</h3>
+        <input
+          className='p-4 bg-black'
+          id='x' name='x' type='number'
+          defaultValue={position.x}
+          onChange={(e) => setPosition({ ...position, x: parseInt(e.target.value) })} />
+        <input
+          className='p-4 bg-black'
+          id='y' name='y' type='number'
+          defaultValue={position.y}
+          onChange={(e) => setPosition({ ...position, y: parseInt(e.target.value) })} />
       </div>
 
-      {<CardComponent card={currentCard} actions={[]} />}
+      {<CardComponent card={currentCard} actions={[]}>
+        <canvas
+          ref={canvasRef}
+          className='absolute pointer-events-none'
+          width={143}
+          height={200}
+        />
+      </CardComponent>}
 
       <div>
         <h3 className='font-bold'>Details:</h3>

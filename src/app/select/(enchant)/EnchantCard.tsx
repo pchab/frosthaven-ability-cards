@@ -20,7 +20,7 @@ function drawCircleArea(hoverArea: HoverCircleArea, context: CanvasRenderingCont
   context.lineWidth = 3;
   const { x, y, radius = RADIUS } = hoverArea;
   context.beginPath();
-  context.arc(x + RADIUS / 2, y + RADIUS / 2, radius, 0, 2 * Math.PI);
+  context.arc(x, y, radius, 0, 2 * Math.PI);
   context.stroke();
 }
 
@@ -70,7 +70,7 @@ export default function EnchantCardModal<X extends Card>({
     return [...enhancements
       .filter((enhancement) => enhancement.type === type)
       .map((enhancement) => ({
-        name: <EnchantSticker enhancement={enhancement} position={{ x: 15, y: 15 }} size={30} />,
+        name: <EnchantSticker enhancement={enhancement} position={{ x: 30, y: 30 }} size={30} />,
         onClick: () => addEnchant(slotIndex, enhancement.name),
       })),
     {
@@ -96,7 +96,7 @@ export default function EnchantCardModal<X extends Card>({
             return <area
               href='#'
               key={getAreaName(index)}
-              coords={`${x + RADIUS / 2},${y + RADIUS / 2},${RADIUS}`}
+              coords={`${x},${y},${RADIUS}`}
               shape='circle'
               onMouseEnter={() => setCurrentEnchantSlot(index)}
             />;
