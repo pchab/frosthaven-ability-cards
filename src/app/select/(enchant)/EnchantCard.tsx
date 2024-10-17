@@ -52,7 +52,8 @@ export default function EnchantCardModal<X extends Card>({
     drawCircleArea(currentSlot.position, context);
   }, [currentEnchantSlot, card.availableEnhancements]);
 
-  const addEnchant = (index: number, enchantName: Enhancement['name']) => {
+  const addEnchant = (index: number | undefined, enchantName: Enhancement['name']) => {
+    if (index === undefined) return [];
     const newCard = { ...currentCard };
     const newEnhancements = [...(newCard.enhancements ?? Array.from({ length: newCard.availableEnhancements?.length ?? 0 }))];
     const newEnhancement = enchantName
