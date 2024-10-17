@@ -43,6 +43,6 @@ export const enhancements: Enhancement[] = [
     ...diamondEnhancements,
     ...diamondPlusEnhancements,
     ...squareEnhancements,
-    { type: 'hex', name: 'hex' },
+    { type: 'hex', name: 'hex-attack' },
     { type: 'summonSquare', name: 'plus-one' },
 ];

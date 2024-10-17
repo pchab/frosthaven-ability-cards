@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default function EnchantSticker({
   enhancement,
   position: { x, y },
-  size = 10,
+  size = enhancement.type === 'hex' ? 16 : 10,
 }: {
   enhancement: Enhancement;
   position: { x: number; y: number; };
