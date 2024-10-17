@@ -19,6 +19,7 @@ import { useRouter } from 'next/navigation';
 import { enhancements } from '@/domain/enhancement/enhancements';
 import type { Enhancement } from '@/domain/enhancement/enhancement.type';
 import { bannerSpearCards } from '@/domain/banner-spear/cards';
+import Button from '../_components/inputs/Button';
 
 const RADIUS = 5;
 
@@ -39,6 +40,13 @@ function drawCircleArea(hoverArea: HoverCircleArea, context: CanvasRenderingCont
 
 function capitalize(str: string): string {
   return str.split(' ').map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`).join(' ');
+}
+
+function getTestEnhancement(type: Enhancement['type']) {
+  if (type === 'hex') {
+    return 'hex-attack';
+  }
+  return 'plus-one';
 }
 
 export default function TestCard({ searchParams: {
@@ -159,6 +167,12 @@ export default function TestCard({ searchParams: {
         <div>Level: {currentCard.level}</div>
         <div>Top: {CardActions[currentCard.actions.top]}</div>
         <div>Bottom: {CardActions[currentCard.actions.bottom]}</div>
+        <div className='flex flex-col gap-2'>
+          {currentCard.availableEnhancements?.map((enhancement, index) => {
+            const testEnhancement = getTestEnhancement(enhancement.type);
+            return <Button key={index} onClick={() => addEnchant(index, testEnhancement)}>Test enchant {index}</Button>;
+          })}
+        </div>
       </div>
     </div>
   </div>;
