@@ -1,11 +1,11 @@
-import type {Enhancement} from './enhancement.type'
+import type { Enhancement } from './enhancement.type'
 
 const squareList: string[] = [
     'jump',
     'plus-one',
-]
+];
 
-const squareEnhancements: Enhancement[] = squareList.map((name) => ({type: 'square', name}));
+const squareEnhancements: Enhancement[] = squareList.map((name) => ({ type: 'square', name }));
 
 const circleList: string[] = [
     'air',
@@ -17,7 +17,7 @@ const circleList: string[] = [
     'wild',
 ];
 const circleEnhancements: Enhancement[] = [...circleList, ...squareList]
-    .map((name) => ({type: 'circle', name}));
+    .map((name) => ({ type: 'circle', name }));
 
 const diamondList: string[] = [
     'curse',
@@ -27,7 +27,7 @@ const diamondList: string[] = [
     'wound',
 ];
 const diamondEnhancements: Enhancement[] = [...circleList, ...squareList, ...diamondList]
-    .map((name) => ({type: 'diamond', name}));
+    .map((name) => ({ type: 'diamond', name }));
 
 const diamondPlusList: string[] = [
     'bless',
@@ -36,12 +36,13 @@ const diamondPlusList: string[] = [
     'ward',
 ]
 const diamondPlusEnhancements: Enhancement[] = [...circleList, ...squareList, ...diamondList, ...diamondPlusList]
-    .map((name) => ({type: 'diamondPlus', name}));
+    .map((name) => ({ type: 'diamondPlus', name }));
 
 export const enhancements: Enhancement[] = [
     ...circleEnhancements,
     ...diamondEnhancements,
+    ...diamondPlusEnhancements,
     ...squareEnhancements,
-    {type: 'hex', name: 'hex'},
-    {type: 'summonSquare', name: 'plus-one'},
+    { type: 'hex', name: 'hex' },
+    { type: 'summonSquare', name: 'plus-one' },
 ];
