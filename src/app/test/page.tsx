@@ -9,6 +9,7 @@ import { drifter } from '@/domain/drifter/class';
 import { fist } from '@/domain/fist/class';
 import { geminate } from '@/domain/geminate/class';
 import { hive } from '@/domain/hive/class';
+import { painConduit } from '@/domain/pain-conduit/class';
 import { snowdancer } from '@/domain/snowdancer/class';
 import { trapper } from '@/domain/trapper/class';
 import { CardComponent } from '../_components/cards/Card';
@@ -59,6 +60,7 @@ export default function TestCard({ searchParams: {
     deepwraith,
     fist,
     hive,
+    painConduit,
     snowdancer,
     trapper,
   ];

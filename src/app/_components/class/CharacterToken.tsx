@@ -7,7 +7,7 @@ export default function CharacterToken({
   className: string;
   position?: { left?: number; top?: number; };
 }) {
-  const fhClassName = className.toLocaleLowerCase();
+  const fhClassName = className.toLocaleLowerCase().replaceAll(' ', '-');
   const tokenPath = `/${fhClassName}/icons/fh-${fhClassName}-character-token.png`;
 
   return <Image
