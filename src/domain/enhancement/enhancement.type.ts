@@ -1,4 +1,4 @@
-type EnhancementType = 'circle' | 'square' | 'diamond' | 'hex';
+type EnhancementType = 'circle' | 'square' | 'diamond' | 'diamondPlus' | 'hex' | 'summonSquare';
 
 export type Enhancement = {
   type: EnhancementType;
