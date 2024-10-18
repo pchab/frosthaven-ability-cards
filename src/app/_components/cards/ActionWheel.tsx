@@ -28,7 +28,11 @@ export default function ActionWheel({
           >
             {actions.map((action, index) => {
               const angle = (index / actions.length) * 360
-              const radius = actions.length > 6 ? 80 : 50;
+              const radius = actions.length > 12
+                ? 120
+                : actions.length > 6
+                  ? 80
+                  : 50;
               const x = radius * Math.cos((angle * Math.PI) / 180)
               const y = radius * Math.sin((angle * Math.PI) / 180)
 
