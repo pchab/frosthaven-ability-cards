@@ -46,6 +46,9 @@ function getTestEnhancement(type: Enhancement['type']) {
   if (type === 'hex') {
     return 'hex-attack';
   }
+  if (type === 'circle') {
+    return 'fire';
+  }
   return 'plus-one';
 }
 
@@ -168,9 +171,10 @@ export default function TestCard({ searchParams: {
         <div>Top: {CardActions[currentCard.actions.top]}</div>
         <div>Bottom: {CardActions[currentCard.actions.bottom]}</div>
         <div className='flex flex-col gap-2'>
+          Enchant :
           {currentCard.availableEnhancements?.map((enhancement, index) => {
             const testEnhancement = getTestEnhancement(enhancement.type);
-            return <Button key={index} onClick={() => addEnchant(index, testEnhancement)}>Test enchant {index}</Button>;
+            return <Button key={index} onClick={() => addEnchant(index, testEnhancement)}>{index}: {enhancement.type}</Button>;
           })}
         </div>
       </div>
