@@ -56,9 +56,7 @@ export default function EnchantCardModal<X extends Card>({
     if (index === undefined) return [];
     const newCard = { ...currentCard };
     const newEnhancements = [...(newCard.enhancements ?? Array.from({ length: newCard.availableEnhancements?.length ?? 0 }))];
-    const newEnhancement = enchantName
-      ? enhancements.find(({ name }) => name === enchantName)
-      : undefined;
+    const newEnhancement = enhancements.find(({ name }) => name === enchantName);
     newEnhancements[index] = newEnhancement;
     newCard.enhancements = newEnhancements;
     setCard(newCard);

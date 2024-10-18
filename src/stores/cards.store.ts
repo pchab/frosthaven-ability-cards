@@ -1,8 +1,8 @@
 import { type Card } from '@/domain/cards.type';
 import { GeminateForm } from '@/domain/geminate/cards';
-import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { indexedDBStorage } from './indexed-db.storage';
+import { create } from 'zustand';
 
 type AbilityCardsState = {
   level: number;
@@ -16,6 +16,7 @@ type AbilityCardsState = {
 type AbilityCardsActions = {
   setLevel: (level: number) => void;
   selectCards: (cards: Card[]) => void;
+  enchantCard: (card: Card) => void;
   setAvailableCards: (cards: Card[]) => void;
   setStateIndex: (index: number) => void;
   updateStates: <X extends Card>(states: X[][]) => void;
@@ -55,12 +56,16 @@ const initialState: AbilityCardsState = {
 }
 
 export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions>()(
-  persist<AbilityCardsState & AbilityCardsActions, [], [], PersistedState>(
+  persist(
     (set) => ({
       ...initialState,
       setLevel: (level: number) => set({ level }),
       setAvailableCards: (availableCards: Card[]) => set({ availableCards }),
       selectCards: (cards: Card[]) => set({ cards, states: [cards], currentStateIndex: 0 }),
+      enchantCard: (card: Card) => set(({ cards, availableCards }) => ({
+        cards: cards.with(cards.findIndex(({ name }) => name === card.name), card),
+        availableCards: availableCards.with(availableCards.findIndex(({ name }) => name === card.name), card),
+      })),
       updateStates: <X extends Card>(states: X[][]) => set({ states, currentStateIndex: states.length - 1 }),
       setStateIndex: (index: number) => set({ currentStateIndex: index }),
       setForm: (currentForm: GeminateForm) => set({ currentForm }),
@@ -77,5 +82,5 @@ export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions
         currentForm: state.currentForm,
       }),
     }
-  )
+  ),
 );

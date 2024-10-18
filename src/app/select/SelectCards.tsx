@@ -32,13 +32,13 @@ export function SelectCards<X extends Card>({
     availableCards,
     setLevel,
     selectCards,
-    setAvailableCards,
+    enchantCard,
   } = useFrosthavenStore(useShallow((state) => ({
     cards: state.cards,
     availableCards: state.availableCards as X[],
     setLevel: state.setLevel,
     selectCards: state.selectCards,
-    setAvailableCards: state.setAvailableCards,
+    enchantCard: state.enchantCard,
   })));
   const [selectedCards, setSelectedCards] = useState<X[]>(cards as X[]);
   const router = useRouter();
@@ -56,13 +56,6 @@ export function SelectCards<X extends Card>({
   };
 
   const removeCard = (card: X) => setSelectedCards(selectedCards.filter(c => c !== card));
-  const enchantCard = (card: X) => {
-    const index = selectedCards.findIndex(({ name }) => name === card.name);
-    setSelectedCards(selectedCards.with(index, card));
-
-    const indexInAvailableCards = allCards.findIndex(({ name }) => name === card.name);
-    setAvailableCards(allCards.with(indexInAvailableCards, card));
-  };
 
   const selectAction = (card: X) => [{
     name: 'Select Card',
