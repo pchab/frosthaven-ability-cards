@@ -7,5 +7,5 @@ export type Enhancement = {
 
 export type EnhancementSlot = {
   type: EnhancementType;
-  position: { x: number; y: number; };
+  position: { x: number; y: number; size?: number; };
 }

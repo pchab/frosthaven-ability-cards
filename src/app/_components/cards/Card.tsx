@@ -42,13 +42,13 @@ export function CardComponent<X extends Card>({
       width={143}
       height={200}
     />
-    {card.availableEnhancements && card.availableEnhancements.map((slot, index) => {
+    {card.availableEnhancements && card.availableEnhancements.map(({ position }, index) => {
       const enhancement = card.enhancements?.[index];
       return enhancement
         ? <EnchantSticker
           key={`${card.name}-enchant-slot-${index}`}
           enhancement={enhancement}
-          position={slot.position}
+          position={position}
         />
         : <div key={`${card.name}-enchant-slot-${index}`}></div>;
     })}

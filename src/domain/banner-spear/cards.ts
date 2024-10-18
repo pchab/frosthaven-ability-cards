@@ -79,7 +79,7 @@ export const bannerSpearCards: Card[] = createCards([
     name: 'rallying cry',
     actions: { top: CardActions.discard, bottom: CardActions.activeLost },
     availableEnhancements: [
-      { type: 'hex', position: { x: 109, y: 44 } },
+      { type: 'hex', position: { x: 109, y: 44, size: 15 } },
       { type: 'summonSquare', position: { x: 65, y: 143 } },
     ],
   },
@@ -102,7 +102,7 @@ export const bannerSpearCards: Card[] = createCards([
     name: 'tip of the spear',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
     availableEnhancements: [
-      { type: 'hex', position: { x: 113, y: 31 } },
+      { type: 'hex', position: { x: 113, y: 31, size: 15 } },
       { type: 'circle', position: { x: 90, y: 154 } },
     ],
   },

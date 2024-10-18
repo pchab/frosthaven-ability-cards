@@ -1,13 +1,12 @@
-import type { Enhancement } from '@/domain/enhancement/enhancement.type';
+import type { Enhancement, EnhancementSlot } from '@/domain/enhancement/enhancement.type';
 import Image from 'next/image';
 
 export default function EnchantSticker({
   enhancement,
-  position: { x, y },
-  size = enhancement.type === 'hex' ? 16 : 10,
+  position: { x, y, size = 10 },
 }: {
   enhancement: Enhancement;
-  position: { x: number; y: number; };
+  position: EnhancementSlot['position'];
   size?: number;
 }) {
   const { name } = enhancement;
