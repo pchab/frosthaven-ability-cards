@@ -71,7 +71,7 @@ export default function EnchantCardModal<X extends Card>({
     return [...enhancements
       .filter((enhancement) => enhancement.type === type)
       .map((enhancement) => ({
-        name: <EnchantSticker enhancement={enhancement} position={{ x: 30, y: 30 }} size={30} />,
+        name: <EnchantSticker enhancement={enhancement} position={{ x: 30, y: 30, size: 30 }} />,
         onClick: () => addEnchant(slotIndex, enhancement.name),
       })),
     {

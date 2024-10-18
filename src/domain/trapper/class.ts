@@ -1,7 +1,8 @@
-import { FrosthavenClassNames } from '../frosthaven-class.type';
+import type { Card } from '../cards.type';
+import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.type';
 import { trapperCards } from './cards';
 
-export const trapper = {
+export const trapper: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.Trapper,
   handSize: 11,
   path: '/trapper/icons/fh-trapper-color-icon.png',

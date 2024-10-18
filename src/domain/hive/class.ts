@@ -1,7 +1,8 @@
-import { FrosthavenClassNames } from '../frosthaven-class.type';
+import type { Card } from '../cards.type';
+import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.type';
 import { hiveCards } from './cards';
 
-export const hive = {
+export const hive: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.Hive,
   handSize: 11,
   path: '/hive/icons/fh-hive-color-icon.png',

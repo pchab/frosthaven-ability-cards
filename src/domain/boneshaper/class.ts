@@ -1,7 +1,8 @@
-import { FrosthavenClassNames } from '../frosthaven-class.type';
+import type { Card } from '../cards.type';
+import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.type';
 import { boneshaperCards } from './cards';
 
-export const boneshaper = {
+export const boneshaper: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.Boneshaper,
   handSize: 12,
   path: '/boneshaper/icons/fh-boneshaper-color-icon.png',

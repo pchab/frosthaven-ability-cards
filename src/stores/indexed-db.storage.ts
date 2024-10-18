@@ -1,5 +1,8 @@
 import type { StateStorage } from 'zustand/middleware';
 import { getClass } from './class.store';
+import type { Card } from '@/domain/cards.type';
+import type { PersistedCard, PersistedState } from './cards.store';
+import { FrosthavenClass } from '@/domain/frosthaven-class.type';
 
 const STORE_NAME = 'fh-cards-store';
 
@@ -19,6 +22,23 @@ async function startTransaction() {
   return (await db).transaction(STORE_NAME, 'readwrite');
 }
 
+function departializeCardForClass<X extends Card>(fhClass: FrosthavenClass<X>) {
+  return ({
+    name,
+    status,
+    tokenPosition,
+    enhancements,
+  }: PersistedCard): X => {
+    const card = fhClass.cards.find((card) => card.name === name)!;
+    return {
+      ...card,
+      status,
+      tokenPosition,
+      enhancements,
+    };
+  };
+}
+
 export const indexedDBStorage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
     const selectedClass = await getClass();
@@ -27,10 +47,24 @@ export const indexedDBStorage: StateStorage = {
     }
     const transaction = await startTransaction();
     const request = transaction.objectStore(STORE_NAME).get(selectedClass.name);
+    const departializeCard = departializeCardForClass(selectedClass);
     return new Promise((resolve) => {
       transaction.oncomplete = () => {
-        resolve(request.result);
-      };
+        if (!request.result) {
+          return resolve(null);
+        }
+        const {
+          state: { cards, availableCards, states, ...state },
+        } = JSON.parse(request.result) as { state: PersistedState };
+        resolve(JSON.stringify({
+          state: {
+            ...state,
+            cards: cards.map(departializeCard),
+            availableCards: availableCards.map(departializeCard),
+            states: states.map((state) => state.map(departializeCard)),
+          }
+        }));
+      }
     });
   },
   setItem: async (name: string, value: string): Promise<void> => {

@@ -1,5 +1,4 @@
 import { type Card } from '@/domain/cards.type';
-import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { GeminateForm } from '@/domain/geminate/cards';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
@@ -23,6 +22,29 @@ type AbilityCardsActions = {
   setForm: (form: GeminateForm) => void;
 }
 
+export type PersistedCard = Pick<Card, 'name' | 'status' | 'tokenPosition' | 'enhancements'>;
+export type PersistedState = {
+  level: number;
+  cards: PersistedCard[];
+  availableCards: PersistedCard[];
+  states: PersistedCard[][];
+  currentStateIndex: number;
+  currentForm: GeminateForm;
+};
+function partializeCard<X extends Card>({
+  name,
+  status,
+  tokenPosition,
+  enhancements,
+}: X): PersistedCard {
+  return {
+    name,
+    status,
+    tokenPosition,
+    enhancements,
+  };
+}
+
 const initialState: AbilityCardsState = {
   level: 1,
   cards: [],
@@ -33,7 +55,7 @@ const initialState: AbilityCardsState = {
 }
 
 export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions>()(
-  persist(
+  persist<AbilityCardsState & AbilityCardsActions, [], [], PersistedState>(
     (set) => ({
       ...initialState,
       setLevel: (level: number) => set({ level }),
@@ -46,6 +68,14 @@ export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions
     {
       name: 'fh-ability-cards',
       storage: createJSONStorage(() => indexedDBStorage),
+      partialize: (state) => ({
+        level: state.level,
+        cards: state.cards.map(partializeCard),
+        availableCards: state.availableCards.map(partializeCard),
+        states: state.states.map((state) => state.map(partializeCard)),
+        currentStateIndex: state.currentStateIndex,
+        currentForm: state.currentForm,
+      }),
     }
   )
 );

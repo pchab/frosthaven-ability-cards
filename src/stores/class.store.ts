@@ -1,4 +1,5 @@
 import type { Card } from '@/domain/cards.type';
+import { frosthavenClasses } from '@/domain/frosthaven-class';
 import type { FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { useEffect, useState } from 'react';
 
@@ -6,7 +7,7 @@ export function useClassHook<X extends Card>() {
   const [currentClass, setCurrentClass] = useState<FrosthavenClass<X> | undefined>(undefined);
   useEffect(() => {
     const currentClass = getClass<X>();
-    setCurrentClass(currentClass);
+    setCurrentClass(currentClass as FrosthavenClass<X>);
   }, []);
 
   return currentClass;
@@ -16,16 +17,13 @@ export function getClass<X extends Card>() {
   if (!localStorage) {
     return undefined;
   }
-  const classString = localStorage.getItem('selectedClass');
-  if (!classString) {
-    return undefined;
-  }
-  return JSON.parse(classString) as FrosthavenClass<X>;
+  const classString = localStorage.getItem('selectedClass') as FrosthavenClass<X>['name'];
+  return frosthavenClasses.find(({ name }) => name === classString);
 }
 
-export function setClass<X extends Card>(selectedClass: FrosthavenClass<X>) {
+export function setClass<X extends Card>(selectedClassName: FrosthavenClass<X>['name']) {
   if (!localStorage) {
     return undefined;
   }
-  localStorage.setItem('selectedClass', JSON.stringify(selectedClass));
+  localStorage.setItem('selectedClass', selectedClassName);
 }
