@@ -93,7 +93,6 @@ export default function EnchantCardModal<X extends Card>({
         <map name={mapName}>
           {card.availableEnhancements.map(({ position: { x, y } }, index) => {
             return <area
-              href='#'
               key={getAreaName(index)}
               coords={`${x},${y},${RADIUS}`}
               shape='circle'
