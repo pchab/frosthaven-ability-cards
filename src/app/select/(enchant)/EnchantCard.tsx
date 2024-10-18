@@ -4,7 +4,7 @@ import Button from '@/app/_components/inputs/Button';
 import Modal from '@/app/_components/layout/Modal';
 import type { Card } from '@/domain/cards.type';
 import type { Enhancement } from '@/domain/enhancement/enhancement.type';
-import { enhancements } from '@/domain/enhancement/enhancements';
+import { getEnhancementByType } from '@/domain/enhancement/enhancements';
 import { useEffect, useRef, useState } from 'react';
 
 const RADIUS = 10;
@@ -52,12 +52,10 @@ export default function EnchantCardModal<X extends Card>({
     drawCircleArea(currentSlot.position, context);
   }, [currentEnchantSlot, card.availableEnhancements]);
 
-  const addEnchant = (index: number | undefined, enchantName: Enhancement['name']) => {
-    if (index === undefined) return [];
+  const addEnchant = (index: number, enchantName: Enhancement | undefined) => {
     const newCard = { ...currentCard };
     const newEnhancements = [...(newCard.enhancements ?? Array.from({ length: newCard.availableEnhancements?.length ?? 0 }))];
-    const newEnhancement = enhancements.find(({ name }) => name === enchantName);
-    newEnhancements[index] = newEnhancement;
+    newEnhancements[index] = enchantName;
     newCard.enhancements = newEnhancements;
     setCard(newCard);
   }
@@ -66,15 +64,14 @@ export default function EnchantCardModal<X extends Card>({
     if (slotIndex === undefined) return [];
     const { type } = card.availableEnhancements?.[slotIndex] ?? {};
     if (!type) return [];
-    return [...enhancements
-      .filter((enhancement) => enhancement.type === type)
+    return [...getEnhancementByType(type)
       .map((enhancement) => ({
         name: <EnchantSticker enhancement={enhancement} position={{ x: 30, y: 30, size: 30 }} />,
-        onClick: () => addEnchant(slotIndex, enhancement.name),
+        onClick: () => addEnchant(slotIndex, enhancement),
       })),
     {
       name: 'Remove enchant',
-      onClick: () => addEnchant(slotIndex, 'none'),
+      onClick: () => addEnchant(slotIndex, undefined),
     }];
   };
 

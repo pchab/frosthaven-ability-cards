@@ -9,8 +9,7 @@ export default function EnchantSticker({
   position: EnhancementSlot['position'];
   size?: number;
 }) {
-  const { name } = enhancement;
-  const tokenPath = `/enhancement-stickers/fh-${name}-sticker.png`;
+  const tokenPath = `/enhancement-stickers/fh-${enhancement}-sticker.png`;
 
   return <Image
     src={tokenPath}

@@ -16,8 +16,7 @@ import { CardComponent } from '../_components/cards/Card';
 import { CardActions } from '@/domain/cards.type';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { enhancements } from '@/domain/enhancement/enhancements';
-import type { Enhancement } from '@/domain/enhancement/enhancement.type';
+import type { Enhancement, EnhancementSlot } from '@/domain/enhancement/enhancement.type';
 import { bannerSpearCards } from '@/domain/banner-spear/cards';
 import Button from '../_components/inputs/Button';
 
@@ -42,7 +41,7 @@ function capitalize(str: string): string {
   return str.split(' ').map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`).join(' ');
 }
 
-function getTestEnhancement(type: Enhancement['type']) {
+function getTestEnhancement(type: EnhancementSlot['type']): Enhancement {
   if (type === 'hex') {
     return 'hex-attack';
   }
@@ -105,12 +104,10 @@ export default function TestCard({ searchParams: {
     router.replace(`/test?${searchParams.toString()}`);
   };
 
-  const addEnchant = (index: number, enchantName: Enhancement['name']) => {
+  const addEnchant = (index: number, enchantName: Enhancement) => {
     const newCard = { ...currentCard };
     const newEnhancements = [...(newCard.enhancements ?? Array.from({ length: newCard.availableEnhancements?.length ?? 0 }))];
-    const newEnhancement = enchantName
-      ? enhancements.find(({ name }) => name === enchantName)
-      : undefined;
+    const newEnhancement = enchantName;
     newEnhancements[index] = newEnhancement;
     newCard.enhancements = newEnhancements;
     setCard(newCard);

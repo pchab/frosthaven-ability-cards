@@ -1,9 +1,23 @@
 type EnhancementType = 'circle' | 'square' | 'diamond' | 'diamondPlus' | 'hex' | 'summonSquare';
-
-export type Enhancement = {
-  type: EnhancementType;
-  name: string;
-}
+export type Enhancement = 'jump'
+  | 'plus-one'
+  | 'air'
+  | 'dark'
+  | 'earth'
+  | 'fire'
+  | 'ice'
+  | 'light'
+  | 'wild'
+  | 'curse'
+  | 'immobilize'
+  | 'muddle'
+  | 'poison'
+  | 'wound'
+  | 'bless'
+  | 'regenerate'
+  | 'strengthen'
+  | 'ward'
+  | 'hex-attack';
 
 export type EnhancementSlot = {
   type: EnhancementType;

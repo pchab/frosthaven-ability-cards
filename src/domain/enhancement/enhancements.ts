@@ -1,13 +1,10 @@
-import type { Enhancement } from './enhancement.type'
+import type { Enhancement, EnhancementSlot } from './enhancement.type'
 
-const squareList: string[] = [
+const squareList: Enhancement[] = [
     'jump',
     'plus-one',
 ];
-
-const squareEnhancements: Enhancement[] = squareList.map((name) => ({ type: 'square', name }));
-
-const circleList: string[] = [
+const circleList: Enhancement[] = [
     'air',
     'dark',
     'earth',
@@ -16,33 +13,33 @@ const circleList: string[] = [
     'light',
     'wild',
 ];
-const circleEnhancements: Enhancement[] = [...circleList, ...squareList]
-    .map((name) => ({ type: 'circle', name }));
-
-const diamondList: string[] = [
+const diamondList: Enhancement[] = [
     'curse',
     'immobilize',
     'muddle',
     'poison',
     'wound',
 ];
-const diamondEnhancements: Enhancement[] = [...circleList, ...squareList, ...diamondList]
-    .map((name) => ({ type: 'diamond', name }));
-
-const diamondPlusList: string[] = [
+const diamondPlusList: Enhancement[] = [
     'bless',
     'regenerate',
     'strengthen',
     'ward',
-]
-const diamondPlusEnhancements: Enhancement[] = [...circleList, ...squareList, ...diamondList, ...diamondPlusList]
-    .map((name) => ({ type: 'diamondPlus', name }));
-
-export const enhancements: Enhancement[] = [
-    ...circleEnhancements,
-    ...diamondEnhancements,
-    ...diamondPlusEnhancements,
-    ...squareEnhancements,
-    { type: 'hex', name: 'hex-attack' },
-    { type: 'summonSquare', name: 'plus-one' },
 ];
+
+export function getEnhancementByType(type: EnhancementSlot['type']): Enhancement[] {
+    switch (type) {
+        case 'square':
+            return squareList;
+        case 'circle':
+            return [...circleList, ...squareList];
+        case 'diamond':
+            return [...circleList, ...squareList, ...diamondList];
+        case 'diamondPlus':
+            return [...circleList, ...squareList, ...diamondList, ...diamondPlusList];
+        case 'hex':
+            return ['hex-attack'];
+        case 'summonSquare':
+            return ['plus-one'];
+    }
+}
