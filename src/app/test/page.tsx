@@ -14,7 +14,7 @@ import { snowdancer } from '@/domain/snowdancer/class';
 import { trapper } from '@/domain/trapper/class';
 import { CardComponent } from '../_components/cards/Card';
 import { CardActions } from '@/domain/cards.type';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, use } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Enhancement, EnhancementSlot } from '@/domain/enhancement/enhancement.type';
 import { bannerSpearCards } from '@/domain/banner-spear/cards';
@@ -51,15 +51,21 @@ function getTestEnhancement(type: EnhancementSlot['type']): Enhancement {
   return 'plus-one';
 }
 
-export default function TestCard({ searchParams: {
-  className = bannerSpear.name,
-  cardName = bannerSpearCards[0].name,
-} }: {
-  searchParams: {
-    className: string;
-    cardName: string;
+export default function TestCard(
+  props: {
+    searchParams: Promise<{
+      className: string;
+      cardName: string;
+    }>
   }
-}) {
+) {
+  const searchParams = use(props.searchParams);
+
+  const {
+    className = bannerSpear.name,
+    cardName = bannerSpearCards[0].name
+  } = searchParams;
+
   const allClasses = [
     bannerSpear,
     blinkblade,
