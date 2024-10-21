@@ -33,8 +33,8 @@ export default function ActionWheel({
                 : actions.length > 6
                   ? 80
                   : 50;
-              const x = radius * Math.cos((angle * Math.PI) / 180)
-              const y = radius * Math.sin((angle * Math.PI) / 180)
+              const x = - radius * Math.cos((angle * Math.PI) / 180)
+              const y = - radius * Math.sin((angle * Math.PI) / 180)
 
               return (
                 <motion.button
