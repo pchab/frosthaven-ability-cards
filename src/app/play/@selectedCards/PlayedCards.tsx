@@ -70,8 +70,8 @@ export default function PlayedCards<X extends Card>() {
 
   const getPlayableActions = (card: X) => [
     playDefaultAction(card),
-    playBottomAction(card),
     playTopAction(card),
+    playBottomAction(card),
   ];
 
   return <div className='flex gap-4 min-h-[266px]'>
