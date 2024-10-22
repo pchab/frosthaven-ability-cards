@@ -1,5 +1,3 @@
-'use client';
-
 import { CardActions, CardStatus, type Card } from '@/domain/cards.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useMemo } from 'react';
