@@ -4,7 +4,7 @@ import { type Card } from '@/domain/cards.type';
 import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { SelectedCards } from './SelectedCards';
 import CardPile from '../_components/cards/CardPile';
 import Image from 'next/image';
@@ -24,7 +24,7 @@ export function SelectCards<X extends Card>({
     maxHandSize: number;
     onRemoveCard: (card: X) => void;
     onEnchantCard: (card: X) => void;
-  }) => JSX.Element;
+  }) => ReactNode;
 }) {
   const level = useFrosthavenStore(state => state.level);
   const {
