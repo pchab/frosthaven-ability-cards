@@ -1,15 +1,13 @@
 'use client';
 
-import { isGeminate } from '@/domain/geminate/class';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
+import { isGeminate } from '@/domain/geminate/class';
+import { useClassHook } from '@/stores/class.store';
 import { SelectedGeminateCards } from '../_components/class/geminate/SelectedGeminateCards';
 import { SelectCards } from './SelectCards';
-import { useClassHook } from '@/stores/class.store';
-import { useRouter } from 'next/navigation';
 
 export default function SelectCardsClassWrapper() {
   const selectedClass = useClassHook();
-  const router = useRouter();
 
   if (!selectedClass) {
     return <></>;

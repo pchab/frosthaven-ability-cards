@@ -1,14 +1,13 @@
 'use client';
 
-import { type Card } from '@/domain/cards.type';
-import { useCards } from './useCards';
-import { useFrosthavenStore } from '@/stores/cards.store';
-import { isGeminate } from '@/domain/geminate/class';
 import ChangeForm from '@/app/_components/class/geminate/ChangeForm';
-import Button from '../_components/inputs/Button';
-import { useShallow } from 'zustand/shallow';
+import { type Card } from '@/domain/cards.type';
+import { isGeminate } from '@/domain/geminate/class';
+import { useFrosthavenStore } from '@/stores/cards.store';
 import { useClassHook } from '@/stores/class.store';
-import { useRouter } from 'next/navigation';
+import { useShallow } from 'zustand/shallow';
+import Button from '../_components/inputs/Button';
+import { useCards } from './useCards';
 
 export default function PlayStateHeader<X extends Card>() {
   const selectedClass = useClassHook();
@@ -23,7 +22,6 @@ export default function PlayStateHeader<X extends Card>() {
     undo,
     redo,
   } = useCards<X>();
-  const router = useRouter();
 
   if (!selectedClass) {
     return <></>;
