@@ -75,7 +75,8 @@ export const indexedDBStorage: StateStorage = {
           state: {
             ...state,
             cards: cards.map(departializeCard),
-            availableCards: availableCards.map(departializeCard),
+            availableCards: (availableCards.length === 0 ? selectedClass.cards : availableCards)
+              .map(departializeCard),
             states: states.map((state) => state.map(departializeCard)),
           }
         }));

@@ -42,7 +42,7 @@ export default function CardPile<X extends Card>({
   const minWidthValue = maxCardLength > 1 ? minWidthValues[maxCardLength - 1] : '';
 
   return <div
-    className={`flex flex-wrap gap-4 ml-24 min-h-card ${minWidthValue}`}
+    className={`flex gap-4 ml-24 min-h-card ${minWidthValue}`}
     onMouseLeave={() => setHoveredCardIndex(cards.length - 1)}
   >
     {cards

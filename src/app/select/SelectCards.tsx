@@ -4,7 +4,7 @@ import { type Card } from '@/domain/cards.type';
 import { type FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { SelectedCards } from './SelectedCards';
 import CardPile from '../_components/cards/CardPile';
 import Image from 'next/image';
@@ -34,28 +34,23 @@ export function SelectCards<X extends Card>({
     selectCards,
     enchantCard,
   } = useFrosthavenStore(useShallow((state) => ({
-    cards: state.cards,
+    cards: state.cards as X[],
     availableCards: state.availableCards as X[],
     setLevel: state.setLevel,
     selectCards: state.selectCards,
     enchantCard: state.enchantCard,
   })));
-  const [selectedCards, setSelectedCards] = useState<X[]>(cards as X[]);
   const router = useRouter();
   const allCards = availableCards.length > 0 ? availableCards : frosthavenClass.cards;
 
-  useEffect(() => {
-    setSelectedCards(cards as X[]);
-  }, [cards]);
-
   const selectCard = (card: X) => {
-    const newSelectedCards = [...selectedCards, card];
-    if (!selectedCards.includes(card) && checkHandSize(newSelectedCards)) {
-      setSelectedCards(newSelectedCards);
+    const newSelectedCards = [...cards, card];
+    if (!cards.includes(card) && checkHandSize(newSelectedCards)) {
+      selectCards(newSelectedCards);
     }
   };
 
-  const removeCard = (card: X) => setSelectedCards(selectedCards.filter(c => c !== card));
+  const removeCard = (card: X) => selectCards(cards.filter(({ name }) => name !== card.name));
 
   const selectAction = (card: X) => [{
     name: 'Select Card',
@@ -63,14 +58,15 @@ export function SelectCards<X extends Card>({
   }];
 
   const validateSelection = () => {
-    selectCards(selectedCards);
-    router.push('/play');
+    if (cards.length === frosthavenClass.handSize) {
+      router.push('/play');
+    }
   }
 
-  const filterRemainingCards = (card: X) => selectedCards.every((selectedCard) => selectedCard.path !== card.path);
+  const filterRemainingCards = (card: X) => cards.every(({ path }) => path !== card.path);
 
   const AvailableCardsByLevel = (level: Card['level']) => {
-    const levelCards = allCards.filter((card) => card.level === level);
+    const levelCards = allCards.filter((card) => level === card.level);
     return <BoardArea title={`Cards level ${level}`}>
       <CardPile
         key={`cards-level-${level}`}
@@ -99,7 +95,7 @@ export function SelectCards<X extends Card>({
     <div className='grid grid-cols-4 gap-4'>
       <div className='col-span-full'>
         {selectedCardComponent({
-          cards: selectedCards,
+          cards,
           onRemoveCard: removeCard,
           onEnchantCard: enchantCard,
           maxHandSize: frosthavenClass.handSize,
