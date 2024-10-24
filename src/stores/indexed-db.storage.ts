@@ -1,41 +1,9 @@
 import type { StateStorage } from 'zustand/middleware';
 import { getClass } from './class.store';
 import type { Card } from '@/domain/cards.type';
-import type { PersistedCard, PersistedState } from './cards.store';
+import type { PersistedCard } from './cards.store';
 import { FrosthavenClass } from '@/domain/frosthaven-class.type';
-
-const STORE_NAME = 'fh-cards-store';
-
-const db = (function () {
-  let instance: IDBDatabase;
-  return {
-    get: async function () {
-      if (instance) {
-        return instance;
-      }
-
-      return new Promise<IDBDatabase>((resolve) => {
-        const request = indexedDB.open(STORE_NAME, 1);
-
-        request.onsuccess = () => {
-          resolve(request.result);
-        };
-        request.onupgradeneeded = (event) => {
-          const db = (event.target as any).result;
-          db.createObjectStore(STORE_NAME);
-          resolve(db);
-        };
-      }).then((db) => {
-        instance = db;
-        return db;
-      });
-    }
-  };
-})();
-
-async function startTransaction() {
-  return (await db.get()).transaction(STORE_NAME, 'readwrite');
-}
+import { del, get, put, startTransaction } from './indexed-db';
 
 function departializeCardForClass<X extends Card>(fhClass: FrosthavenClass<X>) {
   return ({
@@ -61,25 +29,21 @@ export const indexedDBStorage: StateStorage = {
       return null;
     }
     const transaction = await startTransaction();
-    const request = transaction.objectStore(STORE_NAME).get(selectedClass.name);
+    const result = await get(transaction)(selectedClass.name);
+    if (!result) {
+      return null;
+    }
     const departializeCard = departializeCardForClass(selectedClass);
-    return new Promise((resolve) => {
-      transaction.oncomplete = () => {
-        if (!request.result) {
-          return resolve(null);
-        }
-        const {
-          state: { cards, availableCards, states, ...state },
-        } = JSON.parse(request.result) as { state: PersistedState };
-        resolve(JSON.stringify({
-          state: {
-            ...state,
-            cards: cards.map(departializeCard),
-            availableCards: (availableCards.length === 0 ? selectedClass.cards : availableCards)
-              .map(departializeCard),
-            states: states.map((state) => state.map(departializeCard)),
-          }
-        }));
+    const {
+      cards, availableCards, states, ...state
+    } = result;
+    return JSON.stringify({
+      state: {
+        ...state,
+        cards: cards.map(departializeCard),
+        availableCards: (availableCards.length === 0 ? selectedClass.cards : availableCards)
+          .map(departializeCard),
+        states: states.map((state) => state.map(departializeCard)),
       }
     });
   },
@@ -89,12 +53,7 @@ export const indexedDBStorage: StateStorage = {
       return;
     }
     const transaction = await startTransaction();
-    transaction.objectStore(STORE_NAME).put(value, selectedClass.name);
-    return new Promise((resolve) => {
-      transaction.oncomplete = () => {
-        resolve();
-      };
-    });
+    await put(transaction)(selectedClass.name, value);
   },
   removeItem: async (name: string): Promise<void> => {
     const selectedClass = await getClass();
@@ -102,11 +61,6 @@ export const indexedDBStorage: StateStorage = {
       return;
     }
     const transaction = await startTransaction();
-    transaction.objectStore(STORE_NAME).delete(selectedClass.name);
-    return new Promise((resolve) => {
-      transaction.oncomplete = () => {
-        resolve();
-      };
-    });
+    await del(transaction)(selectedClass.name);
   },
 };

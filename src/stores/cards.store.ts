@@ -32,7 +32,7 @@ export type PersistedState = {
   currentStateIndex: number;
   currentForm: GeminateForm;
 };
-function partializeCard<X extends Card>({
+export function partializeCard<X extends Card>({
   name,
   status,
   tokenPosition,
@@ -46,7 +46,7 @@ function partializeCard<X extends Card>({
   };
 }
 
-const initialState: AbilityCardsState = {
+export const initialState: AbilityCardsState = {
   level: 1,
   cards: [],
   availableCards: [],
