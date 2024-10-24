@@ -23,7 +23,7 @@ export function SelectCards<X extends Card>({
     cards: X[];
     maxHandSize: number;
     onRemoveCard: (card: X) => void;
-    onEnchantCard: (card: X) => void;
+    onEnhanceCard: (card: X) => void;
   }) => ReactNode;
 }) {
   const level = useFrosthavenStore(state => state.level);
@@ -32,13 +32,13 @@ export function SelectCards<X extends Card>({
     availableCards,
     setLevel,
     selectCards,
-    enchantCard,
+    enhanceCard,
   } = useFrosthavenStore(useShallow((state) => ({
     cards: state.cards as X[],
     availableCards: state.availableCards as X[],
     setLevel: state.setLevel,
     selectCards: state.selectCards,
-    enchantCard: state.enchantCard,
+    enhanceCard: state.enhanceCard,
   })));
   const router = useRouter();
   const allCards = availableCards.length > 0 ? availableCards : frosthavenClass.cards;
@@ -97,7 +97,7 @@ export function SelectCards<X extends Card>({
         {selectedCardComponent({
           cards,
           onRemoveCard: removeCard,
-          onEnchantCard: enchantCard,
+          onEnhanceCard: enhanceCard,
           maxHandSize: frosthavenClass.handSize,
         })}
       </div>

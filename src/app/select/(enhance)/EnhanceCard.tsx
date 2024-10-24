@@ -1,5 +1,5 @@
 import { CardComponent } from '@/app/_components/cards/Card';
-import EnchantSticker from '@/app/_components/cards/Enchant/EnchantSticker';
+import EnhanceSticker from '@/app/_components/cards/Enhance/EnhanceSticker';
 import Button from '@/app/_components/inputs/Button';
 import Modal from '@/app/_components/layout/Modal';
 import type { Card } from '@/domain/cards.type';
@@ -24,17 +24,17 @@ function drawCircleArea(hoverArea: HoverCircleArea, context: CanvasRenderingCont
   context.stroke();
 }
 
-export default function EnchantCardModal<X extends Card>({
+export default function EnhanceCardModal<X extends Card>({
   card,
-  onEnchantCard,
+  onEnhanceCard,
 }: {
   card: X;
-  onEnchantCard: (card: X) => void;
+  onEnhanceCard: (card: X) => void;
 }) {
   const [currentCard, setCard] = useState(card);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [currentEnchantSlot, setCurrentEnchantSlot] = useState<number>();
+  const [currentEnhanceSlot, setCurrentEnhanceSlot] = useState<number>();
 
   if (!card.availableEnhancements) {
     throw new Error('Card has no available enhancements');
@@ -46,16 +46,16 @@ export default function EnchantCardModal<X extends Card>({
     const context = canvas.getContext('2d');
     if (!context) return;
     context.reset();
-    if (currentEnchantSlot === undefined) return;
-    const currentSlot = card.availableEnhancements?.[currentEnchantSlot];
+    if (currentEnhanceSlot === undefined) return;
+    const currentSlot = card.availableEnhancements?.[currentEnhanceSlot];
     if (!currentSlot) return;
     drawCircleArea(currentSlot.position, context);
-  }, [currentEnchantSlot, card.availableEnhancements]);
+  }, [currentEnhanceSlot, card.availableEnhancements]);
 
-  const addEnchant = (index: number, enchantName: Enhancement | undefined) => {
+  const addEnhance = (index: number, enhanceName: Enhancement | undefined) => {
     const newCard = { ...currentCard };
     const newEnhancements = [...(newCard.enhancements ?? Array.from({ length: newCard.availableEnhancements?.length ?? 0 }))];
-    newEnhancements[index] = enchantName;
+    newEnhancements[index] = enhanceName;
     newCard.enhancements = newEnhancements;
     setCard(newCard);
   }
@@ -66,21 +66,21 @@ export default function EnchantCardModal<X extends Card>({
     if (!type) return [];
     return [...getEnhancementByType(type)
       .map((enhancement) => ({
-        name: <EnchantSticker enhancement={enhancement} position={{ x: 30, y: 30, size: 30 }} />,
-        onClick: () => addEnchant(slotIndex, enhancement),
+        name: <EnhanceSticker enhancement={enhancement} position={{ x: 30, y: 30, size: 30 }} />,
+        onClick: () => addEnhance(slotIndex, enhancement),
       })),
     {
-      name: 'Remove enchant',
-      onClick: () => addEnchant(slotIndex, undefined),
+      name: 'Remove enhance',
+      onClick: () => addEnhance(slotIndex, undefined),
     }];
   };
 
-  const mapName = ['enchant', ...card.name.split(' ')].join('-');
-  const getAreaName = (index: number) => ['enchant', ...card.name.split(' '), 'slot', index].join('-');
+  const mapName = ['enhance', ...card.name.split(' ')].join('-');
+  const getAreaName = (index: number) => ['enhance', ...card.name.split(' '), 'slot', index].join('-');
 
   return <Modal>
     <div className='flex flex-col gap-4'>
-      <CardComponent card={currentCard} mapName={mapName} actions={getEnhancementActions(currentEnchantSlot)}>
+      <CardComponent card={currentCard} mapName={mapName} actions={getEnhancementActions(currentEnhanceSlot)}>
         <canvas
           ref={canvasRef}
           className='absolute pointer-events-none'
@@ -93,12 +93,12 @@ export default function EnchantCardModal<X extends Card>({
               key={getAreaName(index)}
               coords={`${x},${y},${RADIUS}`}
               shape='circle'
-              onMouseEnter={() => setCurrentEnchantSlot(index)}
+              onMouseEnter={() => setCurrentEnhanceSlot(index)}
             />;
           })}
         </map>
       </CardComponent>
-      <Button onClick={() => onEnchantCard(currentCard)}>Enchant</Button>
+      <Button onClick={() => onEnhanceCard(currentCard)}>Enhance</Button>
     </div>
   </Modal>;
 }

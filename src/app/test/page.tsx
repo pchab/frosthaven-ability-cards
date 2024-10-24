@@ -110,10 +110,10 @@ export default function TestCard(
     router.replace(`/test?${searchParams.toString()}`);
   };
 
-  const addEnchant = (index: number, enchantName: Enhancement) => {
+  const addEnhance = (index: number, enhanceName: Enhancement) => {
     const newCard = { ...currentCard };
     const newEnhancements = [...(newCard.enhancements ?? Array.from({ length: newCard.availableEnhancements?.length ?? 0 }))];
-    const newEnhancement = enchantName;
+    const newEnhancement = enhanceName;
     newEnhancements[index] = newEnhancement;
     newCard.enhancements = newEnhancements;
     setCard(newCard);
@@ -174,10 +174,10 @@ export default function TestCard(
         <div>Top: {CardActions[currentCard.actions.top]}</div>
         <div>Bottom: {CardActions[currentCard.actions.bottom]}</div>
         <div className='flex flex-col gap-2'>
-          Enchant :
+          Enhance :
           {currentCard.availableEnhancements?.map((enhancement, index) => {
             const testEnhancement = getTestEnhancement(enhancement.type);
-            return <Button key={index} onClick={() => addEnchant(index, testEnhancement)}>{index}: {enhancement.type}</Button>;
+            return <Button key={index} onClick={() => addEnhance(index, testEnhancement)}>{index}: {enhancement.type}</Button>;
           })}
         </div>
       </div>

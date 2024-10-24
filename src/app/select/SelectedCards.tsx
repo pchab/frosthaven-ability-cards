@@ -2,37 +2,37 @@ import { type Card } from '@/domain/cards.type';
 import CardPile from '../_components/cards/CardPile';
 import BoardArea from '../_components/layout/BoardArea';
 import { useState } from 'react';
-import EnchantCardModal from './(enchant)/EnchantCard';
+import EnhanceCardModal from './(enhance)/EnhanceCard';
 
 export function SelectedCards<X extends Card>({
   cards,
   maxHandSize,
   onRemoveCard,
-  onEnchantCard,
+  onEnhanceCard,
 }: {
   cards: X[];
   maxHandSize: number;
   onRemoveCard: (card: X) => void;
-  onEnchantCard: (card: X) => void;
+  onEnhanceCard: (card: X) => void;
 }) {
-  const [enchantingCard, setEnchantingCard] = useState<X | null>(null);
+  const [enhanceingCard, setEnhanceingCard] = useState<X | null>(null);
 
   const removeAction = (card: X) => ({
     name: 'Remove Card',
     onClick: () => onRemoveCard(card),
   });
-  const enchantAction = (card: X) => ({
-    name: 'Enchant Card',
-    onClick: () => setEnchantingCard(card),
+  const enhanceAction = (card: X) => ({
+    name: 'Enhance Card',
+    onClick: () => setEnhanceingCard(card),
   });
   const actions = (card: X) => card.availableEnhancements
-    ? [removeAction(card), enchantAction(card)]
+    ? [removeAction(card), enhanceAction(card)]
     : [removeAction(card)];
 
   return <>
-    {enchantingCard && <EnchantCardModal card={enchantingCard} onEnchantCard={(card: X) => {
-      setEnchantingCard(null);
-      onEnchantCard(card);
+    {enhanceingCard && <EnhanceCardModal card={enhanceingCard} onEnhanceCard={(card: X) => {
+      setEnhanceingCard(null);
+      onEnhanceCard(card);
     }} />}
     <BoardArea title={`Selected Cards: ${cards.length}/${maxHandSize}`}>
       <CardPile

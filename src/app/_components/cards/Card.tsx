@@ -4,7 +4,7 @@ import { Card } from '@/domain/cards.type';
 import Image from 'next/image';
 import { useState, type ReactNode } from 'react';
 import ActionWheel, { type WheelAction } from './ActionWheel';
-import EnchantSticker from './Enchant/EnchantSticker';
+import EnhanceSticker from './Enhance/EnhanceSticker';
 
 export function CardComponent<X extends Card>({
   card,
@@ -45,12 +45,12 @@ export function CardComponent<X extends Card>({
     {card.availableEnhancements && card.availableEnhancements.map(({ position }, index) => {
       const enhancement = card.enhancements?.[index];
       return enhancement
-        ? <EnchantSticker
-          key={`${card.name}-enchant-slot-${index}`}
+        ? <EnhanceSticker
+          key={`${card.name}-enhance-slot-${index}`}
           enhancement={enhancement}
           position={position}
         />
-        : <div key={`${card.name}-enchant-slot-${index}`}></div>;
+        : <div key={`${card.name}-enhance-slot-${index}`}></div>;
     })}
   </div>;
 }
