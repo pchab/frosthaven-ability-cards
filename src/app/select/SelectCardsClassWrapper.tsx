@@ -17,8 +17,8 @@ export default function SelectCardsClassWrapper() {
     ? <SelectCards
       frosthavenClass={selectedClass}
       checkHandSize={(cards: GeminateCard[]) => (
-        cards.filter((card) => card.form === GeminateForm.melee).length <= selectedClass.handSize
-        && cards.filter((card) => card.form === GeminateForm.ranged).length <= selectedClass.handSize
+        cards.filter((card) => card.form === GeminateForm.melee).length <= selectedClass.handSize / 2
+        && cards.filter((card) => card.form === GeminateForm.ranged).length <= selectedClass.handSize / 2
       )}
       selectedCardComponent={SelectedGeminateCards}
     />

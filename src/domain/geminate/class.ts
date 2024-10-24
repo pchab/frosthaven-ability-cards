@@ -8,7 +8,7 @@ export function isGeminate(frosthavenClass: FrosthavenClass<Card>): frosthavenCl
 
 export const geminate: FrosthavenClass<GeminateCard> = {
   name: FrosthavenClassNames.Geminate,
-  handSize: 7,
+  handSize: 14,
   path: '/geminate/icons/fh-geminate-color-icon.png',
   iconSize: { width: 58, height: 60 },
   cards: geminateCards,

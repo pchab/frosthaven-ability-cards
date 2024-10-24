@@ -38,19 +38,19 @@ export function SelectedGeminateCards({
       onEnhanceCard(card);
     }} />}
     <div key={'geminate-melee-cards'} className='flex flex-col gap-4'>
-      <p className='text-lg'>Melee form: {meleeCards.length}/{maxHandSize}</p>
+      <p className='text-lg'>Melee form: {meleeCards.length}/{maxHandSize / 2}</p>
       <CardPile
         cards={meleeCards}
         actions={actions}
-        maxCardLength={maxHandSize}
+        maxCardLength={maxHandSize / 2}
       />
     </div>
     <div key={'geminate-ranged-cards'} className='flex flex-col gap-4'>
-      <p className='text-lg'>Ranged form: {rangedCards.length}/{maxHandSize}</p>
+      <p className='text-lg'>Ranged form: {rangedCards.length}/{maxHandSize / 2}</p>
       <CardPile
         cards={rangedCards}
         actions={actions}
-        maxCardLength={maxHandSize}
+        maxCardLength={maxHandSize / 2}
       />
     </div>
   </div>;
