@@ -32,12 +32,14 @@ export function SelectCards<X extends Card>({
     availableCards,
     setLevel,
     selectCards,
+    validateCardSelection,
     enhanceCard,
   } = useFrosthavenStore(useShallow((state) => ({
     cards: state.cards as X[],
     availableCards: state.availableCards as X[],
     setLevel: state.setLevel,
     selectCards: state.selectCards,
+    validateCardSelection: state.validateCardSelection,
     enhanceCard: state.enhanceCard,
   })));
   const router = useRouter();
@@ -59,6 +61,7 @@ export function SelectCards<X extends Card>({
 
   const validateSelection = () => {
     if (cards.length === frosthavenClass.handSize) {
+      validateCardSelection();
       router.push('/play');
     }
   }

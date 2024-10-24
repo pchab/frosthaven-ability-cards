@@ -17,6 +17,7 @@ type AbilityCardsActions = {
   setLevel: (level: number) => void;
   selectCards: (cards: Card[]) => void;
   enhanceCard: (card: Card) => void;
+  validateCardSelection: () => void;
   setStateIndex: (index: number) => void;
   updateStates: <X extends Card>(states: X[][]) => void;
   setForm: (form: GeminateForm) => void;
@@ -60,6 +61,7 @@ export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions
       ...initialState,
       setLevel: (level: number) => set({ level }),
       selectCards: (cards: Card[]) => set({ cards, states: [cards], currentStateIndex: 0 }),
+      validateCardSelection: () => set(({ cards }) => ({ states: [cards], currentStateIndex: 0 })),
       enhanceCard: (card: Card) => set(({ cards, availableCards }) => ({
         cards: cards.with(cards.findIndex(({ name }) => name === card.name), card),
         availableCards: availableCards.with(availableCards.findIndex(({ name }) => name === card.name), card),
