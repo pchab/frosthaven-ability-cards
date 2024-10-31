@@ -19,6 +19,7 @@ import { useRouter } from 'next/navigation';
 import type { Enhancement, EnhancementSlot } from '@/domain/enhancement/enhancement.type';
 import { bannerSpearCards } from '@/domain/banner-spear/cards';
 import Button from '../_components/inputs/Button';
+import {pyroclast} from "@/domain/pyroclast/class";
 
 const RADIUS = 5;
 
@@ -77,6 +78,7 @@ export default function TestCard(
     fist,
     hive,
     painConduit,
+    pyroclast,
     snowdancer,
     trapper,
   ];
