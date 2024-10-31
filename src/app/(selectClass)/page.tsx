@@ -8,6 +8,7 @@ import { fist } from '@/domain/fist/class';
 import { geminate } from '@/domain/geminate/class';
 import { hive } from '@/domain/hive/class';
 import { painConduit } from "@/domain/pain-conduit/class";
+import { pyroclast } from "@/domain/pyroclast/class";
 import { snowdancer } from '@/domain/snowdancer/class';
 import { trapper } from '@/domain/trapper/class';
 import Image from 'next/image';
@@ -27,6 +28,7 @@ export default function SelectClassPage() {
     fist,
     hive,
     painConduit,
+    pyroclast,
     snowdancer,
     trapper,
   ];

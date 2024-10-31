@@ -8,6 +8,7 @@ import { fist } from './fist/class';
 import { geminate } from './geminate/class';
 import { hive } from './hive/class';
 import { painConduit } from './pain-conduit/class';
+import { pyroclast } from "@/domain/pyroclast/class";
 import { snowdancer } from './snowdancer/class';
 import { trapper } from './trapper/class';
 
@@ -24,6 +25,7 @@ const unlockedClasses = [
   fist,
   hive,
   painConduit,
+  pyroclast,
   snowdancer,
   trapper,
 ];
