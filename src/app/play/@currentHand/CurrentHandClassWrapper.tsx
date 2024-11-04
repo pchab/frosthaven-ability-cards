@@ -12,7 +12,7 @@ export default function CurrentHandClassWrapper() {
   const currentForm = useFrosthavenStore(useShallow((state) => state.currentForm));
 
   if (!selectedClass) {
-    return <></>;
+    return <CurrentHand />;
   }
 
   return <CurrentHand

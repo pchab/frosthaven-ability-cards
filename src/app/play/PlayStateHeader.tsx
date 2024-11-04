@@ -23,12 +23,8 @@ export default function PlayStateHeader<X extends Card>() {
     redo,
   } = useCards<X>();
 
-  if (!selectedClass) {
-    return <></>;
-  }
-
   return <>
-    {isGeminate(selectedClass) && <ChangeForm form={currentForm} setForm={setForm} />}
+    {selectedClass && isGeminate(selectedClass) && <ChangeForm form={currentForm} setForm={setForm} />}
     <Button onClick={undo}>Undo</Button>
     <Button onClick={redo}>Redo</Button>
   </>;
