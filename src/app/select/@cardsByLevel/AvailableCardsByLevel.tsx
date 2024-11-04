@@ -1,9 +1,11 @@
+'use client';
+
 import CardPile from '@/app/_components/cards/CardPile';
 import BoardArea from '@/app/_components/layout/BoardArea';
 import type { Card } from '@/domain/cards.type';
-import { useSelectCards } from '../useSelectCards';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useShallow } from 'zustand/shallow';
+import { useSelectCards } from '../useSelectCards';
 
 export default function AvailableCardsByLevel<X extends Card>({
   level,

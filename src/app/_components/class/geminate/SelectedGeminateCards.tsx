@@ -1,11 +1,13 @@
-import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
-import CardPile from '../../cards/CardPile';
-import { useState } from 'react';
+'use client';
+
 import EnhanceCardModal from '@/app/select/(enhance)/EnhanceCard';
 import { useSelectCards } from '@/app/select/useSelectCards';
+import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { geminate } from '@/domain/geminate/class';
 import { useFrosthavenStore } from '@/stores/cards.store';
+import { useState } from 'react';
 import { useShallow } from 'zustand/shallow';
+import CardPile from '../../cards/CardPile';
 
 export function SelectedGeminateCards() {
   const cards = useFrosthavenStore(useShallow((state) => state.cards as GeminateCard[]));

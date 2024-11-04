@@ -1,3 +1,5 @@
+'use client';
+
 import type { Card } from '@/domain/cards.type';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { geminate, isGeminateCards } from '@/domain/geminate/class';

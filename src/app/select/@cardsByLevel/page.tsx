@@ -1,7 +1,7 @@
 'use client';
 
-import AvailableCardsByLevel from './AvailableCardsByLevel';
 import { useFrosthavenStore } from '@/stores/cards.store';
+import AvailableCardsByLevel from './AvailableCardsByLevel';
 
 export default function CardsByLevelPage() {
   const level = useFrosthavenStore((state) => state.level);

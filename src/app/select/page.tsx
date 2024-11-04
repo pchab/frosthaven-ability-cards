@@ -1,11 +1,11 @@
 'use client';
 
-import Image from 'next/image';
-import Button from '../_components/inputs/Button';
-import { useSelectCards } from './useSelectCards';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useClassHook } from '@/stores/class.store';
+import Image from 'next/image';
 import { useShallow } from 'zustand/shallow';
+import Button from '../_components/inputs/Button';
+import { useSelectCards } from './useSelectCards';
 
 export default function SelectCardsHeader() {
   const fhClass = useClassHook();
@@ -14,9 +14,7 @@ export default function SelectCardsHeader() {
     setLevel: state.setLevel,
   })));
   const { validateSelection } = useSelectCards();
-  const {
-    name = '',
-  } = fhClass ?? {};
+  const { name = '' } = fhClass ?? {};
 
   return <>
     <p>{name}</p>
