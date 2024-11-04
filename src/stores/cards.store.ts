@@ -21,6 +21,7 @@ type AbilityCardsActions = {
   setStateIndex: (index: number) => void;
   updateStates: <X extends Card>(states: X[][]) => void;
   setForm: (form: GeminateForm) => void;
+  reset: () => void;
 }
 
 export type PersistedCard = Pick<Card, 'name' | 'status' | 'tokenPosition' | 'enhancements'>;
@@ -69,6 +70,14 @@ export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions
       updateStates: <X extends Card>(states: X[][]) => set({ states, currentStateIndex: states.length - 1 }),
       setStateIndex: (index: number) => set({ currentStateIndex: index }),
       setForm: (currentForm: GeminateForm) => set({ currentForm }),
+      reset: async () => {
+        const stateString = await indexedDBStorage.getItem('');
+        if (!stateString) {
+          return set(initialState);
+        }
+        const { state } = JSON.parse(stateString) as { state: AbilityCardsState };
+        set(state);
+      },
     }),
     {
       name: 'fh-ability-cards',

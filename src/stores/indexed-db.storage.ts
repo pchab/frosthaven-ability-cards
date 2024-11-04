@@ -24,7 +24,7 @@ function departializeCardForClass<X extends Card>(fhClass: FrosthavenClass<X>) {
 
 export const indexedDBStorage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
-    const selectedClass = await getClass();
+    const selectedClass = getClass();
     if (!selectedClass) {
       return null;
     }
