@@ -6,6 +6,10 @@ export function isGeminate(frosthavenClass: FrosthavenClass<Card>): frosthavenCl
   return frosthavenClass.name === FrosthavenClassNames.Geminate;
 }
 
+export function isGeminateCards(fhClass: FrosthavenClass<Card>, cards: Card[]): cards is GeminateCard[] {
+  return isGeminate(fhClass);
+}
+
 export const geminate: FrosthavenClass<GeminateCard> = {
   name: FrosthavenClassNames.Geminate,
   handSize: 14,

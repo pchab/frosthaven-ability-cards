@@ -55,7 +55,6 @@ export default function PlayedCards<X extends Card>() {
     onClick: () => selectAction('default')(card),
   });
 
-
   const endTurn = () => {
     if (areAllActionsSelected(selectedActions)) {
       const [firstCard, secondCard] = selectedCards;
