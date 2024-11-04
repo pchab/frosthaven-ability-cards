@@ -29,7 +29,7 @@ export default function RootLayout({
         }}
       >
         <SpeedInsights />
-        <main>
+        <main role='main'>
           <MenuButton />
           {children}
         </main>
