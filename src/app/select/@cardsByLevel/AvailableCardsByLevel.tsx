@@ -12,12 +12,8 @@ export default function AvailableCardsByLevel<X extends Card>({
 }: {
   level: X['level'];
 }) {
-  const { availableCards, cards } = useFrosthavenStore(useShallow((state) => ({
-    availableCards: state.availableCards as X[],
-    cards: state.cards as X[],
-  })));
-
-  const { selectCard } = useSelectCards<X>();
+  const availableCards = useFrosthavenStore(useShallow((state) => state.availableCards as X[]));
+  const { cards, selectCard } = useSelectCards<X>();
   const selectAction = (card: X) => [{
     name: 'Select Card',
     onClick: () => selectCard(card),
@@ -28,7 +24,6 @@ export default function AvailableCardsByLevel<X extends Card>({
 
   return <BoardArea title={`Cards level ${level}`}>
     <CardPile
-      key={`cards-level-${level}`}
       cards={levelCards.filter(filterRemainingCards)}
       actions={selectAction}
       maxCardLength={levelCards.length}

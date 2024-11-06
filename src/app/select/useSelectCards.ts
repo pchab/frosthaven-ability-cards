@@ -23,7 +23,6 @@ export function useSelectCards<X extends Card>() {
     enhanceCard,
   } = useFrosthavenStore(useShallow((state) => ({
     cards: state.cards as X[],
-    setLevel: state.setLevel,
     selectCards: state.selectCards,
     validateCardSelection: state.validateCardSelection,
     enhanceCard: state.enhanceCard,
@@ -53,6 +52,7 @@ export function useSelectCards<X extends Card>() {
   };
 
   return {
+    cards,
     selectCard,
     removeCard,
     validateSelection,

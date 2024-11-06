@@ -21,13 +21,15 @@ const minWidthValues = [
   'min-w-cards-14',
 ];
 
+export type PileActions<X extends Card> = (card: X) => WheelAction[];
+
 export default function CardPile<X extends Card>({
   cards,
   actions,
   maxCardLength = 1,
 }: {
   cards: X[];
-  actions: (card: X) => WheelAction[];
+  actions: PileActions<X>;
   maxCardLength?: number;
 }) {
   const [hoveredCardIndex, setHoveredCardIndex] = useState<number>(cards.length - 1);
