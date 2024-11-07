@@ -8,7 +8,7 @@ import { getGameState } from '@/stores/game.store';
 import { getClass } from '@/stores/class.store';
 
 
-type WsGameStateUpdate = (state: Partial<CharacterState>, info: string) => void
+type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void
 export const WebSocketContext = createContext<WsGameStateUpdate | null>(null);
 
 export default function MenuContext({ children }: { children: ReactNode }) {
@@ -16,7 +16,7 @@ export default function MenuContext({ children }: { children: ReactNode }) {
   const [secretariatId, setSecretariatId] = useState<string>('');
   const [isConnectModalOpen, setConnectModalOpen] = useState(false);
 
-  const updateGameState = (state: Partial<CharacterState>, info: string) => {
+  const updateGameState = (state: Partial<CharacterState>, info: string[]) => {
     if (!wsClient) return;
     const oldGameState = getGameState();
     if (!oldGameState) return;
@@ -37,8 +37,8 @@ export default function MenuContext({ children }: { children: ReactNode }) {
         ...state,
       }),
     }
-
-    wsClient.send(`{"code":"${secretariatId}","password":"${secretariatId}","type":"game","payload":${JSON.stringify(newGameState)},"revision":0,"undoinfo":[${info}],"undolength":1}`)
+    info.splice(1, 0, fhClass.name);
+    wsClient.send(`{"code":"${secretariatId}","password":"${secretariatId}","type":"game","payload":${JSON.stringify(newGameState)},"revision":0,"undoinfo":${JSON.stringify(info)}],"undolength":1}`)
   }
 
   return <WebSocketContext value={updateGameState}>
