@@ -59,11 +59,10 @@ export default function PlayedCards<X extends Card>() {
   const selectInitiative = (card: X) => ({
     name: 'Select Initiative',
     onClick: () => {
-      updateGameState && updateGameState({ initiative: 37 }, JSON.stringify([
+      updateGameState && updateGameState({ initiative: 37 }, [ // use initiative from card
         "setInitiative",
-        "Drift",
         "37",
-      ]));
+      ]);
     }
   })
 
