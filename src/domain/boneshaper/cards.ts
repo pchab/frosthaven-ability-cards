@@ -12,6 +12,7 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'diamond', position: { x: 46, y: 37 } },
       { type: 'square', position: { x: 91, y: 152 } },
     ],
+    initiative: 53,
   },
   {
     level: 'X',
@@ -20,6 +21,7 @@ export const boneshaperCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 41, y: 50 } },
     ],
+    initiative: 21,
   },
   {
     level: 'X',
@@ -29,7 +31,8 @@ export const boneshaperCards: Card[] = createCards([
       { x: 37, y: 158 },
       { x: 67, y: 158 },
       { x: 97, y: 158 },
-    ]
+    ],
+    initiative: 80,
   },
   {
     level: 1,
@@ -43,11 +46,13 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 99, y: 49 } },
       { type: 'summonSquare', position: { x: 99, y: 64 } },
     ],
+    initiative: 76,
   },
   {
     level: 1,
     name: 'command the wretched',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
+    initiative: 83,
   },
   {
     level: 1,
@@ -60,6 +65,7 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'square', position: { x: 71, y: 151 } },
       { type: 'square', position: { x: 106, y: 151 } },
     ],
+    initiative: 71,
   },
   {
     level: 1,
@@ -68,6 +74,7 @@ export const boneshaperCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 152 } },
     ],
+    initiative: 43,
   },
   {
     level: 1,
@@ -76,11 +83,13 @@ export const boneshaperCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 65, y: 41 } },
     ],
+    initiative: 46,
   },
   {
     level: 1,
     name: 'eternal torment',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
+    initiative: 70,
   },
   {
     level: 1,
@@ -89,6 +98,7 @@ export const boneshaperCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 57, y: 43 } },
     ],
+    initiative: 30,
   },
   {
     level: 1,
@@ -98,6 +108,7 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'circle', position: { x: 91, y: 135 } },
       { type: 'square', position: { x: 91, y: 168 } },
     ],
+    initiative: 18,
   },
   {
     level: 1, name: 'life in death',
@@ -112,6 +123,7 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 115, y: 43 } },
       { type: 'summonSquare', position: { x: 71, y: 58 } },
     ],
+    initiative: 91,
   },
   {
     level: 1,
@@ -120,6 +132,7 @@ export const boneshaperCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 33 } },
     ],
+    initiative: 26,
   },
   {
     level: 1,
@@ -131,11 +144,13 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 71, y: 58 } },
       { type: 'circle', position: { x: 90, y: 151 } },
     ],
+    initiative: 81,
   },
   {
     level: 1,
     name: 'transfer of essence',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
+    initiative: 62,
   },
   {
     level: 2,
@@ -145,6 +160,7 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'diamond', position: { x: 73, y: 46 } },
       { type: 'square', position: { x: 88, y: 126 } },
     ],
+    initiative: 29,
   },
   {
     level: 2,
@@ -155,6 +171,7 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 115, y: 48 } },
       { type: 'summonSquare', position: { x: 71, y: 64 } },
     ],
+    initiative: 94,
   },
   {
     level: 3,
@@ -165,16 +182,19 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 115, y: 43 } },
       { type: 'summonSquare', position: { x: 71, y: 59 } },
     ],
+    initiative: 96,
   },
   {
     level: 3,
     name: 'putrid cloud',
     actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    initiative: 28,
   },
   {
     level: 4,
     name: 'critical failure',
     actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    initiative: 95,
   },
   {
     level: 4,
@@ -185,7 +205,8 @@ export const boneshaperCards: Card[] = createCards([
     ],
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 89, y: 71 } },
-    ]
+    ],
+    initiative: 16,
   },
   {
     level: 5,
@@ -193,7 +214,8 @@ export const boneshaperCards: Card[] = createCards([
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
     availableEnhancements: [
       { type: 'square', position: { x: 92, y: 149 } },
-    ]
+    ],
+    initiative: 32,
   },
   {
     level: 5,
@@ -204,6 +226,7 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 99, y: 43 } },
       { type: 'summonSquare', position: { x: 65, y: 59 } },
     ],
+    initiative: 98,
   },
   {
     level: 6,
@@ -214,6 +237,7 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 115, y: 43 } },
       { type: 'summonSquare', position: { x: 71, y: 59 } },
     ],
+    initiative: 66,
   },
   {
     level: 6,
@@ -222,6 +246,7 @@ export const boneshaperCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 58, y: 151 } },
     ],
+    initiative: 85,
   },
   {
     level: 7, name: 'recycled limbs',
@@ -231,6 +256,7 @@ export const boneshaperCards: Card[] = createCards([
       { x: 67, y: 161 },
       { x: 97, y: 161 },
     ],
+    initiative: 52,
   },
   {
     level: 7, name: 'soul claim',
@@ -240,6 +266,7 @@ export const boneshaperCards: Card[] = createCards([
       { x: 67, y: 65 },
       { x: 97, y: 65 },
     ],
+    initiative: 23,
   },
   {
     level: 8,
@@ -250,6 +277,7 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 93, y: 35 } },
       { type: 'summonSquare', position: { x: 63, y: 51 } },
     ],
+    initiative: 86,
   },
   {
     level: 8,
@@ -261,11 +289,13 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'circle', position: { x: 90, y: 134 } },
       { type: 'diamondPlus', position: { x: 56, y: 156 } },
     ],
+    initiative: 73,
   },
   {
     level: 9,
     name: 'behold the shrouded sun',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard }
+    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    initiative: 10,
   },
   {
     level: 9,
@@ -277,5 +307,6 @@ export const boneshaperCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 71, y: 52 } },
       { type: 'summonSquare', position: { x: 115, y: 52 } },
     ],
+    initiative: 97,
   },
 ], boneshaperPath);
