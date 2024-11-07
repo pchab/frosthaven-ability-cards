@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import Heading from '../_components/layout/Heading';
 
 export default function PlayLayout({
   children,
@@ -17,7 +18,7 @@ export default function PlayLayout({
 }) {
   return (
     <div className='h-full p-2 flex flex-row'>
-
+      <Heading title='Play your cards' />
       <div className='h-full basis-2/3'>
         {currentHand}
         {discardedCards}

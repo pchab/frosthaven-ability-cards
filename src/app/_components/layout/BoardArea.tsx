@@ -9,7 +9,7 @@ export default function BoardArea({
 }) {
   return <div className='m-2 border-solid border-l-2 rounded-lg w-full'>
     <div className='flex'>
-      <p className='text-lg px-2 bg-slate-700 border-t-2 border-r-2 rounded-t-lg'>{title}</p>
+      <h2 className='text-lg px-2 bg-slate-700 border-t-2 border-r-2 rounded-t-lg'>{title}</h2>
       <div className='grow bg-transparent border-b-2 mr-2'></div>
     </div>
     <div className='p-2 border-r-2 border-b-2 rounded-tr-lg rounded-b-lg bg-gradient-to-r from-slate-700 to-blue-300'>

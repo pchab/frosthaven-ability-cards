@@ -21,7 +21,7 @@ function newStatusAfterAction(cardActions: Card['actions'], action: Action): Car
   }
 }
 
-function getActiveAction(cardStatus: Card['status']) {
+function getActiveAction(cardStatus: Card['status']): keyof Card['actions'] {
   if (cardStatus === CardStatus.activeTop) {
     return 'top';
   }
