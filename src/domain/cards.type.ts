@@ -31,7 +31,7 @@ export type Card = {
     top: CardActions;
     bottom: CardActions;
   };
-  initiative?: number;
+  initiative: number;
   slots?: SlotArea[];
   tokenPosition?: number;
   availableEnhancements?: EnhancementSlot[];
