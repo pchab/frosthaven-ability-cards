@@ -7,6 +7,7 @@ import { createContext, useEffect, useState, type ReactNode } from 'react';
 import MenuButton from './MenuButton';
 import ConnectModal from './_components/secretary/ConnectModal';
 import { connectToSecretary } from './_components/secretary/webSocketClient';
+import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
 
 
 type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void
@@ -29,7 +30,7 @@ export default function MenuContext({ children }: { children: ReactNode }) {
       ...rest
     } = oldGameState;
     const currentCharacterIndex = characters
-      .findIndex(({ name }) => name === fhClass.name.toLowerCase());
+      .findIndex(({ name }) => name === mapCharacterNameToSecretary(fhClass.name));
 
     const newGameState = {
       ...rest,
