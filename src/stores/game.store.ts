@@ -1,4 +1,4 @@
-import type { GameState } from '@/domain/secretariat/game.state';
+import type { GameState } from '@/domain/secretary/game.state';
 
 export function getGameState() {
   if (!window.localStorage) {

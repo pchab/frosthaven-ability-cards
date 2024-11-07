@@ -1,12 +1,12 @@
 'use client';
 
+import type { CharacterState } from '@/domain/secretary/game.state';
+import { getClass } from '@/stores/class.store';
+import { getGameState } from '@/stores/game.store';
 import { createContext, useEffect, useState, type ReactNode } from 'react';
 import MenuButton from './MenuButton';
-import ConnectModal from './_components/secretariat/ConnectModal';
-import type { CharacterState } from '@/domain/secretariat/game.state';
-import { getGameState } from '@/stores/game.store';
-import { getClass } from '@/stores/class.store';
-import { connectToSecretariat } from './_components/secretariat/webSocketClient';
+import ConnectModal from './_components/secretary/ConnectModal';
+import { connectToSecretary } from './_components/secretary/webSocketClient';
 
 
 type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void
@@ -14,7 +14,7 @@ export const WebSocketContext = createContext<WsGameStateUpdate | null>(null);
 
 export default function MenuContext({ children }: { children: ReactNode }) {
   const [wsClient, setWsClient] = useState<WebSocket | null>(null);
-  const [secretariatId, setSecretariatId] = useState<string>('');
+  const [secretaryId, setSecretaryId] = useState<string>('');
   const [isConnectModalOpen, setConnectModalOpen] = useState(false);
 
   const updateGameState = (state: Partial<CharacterState>, info: string[]) => {
@@ -39,14 +39,14 @@ export default function MenuContext({ children }: { children: ReactNode }) {
       }),
     }
     info.splice(1, 0, fhClass.name);
-    wsClient.send(`{"code":"${secretariatId}","password":"${secretariatId}","type":"game","payload":${JSON.stringify(newGameState)},"revision":0,"undoinfo":${JSON.stringify(info)},"undolength":1}`)
+    wsClient.send(`{"code":"${secretaryId}","password":"${secretaryId}","type":"game","payload":${JSON.stringify(newGameState)},"revision":0,"undoinfo":${JSON.stringify(info)},"undolength":1}`)
   }
 
   useEffect(() => {
-    const id = localStorage.getItem('secretariat-id');
+    const id = localStorage.getItem('secretary-id');
     if (!id) return;
-    const client = connectToSecretariat(id);
-    setSecretariatId(id);
+    const client = connectToSecretary(id);
+    setSecretaryId(id);
     setWsClient(client);
     return () => client.close();
   }, []);
@@ -54,7 +54,7 @@ export default function MenuContext({ children }: { children: ReactNode }) {
   return <WebSocketContext value={updateGameState}>
     {isConnectModalOpen && <ConnectModal onConnect={({ client, id }) => {
       setWsClient(client);
-      setSecretariatId(id);
+      setSecretaryId(id);
       setConnectModalOpen(false);
     }} />}
     <MenuButton onOpenConnectModal={() => setConnectModalOpen(true)} />

@@ -35,7 +35,7 @@ export default function MenuButton({
         <div onClick={() => {
           onOpenConnectModal();
           setIsMenuOpen(false);
-        }}>Connect to GH secretariat</div>
+        }}>Connect to GH secretary</div>
       </motion.div>}
     </AnimatePresence>
   </div >;
