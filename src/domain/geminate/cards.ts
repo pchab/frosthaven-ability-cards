@@ -15,6 +15,7 @@ export const geminateCards: GeminateCard[] = createCards([
     name: 'feeding frenzy',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
     form: GeminateForm.melee,
+    initiative: 62,
   },
   {
     level: 'X',
@@ -25,12 +26,14 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'square', position: { x: 91, y: 40 }, },
       { type: 'diamond', position: { x: 90, y: 138 }, },
     ],
+    initiative: 38,
   },
   {
     level: 'X',
     name: 'reshape the guise',
     actions: { top: CardActions.discard, bottom: CardActions.activeLost },
     form: GeminateForm.ranged,
+    initiative: 38,
   },
   {
     level: 'X',
@@ -41,6 +44,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'diamond', position: { x: 61, y: 37 }, },
       { type: 'square', position: { x: 73, y: 164 }, },
     ],
+    initiative: 32,
   },
   {
     level: 1,
@@ -52,6 +56,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'diamond', position: { x: 89, y: 70 }, },
       { type: 'diamondPlus', position: { x: 70, y: 128 }, },
     ],
+    initiative: 40,
   },
   {
     level: 1,
@@ -63,6 +68,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'hex', position: { x: 89, y: 58, size: 14 }, },
       { type: 'square', position: { x: 74, y: 136 }, },
     ],
+    initiative: 34,
   },
   {
     level: 1,
@@ -73,6 +79,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'diamond', position: { x: 90, y: 37 }, },
       { type: 'square', position: { x: 74, y: 143 }, },
     ],
+    initiative: 72,
   },
   {
     level: 1,
@@ -84,6 +91,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'hex', position: { x: 120, y: 55, size: 15 }, },
       { type: 'hex', position: { x: 98, y: 67.5, size: 15 }, },
     ],
+    initiative: 12,
   },
   {
     level: 1,
@@ -99,6 +107,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 132 }, },
     ],
+    initiative: 20,
   },
   {
     level: 1,
@@ -108,6 +117,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 139 }, },
     ],
+    initiative: 23,
   },
   {
     level: 1,
@@ -118,12 +128,14 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'diamond', position: { x: 69, y: 46 }, },
       { type: 'square', position: { x: 89, y: 165 }, },
     ],
+    initiative: 14,
   },
   {
     level: 1,
     name: 'firefly swarm',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
     form: GeminateForm.ranged,
+    initiative: 76,
   },
   {
     level: 1,
@@ -133,6 +145,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 140 }, },
     ],
+    initiative: 88,
   },
   {
     level: 1,
@@ -143,6 +156,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'diamondPlus', position: { x: 69, y: 36 }, },
       { type: 'square', position: { x: 71, y: 164 }, },
     ],
+    initiative: 60,
   },
   {
     level: 1,
@@ -153,6 +167,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'diamond', position: { x: 52, y: 46 }, },
       { type: 'diamondPlus', position: { x: 64, y: 139 }, },
     ],
+    initiative: 36,
   },
   {
     level: 1,
@@ -162,6 +177,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 61, y: 141 }, },
     ],
+    initiative: 18,
   },
   {
     level: 1,
@@ -178,6 +194,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'square', position: { x: 108, y: 48 }, },
       { type: 'hex', position: { x: 42, y: 68, size: 15 }, },
     ],
+    initiative: 30,
   },
   {
     level: 1,
@@ -188,6 +205,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'diamondPlus', position: { x: 58, y: 48 }, },
       { type: 'square', position: { x: 90, y: 142 }, },
     ],
+    initiative: 27,
   },
   {
     level: 2,
@@ -197,6 +215,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 73, y: 152 }, },
     ],
+    initiative: 17,
   },
   {
     level: 2,
@@ -208,6 +227,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'square', position: { x: 89, y: 140 }, },
       { type: 'square', position: { x: 107, y: 140 }, },
     ],
+    initiative: 23,
   },
   {
     level: 3,
@@ -217,6 +237,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 127 }, },
     ],
+    initiative: 30,
   },
   {
     level: 3,
@@ -226,6 +247,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 62, y: 47 }, },
     ],
+    initiative: 50,
   },
   {
     level: 4,
@@ -238,6 +260,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'square', position: { x: 64, y: 143 }, },
       { type: 'square', position: { x: 100, y: 143 }, },
     ],
+    initiative: 43,
   },
   {
     level: 4,
@@ -249,6 +272,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'square', position: { x: 108, y: 48 }, },
       { type: 'circle', position: { x: 73, y: 134 }, },
     ],
+    initiative: 67,
   },
   {
     level: 5,
@@ -258,6 +282,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 74, y: 141 }, },
     ],
+    initiative: 75,
   },
   {
     level: 5,
@@ -267,6 +292,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 56 }, },
     ],
+    initiative: 15,
   },
   {
     level: 6,
@@ -278,6 +304,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'hex', position: { x: 91, y: 42, size: 15 }, },
       { type: 'square', position: { x: 89, y: 133 }, },
     ],
+    initiative: 28,
   },
   {
     level: 6,
@@ -287,6 +314,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 62, y: 147 }, },
     ],
+    initiative: 92,
   },
   {
     level: 7,
@@ -296,6 +324,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 35 }, },
     ],
+    initiative: 21,
   },
   {
     level: 7,
@@ -305,6 +334,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'hex', position: { x: 104, y: 59, size: 15 }, },
     ],
+    initiative: 49,
   },
   {
     level: 8,
@@ -315,6 +345,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'circle', position: { x: 90, y: 128 }, },
       { type: 'circle', position: { x: 108, y: 128 }, },
     ],
+    initiative: 85,
   },
   {
     level: 8,
@@ -326,6 +357,7 @@ export const geminateCards: GeminateCard[] = createCards([
       { type: 'diamond', position: { x: 71, y: 32 }, },
       { type: 'square', position: { x: 90, y: 134 }, },
     ],
+    initiative: 55,
   },
   {
     level: 9,
@@ -341,6 +373,7 @@ export const geminateCards: GeminateCard[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 168 }, },
     ],
+    initiative: 11,
   },
   {
     level: 9,
@@ -353,5 +386,6 @@ export const geminateCards: GeminateCard[] = createCards([
       { x: 81, y: 160 },
       { x: 110, y: 160 },
     ],
+    initiative: 39,
   },
 ], geminatePath);
