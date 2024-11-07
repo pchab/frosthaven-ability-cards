@@ -1,12 +1,12 @@
 import { WebSocketContext } from '@/app/MenuContext';
 import { isBlinkblade } from '@/domain/blinkblade/class';
 import type { Card } from '@/domain/cards.type';
-import { BlinkbladeSpeed } from '@/domain/secretariat/game.state';
+import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
 import { useClassHook } from '@/stores/class.store';
 import { getGameState } from '@/stores/game.store';
 import { use } from 'react';
 
-export default function useSecretariat<X extends Card>() {
+export default function useSecretary<X extends Card>() {
   const updateGameState = use(WebSocketContext);
   const currentClass = useClassHook();
 

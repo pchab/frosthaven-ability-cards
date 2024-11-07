@@ -5,7 +5,7 @@ import { CardComponent } from '../../_components/cards/Card';
 import { useCards, type Action } from '@/app/play/useCards';
 import { useState } from 'react';
 import Button from '@/app/_components/inputs/Button';
-import useSecretariat from '@/app/_components/secretariat/useSecretariat';
+import useSecretary from '@/app/_components/secretary/useSecretary';
 
 type SelectedActions = [
   Action | undefined,
@@ -22,7 +22,7 @@ export default function PlayedCards<X extends Card>() {
     playCards,
   } = useCards<X>();
   const [selectedActions, setSelectedActions] = useState<SelectedActions>([undefined, undefined]);
-  const { isConnected, setInitiative } = useSecretariat();
+  const { isConnected, setInitiative } = useSecretary();
 
   const selectedCards = currentCards
     .filter(card => card.status === CardStatus.selected);

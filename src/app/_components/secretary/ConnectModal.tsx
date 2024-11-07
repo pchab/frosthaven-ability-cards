@@ -1,7 +1,7 @@
 import Button from '../inputs/Button';
 import Modal from '../layout/Modal';
 import { useActionState } from 'react';
-import { connectToSecretariat } from './webSocketClient';
+import { connectToSecretary } from './webSocketClient';
 
 export default function ConnectModal({
   onConnect,
@@ -13,8 +13,8 @@ export default function ConnectModal({
 }) {
   const [, connect, isPending] = useActionState(
     async (_: any, formData: FormData) => {
-      const id = formData.get('secretariat-id')! as string;
-      const client = connectToSecretariat(id);
+      const id = formData.get('secretary-id')! as string;
+      const client = connectToSecretary(id);
 
       onConnect({ client, id });
     },
@@ -23,7 +23,8 @@ export default function ConnectModal({
 
   return <Modal>
     <form action={connect} className='flex flex-col gap-4 items-center'>
-      <input type='text' name='secretariat-id' placeholder='859b7dfd-c433-4afd-b18d-44d408786ea8' />
+      <label htmlFor='secretary-id'>Secretary ID</label>
+      <input className='bg-black min-w-96' type='text' name='secretary-id' placeholder='859b7dfd-c433-4afd-b18d-44d408786ea8' />
       <Button type='submit'>Connect</Button>
       {isPending && <p>Connecting...</p>}
     </form>
