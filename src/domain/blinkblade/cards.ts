@@ -16,11 +16,13 @@ export const blinkbladeCards: Card[] = createCards([
       { x: 58, y: 83 },
       { x: 88, y: 83 },
     ],
+    initiative: 2,
   },
   {
     level: 'X',
     name: 'experimental adjustment',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
+    initiative: 12,
   },
   {
     level: 'X',
@@ -29,6 +31,7 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 61, y: 129 } },
     ],
+    initiative: 52,
   },
   {
     level: 1,
@@ -38,6 +41,7 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'diamond', position: { x: 89, y: 46 } },
       { type: 'circle', position: { x: 89, y: 139 } },
     ],
+    initiative: 20,
   },
   {
     level: 1,
@@ -48,11 +52,13 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'circle', position: { x: 89, y: 59 } },
       { type: 'circle', position: { x: 89, y: 83 } },
     ],
+    initiative: 19,
   },
   {
     level: 1,
     name: 'drive recharge',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
+    initiative: 69,
   },
   {
     level: 1,
@@ -68,6 +74,7 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 73, y: 44 } },
     ],
+    initiative: 41,
   },
   {
     level: 1,
@@ -78,11 +85,13 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'diamond', position: { x: 90, y: 61 } },
       { type: 'circle', position: { x: 90, y: 130 } },
     ],
+    initiative: 36,
   },
   {
     level: 1,
     name: 'overdrive',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    initiative: 60,
   },
   {
     level: 1,
@@ -91,11 +100,13 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 131 } },
     ],
+    initiative: 17,
   },
   {
     level: 1,
     name: 'sap speed',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
+    initiative: 45,
   },
   {
     level: 1,
@@ -104,6 +115,7 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 151 } },
     ],
+    initiative: 44,
   },
   {
     level: 1,
@@ -114,6 +126,7 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'diamond', position: { x: 89, y: 84 } },
       { type: 'circle', position: { x: 89, y: 131 } },
     ],
+    initiative: 24,
   },
   {
     level: 2,
@@ -123,6 +136,7 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'diamond', position: { x: 89, y: 45 } },
       { type: 'circle', position: { x: 89, y: 128 } },
     ],
+    initiative: 10,
   },
   {
     level: 2,
@@ -131,6 +145,7 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 71, y: 46 } },
     ],
+    initiative: 57,
   },
   {
     level: 3,
@@ -145,6 +160,7 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'circle', position: { x: 89, y: 35 } },
       { type: 'diamond', position: { x: 89, y: 58 } },
     ],
+    initiative: 22,
   },
   {
     level: 3,
@@ -154,6 +170,7 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'circle', position: { x: 64, y: 34 } },
       { type: 'circle', position: { x: 89, y: 165 } },
     ],
+    initiative: 51,
   },
   {
     level: 4,
@@ -163,6 +180,7 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'diamond', position: { x: 95, y: 51 } },
       { type: 'circle', position: { x: 95, y: 145 } },
     ],
+    initiative: 32,
   },
   {
     level: 4,
@@ -172,6 +190,7 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'circle', position: { x: 89, y: 130 } },
       { type: 'circle', position: { x: 89, y: 180 } },
     ],
+    initiative: 15,
   },
   {
     level: 5,
@@ -186,6 +205,7 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 137 } },
     ],
+    initiative: 3,
   },
   {
     level: 5,
@@ -194,6 +214,7 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 60, y: 140 } },
     ],
+    initiative: 40,
   },
   {
     level: 6,
@@ -203,6 +224,7 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'circle', position: { x: 89, y: 59 } },
       { type: 'diamond', position: { x: 89, y: 90 } },
     ],
+    initiative: 4,
   },
   {
     level: 6,
@@ -211,6 +233,7 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 71, y: 137 } },
     ],
+    initiative: 65,
   },
   {
     level: 7,
@@ -219,6 +242,7 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 141 } },
     ],
+    initiative: 63,
   },
   {
     level: 7,
@@ -229,6 +253,7 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'circle', position: { x: 89, y: 144 } },
       { type: 'circle', position: { x: 89, y: 176 } },
     ],
+    initiative: 32,
   },
   {
     level: 8,
@@ -237,6 +262,7 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 151 } },
     ],
+    initiative: 1,
   },
   {
     level: 8,
@@ -246,6 +272,7 @@ export const blinkbladeCards: Card[] = createCards([
       { type: 'diamond', position: { x: 89, y: 39 } },
       { type: 'circle', position: { x: 89, y: 141 } },
     ],
+    initiative: 35,
   },
   {
     level: 9,
@@ -254,10 +281,12 @@ export const blinkbladeCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 134 } },
     ],
+    initiative: 55,
   },
   {
     level: 9,
     name: 'reverse the flow',
     actions: { top: CardActions.activeDiscard, bottom: CardActions.lose },
+    initiative: 58,
   },
 ], blinbladePath);

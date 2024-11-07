@@ -1,11 +1,12 @@
 'use client';
 
-import { createContext, useState, type ReactNode } from 'react';
+import { createContext, useEffect, useState, type ReactNode } from 'react';
 import MenuButton from './MenuButton';
 import ConnectModal from './_components/secretariat/ConnectModal';
 import type { CharacterState } from '@/domain/secretariat/game.state';
 import { getGameState } from '@/stores/game.store';
 import { getClass } from '@/stores/class.store';
+import { connectToSecretariat } from './_components/secretariat/webSocketClient';
 
 
 type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void
@@ -29,7 +30,7 @@ export default function MenuContext({ children }: { children: ReactNode }) {
     } = oldGameState;
     const currentCharacterIndex = characters
       .findIndex(({ name }) => name === fhClass.name.toLowerCase());
-    console.log({ characters, currentCharacterIndex, name: fhClass.name });
+
     const newGameState = {
       ...rest,
       characters: characters.with(currentCharacterIndex, {
@@ -38,8 +39,17 @@ export default function MenuContext({ children }: { children: ReactNode }) {
       }),
     }
     info.splice(1, 0, fhClass.name);
-    wsClient.send(`{"code":"${secretariatId}","password":"${secretariatId}","type":"game","payload":${JSON.stringify(newGameState)},"revision":0,"undoinfo":${JSON.stringify(info)}],"undolength":1}`)
+    wsClient.send(`{"code":"${secretariatId}","password":"${secretariatId}","type":"game","payload":${JSON.stringify(newGameState)},"revision":0,"undoinfo":${JSON.stringify(info)},"undolength":1}`)
   }
+
+  useEffect(() => {
+    const id = localStorage.getItem('secretariat-id');
+    if (!id) return;
+    const client = connectToSecretariat(id);
+    setSecretariatId(id);
+    setWsClient(client);
+    return () => client.close();
+  }, []);
 
   return <WebSocketContext value={updateGameState}>
     {isConnectModalOpen && <ConnectModal onConnect={({ client, id }) => {

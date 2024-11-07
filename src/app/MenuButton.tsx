@@ -32,7 +32,10 @@ export default function MenuButton({
         <Link type='submit' href='https://github.com/pchab/frosthaven-ability-cards/issues/new' target='_blank'>
           Report Issue
         </Link>
-        <div onClick={onOpenConnectModal}>Connect to GH secretariat</div>
+        <div onClick={() => {
+          onOpenConnectModal();
+          setIsMenuOpen(false);
+        }}>Connect to GH secretariat</div>
       </motion.div>}
     </AnimatePresence>
   </div >;

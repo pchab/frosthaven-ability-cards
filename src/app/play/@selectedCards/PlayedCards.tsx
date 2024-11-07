@@ -3,9 +3,9 @@
 import { CardStatus, type Card } from '@/domain/cards.type';
 import { CardComponent } from '../../_components/cards/Card';
 import { useCards, type Action } from '@/app/play/useCards';
-import { use, useState } from 'react';
+import { useState } from 'react';
 import Button from '@/app/_components/inputs/Button';
-import { WebSocketContext } from '@/app/MenuContext';
+import useSecretariat from '@/app/_components/secretariat/useSecretariat';
 
 type SelectedActions = [
   Action | undefined,
@@ -22,7 +22,7 @@ export default function PlayedCards<X extends Card>() {
     playCards,
   } = useCards<X>();
   const [selectedActions, setSelectedActions] = useState<SelectedActions>([undefined, undefined]);
-  const updateGameState = use(WebSocketContext);
+  const { isConnected, setInitiative } = useSecretariat();
 
   const selectedCards = currentCards
     .filter(card => card.status === CardStatus.selected);
@@ -58,12 +58,7 @@ export default function PlayedCards<X extends Card>() {
   });
   const selectInitiative = (card: X) => ({
     name: 'Select Initiative',
-    onClick: () => {
-      updateGameState && updateGameState({ initiative: 37 }, [ // use initiative from card
-        "setInitiative",
-        "37",
-      ]);
-    }
+    onClick: () => setInitiative(card),
   })
 
   const endTurn = () => {
@@ -82,7 +77,7 @@ export default function PlayedCards<X extends Card>() {
     playDefaultAction(card),
     playTopAction(card),
     playBottomAction(card),
-    ...(!!selectInitiative ? [selectInitiative(card)] : [])
+    ...(isConnected ? [selectInitiative(card)] : [])
   ];
 
   return <div className='flex gap-4 min-h-[266px]'>
