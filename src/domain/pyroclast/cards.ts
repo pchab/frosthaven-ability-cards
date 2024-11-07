@@ -15,6 +15,7 @@ export const pyroclastCards: Card[] = createCards([
       { x: 53, y: 169 },
       { x: 83, y: 169 },
     ],
+    initiative: 15,
   },
   {
     level: 'X',
@@ -23,6 +24,7 @@ export const pyroclastCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 167 } },
     ],
+    initiative: 68,
   },
   {
     level: 'X',
@@ -36,6 +38,7 @@ export const pyroclastCards: Card[] = createCards([
       { x: 69, y: 74 },
       { x: 99, y: 74 },
     ],
+    initiative: 72,
   },
   {
     level: 1,
@@ -44,6 +47,7 @@ export const pyroclastCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 133 } },
     ],
+    initiative: 23,
   },
   {
     level: 1,
@@ -57,6 +61,7 @@ export const pyroclastCards: Card[] = createCards([
       { x: 69, y: 169 },
       { x: 99, y: 169 },
     ],
+    initiative: 75,
   },
   {
     level: 1,
@@ -65,6 +70,7 @@ export const pyroclastCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 91, y: 146 } },
     ],
+    initiative: 47,
   },
   {
     level: 1,
@@ -78,11 +84,13 @@ export const pyroclastCards: Card[] = createCards([
       { x: 55, y: 173 },
       { x: 84, y: 173 },
     ],
+    initiative: 20,
   },
   {
     level: 1,
     name: 'igneous path',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
+    initiative: 18,
   },
   {
     level: 1,
@@ -93,6 +101,7 @@ export const pyroclastCards: Card[] = createCards([
       { type: 'square', position: { x: 99, y: 39 } },
       { type: 'circle', position: { x: 90, y: 150 } },
     ],
+    initiative: 53,
   },
   {
     level: 1,
@@ -103,6 +112,7 @@ export const pyroclastCards: Card[] = createCards([
       { type: 'square', position: { x: 99, y: 60 } },
       { type: 'circle', position: { x: 90, y: 131 } },
     ],
+    initiative: 28,
   },
   {
     level: 1,
@@ -116,6 +126,7 @@ export const pyroclastCards: Card[] = createCards([
       { x: 68, y: 166 },
       { x: 97, y: 166 },
     ],
+    initiative: 62,
   },
   {
     level: 1,
@@ -130,6 +141,7 @@ export const pyroclastCards: Card[] = createCards([
       { x: 82, y: 154.5 },
       { x: 112, y: 154.5 },
     ],
+    initiative: 30,
   },
   {
     level: 1,
@@ -138,6 +150,7 @@ export const pyroclastCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 91, y: 44 } },
     ],
+    initiative: 85,
   },
   {
     level: 2,
@@ -150,6 +163,7 @@ export const pyroclastCards: Card[] = createCards([
     slots: [
       { x: 68, y: 177 },
     ],
+    initiative: 38,
   },
   {
     level: 2,
@@ -158,6 +172,7 @@ export const pyroclastCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 74, y: 145 } },
     ],
+    initiative: 45,
   },
   {
     level: 3,
@@ -170,6 +185,7 @@ export const pyroclastCards: Card[] = createCards([
       { x: 68, y: 83 },
       { x: 98, y: 83 },
     ],
+    initiative: 80,
   },
   {
     level: 3,
@@ -182,6 +198,7 @@ export const pyroclastCards: Card[] = createCards([
       { x: 53, y: 82 },
       { x: 83, y: 82 },
     ],
+    initiative: 22,
   },
   {
     level: 4,
@@ -191,6 +208,7 @@ export const pyroclastCards: Card[] = createCards([
       { type: 'diamond', position: { x: 74, y: 41 } },
       { type: 'square', position: { x: 74, y: 152 } },
     ],
+    initiative: 29,
   },
   {
     level: 4,
@@ -202,6 +220,7 @@ export const pyroclastCards: Card[] = createCards([
     slots: [
       { x: 95, y: 83 },
     ],
+    initiative: 8,
   },
   {
     level: 5,
@@ -211,6 +230,7 @@ export const pyroclastCards: Card[] = createCards([
       { type: 'square', position: { x: 56, y: 51 } },
       { type: 'square', position: { x: 104, y: 51 } },
     ],
+    initiative: 82,
   },
   {
     level: 5,
@@ -219,6 +239,7 @@ export const pyroclastCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 75, y: 152 } },
     ],
+    initiative: 21,
   },
   {
     level: 6, name: 'obsidian shield',
@@ -232,6 +253,7 @@ export const pyroclastCards: Card[] = createCards([
       { x: 82.5, y: 50.5 },
       { x: 112, y: 50.5 },
     ],
+    initiative: 19,
   },
   {
     level: 6, name: 'return to the source',
@@ -243,6 +265,7 @@ export const pyroclastCards: Card[] = createCards([
     slots: [
       { x: 107, y: 59 },
     ],
+    initiative: 14,
   },
   {
     level: 7, name: 'erupting rage',
@@ -252,10 +275,12 @@ export const pyroclastCards: Card[] = createCards([
       { type: 'square', position: { x: 99, y: 35 } },
       { type: 'square', position: { x: 90, y: 152 } },
     ],
+    initiative: 70,
   },
   {
     level: 7, name: 'swelter',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
+    initiative: 32,
   },
   {
     level: 8, name: 'cinder lance',
@@ -264,6 +289,7 @@ export const pyroclastCards: Card[] = createCards([
       { type: 'diamond', position: { x: 89, y: 39 } },
       { type: 'square', position: { x: 67, y: 163 } },
     ],
+    initiative: 90,
   },
   {
     level: 8, name: 'feed the beast',
@@ -271,10 +297,12 @@ export const pyroclastCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 92, y: 129 } },
     ],
+    initiative: 27,
   },
   {
     level: 9, name: 'calamity',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
+    initiative: 35,
   },
   {
     level: 9, name: 'stone armor',
@@ -282,5 +310,6 @@ export const pyroclastCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 75, y: 129 } },
     ],
+    initiative: 9,
   },
 ], pyroclastPath);
