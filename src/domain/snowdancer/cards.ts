@@ -13,6 +13,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'hex', position: { x: 110, y: 75, size: 15 }, },
       { type: 'circle', position: { x: 74, y: 152 }, },
     ],
+    initiative: 31,
   },
   {
     level: 'X',
@@ -22,6 +23,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'diamond', position: { x: 72, y: 48 }, },
       { type: 'square', position: { x: 52, y: 144 }, },
     ],
+    initiative: 45,
   },
   {
     level: 'X',
@@ -33,6 +35,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'square', position: { x: 61, y: 132 }, },
       { type: 'square', position: { x: 96, y: 132 }, },
     ],
+    initiative: 11,
   },
   {
     level: 1,
@@ -42,6 +45,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'diamond', position: { x: 65, y: 28 }, },
       { type: 'circle', position: { x: 90, y: 141 }, },
     ],
+    initiative: 71,
   },
   {
     level: 1,
@@ -50,6 +54,7 @@ export const snowdancerCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 141 }, },
     ],
+    initiative: 31,
   },
   {
     level: 1,
@@ -58,6 +63,7 @@ export const snowdancerCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 65, y: 50 }, },
     ],
+    initiative: 20,
   },
   {
     level: 1,
@@ -68,6 +74,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'square', position: { x: 89, y: 76 }, },
       { type: 'square', position: { x: 89, y: 166 }, },
     ],
+    initiative: 32,
   },
   {
     level: 1,
@@ -77,6 +84,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'diamond', position: { x: 62, y: 44 }, },
       { type: 'square', position: { x: 72, y: 130 }, },
     ],
+    initiative: 76,
   },
   {
     level: 1,
@@ -85,11 +93,13 @@ export const snowdancerCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 74, y: 147 }, },
     ],
+    initiative: 70,
   },
   {
     level: 1,
     name: 'gathering force',
     actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
+    initiative: 89,
   },
   {
     level: 1,
@@ -99,6 +109,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'diamond', position: { x: 63, y: 53 }, },
       { type: 'circle', position: { x: 75, y: 145 }, },
     ],
+    initiative: 27,
   },
   {
     level: 1,
@@ -110,6 +121,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 74, y: 54 }, },
       { type: 'square', position: { x: 75, y: 146 }, },
     ],
+    initiative: 90,
   },
   {
     level: 1,
@@ -125,6 +137,7 @@ export const snowdancerCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 63, y: 52 }, },
     ],
+    initiative: 23,
   },
   {
     level: 1,
@@ -135,6 +148,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'square', position: { x: 87, y: 37 }, },
       { type: 'square', position: { x: 89, y: 167 }, },
     ],
+    initiative: 21,
   },
   {
     level: 2,
@@ -146,6 +160,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 65, y: 61 }, },
       { type: 'square', position: { x: 89, y: 138 }, },
     ],
+    initiative: 18,
   },
   {
     level: 2,
@@ -155,6 +170,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'diamond', position: { x: 48, y: 34 }, },
       { type: 'square', position: { x: 74, y: 133 }, },
     ],
+    initiative: 59,
   },
   {
     level: 3,
@@ -163,6 +179,7 @@ export const snowdancerCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 53, y: 149 }, },
     ],
+    initiative: 86,
   },
   {
     level: 3,
@@ -172,6 +189,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'circle', position: { x: 52, y: 60 }, },
       { type: 'diamond', position: { x: 66, y: 136 }, },
     ],
+    initiative: 61,
   },
   {
     level: 4,
@@ -182,6 +200,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'diamond', position: { x: 90, y: 61 }, },
       { type: 'circle', position: { x: 90, y: 140 }, },
     ],
+    initiative: 16,
   },
   {
     level: 4,
@@ -190,6 +209,7 @@ export const snowdancerCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 58, y: 48 }, },
     ],
+    initiative: 40,
   },
   {
     level: 5,
@@ -198,6 +218,7 @@ export const snowdancerCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 134 }, },
     ],
+    initiative: 17,
   },
   {
     level: 5,
@@ -207,6 +228,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'square', position: { x: 47, y: 53 }, },
       { type: 'square', position: { x: 112, y: 53 }, },
     ],
+    initiative: 79,
   },
   {
     level: 6,
@@ -215,6 +237,7 @@ export const snowdancerCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 74, y: 146 }, },
     ],
+    initiative: 33,
   },
   {
     level: 6,
@@ -226,6 +249,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 99, y: 143 }, },
       { type: 'summonSquare', position: { x: 66, y: 158 }, },
     ],
+    initiative: 95,
   },
   {
     level: 7,
@@ -235,11 +259,13 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'diamond', position: { x: 63, y: 39 }, },
       { type: 'circle', position: { x: 90, y: 128 }, },
     ],
+    initiative: 81,
   },
   {
     level: 7,
     name: 'storm wall',
     actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    initiative: 30,
   },
   {
     level: 8,
@@ -252,6 +278,7 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'square', position: { x: 107, y: 63 }, },
       { type: 'diamondPlus', position: { x: 40, y: 150 }, },
     ],
+    initiative: 73,
   },
   {
     level: 8,
@@ -260,6 +287,7 @@ export const snowdancerCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 147 }, },
     ],
+    initiative: 5,
   },
   {
     level: 9,
@@ -268,6 +296,7 @@ export const snowdancerCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 44, y: 50 }, },
     ],
+    initiative: 83,
   },
   {
     level: 9,
@@ -278,5 +307,6 @@ export const snowdancerCards: Card[] = createCards([
       { type: 'square', position: { x: 87, y: 34 }, },
       { type: 'circle', position: { x: 90, y: 127 }, },
     ],
+    initiative: 15,
   },
 ], snowdancerPath);
