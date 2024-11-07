@@ -24,7 +24,7 @@ export default function ConnectModal({
   return <Modal>
     <form action={connect} className='flex flex-col gap-4 items-center'>
       <label htmlFor='secretary-id'>Secretary ID</label>
-      <input className='bg-black min-w-96' type='text' name='secretary-id' placeholder='859b7dfd-c433-4afd-b18d-44d408786ea8' />
+      <input className='bg-black min-w-96' type='text' name='secretary-id' placeholder='GH Secretary ID' />
       <Button type='submit'>Connect</Button>
       {isPending && <p>Connecting...</p>}
     </form>
