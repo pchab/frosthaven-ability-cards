@@ -12,6 +12,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'square', position: { x: 90, y: 45 } },
       { type: 'circle', position: { x: 90, y: 136 } },
     ],
+    initiative: 23,
   },
   {
     level: 'X',
@@ -21,6 +22,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'square', position: { x: 90, y: 49 } },
       { type: 'square', position: { x: 91, y: 144 } },
     ],
+    initiative: 31,
   },
   {
     level: 'X',
@@ -29,6 +31,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 69, y: 67 } },
     ],
+    initiative: 91,
   },
   {
     level: 1,
@@ -37,6 +40,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 90, y: 50 } },
     ],
+    initiative: 45,
   },
   {
     level: 1,
@@ -46,6 +50,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'diamond', position: { x: 71, y: 53 } },
       { type: 'square', position: { x: 91, y: 141 } },
     ],
+    initiative: 88,
   },
   {
     level: 1,
@@ -54,6 +59,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 47, y: 53 } },
     ],
+    initiative: 28,
   },
   {
     level: 1,
@@ -65,6 +71,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'diamond', position: { x: 99, y: 71 } },
       { type: 'square', position: { x: 90, y: 139 } },
     ],
+    initiative: 14,
   },
   {
     level: 1,
@@ -73,6 +80,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 62, y: 48 } },
     ],
+    initiative: 96,
   },
   {
     level: 1,
@@ -83,6 +91,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'square', position: { x: 72, y: 75 } },
       { type: 'square', position: { x: 90, y: 138 } },
     ],
+    initiative: 86,
   },
   {
     level: 1,
@@ -91,6 +100,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 91, y: 152 } },
     ],
+    initiative: 22,
   },
   {
     level: 1,
@@ -99,6 +109,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 91, y: 140 } },
     ],
+    initiative: 63,
   },
   {
     level: 1,
@@ -107,6 +118,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 91, y: 141 } },
     ],
+    initiative: 20,
   },
   {
     level: 1,
@@ -119,6 +131,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'circle', position: { x: 89, y: 125 } },
       { type: 'square', position: { x: 89, y: 162 } },
     ],
+    initiative: 66,
   },
   {
     level: 2,
@@ -127,6 +140,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 140 } },
     ],
+    initiative: 98,
   },
   {
     level: 2,
@@ -136,6 +150,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'diamond', position: { x: 89, y: 29 } },
       { type: 'square', position: { x: 91, y: 136 } },
     ],
+    initiative: 89,
   },
   {
     level: 3,
@@ -145,6 +160,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'diamond', position: { x: 73, y: 39 } },
       { type: 'square', position: { x: 89, y: 130 } },
     ],
+    initiative: 15,
   },
   {
     level: 3,
@@ -154,6 +170,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'circle', position: { x: 73, y: 45 } },
       { type: 'circle', position: { x: 73, y: 72 } },
     ],
+    initiative: 25,
   },
   {
     level: 4,
@@ -162,11 +179,13 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 90, y: 47 } },
     ],
+    initiative: 40,
   },
   {
     level: 4,
     name: 'grim trophies',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
+    initiative: 18,
   },
   {
     level: 5,
@@ -175,6 +194,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 173 } },
     ],
+    initiative: 48,
   },
   {
     level: 5,
@@ -184,6 +204,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'diamond', position: { x: 91, y: 38 } },
       { type: 'circle', position: { x: 91, y: 135 } },
     ],
+    initiative: 92,
   },
   {
     level: 6,
@@ -193,6 +214,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'square', position: { x: 73, y: 54 } },
       { type: 'circle', position: { x: 90, y: 152 } },
     ],
+    initiative: 18,
   },
   {
     level: 6,
@@ -201,6 +223,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 138 } },
     ],
+    initiative: 30,
   },
   {
     level: 7,
@@ -211,6 +234,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'diamond', position: { x: 91, y: 91 } },
       { type: 'circle', position: { x: 90, y: 134 } },
     ],
+    initiative: 26,
   },
   {
     level: 7,
@@ -219,6 +243,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 129 } },
     ],
+    initiative: 65,
   },
   {
     level: 8,
@@ -228,6 +253,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'circle', position: { x: 58, y: 45 } },
       { type: 'square', position: { x: 91, y: 139 } },
     ],
+    initiative: 11,
   },
   {
     level: 8,
@@ -236,6 +262,7 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 91, y: 37 } },
     ],
+    initiative: 19,
   },
   {
     level: 9,
@@ -245,6 +272,7 @@ export const deepwraithCards: Card[] = createCards([
       { type: 'circle', position: { x: 58, y: 69 } },
       { type: 'circle', position: { x: 90, y: 134 } },
     ],
+    initiative: 26,
   },
   {
     level: 9,
@@ -253,5 +281,6 @@ export const deepwraithCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'diamond', position: { x: 44, y: 57 } },
     ],
+    initiative: 12,
   },
 ], deepwraithPath);
