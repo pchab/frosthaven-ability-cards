@@ -1,8 +1,7 @@
-import type { GameState } from '@/domain/secretariat/game.state';
 import Button from '../inputs/Button';
 import Modal from '../layout/Modal';
-import { setGameState } from '@/stores/game.store';
 import { useActionState } from 'react';
+import { connectToSecretariat } from './webSocketClient';
 
 export default function ConnectModal({
   onConnect,
@@ -12,22 +11,10 @@ export default function ConnectModal({
     id: string;
   }) => void;
 }) {
-  const [error, connect, isPending] = useActionState(
+  const [, connect, isPending] = useActionState(
     async (_: any, formData: FormData) => {
       const id = formData.get('secretariat-id')! as string;
-      const client = new WebSocket('wss://gloomhaven-secretariat.de:8443/');
-
-      client.onmessage = (event) => {
-        const { type, payload } = JSON.parse(event.data) as { type: string, payload: GameState };
-        if (type === 'game' || type === 'game-update') {
-          setGameState(payload);
-        }
-      };
-
-      client.onopen = () => {
-        console.log('connected');
-        client.send(`{ "code": ${id}, "password": ${id}, "type": "request-game" }`);
-      };
+      const client = connectToSecretariat(id);
 
       onConnect({ client, id });
     },
