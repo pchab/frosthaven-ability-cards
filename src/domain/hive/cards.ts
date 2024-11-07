@@ -11,11 +11,13 @@ export const hiveCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 172 } },
     ],
+    initiative: 27,
   },
   {
     level: 'X',
     name: 'remote control',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
+    initiative: 48,
   },
   {
     level: 'X',
@@ -25,6 +27,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 61, y: 39 } },
       { type: 'summonSquare', position: { x: 94, y: 39 } },
     ],
+    initiative: 86,
   },
   {
     level: 1,
@@ -35,6 +38,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 115, y: 53 } },
       { type: 'square', position: { x: 91, y: 152 } },
     ],
+    initiative: 88,
   },
   {
     level: 1,
@@ -45,11 +49,13 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 56, y: 58 } },
       { type: 'circle', position: { x: 74, y: 151 } },
     ],
+    initiative: 82,
   },
   {
     level: 1,
     name: 'faceless entity',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
+    initiative: 12,
   },
   {
     level: 1,
@@ -59,6 +65,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'square', position: { x: 81, y: 58 } },
       { type: 'square', position: { x: 73, y: 158 } },
     ],
+    initiative: 16,
   },
   {
     level: 1,
@@ -68,6 +75,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'diamond', position: { x: 71, y: 59 } },
       { type: 'square', position: { x: 92, y: 152 } },
     ],
+    initiative: 64,
   },
   {
     level: 1,
@@ -76,6 +84,7 @@ export const hiveCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'hex', position: { x: 83, y: 45, size: 14 } },
     ],
+    initiative: 32,
   },
   {
     level: 1,
@@ -87,6 +96,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 95, y: 53 } },
       { type: 'circle', position: { x: 63, y: 151 } },
     ],
+    initiative: 90,
   },
   {
     level: 1,
@@ -96,6 +106,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'diamond', position: { x: 71, y: 38 } },
       { type: 'circle', position: { x: 70, y: 165 } },
     ],
+    initiative: 77,
   },
   {
     level: 1,
@@ -108,6 +119,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'circle', position: { x: 91, y: 143 } },
       { type: 'square', position: { x: 91, y: 166 } },
     ],
+    initiative: 84,
   },
   {
     level: 1,
@@ -117,6 +129,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'diamondPlus', position: { x: 71, y: 58 } },
       { type: 'circle', position: { x: 91, y: 130 } },
     ],
+    initiative: 21,
   },
   {
     level: 1,
@@ -129,6 +142,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'square', position: { x: 89, y: 142 } },
       { type: 'square', position: { x: 89, y: 165 } },
     ],
+    initiative: 80,
   },
   {
     level: 2,
@@ -140,16 +154,19 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 98, y: 56 } },
       { type: 'circle', position: { x: 90, y: 152 } },
     ],
+    initiative: 78,
   },
   {
     level: 2,
     name: 'long range missile',
     actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    initiative: 19,
   },
   {
     level: 3,
     name: 'hijack',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
+    initiative: 40,
   },
   {
     level: 3,
@@ -160,6 +177,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'circle', position: { x: 91, y: 137 } },
       { type: 'square', position: { x: 91, y: 172 } },
     ],
+    initiative: 92,
   },
   {
     level: 4,
@@ -168,6 +186,7 @@ export const hiveCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 153 } },
     ],
+    initiative: 22,
   },
   {
     level: 4,
@@ -179,6 +198,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 68, y: 55 } },
       { type: 'circle', position: { x: 90, y: 133 } },
     ],
+    initiative: 98,
   },
   {
     level: 5,
@@ -188,6 +208,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'circle', position: { x: 91, y: 138 } },
       { type: 'square', position: { x: 91, y: 171 } },
     ],
+    initiative: 28,
   },
   {
     level: 5,
@@ -197,6 +218,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 59, y: 39 } },
       { type: 'summonSquare', position: { x: 59, y: 61 } },
     ],
+    initiative: 94,
   },
   {
     level: 6,
@@ -208,6 +230,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 63, y: 57 } },
       { type: 'circle', position: { x: 91, y: 141 } },
     ],
+    initiative: 79,
   },
   {
     level: 6,
@@ -217,6 +240,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'diamondPlus', position: { x: 70, y: 58 } },
       { type: 'circle', position: { x: 70, y: 177 } },
     ],
+    initiative: 13,
   },
   {
     level: 7,
@@ -227,11 +251,13 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 97, y: 52 } },
       { type: 'square', position: { x: 90, y: 152 } },
     ],
+    initiative: 85,
   },
   {
     level: 7,
     name: 'recall',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
+    initiative: 91,
   },
   {
     level: 8,
@@ -241,6 +267,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'hex', position: { x: 86, y: 43, size: 14 } },
       { type: 'circle', position: { x: 90, y: 154 } },
     ],
+    initiative: 29,
   },
   {
     level: 8,
@@ -253,6 +280,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'square', position: { x: 91, y: 133 } },
       { type: 'square', position: { x: 91, y: 176 } },
     ],
+    initiative: 96,
   },
   {
     level: 9,
@@ -261,6 +289,7 @@ export const hiveCards: Card[] = createCards([
     availableEnhancements: [
       { type: 'square', position: { x: 91, y: 60 } },
     ],
+    initiative: 20,
   },
   {
     level: 9,
@@ -272,5 +301,6 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 65, y: 52 } },
       { type: 'circle', position: { x: 90, y: 132 } },
     ],
+    initiative: 76,
   },
 ], hivePath);
