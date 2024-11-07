@@ -5,8 +5,13 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export default function MenuButton() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+export default function MenuButton({
+  onOpenConnectModal,
+}: {
+  onOpenConnectModal: () => void,
+}) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return <div className='absolute right-0 top-0 p-4 flex flex-col items-end gap-2'>
     <motion.button
       className='rounded-full'
@@ -18,7 +23,7 @@ export default function MenuButton() {
     </motion.button>
     <AnimatePresence>
       {isMenuOpen && <motion.div
-        className='bg-black border-solid rounded-lg border-2 p-4'
+        className='bg-black border-solid rounded-lg border-2 p-4 flex flex-col items-center gap-2 z-50'
         initial={{ x: '100%' }}
         animate={{ x: '0%' }}
         exit={{ x: '100%' }}
@@ -27,7 +32,8 @@ export default function MenuButton() {
         <Link type='submit' href='https://github.com/pchab/frosthaven-ability-cards/issues/new' target='_blank'>
           Report Issue
         </Link>
+        <div onClick={onOpenConnectModal}>Connect to GH secretariat</div>
       </motion.div>}
     </AnimatePresence>
-  </div>;
+  </div >;
 }
