@@ -7,14 +7,17 @@ import { getGameState } from '@/stores/game.store';
 import { use } from 'react';
 
 export default function useSecretary<X extends Card>() {
-  const updateGameState = use(WebSocketContext);
+  const {
+    isConnected,
+    update: updateGameState,
+  } = use(WebSocketContext);
   const currentClass = useClassHook();
 
   const updateInitiative = (initiative: number) => {
     updateGameState && updateGameState({ initiative }, ["setInitiative", `"${initiative}"`]);
   }
 
-  const setInitiative = ({ initiative = 50 }: X) => { // TODO: remove default value and make it required
+  const setInitiative = ({ initiative }: X) => {
     if (!updateGameState || !currentClass) return;
 
     if (isBlinkblade(currentClass)) {
@@ -31,7 +34,7 @@ export default function useSecretary<X extends Card>() {
   };
 
   return {
-    isConnected: !!updateGameState,
+    isConnected,
     setInitiative,
   };
 }

@@ -1,7 +1,8 @@
 import Button from '../inputs/Button';
 import Modal from '../layout/Modal';
-import { useActionState } from 'react';
+import { useActionState, useContext } from 'react';
 import { connectToSecretary } from './webSocketClient';
+import { WebSocketContext } from '@/app/MenuContext';
 
 export default function ConnectModal({
   onConnect,
@@ -11,12 +12,19 @@ export default function ConnectModal({
     id: string;
   }) => void;
 }) {
-  const [, connect, isPending] = useActionState(
+  const { isConnected, id } = useContext(WebSocketContext);
+  const [state, connect, isPending] = useActionState(
     async (_: any, formData: FormData) => {
       const id = formData.get('secretary-id')! as string;
-      const client = connectToSecretary(id);
-
-      onConnect({ client, id });
+      try {
+        const client = await connectToSecretary(id);
+        onConnect({ client, id });
+        return 'Connected';
+      }
+      catch (error) {
+        console.error(error);
+        return 'Failed to connect';
+      }
     },
     null,
   );
@@ -27,6 +35,8 @@ export default function ConnectModal({
       <input className='bg-black min-w-96' type='text' name='secretary-id' placeholder='GH Secretary ID' />
       <Button type='submit'>Connect</Button>
       {isPending && <p>Connecting...</p>}
+      {isConnected && <p>Connected to {id}</p>}
+      {state && <p>{state}</p>}
     </form>
   </Modal>;
 }

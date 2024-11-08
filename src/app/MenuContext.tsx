@@ -11,7 +11,14 @@ import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-charac
 
 
 type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void
-export const WebSocketContext = createContext<WsGameStateUpdate | null>(null);
+export const WebSocketContext = createContext<{
+  isConnected: boolean;
+  id: string;
+  update?: WsGameStateUpdate | null;
+}>({
+  isConnected: false,
+  id: '',
+});
 
 export default function MenuContext({ children }: { children: ReactNode }) {
   const [wsClient, setWsClient] = useState<WebSocket | null>(null);
@@ -46,18 +53,25 @@ export default function MenuContext({ children }: { children: ReactNode }) {
   useEffect(() => {
     const id = localStorage.getItem('secretary-id');
     if (!id) return;
-    const client = connectToSecretary(id);
-    setSecretaryId(id);
-    setWsClient(client);
-    return () => client.close();
-  }, []);
-
-  return <WebSocketContext value={updateGameState}>
-    {isConnectModalOpen && <ConnectModal onConnect={({ client, id }) => {
+    connectToSecretary(id).then((client) => {
       setWsClient(client);
       setSecretaryId(id);
-      setConnectModalOpen(false);
-    }} />}
+    });
+    return () => wsClient?.close();
+  }, []);
+
+  return <WebSocketContext value={{
+    isConnected: !!wsClient,
+    id: secretaryId,
+    update: updateGameState
+  }}>
+    {isConnectModalOpen && <ConnectModal
+      onConnect={({ client, id }) => {
+        setWsClient(client);
+        setSecretaryId(id);
+        setConnectModalOpen(false);
+      }}
+    />}
     <MenuButton onOpenConnectModal={() => setConnectModalOpen(true)} />
     {children}
   </WebSocketContext>;
