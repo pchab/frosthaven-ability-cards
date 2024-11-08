@@ -28,8 +28,8 @@ export default function ConnectForm({
     null,
   );
 
-  return <form action={connect} className='flex flex-col gap-4 items-center'>
-    <label htmlFor='secretary-id'>Secretary ID</label>
+  return <form action={connect} className='bg-gradient-to-b from-black to-blue-500 rounded-lg flex flex-col gap-4 items-center p-4 border-2 border-solid'>
+    <label htmlFor='secretary-id'>Connect to GH Secretary</label>
     <input className='bg-black min-w-96' type='text' name='secretary-id' placeholder='GH Secretary ID' />
     <Button type='submit'>Connect</Button>
     {isPending && <p>Connecting...</p>}

@@ -1,10 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import MenuContext from './MenuContext';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Frosthaven Ability Cards',
@@ -19,7 +16,6 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={inter.className}
         style={{
           backgroundImage: 'url(/fh-background.jpg)',
           backgroundSize: 'cover',
