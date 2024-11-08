@@ -1,10 +1,9 @@
 import Button from '../inputs/Button';
-import Modal from '../layout/Modal';
 import { useActionState, useContext } from 'react';
 import { connectToSecretary } from './webSocketClient';
 import { WebSocketContext } from '@/app/MenuContext';
 
-export default function ConnectModal({
+export default function ConnectForm({
   onConnect,
 }: {
   onConnect: (args: {
@@ -29,14 +28,12 @@ export default function ConnectModal({
     null,
   );
 
-  return <Modal>
-    <form action={connect} className='flex flex-col gap-4 items-center'>
-      <label htmlFor='secretary-id'>Secretary ID</label>
-      <input className='bg-black min-w-96' type='text' name='secretary-id' placeholder='GH Secretary ID' />
-      <Button type='submit'>Connect</Button>
-      {isPending && <p>Connecting...</p>}
-      {isConnected && <p>Connected to {id}</p>}
-      {state && <p>{state}</p>}
-    </form>
-  </Modal>;
+  return <form action={connect} className='flex flex-col gap-4 items-center'>
+    <label htmlFor='secretary-id'>Secretary ID</label>
+    <input className='bg-black min-w-96' type='text' name='secretary-id' placeholder='GH Secretary ID' />
+    <Button type='submit'>Connect</Button>
+    {isPending && <p>Connecting...</p>}
+    {isConnected && <p>Connected to {id}</p>}
+    {state && <p>{state}</p>}
+  </form>;
 }

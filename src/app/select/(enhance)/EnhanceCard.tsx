@@ -1,7 +1,6 @@
 import { CardComponent } from '@/app/_components/cards/Card';
 import EnhanceSticker from '@/app/_components/cards/Enhance/EnhanceSticker';
 import Button from '@/app/_components/inputs/Button';
-import Modal from '@/app/_components/layout/Modal';
 import type { Card } from '@/domain/cards.type';
 import type { Enhancement } from '@/domain/enhancement/enhancement.type';
 import { getEnhancementByType } from '@/domain/enhancement/enhancements';
@@ -24,7 +23,7 @@ function drawCircleArea(hoverArea: HoverCircleArea, context: CanvasRenderingCont
   context.stroke();
 }
 
-export default function EnhanceCardModal<X extends Card>({
+export default function EnhanceCard<X extends Card>({
   card,
   onEnhanceCard,
 }: {
@@ -78,27 +77,25 @@ export default function EnhanceCardModal<X extends Card>({
   const mapName = ['enhance', ...card.name.split(' ')].join('-');
   const getAreaName = (index: number) => ['enhance', ...card.name.split(' '), 'slot', index].join('-');
 
-  return <Modal>
-    <div className='flex flex-col gap-4'>
-      <CardComponent card={currentCard} mapName={mapName} actions={getEnhancementActions(currentEnhanceSlot)}>
-        <canvas
-          ref={canvasRef}
-          className='absolute pointer-events-none'
-          width={143}
-          height={200}
-        />
-        <map name={mapName}>
-          {card.availableEnhancements.map(({ position: { x, y } }, index) => {
-            return <area
-              key={getAreaName(index)}
-              coords={`${x},${y},${RADIUS}`}
-              shape='circle'
-              onMouseEnter={() => setCurrentEnhanceSlot(index)}
-            />;
-          })}
-        </map>
-      </CardComponent>
-      <Button onClick={() => onEnhanceCard(currentCard)}>Enhance</Button>
-    </div>
-  </Modal>;
+  return <div className='flex flex-col gap-4'>
+    <CardComponent card={currentCard} mapName={mapName} actions={getEnhancementActions(currentEnhanceSlot)}>
+      <canvas
+        ref={canvasRef}
+        className='absolute pointer-events-none'
+        width={143}
+        height={200}
+      />
+      <map name={mapName}>
+        {card.availableEnhancements.map(({ position: { x, y } }, index) => {
+          return <area
+            key={getAreaName(index)}
+            coords={`${x},${y},${RADIUS}`}
+            shape='circle'
+            onMouseEnter={() => setCurrentEnhanceSlot(index)}
+          />;
+        })}
+      </map>
+    </CardComponent>
+    <Button onClick={() => onEnhanceCard(currentCard)}>Enhance</Button>
+  </div>;
 }

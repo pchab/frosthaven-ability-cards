@@ -29,7 +29,7 @@ export default function ShortRestButton<X extends Card>({
   };
 
   return <>
-    {lostCard && <Modal>
+    {lostCard && <Modal onCancel={() => setLostCard(undefined)}>
       <div className='flex flex-col gap-4 items-center'>
         {!hasRerolled &&
           <Button

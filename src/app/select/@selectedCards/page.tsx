@@ -8,9 +8,10 @@ import type { GeminateCard } from '@/domain/geminate/cards';
 import { isGeminate } from '@/domain/geminate/class';
 import { useClassHook } from '@/stores/class.store';
 import { useState } from 'react';
-import EnhanceCardModal from '../(enhance)/EnhanceCard';
+import EnhanceCard from '../(enhance)/EnhanceCard';
 import { useSelectCards } from '../useSelectCards';
 import { SelectedCards } from './SelectedCards';
+import Modal from '@/app/_components/layout/Modal';
 
 export default function SelectedCardsPage<X extends Card>() {
   const selectedClass = useClassHook();
@@ -26,10 +27,12 @@ export default function SelectedCardsPage<X extends Card>() {
   }
 
   return <>
-    {enhancingCard && <EnhanceCardModal card={enhancingCard} onEnhanceCard={(card: X) => {
-      setEnhancingCard(null);
-      enhanceCard(card);
-    }} />}
+    {enhancingCard && <Modal onCancel={() => setEnhancingCard(null)}>
+      <EnhanceCard card={enhancingCard} onEnhanceCard={(card: X) => {
+        setEnhancingCard(null);
+        enhanceCard(card);
+      }} />
+    </Modal>}
     {isGeminate(selectedClass)
       ? <SelectedGeminateCards actions={enhanceAction as unknown as PileActions<GeminateCard>} />
       : <SelectedCards actions={enhanceAction} />}

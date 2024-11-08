@@ -5,9 +5,10 @@ import { getClass } from '@/stores/class.store';
 import { getGameState } from '@/stores/game.store';
 import { createContext, useEffect, useState, type ReactNode } from 'react';
 import MenuButton from './MenuButton';
-import ConnectModal from './_components/secretary/ConnectModal';
+import ConnectForm from './_components/secretary/ConnectForm';
 import { connectToSecretary } from './_components/secretary/webSocketClient';
 import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
+import Modal from './_components/layout/Modal';
 
 
 type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void
@@ -65,13 +66,13 @@ export default function MenuContext({ children }: { children: ReactNode }) {
     id: secretaryId,
     update: updateGameState
   }}>
-    {isConnectModalOpen && <ConnectModal
-      onConnect={({ client, id }) => {
+    {isConnectModalOpen && <Modal onCancel={() => setConnectModalOpen(false)}>
+      <ConnectForm onConnect={({ client, id }) => {
         setWsClient(client);
         setSecretaryId(id);
         setConnectModalOpen(false);
-      }}
-    />}
+      }} />
+    </Modal>}
     <MenuButton onOpenConnectModal={() => setConnectModalOpen(true)} />
     {children}
   </WebSocketContext>;
