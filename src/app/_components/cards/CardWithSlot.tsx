@@ -1,13 +1,14 @@
 'use client';
 
-import { CardComponent } from './Card';
-import { useEffect, useState } from 'react';
-import type { Card } from '@/domain/cards.type';
-import type { WheelAction } from './ActionWheel';
 import { useCards } from '@/app/play/useCards';
+import type { Card } from '@/domain/cards.type';
 import { isDrifter } from '@/domain/drifter/class';
-import CharacterToken from '../class/CharacterToken';
 import { useClassHook } from '@/stores/class.store';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import CharacterToken from '../class/CharacterToken';
+import type { WheelAction } from './ActionWheel';
+import { CardComponent } from './Card';
 
 export default function CardWithSlot<X extends Card>({
   card,
@@ -60,6 +61,11 @@ export default function CardWithSlot<X extends Card>({
     : [moveTokenForwardAction(card)];
 
   return <CardComponent card={card} actions={[...actions, ...tokenActions]}>
-    <CharacterToken className={selectedClass.name} position={tokenPosition} />
+    <motion.div
+      animate={{ x: tokenPosition?.left, y: tokenPosition?.top }}
+      transition={{ ease: 'easeOut', duration: 0.2 }}
+    >
+      <CharacterToken className={selectedClass.name} />
+    </motion.div>
   </CardComponent>;
 }
