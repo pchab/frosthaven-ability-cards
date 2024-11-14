@@ -10,8 +10,8 @@ import { connectToSecretary } from './_components/secretary/webSocketClient';
 import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
 import Modal from './_components/layout/Modal';
 
+type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void;
 
-type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void
 export const WebSocketContext = createContext<{
   isConnected: boolean;
   id: string;

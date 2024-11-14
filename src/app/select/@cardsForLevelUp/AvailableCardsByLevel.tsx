@@ -14,6 +14,7 @@ export default function AvailableCardsByLevel<X extends Card>({
 }) {
   const availableCards = useFrosthavenStore(useShallow((state) => state.availableCards as X[]));
   const { cards, selectCard } = useSelectCards<X>();
+
   const selectAction = (card: X) => [{
     name: 'Select Card',
     onClick: () => selectCard(card),

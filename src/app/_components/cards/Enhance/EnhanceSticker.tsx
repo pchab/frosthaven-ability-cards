@@ -7,7 +7,6 @@ export default function EnhanceSticker({
 }: {
   enhancement: Enhancement;
   position: EnhancementSlot['position'];
-  size?: number;
 }) {
   const tokenPath = `/enhancement-stickers/fh-${enhancement}-sticker.png`;
 

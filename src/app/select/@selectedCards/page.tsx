@@ -3,6 +3,7 @@
 import type { PileActions } from '@/app/_components/cards/CardPile';
 import { SelectedGeminateCards } from '@/app/_components/class/geminate/SelectedGeminateCards';
 import BoardArea from '@/app/_components/layout/BoardArea';
+import Modal from '@/app/_components/layout/Modal';
 import type { Card } from '@/domain/cards.type';
 import type { GeminateCard } from '@/domain/geminate/cards';
 import { isGeminate } from '@/domain/geminate/class';
@@ -11,7 +12,6 @@ import { useState } from 'react';
 import EnhanceCard from '../(enhance)/EnhanceCard';
 import { useSelectCards } from '../useSelectCards';
 import { SelectedCards } from './SelectedCards';
-import Modal from '@/app/_components/layout/Modal';
 
 export default function SelectedCardsPage<X extends Card>() {
   const selectedClass = useClassHook();
@@ -33,6 +33,7 @@ export default function SelectedCardsPage<X extends Card>() {
         enhanceCard(card);
       }} />
     </Modal>}
+
     {isGeminate(selectedClass)
       ? <SelectedGeminateCards actions={enhanceAction as unknown as PileActions<GeminateCard>} />
       : <SelectedCards actions={enhanceAction} />}

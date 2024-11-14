@@ -14,7 +14,7 @@ export default function ActiveEffects<X extends Card>() {
   } = useCards<X>();
 
   const activeEffects = currentCards
-    .filter(card => [CardStatus.activeTop, CardStatus.activeBottom].includes(card.status));
+    .filter(({ status }) => [CardStatus.activeTop, CardStatus.activeBottom].includes(status));
 
   const removeEffectAction = (card: X) => ({
     name: 'Remove effect',

@@ -8,6 +8,20 @@ export type WheelAction = {
   onClick: () => void;
 }
 
+function getRadiusForActions(actions: WheelAction[]) {
+  return actions.length > 12
+    ? 120
+    : actions.length > 6
+      ? 80
+      : 50;
+}
+function getPositionForAction(actions: WheelAction[], index: number, radius = getRadiusForActions(actions)) {
+  const angle = (index / actions.length) * 360;
+  const x = - radius * Math.cos(angle * (Math.PI / 180));
+  const y = - radius * Math.sin(angle * (Math.PI / 180));
+  return { x, y };
+}
+
 export default function ActionWheel({
   isOpen,
   actions,
@@ -27,15 +41,7 @@ export default function ActionWheel({
             transition={{ duration: 0.3 }}
           >
             {actions.map((action, index) => {
-              const angle = (index / actions.length) * 360
-              const radius = actions.length > 12
-                ? 120
-                : actions.length > 6
-                  ? 80
-                  : 50;
-              const x = - radius * Math.cos((angle * Math.PI) / 180)
-              const y = - radius * Math.sin((angle * Math.PI) / 180)
-
+              const { x, y } = getPositionForAction(actions, index);
               return (
                 <motion.button
                   key={`action-${index}`}

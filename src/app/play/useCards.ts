@@ -76,8 +76,8 @@ export function useCards<X extends Card>() {
 
     const cardIndex = currentCards.findIndex(c => c === card);
     const newTokenPosition = (card.tokenPosition ?? 0) + 1;
-    const action = getActiveAction(card.status);
     if (newTokenPosition >= card.slots.length) {
+      const action = getActiveAction(card.status);
       const newStatus = card.actions[action] === CardActions.activeDiscard ? CardStatus.discarded : CardStatus.lost;
       const newState = currentCards.with(cardIndex, { ...card, status: newStatus, tokenPosition: 0 });
       updateStates([...states.slice(0, currentStateIndex + 1), newState]);
@@ -98,7 +98,11 @@ export function useCards<X extends Card>() {
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };
 
-  const makeRest = ({ recovered, lost }: { recovered: X[], lost: X }) => {
+  const makeRest = (lost: X) => {
+    const recovered = currentCards
+      .filter(({ status }) => status === CardStatus.discarded)
+      .filter(({ name }) => name !== lost.name);
+
     const newState = [
       ...currentCards.filter(c => c.status !== CardStatus.discarded),
       ...recovered.map(c => ({ ...c, status: CardStatus.inHand })),

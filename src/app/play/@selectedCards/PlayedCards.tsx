@@ -33,16 +33,13 @@ export default function PlayedCards<X extends Card>() {
     const [firstAction, secondAction] = [...selectedActions];
 
     setSelectedActions(cardIndex
-      ? [
-        action !== 'default' && action === firstAction
-          ? undefined : firstAction,
-        action,
-      ]
-      : [
-        action,
+      ? [action !== 'default' && action === firstAction
+        ? undefined : firstAction,
+        action]
+      : [action,
         action !== 'default' && action === secondAction
-          ? undefined : secondAction,
-      ]);
+          ? undefined : secondAction]
+    );
   };
 
   const playTopAction = (card: X) => ({

@@ -65,5 +65,5 @@ export default function CardPile<X extends Card>({
             actions={actions(card)} />
         </motion.div>)}
     </AnimatePresence>
-  </div>
+  </div>;
 }

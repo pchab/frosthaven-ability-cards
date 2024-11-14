@@ -35,9 +35,6 @@ export default function CardWithSlot<X extends Card>({
   if (!card.slots) {
     throw new Error(`Card ${card.name} doest not have slots`)
   }
-  if (!selectedClass) {
-    return <></>;
-  }
 
   const moveTokenForwardAction = (card: X) => ({
     name: 'Move token forward',
@@ -65,7 +62,7 @@ export default function CardWithSlot<X extends Card>({
       animate={{ x: tokenPosition?.left, y: tokenPosition?.top }}
       transition={{ ease: 'easeOut', duration: 0.2 }}
     >
-      <CharacterToken className={selectedClass.name} />
+      {selectedClass && <CharacterToken className={selectedClass.name} />}
     </motion.div>
   </CardComponent>;
 }

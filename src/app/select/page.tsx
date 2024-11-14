@@ -16,15 +16,13 @@ export default function SelectCardsHeader() {
   const { validateSelection } = useSelectCards();
   const { name = '' } = fhClass ?? {};
 
-  return <>
-    <p>{name}</p>
+  return <div className='flex items-center gap-4 p-3'>
+    <h2 className='text-xl'>{name}</h2>
     {fhClass && <Image src={fhClass.path} alt={name} {...fhClass.iconSize} />}
-    <div className='flex items-center gap-4 p-3'>
-      <label htmlFor='level'>Level {level}</label>
-      <input type='range' id='level' name='level' min='1' max='9'
-        value={level} onChange={e => setLevel(Number(e.target.value))}
-      />
-    </div>
+    <label htmlFor='level'>Level {level}</label>
+    <input type='range' id='level' name='level' min='1' max='9'
+      value={level} onChange={e => setLevel(Number(e.target.value))}
+    />
     <Button onClick={validateSelection}>Validate Selection</Button>
-  </>;
+  </div >;
 }

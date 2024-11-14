@@ -11,7 +11,7 @@ export default function LostCards() {
   } = useCards();
 
   const lostPile = currentCards
-    .filter(card => card.status === CardStatus.lost);
+    .filter(({ status }) => status === CardStatus.lost);
 
   const recoverAction = (card: Card) => [{
     name: 'Recover Card',

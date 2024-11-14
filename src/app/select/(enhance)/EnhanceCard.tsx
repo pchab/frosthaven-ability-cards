@@ -15,9 +15,10 @@ type HoverCircleArea = {
 }
 
 function drawCircleArea(hoverArea: HoverCircleArea, context: CanvasRenderingContext2D) {
+  const { x, y, radius = RADIUS } = hoverArea;
+
   context.strokeStyle = 'rgba(255, 255, 255, 0.5)';
   context.lineWidth = 3;
-  const { x, y, radius = RADIUS } = hoverArea;
   context.beginPath();
   context.arc(x, y, radius, 0, 2 * Math.PI);
   context.stroke();
@@ -31,7 +32,6 @@ export default function EnhanceCard<X extends Card>({
   onEnhanceCard: (card: X) => void;
 }) {
   const [currentCard, setCard] = useState(card);
-
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [currentEnhanceSlot, setCurrentEnhanceSlot] = useState<number>();
 

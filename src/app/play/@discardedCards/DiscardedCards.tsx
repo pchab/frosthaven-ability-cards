@@ -11,11 +11,10 @@ export default function DiscardedCards() {
     currentCards,
     recoverCard,
     loseCard,
-    makeRest,
   } = useCards();
 
   const discardPile = currentCards
-    .filter(card => card.status === CardStatus.discarded);
+    .filter(({ status }) => status === CardStatus.discarded);
 
   const actions = (card: Card) => [{
     name: 'Recover Card',
@@ -31,8 +30,8 @@ export default function DiscardedCards() {
       actions={actions}
     />
     {discardPile.length > 1 && <div className='flex flex-col justify-between'>
-      <ShortRestButton cards={discardPile} onShortRest={makeRest} />
-      <LongRestButton cards={discardPile} onLongRest={makeRest} />
+      <ShortRestButton cards={discardPile} />
+      <LongRestButton cards={discardPile} />
     </div>}
   </div>;
 }

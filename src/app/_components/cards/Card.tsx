@@ -20,9 +20,7 @@ export function CardComponent<X extends Card>({
 }) {
   const [isActionWheelOpen, setIsActionWheelOpen] = useState(false);
 
-  const toggleWheel = () => {
-    setIsActionWheelOpen(!isActionWheelOpen);
-  };
+  const toggleWheel = () => setIsActionWheelOpen(!isActionWheelOpen);
 
   const onClickCard = () => {
     if (actions.length === 0) return;
@@ -49,15 +47,12 @@ export function CardComponent<X extends Card>({
       width={143}
       height={200}
     />
-    {card.availableEnhancements && card.availableEnhancements.map(({ position }, index) => {
-      const enhancement = card.enhancements?.[index];
-      return enhancement
-        ? <EnhanceSticker
+    {card.availableEnhancements
+      ?.map(({ position }, index) => !!card.enhancements?.[index]
+        && <EnhanceSticker
           key={`${card.name}-enhance-slot-${index}`}
-          enhancement={enhancement}
+          enhancement={card.enhancements?.[index]!}
           position={position}
-        />
-        : <div key={`${card.name}-enhance-slot-${index}`}></div>;
-    })}
+        />)}
   </motion.div>;
 }

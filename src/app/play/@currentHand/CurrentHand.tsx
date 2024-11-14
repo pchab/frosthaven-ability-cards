@@ -18,7 +18,7 @@ export default function CurrentHand<X extends Card>({
 
   const currentHand = currentCards
     .filter(card => classFilter(card))
-    .filter(card => card.status === CardStatus.inHand);
+    .filter(({ status }) => status === CardStatus.inHand);
 
   const actions = (card: X) => [{
     name: 'Select Card',

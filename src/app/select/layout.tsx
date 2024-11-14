@@ -1,14 +1,15 @@
 import { type ReactNode } from 'react';
 import Heading from '../_components/layout/Heading';
+import AvailableCardsByLevel from './@cardsForLevelUp/AvailableCardsByLevel';
 
 export default function SelectCardsLayout({
   children,
   selectedCards,
-  cardsByLevel,
+  cardsForLevelUp,
 }: {
   children: ReactNode;
   selectedCards: ReactNode;
-  cardsByLevel: ReactNode;
+  cardsForLevelUp: ReactNode;
 }) {
   return (<div className='p-4 flex flex-col gap-4 items-center'>
     <Heading title='Select your cards' />
@@ -21,7 +22,14 @@ export default function SelectCardsLayout({
         {selectedCards}
       </div>
 
-      {cardsByLevel}
+      <div className='col-span-full flex flex-row gap-4 w-full justify-between'>
+        <AvailableCardsByLevel level={'X'} />
+
+        <div className='grow'>
+          <AvailableCardsByLevel level={1} />
+        </div>
+      </div>
+      {cardsForLevelUp}
     </div>
   </div>);
 }

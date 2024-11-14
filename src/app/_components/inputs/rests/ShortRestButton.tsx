@@ -4,6 +4,7 @@ import { CardComponent } from '../../cards/Card';
 import Image from 'next/image';
 import Modal from '../../layout/Modal';
 import Button from '../Button';
+import { useCards } from '@/app/play/useCards';
 
 function getRandomCard<X extends Card>(arr: X[]) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -11,20 +12,18 @@ function getRandomCard<X extends Card>(arr: X[]) {
 
 export default function ShortRestButton<X extends Card>({
   cards,
-  onShortRest,
 }: {
   cards: X[];
-  onShortRest: (args: { recovered: X[]; lost: X }) => void;
 }) {
   const [lostCard, setLostCard] = useState<X | undefined>(undefined);
   const [hasRerolled, setHasRerolled] = useState(false);
+  const { makeRest } = useCards();
 
   const confirmShortRestAction = {
     name: 'Confirm Short Rest',
     onClick: () => {
       if (!lostCard) return;
-      const recoveredCard = cards.filter(c => c !== lostCard);
-      onShortRest({ recovered: recoveredCard, lost: lostCard });
+      makeRest(lostCard);
     },
   };
 
