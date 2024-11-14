@@ -1,11 +1,12 @@
 'use client';
 
-import { CardStatus, type Card } from '@/domain/cards.type';
-import { CardComponent } from '../../_components/cards/Card';
-import { useCards, type Action } from '@/app/play/useCards';
-import { useState } from 'react';
 import Button from '@/app/_components/inputs/Button';
 import useSecretary from '@/app/_components/secretary/useSecretary';
+import { useCards, type Action } from '@/app/play/useCards';
+import { CardStatus, type Card } from '@/domain/cards.type';
+import { AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { CardComponent } from '../../_components/cards/Card';
 
 type SelectedActions = [
   Action | undefined,
@@ -76,23 +77,26 @@ export default function PlayedCards<X extends Card>() {
   const getPlayableActions = (card: X) => [
     playDefaultAction(card),
     playTopAction(card),
+    ...(isConnected ? [selectInitiative(card)] : []),
     playBottomAction(card),
-    ...(isConnected ? [selectInitiative(card)] : [])
   ];
 
   return <div className='flex gap-4 min-h-[266px]'>
-    {selectedCards
-      .map((card, index) => <div
-        key={card.name}
-        className='flex flex-col'>
-        <CardComponent card={card}
-          actions={getPlayableActions(card)}
-        />
-        <div className='flex flex-col items-center p-4'>
-          <div className='text-xs'>Selected Action:</div>
-          <div className='text-sm uppercase'>{selectedActions[index]}</div>
-        </div>
-      </div>)}
+    <AnimatePresence>
+      {selectedCards
+        .map((card, index) => <div
+          key={card.name}
+          className='flex flex-col'
+        >
+          <CardComponent card={card}
+            actions={getPlayableActions(card)}
+          />
+          <div className='flex flex-col items-center p-4'>
+            <div className='text-xs'>Selected Action:</div>
+            <div className='text-sm uppercase'>{selectedActions[index]}</div>
+          </div>
+        </div>)}
+    </AnimatePresence>
     <div className='place-self-center'>
       {selectedCards.length === 2 && areAllActionsSelected(selectedActions) &&
         <Button onClick={endTurn}>End Turn</Button>

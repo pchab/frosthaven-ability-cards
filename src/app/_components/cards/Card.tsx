@@ -1,6 +1,7 @@
 'use client';
 
 import { Card } from '@/domain/cards.type';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, type ReactNode } from 'react';
 import ActionWheel, { type WheelAction } from './ActionWheel';
@@ -32,7 +33,13 @@ export function CardComponent<X extends Card>({
     toggleWheel();
   };
 
-  return <div onClick={onClickCard} className='relative' >
+  return <motion.div
+    onClick={onClickCard}
+    className='relative'
+    initial={{ y: -40, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    exit={{ y: -40, opacity: 0 }}
+  >
     <ActionWheel isOpen={isActionWheelOpen} actions={actions} />
     {children}
     <Image
@@ -52,5 +59,5 @@ export function CardComponent<X extends Card>({
         />
         : <div key={`${card.name}-enhance-slot-${index}`}></div>;
     })}
-  </div>;
+  </motion.div>;
 }

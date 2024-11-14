@@ -55,9 +55,6 @@ export default function CardPile<X extends Card>({
           onTouchMove={() => setHoveredCardIndex(index)}
           onFocus={() => setHoveredCardIndex(index)}
           onTap={() => setHoveredCardIndex(index)}
-          initial={{ y: -40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -40, opacity: 0 }}
           whileHover={{ scale: 1.2 }}
           whileFocus={{ scale: 1.2 }}
           className='w-fit -ml-24'
