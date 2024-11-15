@@ -5,6 +5,7 @@ The latest version of this application is hosted [here](https://frosthaven-abili
 
 - Choose your class
 - Choose your class ability cards
+- Enhance cards
 - Tracks Discard / Lost / Active Effects
 - Allow short (with reroll) and long rests.
 - Undo / Redo
