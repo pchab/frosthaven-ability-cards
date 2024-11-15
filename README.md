@@ -9,6 +9,7 @@ The latest version of this application is hosted [here](https://frosthaven-abili
 - Tracks Discard / Lost / Active Effects
 - Allow short (with reroll) and long rests.
 - Undo / Redo
+- Gloomhaven secretary connection
 
 I haven't unlocked all the classes in the physical game yet, but I'll be adding them as I go.
 If you want to add a class, please open an issue or a PR.
@@ -25,3 +26,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 You can use [http://localhost:3000/test](http://localhost:3000/test) to visualize the cards.
+
+## [Gloomhaven Secretary](https://gloomhaven-secretary.de/)
+
+You can connect to a Gloomhaven Secretary server.
+It allows you to set your initiative and automatically end your turn on GHS when you click the "End Turn" button.

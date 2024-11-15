@@ -62,9 +62,10 @@ export default function MenuContext({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
+    const host = localStorage.getItem('secretary-host');
     const id = localStorage.getItem('secretary-id');
-    if (!id) return;
-    connectToSecretary(id).then((client) => {
+    if (!id || !host) return;
+    connectToSecretary({ host, id }).then((client) => {
       setWsClient(client);
       setSecretaryId(id);
     });

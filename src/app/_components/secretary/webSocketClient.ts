@@ -1,8 +1,14 @@
 import type { GameState } from '@/domain/secretary/game.state';
 import { setGameState } from '@/stores/game.store';
 
-export async function connectToSecretary(id: string) {
-  const client = new WebSocket('wss://gloomhaven-secretary.de:8443/');
+export async function connectToSecretary({
+  host,
+  id,
+}: {
+  host: string;
+  id: string;
+}) {
+  const client = new WebSocket(host);
 
   return new Promise<WebSocket>((resolve, reject) => {
     client.onmessage = (event) => {
@@ -15,7 +21,12 @@ export async function connectToSecretary(id: string) {
     client.onopen = () => {
       console.log('connected');
       localStorage.setItem('secretary-id', id);
-      client.send(`{ "code": ${id}, "password": ${id}, "type": "request-game" }`);
+      localStorage.setItem('secretary-host', host);
+      client.send(JSON.stringify({
+        code: id,
+        password: id,
+        type: "request-game",
+      }));
       resolve(client);
     };
 
