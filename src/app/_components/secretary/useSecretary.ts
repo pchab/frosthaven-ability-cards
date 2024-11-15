@@ -33,8 +33,15 @@ export default function useSecretary<X extends Card>() {
     updateInitiative(initiative);
   };
 
+  const setInactive = () => {
+    if (!updateGameState || !currentClass) return;
+
+    updateGameState({ active: false, off: true }, ["unsetActive"]);
+  }
+
   return {
     isConnected,
     setInitiative,
+    setInactive,
   };
 }

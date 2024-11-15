@@ -35,6 +35,7 @@ export default function MenuContext({ children }: { children: ReactNode }) {
 
     const {
       characters,
+      revision,
       ...rest
     } = oldGameState;
     const currentCharacterIndex = characters
@@ -42,13 +43,22 @@ export default function MenuContext({ children }: { children: ReactNode }) {
 
     const newGameState = {
       ...rest,
+      revision: revision + 1,
       characters: characters.with(currentCharacterIndex, {
         ...characters[currentCharacterIndex],
         ...state,
       }),
     }
     info.splice(1, 0, fhClass.name);
-    wsClient.send(`{"code":"${secretaryId}","password":"${secretaryId}","type":"game","payload":${JSON.stringify(newGameState)},"revision":0,"undoinfo":${JSON.stringify(info)},"undolength":1}`)
+    wsClient.send(JSON.stringify({
+      code: secretaryId,
+      password: secretaryId,
+      type: "game",
+      payload: newGameState,
+      revision: 0,
+      undoinfo: info,
+      undolength: 1,
+    }))
   }
 
   useEffect(() => {

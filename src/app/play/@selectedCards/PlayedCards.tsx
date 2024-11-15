@@ -23,7 +23,11 @@ export default function PlayedCards<X extends Card>() {
     playCards,
   } = useCards<X>();
   const [selectedActions, setSelectedActions] = useState<SelectedActions>([undefined, undefined]);
-  const { isConnected, setInitiative } = useSecretary();
+  const {
+    isConnected,
+    setInitiative,
+    setInactive,
+  } = useSecretary();
 
   const selectedCards = currentCards
     .filter(card => card.status === CardStatus.selected);
@@ -68,6 +72,10 @@ export default function PlayedCards<X extends Card>() {
         { action: firstAction, card: firstCard },
         { action: secondAction, card: secondCard },
       ]);
+
+      if (isConnected) {
+        setInactive();
+      }
     }
   };
 
