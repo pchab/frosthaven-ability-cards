@@ -1,6 +1,7 @@
 import { WebSocketContext } from '@/app/MenuContext';
 import { isBlinkblade } from '@/domain/blinkblade/class';
 import type { Card } from '@/domain/cards.type';
+import { GeminateForm } from '@/domain/geminate/cards';
 import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
 import { useClassHook } from '@/stores/class.store';
 import { getGameState } from '@/stores/game.store';
@@ -39,9 +40,22 @@ export default function useSecretary<X extends Card>() {
     updateGameState({ active: false, off: true }, ["unsetActive"]);
   }
 
+  const updateForm = (form: GeminateForm) => {
+    if (!updateGameState || !currentClass) return;
+
+    const undoInfo = ["nextIdentity", "geminate"];
+    if (form === GeminateForm.melee) {
+      undoInfo.push("range", "melee");
+    } else {
+      undoInfo.push("melee", "range");
+    }
+    updateGameState({ identity: form }, undoInfo);
+  }
+
   return {
     isConnected,
     setInitiative,
     setInactive,
+    updateForm,
   };
 }

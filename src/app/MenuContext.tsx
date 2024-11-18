@@ -2,7 +2,7 @@
 
 import type { CharacterState } from '@/domain/secretary/game.state';
 import { getClass } from '@/stores/class.store';
-import { getGameState } from '@/stores/game.store';
+import { getGameState, setGameState } from '@/stores/game.store';
 import { createContext, useEffect, useState, type ReactNode } from 'react';
 import MenuButton from './MenuButton';
 import ConnectForm from './_components/secretary/ConnectForm';
@@ -58,7 +58,8 @@ export default function MenuContext({ children }: { children: ReactNode }) {
       revision: 0,
       undoinfo: info,
       undolength: 1,
-    }))
+    }));
+    setGameState(newGameState);
   }
 
   useEffect(() => {

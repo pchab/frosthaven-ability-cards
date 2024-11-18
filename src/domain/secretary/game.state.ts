@@ -1,3 +1,5 @@
+import type { GeminateForm } from '../geminate/cards';
+
 export enum BlinkbladeSpeed {
   SLOW,
   FAST,
@@ -6,7 +8,7 @@ export enum BlinkbladeSpeed {
 export type CharacterState = {
   name: string;
   initiative: number;
-  identity: BlinkbladeSpeed;
+  identity: BlinkbladeSpeed | GeminateForm;
   [key: string]: any;
 };
 
