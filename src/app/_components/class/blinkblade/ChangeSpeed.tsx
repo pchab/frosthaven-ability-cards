@@ -1,26 +1,26 @@
 'use client';
 
-import { GeminateForm } from '@/domain/geminate/cards';
 import Button from '../../inputs/Button';
-import GeminateFormIcon from './GeminateFormIcon';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useShallow } from 'zustand/shallow';
 import useSecretary from '../../secretary/useSecretary';
+import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
+import BlinkbladeSpeedIcon from './BlinkbladeSpeedIcon';
 
-export default function ChangeForm() {
+export default function ChangeSpeed() {
   const {
     currentForm,
     setForm,
   } = useFrosthavenStore(useShallow((state) => ({
-    currentForm: state.currentForm as GeminateForm,
+    currentForm: state.currentForm as BlinkbladeSpeed,
     setForm: state.setForm,
   })));
   const { isConnected, updateIdentity } = useSecretary();
 
-  const changeForm = () => {
-    const newForm = currentForm === GeminateForm.melee
-      ? GeminateForm.ranged
-      : GeminateForm.melee;
+  const changeSpeed = () => {
+    const newForm = currentForm === BlinkbladeSpeed.FAST
+      ? BlinkbladeSpeed.SLOW
+      : BlinkbladeSpeed.FAST;
     setForm(newForm);
 
     if (isConnected) {
@@ -29,10 +29,10 @@ export default function ChangeForm() {
   };
 
   return <Button
-    onClick={changeForm}>
+    onClick={changeSpeed}>
     <div className='flex justify-center items-center gap-2 min-h-24'>
-      <label>Change form</label>
-      <GeminateFormIcon form={currentForm} />
+      <label>Change Speed</label>
+      <BlinkbladeSpeedIcon speed={currentForm} />
     </div>
   </Button>;
 }

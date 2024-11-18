@@ -3,6 +3,7 @@ import { GeminateForm } from '@/domain/geminate/cards';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { indexedDBStorage } from './indexed-db.storage';
 import { create } from 'zustand';
+import type { Identity } from '@/domain/frosthaven-class.type';
 
 type AbilityCardsState = {
   level: number;
@@ -10,7 +11,7 @@ type AbilityCardsState = {
   availableCards: Card[];
   states: Card[][];
   currentStateIndex: number;
-  currentForm: GeminateForm;
+  currentForm: Identity;
 }
 
 type AbilityCardsActions = {
@@ -20,7 +21,7 @@ type AbilityCardsActions = {
   validateCardSelection: () => void;
   setStateIndex: (index: number) => void;
   updateStates: <X extends Card>(states: X[][]) => void;
-  setForm: (form: GeminateForm) => void;
+  setForm: (form: Identity) => void;
   reset: () => void;
 }
 
@@ -31,7 +32,7 @@ export type PersistedState = {
   availableCards: PersistedCard[];
   states: PersistedCard[][];
   currentStateIndex: number;
-  currentForm: GeminateForm;
+  currentForm: Identity;
 };
 export function partializeCard<X extends Card>({
   name,
@@ -69,7 +70,7 @@ export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions
       })),
       updateStates: <X extends Card>(states: X[][]) => set({ states, currentStateIndex: states.length - 1 }),
       setStateIndex: (index: number) => set({ currentStateIndex: index }),
-      setForm: (currentForm: GeminateForm) => set({ currentForm }),
+      setForm: (currentForm: Identity) => set({ currentForm }),
       reset: async () => {
         const stateString = await indexedDBStorage.getItem('');
         if (!stateString) {

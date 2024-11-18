@@ -2,8 +2,8 @@ import { createCards } from '../card.factory';
 import { Card, CardActions } from '../cards.type';
 
 export enum GeminateForm {
-  'ranged',
   'melee',
+  'ranged',
 };
 export type GeminateCard = Card & { form: GeminateForm };
 

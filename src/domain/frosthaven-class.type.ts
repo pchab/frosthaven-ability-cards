@@ -1,4 +1,8 @@
 import { type Card } from './cards.type';
+import type { GeminateForm } from './geminate/cards';
+import type { BlinkbladeSpeed } from './secretary/game.state';
+
+export type Identity = GeminateForm | BlinkbladeSpeed;
 
 export enum FrosthavenClassNames {
   BannerSpear = 'Banner Spear',
