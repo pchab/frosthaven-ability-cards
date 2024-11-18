@@ -69,7 +69,7 @@ export default function IdentityProvider({
     if (!currentCharacter) return;
     const { identity } = currentCharacter;
     setIdentity(identity);
-  }, [isConnected, currentClass]);
+  }, [isConnected]);
 
   const changeIdentity = (identity: Identity) => {
     setIdentity(identity);

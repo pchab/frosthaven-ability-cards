@@ -40,16 +40,17 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
     } = oldGameState;
     const currentCharacterIndex = characters
       .findIndex(({ name }) => name === mapCharacterNameToSecretary(fhClass.name));
+    const character = characters[currentCharacterIndex];
 
     const newGameState = {
       ...rest,
       revision: revision + 1,
       characters: characters.with(currentCharacterIndex, {
-        ...characters[currentCharacterIndex],
+        ...character,
         ...state,
       }),
     }
-    info.splice(1, 0, fhClass.name);
+    info.splice(1, 0, character.title);
     wsClient.send(JSON.stringify({
       code: secretaryId,
       password: secretaryId,
@@ -71,7 +72,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
       setSecretaryId(id);
     });
     return () => wsClient?.close();
-  });
+  }, []);
 
   return <WebSocketContext value={{
     isConnected: !!wsClient,
