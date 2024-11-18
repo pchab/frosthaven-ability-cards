@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import MenuContext from './MenuContext';
+import WebSocketProvider from './WebSocketContext';
 
 export const metadata: Metadata = {
   title: 'Frosthaven Ability Cards',
@@ -26,9 +26,9 @@ export default function RootLayout({
       >
         <SpeedInsights />
         <main role='main'>
-          <MenuContext>
+          <WebSocketProvider>
             {children}
-          </MenuContext>
+          </WebSocketProvider>
         </main>
       </body>
     </html>

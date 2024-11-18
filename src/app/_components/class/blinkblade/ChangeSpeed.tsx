@@ -1,38 +1,29 @@
 'use client';
 
-import Button from '../../inputs/Button';
-import { useFrosthavenStore } from '@/stores/cards.store';
-import { useShallow } from 'zustand/shallow';
-import useSecretary from '../../secretary/useSecretary';
+import { IdentityContext } from '@/app/play/IdentityContext';
 import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
+import { use } from 'react';
+import Button from '../../inputs/Button';
 import BlinkbladeSpeedIcon from './BlinkbladeSpeedIcon';
 
 export default function ChangeSpeed() {
   const {
-    currentForm,
-    setForm,
-  } = useFrosthavenStore(useShallow((state) => ({
-    currentForm: state.currentForm as BlinkbladeSpeed,
-    setForm: state.setForm,
-  })));
-  const { isConnected, updateIdentity } = useSecretary();
+    identity: currentSpeed,
+    changeIdentity,
+  } = use(IdentityContext);
 
   const changeSpeed = () => {
-    const newForm = currentForm === BlinkbladeSpeed.FAST
+    const newSpeed = currentSpeed === BlinkbladeSpeed.FAST
       ? BlinkbladeSpeed.SLOW
       : BlinkbladeSpeed.FAST;
-    setForm(newForm);
-
-    if (isConnected) {
-      updateIdentity(newForm);
-    }
+    changeIdentity(newSpeed);
   };
 
   return <Button
     onClick={changeSpeed}>
-    <div className='flex justify-center items-center gap-2 min-h-24'>
+    <div className='flex justify-center items-center gap-2 min-h-24 min-w-48'>
       <label>Change Speed</label>
-      <BlinkbladeSpeedIcon speed={currentForm} />
+      <BlinkbladeSpeedIcon speed={currentSpeed as BlinkbladeSpeed} />
     </div>
   </Button>;
 }

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export default function MenuButton({
+export default function Menu({
   onOpenConnectModal,
 }: {
   onOpenConnectModal: () => void,

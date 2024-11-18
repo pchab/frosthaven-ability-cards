@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import Heading from '../_components/layout/Heading';
+import IdentityProvider from './IdentityContext';
 
 export default function PlayLayout({
   children,
@@ -16,9 +17,10 @@ export default function PlayLayout({
   selectedCards: ReactNode;
   activeEffects: ReactNode;
 }) {
-  return (
+  return <IdentityProvider>
     <div className='h-full p-2 flex flex-row'>
       <Heading title='Play your cards' />
+
       <div className='h-full basis-2/3'>
         {currentHand}
         {discardedCards}
@@ -31,5 +33,5 @@ export default function PlayLayout({
         {activeEffects}
       </div>
     </div>
-  );
+  </IdentityProvider>;
 }

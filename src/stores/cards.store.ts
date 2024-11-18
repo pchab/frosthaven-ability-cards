@@ -1,9 +1,7 @@
 import { type Card } from '@/domain/cards.type';
-import { GeminateForm } from '@/domain/geminate/cards';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { indexedDBStorage } from './indexed-db.storage';
 import { create } from 'zustand';
-import type { Identity } from '@/domain/frosthaven-class.type';
 
 type AbilityCardsState = {
   level: number;
@@ -11,7 +9,6 @@ type AbilityCardsState = {
   availableCards: Card[];
   states: Card[][];
   currentStateIndex: number;
-  currentForm: Identity;
 }
 
 type AbilityCardsActions = {
@@ -21,7 +18,6 @@ type AbilityCardsActions = {
   validateCardSelection: () => void;
   setStateIndex: (index: number) => void;
   updateStates: <X extends Card>(states: X[][]) => void;
-  setForm: (form: Identity) => void;
   reset: () => void;
 }
 
@@ -32,7 +28,6 @@ export type PersistedState = {
   availableCards: PersistedCard[];
   states: PersistedCard[][];
   currentStateIndex: number;
-  currentForm: Identity;
 };
 export function partializeCard<X extends Card>({
   name,
@@ -54,7 +49,6 @@ export const initialState: AbilityCardsState = {
   availableCards: [],
   states: [[]],
   currentStateIndex: 0,
-  currentForm: GeminateForm.melee,
 }
 
 export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions>()(
@@ -70,7 +64,6 @@ export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions
       })),
       updateStates: <X extends Card>(states: X[][]) => set({ states, currentStateIndex: states.length - 1 }),
       setStateIndex: (index: number) => set({ currentStateIndex: index }),
-      setForm: (currentForm: Identity) => set({ currentForm }),
       reset: async () => {
         const stateString = await indexedDBStorage.getItem('');
         if (!stateString) {
@@ -89,7 +82,6 @@ export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions
         availableCards: state.availableCards.map(partializeCard),
         states: state.states.map((state) => state.map(partializeCard)),
         currentStateIndex: state.currentStateIndex,
-        currentForm: state.currentForm,
       }),
     }
   ),

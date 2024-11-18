@@ -1,14 +1,14 @@
 'use client';
 
 import type { CharacterState } from '@/domain/secretary/game.state';
+import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
 import { getClass } from '@/stores/class.store';
 import { getGameState, setGameState } from '@/stores/game.store';
 import { createContext, useEffect, useState, type ReactNode } from 'react';
-import MenuButton from './MenuButton';
+import Menu from './Menu';
+import Modal from './_components/layout/Modal';
 import ConnectForm from './_components/secretary/ConnectForm';
 import { connectToSecretary } from './_components/secretary/webSocketClient';
-import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
-import Modal from './_components/layout/Modal';
 
 type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void;
 
@@ -21,7 +21,7 @@ export const WebSocketContext = createContext<{
   id: '',
 });
 
-export default function MenuContext({ children }: { children: ReactNode }) {
+export default function WebSocketProvider({ children }: { children: ReactNode }) {
   const [wsClient, setWsClient] = useState<WebSocket | null>(null);
   const [secretaryId, setSecretaryId] = useState<string>('');
   const [isConnectModalOpen, setConnectModalOpen] = useState(false);
@@ -71,7 +71,7 @@ export default function MenuContext({ children }: { children: ReactNode }) {
       setSecretaryId(id);
     });
     return () => wsClient?.close();
-  }, []);
+  });
 
   return <WebSocketContext value={{
     isConnected: !!wsClient,
@@ -85,7 +85,7 @@ export default function MenuContext({ children }: { children: ReactNode }) {
         setConnectModalOpen(false);
       }} />
     </Modal>}
-    <MenuButton onOpenConnectModal={() => setConnectModalOpen(true)} />
+    <Menu onOpenConnectModal={() => setConnectModalOpen(true)} />
     {children}
   </WebSocketContext>;
 }

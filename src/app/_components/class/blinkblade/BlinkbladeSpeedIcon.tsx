@@ -1,13 +1,13 @@
 import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
 import Image from 'next/image';
 
-const fastPath = '/blinkblade/icons/fh-blinkblade-fast-color-icon.png';
-const slowPath = '/blinkblade/icons/fh-blinkblade-slow-color-icon.png';
-const fastSize = {
+const fastIcon = {
+  path: '/blinkblade/icons/fh-blinkblade-fast-color-icon.png',
   width: 55,
   height: 60,
 };
-const slowSize = {
+const slowIcon = {
+  path: '/blinkblade/icons/fh-blinkblade-slow-color-icon.png',
   width: 30,
   height: 60,
 };
@@ -17,15 +17,12 @@ export default function BlinkbladeSpeedIcon({
 }: {
   speed: BlinkbladeSpeed;
 }) {
-  const speedPath = speed === BlinkbladeSpeed.FAST
-    ? fastPath
-    : slowPath;
-  const { width, height } = speed === BlinkbladeSpeed.FAST
-    ? fastSize
-    : slowSize;
+  const { path, width, height } = speed === BlinkbladeSpeed.FAST
+    ? fastIcon
+    : slowIcon;
 
   return <Image
-    src={speedPath}
+    src={path}
     alt={`speed-${speed}`}
     width={width}
     height={height}
