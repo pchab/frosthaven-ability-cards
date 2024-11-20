@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang='en'>
       <body
         style={{
-          backgroundImage: 'url(/fh-background.jpg)',
+          backgroundImage: 'url(/fh-background.webp)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
