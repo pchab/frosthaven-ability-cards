@@ -4,7 +4,7 @@ import { useCards } from '@/app/play/useCards';
 import type { Card } from '@/domain/cards.type';
 import { isDrifter } from '@/domain/drifter/class';
 import { useClassHook } from '@/stores/class.store';
-import { motion } from 'framer-motion';
+import * as m from 'framer-motion/m';
 import { useEffect, useState } from 'react';
 import CharacterToken from '../class/CharacterToken';
 import type { WheelAction } from './ActionWheel';
@@ -58,11 +58,11 @@ export default function CardWithSlot<X extends Card>({
     : [moveTokenForwardAction(card)];
 
   return <CardComponent card={card} actions={[...actions, ...tokenActions]}>
-    <motion.div
+    <m.div
       animate={{ x: tokenPosition?.left, y: tokenPosition?.top }}
       transition={{ ease: 'easeOut', duration: 0.2 }}
     >
       {selectedClass && <CharacterToken className={selectedClass.name} />}
-    </motion.div>
+    </m.div>
   </CardComponent>;
 }

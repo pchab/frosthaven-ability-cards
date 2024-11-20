@@ -1,5 +1,6 @@
 import { Card } from '@/domain/cards.type';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
+import * as m from 'framer-motion/m';
 import { useEffect, useState } from 'react';
 import type { WheelAction } from './ActionWheel';
 import { CardComponent } from './Card';
@@ -47,23 +48,25 @@ export default function CardPile<X extends Card>({
     className={`flex gap-4 ml-24 min-h-card ${minWidthValue}`}
     onMouseLeave={() => setHoveredCardIndex(cards.length - 1)}
   >
-    <AnimatePresence>
-      {cards
-        .map((card, index) => <motion.div
-          key={card.name}
-          onMouseEnter={() => setHoveredCardIndex(index)}
-          onTouchMove={() => setHoveredCardIndex(index)}
-          onFocus={() => setHoveredCardIndex(index)}
-          onTap={() => setHoveredCardIndex(index)}
-          whileHover={{ scale: 1.2 }}
-          whileFocus={{ scale: 1.2 }}
-          className='w-fit -ml-24'
-          style={{ zIndex: getZIndex(index) }}
-        >
-          <CardComponent
-            card={card}
-            actions={actions(card)} />
-        </motion.div>)}
-    </AnimatePresence>
+    <LazyMotion features={domAnimation}>
+      <AnimatePresence mode='popLayout'>
+        {cards
+          .map((card, index) => <m.div
+            key={card.name}
+            onMouseEnter={() => setHoveredCardIndex(index)}
+            onTouchMove={() => setHoveredCardIndex(index)}
+            onFocus={() => setHoveredCardIndex(index)}
+            onTap={() => setHoveredCardIndex(index)}
+            whileHover={{ scale: 1.2 }}
+            whileFocus={{ scale: 1.2 }}
+            className='w-fit -ml-24'
+            style={{ zIndex: getZIndex(index) }}
+          >
+            <CardComponent
+              card={card}
+              actions={actions(card)} />
+          </m.div>)}
+      </AnimatePresence>
+    </LazyMotion>
   </div>;
 }
