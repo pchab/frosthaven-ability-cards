@@ -7,7 +7,7 @@ function nameToImagePath(name: string): string {
 export function createCards<X extends Card>(cards: Omit<X, 'status' | 'path'>[], basePath: string): X[] {
   return cards.map((card) => ({
     status: CardStatus.inHand,
-    path: `${basePath}/fh-${nameToImagePath(card.name)}.png`,
+    path: `${basePath}/fh-${nameToImagePath(card.name)}.webp`,
     ...card,
   } as X));
 }
