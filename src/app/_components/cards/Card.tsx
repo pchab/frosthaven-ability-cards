@@ -1,10 +1,10 @@
 'use client';
 
 import { Card } from '@/domain/cards.type';
-import { domAnimation, LazyMotion } from 'framer-motion';
+import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
 import * as m from 'framer-motion/m';
 import Image from 'next/image';
-import { useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import ActionWheel, { type WheelAction } from './ActionWheel';
 import EnhanceSticker from './Enhance/EnhanceSticker';
 
@@ -19,9 +19,8 @@ export function CardComponent<X extends Card>({
   actions?: WheelAction[];
   mapName?: string;
 }) {
+  const innerRef = useRef<HTMLDivElement>(null);
   const [isActionWheelOpen, setIsActionWheelOpen] = useState(false);
-
-  const toggleWheel = () => setIsActionWheelOpen(!isActionWheelOpen);
 
   const onClickCard = () => {
     if (actions.length === 0) return;
@@ -29,18 +28,33 @@ export function CardComponent<X extends Card>({
       actions[0].onClick();
       return;
     }
-    toggleWheel();
+    setIsActionWheelOpen(!isActionWheelOpen);
   };
+
+  const handleClickOutside: EventListener = (event) => {
+    if (!innerRef.current?.contains(event.target as Node)) {
+      setIsActionWheelOpen(false);
+    }
+  };
+  useEffect(() => {
+    if (isActionWheelOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isActionWheelOpen]);
 
   return <LazyMotion features={domAnimation}>
     <m.div
+      ref={innerRef}
       onClick={onClickCard}
       className='relative'
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -40, opacity: 0 }}
     >
-      <ActionWheel isOpen={isActionWheelOpen} actions={actions} />
+      <AnimatePresence>
+        {isActionWheelOpen && <ActionWheel actions={actions} />}
+      </AnimatePresence>
       {children}
       <Image
         useMap={`#${mapName}`}

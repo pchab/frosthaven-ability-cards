@@ -1,6 +1,5 @@
 'use client';
 
-import { AnimatePresence } from 'framer-motion';
 import * as m from 'framer-motion/m';
 import type { ReactNode } from 'react';
 
@@ -24,40 +23,34 @@ function getPositionForAction(actions: WheelAction[], index: number, radius = ge
 }
 
 export default function ActionWheel({
-  isOpen,
   actions,
 }: {
-  isOpen: boolean;
   actions: WheelAction[];
 }) {
-  return <AnimatePresence>
-    {isOpen && (
-      <m.div
-        className='absolute w-full h-full bg-transparent z-30'
-        initial={{ scale: 0, opacity: 0, rotate: 90 }}
-        animate={{ scale: 1, opacity: 1, rotate: 0 }}
-        exit={{ scale: 0, opacity: 0, rotate: 90 }}
-        transition={{ duration: 0.3 }}
-      >
-        {actions.map((action, index) => {
-          const { x, y } = getPositionForAction(actions, index);
-          return (
-            <m.button
-              key={`action-${index}`}
-              className={`absolute w-16 h-16 border-2 border-white rounded-full flex items-center justify-center text-xs font-medium bg-black/80`}
-              style={{
-                left: `calc(50% + ${x}px - 2rem)`, // 2rem is the width of the button (w-16)
-                top: `calc(50% + ${y}px - 2rem)`, // 2rem is the height of the button (h-16)
-              }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onTap={action.onClick}
-            >
-              {action.name}
-            </m.button>
-          )
-        })}
-      </m.div>
-    )}
-  </AnimatePresence>;
+  return <m.div
+    className='absolute w-full h-full bg-transparent z-30'
+    initial={{ scale: 0, opacity: 0, rotate: 90 }}
+    animate={{ scale: 1, opacity: 1, rotate: 0 }}
+    exit={{ scale: 0, opacity: 0, rotate: 90 }}
+    transition={{ duration: 0.3 }}
+  >
+    {actions.map((action, index) => {
+      const { x, y } = getPositionForAction(actions, index);
+      return (
+        <m.button
+          key={`action-${index}`}
+          className={`absolute w-16 h-16 border-2 border-white rounded-full flex items-center justify-center text-xs font-medium bg-black/80`}
+          style={{
+            left: `calc(50% + ${x}px - 2rem)`, // 2rem is the width of the button (w-16)
+            top: `calc(50% + ${y}px - 2rem)`, // 2rem is the height of the button (h-16)
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          onTap={action.onClick}
+        >
+          {action.name}
+        </m.button>
+      )
+    })}
+  </m.div>;
 }

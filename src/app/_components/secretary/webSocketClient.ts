@@ -19,7 +19,6 @@ export async function connectToSecretary({
     };
 
     client.onopen = () => {
-      console.log('connected');
       localStorage.setItem('secretary-id', id);
       localStorage.setItem('secretary-host', host);
       client.send(JSON.stringify({
@@ -31,7 +30,6 @@ export async function connectToSecretary({
     };
 
     client.onerror = (event) => {
-      console.error(event);
       reject();
     };
   });
