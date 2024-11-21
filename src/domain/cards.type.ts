@@ -1,6 +1,6 @@
 import type { Enhancement, EnhancementSlot } from './enhancement/enhancement.type';
 
-type SlotArea = {
+export type SlotArea = {
   x: number;
   y: number;
   radius?: number
