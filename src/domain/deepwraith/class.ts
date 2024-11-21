@@ -5,7 +5,7 @@ import { deepwraithCards } from './cards';
 export const deepwraith: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.Deepwraith,
   handSize: 10,
-  path: '/deepwraith/icons/fh-deepwraith-color-icon.png',
+  path: '/deepwraith/icons/fh-deepwraith-color-icon.webp',
   iconSize: { width: 48, height: 60 },
   cards: deepwraithCards,
 };

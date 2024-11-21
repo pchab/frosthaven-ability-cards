@@ -8,7 +8,7 @@ export default function EnhanceSticker({
   enhancement: Enhancement;
   position: EnhancementSlot['position'];
 }) {
-  const tokenPath = `/enhancement-stickers/fh-${enhancement}-sticker.png`;
+  const tokenPath = `/enhancement-stickers/fh-${enhancement}-sticker.webp`;
 
   return <Image
     src={tokenPath}

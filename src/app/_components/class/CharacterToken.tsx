@@ -7,7 +7,7 @@ export default function CharacterToken({
   className: FrosthavenClassNames;
 }) {
   const fhClassName = className.toLocaleLowerCase().replaceAll(' ', '-');
-  const tokenPath = `/${fhClassName}/icons/fh-${fhClassName}-character-token.png`;
+  const tokenPath = `/${fhClassName}/icons/fh-${fhClassName}-character-token.webp`;
 
   return <Image
     src={tokenPath}
