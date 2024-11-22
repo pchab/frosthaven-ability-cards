@@ -8,7 +8,7 @@ import type { CharacterState } from '@/domain/secretary/game.state';
 import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
 import { getClass } from '@/stores/class.store';
 import { getGameState, setGameState } from '@/stores/game.store';
-import { createContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, useEffect, useRef, useState, type ReactNode } from 'react';
 
 type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void;
 
@@ -22,12 +22,12 @@ export const WebSocketContext = createContext<{
 });
 
 export default function WebSocketProvider({ children }: { children: ReactNode }) {
-  const [wsClient, setWsClient] = useState<WebSocket | null>(null);
-  const [secretaryId, setSecretaryId] = useState<string>('');
+  const wsClient = useRef<WebSocket | null>(null);
+  const secretaryId = useRef<string>('');
   const [isConnectModalOpen, setConnectModalOpen] = useState(false);
 
   const updateGameState = (state: Partial<CharacterState>, info: string[]) => {
-    if (!wsClient) return;
+    if (!wsClient.current) return;
     const oldGameState = getGameState();
     if (!oldGameState) return;
     const currentClass = getClass();
@@ -51,7 +51,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
       }),
     }
     info.splice(1, 0, character.title);
-    wsClient.send(JSON.stringify({
+    wsClient.current.send(JSON.stringify({
       code: secretaryId,
       password: secretaryId,
       type: "game",
@@ -68,21 +68,21 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
     const id = localStorage.getItem('secretary-id');
     if (!id || !host) return;
     connectToSecretary({ host, id }).then((client) => {
-      setWsClient(client);
-      setSecretaryId(id);
+      wsClient.current = client;
+      secretaryId.current = id;
     });
-    return () => wsClient?.close();
+    return () => wsClient.current?.close();
   }, []);
 
   return <WebSocketContext value={{
-    isConnected: !!wsClient,
-    id: secretaryId,
+    isConnected: !!wsClient.current,
+    id: secretaryId.current,
     update: updateGameState
   }}>
     {isConnectModalOpen && <Modal onCancel={() => setConnectModalOpen(false)}>
       <ConnectForm onConnect={({ client, id }) => {
-        setWsClient(client);
-        setSecretaryId(id);
+        wsClient.current = client;
+        secretaryId.current = id;
         setConnectModalOpen(false);
       }} />
     </Modal>}
