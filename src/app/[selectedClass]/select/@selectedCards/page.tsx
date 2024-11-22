@@ -15,18 +15,14 @@ import { SelectedGeminateCards } from './SelectedCards.geminate';
 
 export default function SelectedCardsPage<X extends Card>() {
   const selectedClass = use(ClassContext);
-  const { enhanceCard } = useSelectCards<X>();
+  const { cards, enhanceCard } = useSelectCards<X>();
   const [enhancingCard, setEnhancingCard] = useState<X | null>(null);
 
   const enhanceAction = (card: X) => card.availableEnhancements
     ? [{ name: 'Enhance Card', onClick: () => setEnhancingCard(card) }]
     : [];
 
-  if (!selectedClass) {
-    return <BoardArea title={'Selected Cards: 0/10'} />;
-  }
-
-  return <>
+  return <BoardArea title={`Selected Cards: ${cards.length}/${selectedClass.handSize}`}>
     {enhancingCard && <Modal onCancel={() => setEnhancingCard(null)}>
       <EnhanceCard card={enhancingCard} onEnhanceCard={(card: X) => {
         setEnhancingCard(null);
@@ -37,5 +33,5 @@ export default function SelectedCardsPage<X extends Card>() {
     {isGeminate(selectedClass)
       ? <SelectedGeminateCards actions={enhanceAction as unknown as PileActions<GeminateCard>} />
       : <SelectedCards actions={enhanceAction} />}
-  </>;
+  </BoardArea>;
 }

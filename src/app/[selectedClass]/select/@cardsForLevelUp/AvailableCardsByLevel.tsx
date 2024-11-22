@@ -3,16 +3,15 @@
 import CardPile from '@/app/_components/cards/CardPile';
 import BoardArea from '@/app/_components/layout/BoardArea';
 import type { Card } from '@/domain/cards.type';
-import { useFrosthavenStore } from '@/stores/cards.store';
-import { useShallow } from 'zustand/shallow';
 import { useSelectCards } from '@/hooks/useSelectCards';
+import { useFrosthavenStore } from '@/stores/cards.store';
 
 export default function AvailableCardsByLevel<X extends Card>({
   level,
 }: {
   level: X['level'];
 }) {
-  const availableCards = useFrosthavenStore(useShallow((state) => state.availableCards as X[]));
+  const availableCards = useFrosthavenStore((state) => state.availableCards as X[]);
   const { cards, selectCard } = useSelectCards<X>();
 
   const selectAction = (card: X) => [{

@@ -29,9 +29,10 @@ export default function DiscardedCards() {
       cards={discardPile}
       actions={actions}
     />
-    {discardPile.length > 1 && <div className='flex flex-col justify-between'>
-      <ShortRestButton cards={discardPile} />
-      <LongRestButton cards={discardPile} />
-    </div>}
+    {discardPile.length > 1 &&
+      <div className='flex flex-col justify-between'>
+        <ShortRestButton cards={discardPile} />
+        <LongRestButton cards={discardPile} />
+      </div>}
   </div>;
 }

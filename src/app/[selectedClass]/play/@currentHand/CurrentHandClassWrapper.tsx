@@ -13,7 +13,7 @@ export default function CurrentHandClassWrapper() {
 
   return <CurrentHand
     classFilter={
-      (selectedClass && isGeminate(selectedClass))
+      isGeminate(selectedClass)
         ? ({ form }: GeminateCard) => form === currentForm
         : undefined
     } />;

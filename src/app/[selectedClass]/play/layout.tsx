@@ -1,6 +1,6 @@
 import Heading from '@/app/_components/layout/Heading';
 import type { ReactNode } from 'react';
-import IdentityProvider from '../../../context/IdentityContext';
+import IdentityProvider from '@/context/IdentityContext';
 
 export default function PlayLayout({
   children,
