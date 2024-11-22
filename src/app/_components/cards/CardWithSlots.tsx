@@ -1,14 +1,14 @@
 'use client';
 
-import { useCards } from '@/app/play/useCards';
 import type { Card, SlotArea } from '@/domain/cards.type';
 import { isDrifter } from '@/domain/drifter/class';
-import { useClassHook } from '@/stores/class.store';
 import * as m from 'framer-motion/m';
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import CharacterToken from '../class/CharacterToken';
 import type { WheelAction } from './ActionWheel';
 import { CardComponent } from './Card';
+import { ClassContext } from '@/context/ClassContext';
+import { useCards } from '@/hooks/useCards';
 
 type CardWithSlots = Required<Pick<Card, 'slots'>> & Card;
 
@@ -20,13 +20,13 @@ export default function CardWithSlots<X extends CardWithSlots>({
   actions: WheelAction[];
 }) {
   const { slots, tokenPosition = 0 } = card;
-  const selectedClass = useClassHook();
+  const selectedClass = use(ClassContext);
   const [{ x, y, radius = 10 }, setTokenPosition] = useState<SlotArea>(slots[tokenPosition]);
   const { moveTokenForward, moveTokenBackward } = useCards<X>();
 
   useEffect(() => {
     setTokenPosition(slots[tokenPosition]);
-  }, [card]);
+  }, [slots, tokenPosition]);
 
   const moveTokenForwardAction = {
     name: 'Move token forward',

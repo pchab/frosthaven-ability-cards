@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import Heading from '../_components/layout/Heading';
+import Heading from '@/app/_components/layout/Heading';
 import AvailableCardsByLevel from './@cardsForLevelUp/AvailableCardsByLevel';
 
 export default function SelectCardsLayout({

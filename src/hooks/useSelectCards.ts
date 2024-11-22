@@ -1,11 +1,13 @@
 'use client';
 
+import { ClassContext } from '@/context/ClassContext';
 import type { Card } from '@/domain/cards.type';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { geminate, isGeminateCards } from '@/domain/geminate/class';
+import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
 import { useFrosthavenStore } from '@/stores/cards.store';
-import { useClassHook } from '@/stores/class.store';
 import { useRouter } from 'next/navigation';
+import { use } from 'react';
 import { useShallow } from 'zustand/shallow';
 
 type CheckHandSize<X extends Card> = (cards: X[]) => boolean;
@@ -15,7 +17,7 @@ const geminateCheckHandsize: CheckHandSize<GeminateCard> = (cards: GeminateCard[
 );
 
 export function useSelectCards<X extends Card>() {
-  const selectedClass = useClassHook<X>();
+  const selectedClass = use(ClassContext);;
   const {
     cards,
     selectCards,
@@ -47,7 +49,7 @@ export function useSelectCards<X extends Card>() {
   const validateSelection = () => {
     if (selectedClass && cards.length === selectedClass.handSize) {
       validateCardSelection();
-      router.push('/play');
+      router.push(`/${mapCharacterNameToSecretary(selectedClass.name)}/play`);
     }
   };
 

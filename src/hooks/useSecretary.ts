@@ -1,8 +1,8 @@
-import { WebSocketContext } from '@/app/WebSocketContext';
+import { ClassContext } from '@/context/ClassContext';
+import { WebSocketContext } from '@/context/WebSocketContext';
 import { isBlinkblade } from '@/domain/blinkblade/class';
 import type { Card } from '@/domain/cards.type';
 import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
-import { useClassHook } from '@/stores/class.store';
 import { getGameState } from '@/stores/game.store';
 import { use } from 'react';
 
@@ -11,7 +11,7 @@ export default function useSecretary<X extends Card>() {
     isConnected,
     update: updateGameState,
   } = use(WebSocketContext);
-  const currentClass = useClassHook();
+  const currentClass = use(ClassContext);
 
   const updateInitiative = (initiative: number) => {
     updateGameState && updateGameState({ initiative }, ["setInitiative", `"${initiative}"`]);

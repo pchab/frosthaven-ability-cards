@@ -5,7 +5,7 @@ import BoardArea from '@/app/_components/layout/BoardArea';
 import type { Card } from '@/domain/cards.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useShallow } from 'zustand/shallow';
-import { useSelectCards } from '../useSelectCards';
+import { useSelectCards } from '@/hooks/useSelectCards';
 
 export default function AvailableCardsByLevel<X extends Card>({
   level,

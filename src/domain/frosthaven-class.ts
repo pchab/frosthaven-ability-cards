@@ -11,6 +11,9 @@ import { painConduit } from './pain-conduit/class';
 import { pyroclast } from "@/domain/pyroclast/class";
 import { snowdancer } from './snowdancer/class';
 import { trapper } from './trapper/class';
+import { mapCharacterNameToSecretary } from './secretary/secretary-character.mapper';
+import type { FrosthavenClass } from './frosthaven-class.type';
+import type { Card } from './cards.type';
 
 const starterClasses = [
   bannerSpear,

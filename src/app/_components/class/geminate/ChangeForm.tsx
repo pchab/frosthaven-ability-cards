@@ -1,10 +1,10 @@
 'use client';
 
-import { IdentityContext } from '@/app/play/IdentityContext';
 import { GeminateForm } from '@/domain/geminate/cards';
 import { use } from 'react';
 import Button from '../../inputs/Button';
 import GeminateFormIcon from './GeminateFormIcon';
+import { IdentityContext } from '@/context/IdentityContext';
 
 export default function ChangeForm() {
   const {

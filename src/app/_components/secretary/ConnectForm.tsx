@@ -1,7 +1,7 @@
 import Button from '../inputs/Button';
 import { useActionState, useContext } from 'react';
 import { connectToSecretary } from './webSocketClient';
-import { WebSocketContext } from '@/app/WebSocketContext';
+import { WebSocketContext } from '@/context/WebSocketContext';
 
 export default function ConnectForm({
   onConnect,

@@ -1,10 +1,10 @@
 'use client';
 
-import { IdentityContext } from '@/app/play/IdentityContext';
 import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
 import { use } from 'react';
 import Button from '../../inputs/Button';
 import BlinkbladeSpeedIcon from './BlinkbladeSpeedIcon';
+import { IdentityContext } from '@/context/IdentityContext';
 
 export default function ChangeSpeed() {
   const {

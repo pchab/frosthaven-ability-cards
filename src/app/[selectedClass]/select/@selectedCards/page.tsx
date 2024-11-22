@@ -1,20 +1,20 @@
 'use client';
 
 import type { PileActions } from '@/app/_components/cards/CardPile';
-import { SelectedGeminateCards } from '@/app/_components/class/geminate/SelectedGeminateCards';
 import BoardArea from '@/app/_components/layout/BoardArea';
 import Modal from '@/app/_components/layout/Modal';
+import { ClassContext } from '@/context/ClassContext';
 import type { Card } from '@/domain/cards.type';
 import type { GeminateCard } from '@/domain/geminate/cards';
 import { isGeminate } from '@/domain/geminate/class';
-import { useClassHook } from '@/stores/class.store';
-import { useState } from 'react';
+import { use, useState } from 'react';
 import EnhanceCard from '../(enhance)/EnhanceCard';
-import { useSelectCards } from '../useSelectCards';
+import { useSelectCards } from '@/hooks/useSelectCards';
 import { SelectedCards } from './SelectedCards';
+import { SelectedGeminateCards } from './SelectedCards.geminate';
 
 export default function SelectedCardsPage<X extends Card>() {
-  const selectedClass = useClassHook();
+  const selectedClass = use(ClassContext);
   const { enhanceCard } = useSelectCards<X>();
   const [enhancingCard, setEnhancingCard] = useState<X | null>(null);
 

@@ -1,17 +1,18 @@
 'use client';
 
+import CardPile, { type PileActions } from '@/app/_components/cards/CardPile';
+import BoardArea from '@/app/_components/layout/BoardArea';
+import { ClassContext } from '@/context/ClassContext';
 import { type Card } from '@/domain/cards.type';
-import { useClassHook } from '@/stores/class.store';
-import CardPile, { type PileActions } from '../../_components/cards/CardPile';
-import BoardArea from '../../_components/layout/BoardArea';
-import { useSelectCards } from '../useSelectCards';
+import { use } from 'react';
+import { useSelectCards } from '@/hooks/useSelectCards';
 
 export function SelectedCards<X extends Card>({
   actions = () => [],
 }: {
   actions?: PileActions<X>;
 }) {
-  const { handSize = 10 } = useClassHook() ?? {};
+  const { handSize = 10 } = use(ClassContext);
   const { cards, removeCard } = useSelectCards<X>();
 
   const removeAction = (card: X) => ({

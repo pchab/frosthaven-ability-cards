@@ -2,7 +2,7 @@
 
 import CardPile from '@/app/_components/cards/CardPile';
 import { CardStatus, type Card } from '@/domain/cards.type';
-import { useCards } from '../useCards';
+import { useCards } from '@/hooks/useCards';
 
 export default function CurrentHand<X extends Card>({
   classFilter = () => true,
