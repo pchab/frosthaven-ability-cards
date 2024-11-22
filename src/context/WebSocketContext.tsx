@@ -1,14 +1,14 @@
 'use client';
 
+import Menu from '@/app/Menu';
+import Modal from '@/app/_components/layout/Modal';
+import ConnectForm from '@/app/_components/secretary/ConnectForm';
+import { connectToSecretary } from '@/app/_components/secretary/webSocketClient';
 import type { CharacterState } from '@/domain/secretary/game.state';
 import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
 import { getClass } from '@/stores/class.store';
 import { getGameState, setGameState } from '@/stores/game.store';
 import { createContext, useEffect, useState, type ReactNode } from 'react';
-import Menu from './Menu';
-import Modal from './_components/layout/Modal';
-import ConnectForm from './_components/secretary/ConnectForm';
-import { connectToSecretary } from './_components/secretary/webSocketClient';
 
 type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void;
 
@@ -30,8 +30,8 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
     if (!wsClient) return;
     const oldGameState = getGameState();
     if (!oldGameState) return;
-    const fhClass = getClass();
-    if (!fhClass) return;
+    const currentClass = getClass();
+    if (!currentClass) return;
 
     const {
       characters,
@@ -39,7 +39,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
       ...rest
     } = oldGameState;
     const currentCharacterIndex = characters
-      .findIndex(({ name }) => name === mapCharacterNameToSecretary(fhClass.name));
+      .findIndex(({ name }) => name === mapCharacterNameToSecretary(currentClass.name));
     const character = characters[currentCharacterIndex];
 
     const newGameState = {

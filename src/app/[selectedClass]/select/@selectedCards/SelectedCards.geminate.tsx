@@ -1,11 +1,11 @@
 'use client';
 
-import { useSelectCards } from '@/app/select/useSelectCards';
+import CardPile, { type PileActions } from '@/app/_components/cards/CardPile';
+import GeminateFormIcon from '@/app/_components/class/geminate/GeminateFormIcon';
+import BoardArea from '@/app/_components/layout/BoardArea';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { geminate } from '@/domain/geminate/class';
-import CardPile, { type PileActions } from '../../cards/CardPile';
-import BoardArea from '../../layout/BoardArea';
-import GeminateFormIcon from './GeminateFormIcon';
+import { useSelectCards } from '@/hooks/useSelectCards';
 
 export function SelectedGeminateCards({
   actions = () => [],

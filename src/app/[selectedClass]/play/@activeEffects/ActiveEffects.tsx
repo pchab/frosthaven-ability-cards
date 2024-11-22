@@ -1,10 +1,10 @@
 'use client';
 
-import { useCards } from '@/app/play/useCards';
+import { CardComponent } from '@/app/_components/cards/Card';
+import CardWithSlots from '@/app/_components/cards/CardWithSlots';
 import { Card, CardActions, CardStatus } from '@/domain/cards.type';
 import { AnimatePresence } from 'framer-motion';
-import { CardComponent } from '../../_components/cards/Card';
-import CardWithSlots from '../../_components/cards/CardWithSlots';
+import { useCards } from '@/hooks/useCards';
 
 function cardHasSlots(card: Card): card is Required<Pick<Card, 'slots'>> & Card {
   return !!card.slots;

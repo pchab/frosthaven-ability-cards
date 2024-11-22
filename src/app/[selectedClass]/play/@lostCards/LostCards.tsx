@@ -2,7 +2,7 @@
 
 import { CardStatus, type Card } from '@/domain/cards.type';
 import CardPile from '@/app/_components/cards/CardPile';
-import { useCards } from '../useCards';
+import { useCards } from '@/hooks/useCards';
 
 export default function LostCards() {
   const {

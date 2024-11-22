@@ -2,27 +2,20 @@
 
 import type { Card } from '@/domain/cards.type';
 import type { FrosthavenClass } from '@/domain/frosthaven-class.type';
-import { useFrosthavenStore } from '@/stores/cards.store';
-import { setClass } from '@/stores/class.store';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import ClassIcon from '../_components/class/ClassIcon';
+import { classNameToURI } from '@/domain/frosthaven-class';
 
 export default function SelectClass({
   fhClass,
 }: {
   fhClass: FrosthavenClass<Card>;
 }) {
-  const router = useRouter();
-  const reset = useFrosthavenStore((state) => state.reset);
-  const { name, path, iconSize } = fhClass;
+  const { name } = fhClass;
 
-  return (<button
-    className='border-0 flex items-center justify-center'
-    onClick={() => {
-      setClass(fhClass.name);
-      reset();
-      router.push('/select');
-    }}>
-    <Image src={path} alt={name} {...iconSize} />
-  </button>)
+  return <Link
+    href={`/${classNameToURI(name)}/select`}
+    className='border-0 flex items-center justify-center'>
+    <ClassIcon fhClass={fhClass} />
+  </Link>;
 }

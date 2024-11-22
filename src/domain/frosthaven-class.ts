@@ -11,6 +11,7 @@ import { painConduit } from './pain-conduit/class';
 import { pyroclast } from "@/domain/pyroclast/class";
 import { snowdancer } from './snowdancer/class';
 import { trapper } from './trapper/class';
+import type { FrosthavenClassNames } from './frosthaven-class.type';
 
 const starterClasses = [
   bannerSpear,
@@ -34,3 +35,15 @@ export const frosthavenClasses = [
   ...starterClasses,
   ...unlockedClasses,
 ];
+
+function upperFirstLetter(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+export function classNameToURI(className: FrosthavenClassNames): string {
+  return className.replace(' ', '-').toLowerCase();
+}
+
+export function classURIToName(className: string): FrosthavenClassNames {
+  return className.split('-').map(upperFirstLetter).join(' ') as FrosthavenClassNames;
+}

@@ -1,9 +1,9 @@
 import { type Card } from '@/domain/cards.type';
+import { useCards } from '@/hooks/useCards';
 import { useState } from 'react';
 import CardPile from '../../cards/CardPile';
 import Modal from '../../layout/Modal';
 import Button from '../Button';
-import { useCards } from '@/app/play/useCards';
 
 export default function LongRestButton<X extends Card>({
   cards,

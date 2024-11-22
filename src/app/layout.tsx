@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import WebSocketProvider from './WebSocketContext';
+import WebSocketProvider from '../context/WebSocketContext';
 
 export const metadata: Metadata = {
   title: 'Frosthaven Ability Cards',

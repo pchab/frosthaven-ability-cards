@@ -2,18 +2,14 @@
 
 import type { GeminateCard } from '@/domain/geminate/cards';
 import { isGeminate } from '@/domain/geminate/class';
-import { useClassHook } from '@/stores/class.store';
 import CurrentHand from './CurrentHand';
 import { use } from 'react';
-import { IdentityContext } from '../IdentityContext';
+import { IdentityContext } from '../../../../context/IdentityContext';
+import { ClassContext } from '@/context/ClassContext';
 
 export default function CurrentHandClassWrapper() {
-  const selectedClass = useClassHook();
+  const selectedClass = use(ClassContext);
   const { identity: currentForm } = use(IdentityContext);
-
-  if (!selectedClass) {
-    return <CurrentHand />;
-  }
 
   return <CurrentHand
     classFilter={

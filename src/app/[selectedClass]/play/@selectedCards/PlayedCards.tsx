@@ -1,12 +1,12 @@
 'use client';
 
+import { CardComponent } from '@/app/_components/cards/Card';
 import Button from '@/app/_components/inputs/Button';
-import useSecretary from '@/app/_components/secretary/useSecretary';
-import { useCards, type Action } from '@/app/play/useCards';
 import { CardStatus, type Card } from '@/domain/cards.type';
+import { useCards, type Action } from '@/hooks/useCards';
+import useSecretary from '@/hooks/useSecretary';
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { CardComponent } from '../../_components/cards/Card';
 
 type SelectedActions = [
   Action | undefined,

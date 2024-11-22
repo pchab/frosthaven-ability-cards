@@ -3,13 +3,13 @@
 import type { Identity } from '@/domain/frosthaven-class.type';
 import { createContext, use, useEffect, useState } from 'react';
 import { getGameState } from '@/stores/game.store';
-import { useClassHook } from '@/stores/class.store';
 import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
-import { WebSocketContext } from '../WebSocketContext';
+import { WebSocketContext } from './WebSocketContext';
 import { isGeminate } from '@/domain/geminate/class';
 import { GeminateForm } from '@/domain/geminate/cards';
 import { isBlinkblade } from '@/domain/blinkblade/class';
 import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
+import { ClassContext } from './ClassContext';
 
 export const IdentityContext = createContext<{
   identity: Identity | null;
@@ -28,7 +28,7 @@ export default function IdentityProvider({
     isConnected,
     update: updateGameState,
   } = use(WebSocketContext);
-  const currentClass = useClassHook();
+  const currentClass = use(ClassContext);
   const [identity, setIdentity] = useState<Identity | null>(null);
 
   const updateIdentityToGHS = (form: Identity) => {

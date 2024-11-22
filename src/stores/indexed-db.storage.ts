@@ -1,9 +1,9 @@
 import type { StateStorage } from 'zustand/middleware';
-import { getClass } from './class.store';
 import type { Card } from '@/domain/cards.type';
 import type { PersistedCard } from './cards.store';
 import { FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { del, get, put, startTransaction } from './indexed-db';
+import { getClass } from './class.store';
 
 function departializeCardForClass<X extends Card>(fhClass: FrosthavenClass<X>) {
   return ({

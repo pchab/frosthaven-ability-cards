@@ -1,7 +1,7 @@
 'use client';
 
 import { CardStatus, type Card } from '@/domain/cards.type';
-import { useCards } from '../useCards';
+import { useCards } from '@/hooks/useCards';
 import CardPile from '@/app/_components/cards/CardPile';
 import ShortRestButton from '@/app/_components/inputs/rests/ShortRestButton';
 import LongRestButton from '@/app/_components/inputs/rests/LongRestButton';
