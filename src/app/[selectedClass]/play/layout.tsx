@@ -21,13 +21,13 @@ export default function PlayLayout({
     <Heading title='Play your cards' />
 
     <IdentityProvider>
-      <div className='h-full p-2 m-2 flex flex-col items-center'>
+      <div className='h-full p-2 m-2 flex flex-col items-center gap-4'>
         {currentHand}
         {discardedCards}
         {lostCards}
       </div>
 
-      <div className='h-full p-2 m-2 flex flex-col items-center'>
+      <div className='h-full p-2 m-2 flex flex-col items-center gap-4'>
         {children}
         {selectedCards}
         {activeEffects}

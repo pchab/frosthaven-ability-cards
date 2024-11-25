@@ -1,7 +1,7 @@
 import { Card } from '@/domain/cards.type';
 import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
 import * as m from 'framer-motion/m';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { WheelAction } from './ActionWheel';
 import { CardComponent } from './Card';
 
@@ -33,34 +33,67 @@ export default function CardPile<X extends Card>({
   actions: PileActions<X>;
   maxCardLength?: number;
 }) {
-  const [hoveredCardIndex, setHoveredCardIndex] = useState<number>(cards.length - 1);
+  const [focusCardIndex, setFocusCardIndex] = useState<number | null>(null);
+  const pileRef = useRef<HTMLDivElement>(null);
+
   function getZIndex(index: number) {
-    return 20 - Math.abs(((hoveredCardIndex ?? 0) - index));
+    return focusCardIndex !== null
+      ? 20 - Math.abs(focusCardIndex - index)
+      : 20 - Math.abs(cards.length - 1 - index);
   }
 
-  useEffect(() => {
-    setHoveredCardIndex(cards.length - 1);
-  }, [cards.length]);
+  useEffect(() => setFocusCardIndex(null), [cards.length]);
+
+  const handleTouchMove = (event: React.TouchEvent) => {
+    if (pileRef.current) {
+      const touch = event.touches[0];
+      const pile = pileRef.current;
+      const pileRect = pile.getBoundingClientRect();
+      const touchX = touch.clientX - pileRect.left;
+      const touchY = touch.clientY - pileRect.top;
+
+      const touchedCard = cards.findIndex((_, index) => {
+        const card = pile.children[index] as HTMLElement;
+        const cardRect = card.getBoundingClientRect();
+        const cardX = cardRect.left - pileRect.left;
+        const cardY = cardRect.top - pileRect.top;
+        return (
+          touchX >= cardX &&
+          touchX <= cardX + cardRect.width &&
+          touchY >= cardY &&
+          touchY <= cardY + cardRect.height
+        );
+      });
+
+      if (touchedCard !== -1) {
+        setFocusCardIndex(touchedCard);
+      }
+    }
+  };
 
   const minWidthValue = maxCardLength > 1 ? minWidthValues[maxCardLength - 1] : '';
 
   return <div
+    ref={pileRef}
     className={`flex gap-4 ml-24 min-h-card ${minWidthValue}`}
-    onMouseLeave={() => setHoveredCardIndex(cards.length - 1)}
+    onMouseLeave={() => setFocusCardIndex(null)}
+    onTouchMove={handleTouchMove}
   >
     <LazyMotion features={domAnimation}>
       <AnimatePresence mode='popLayout'>
         {cards
           .map((card, index) => <m.div
             key={card.name}
-            onMouseEnter={() => setHoveredCardIndex(index)}
-            onTouchMove={() => setHoveredCardIndex(index)}
-            onFocus={() => setHoveredCardIndex(index)}
-            onTap={() => setHoveredCardIndex(index)}
+            onMouseEnter={() => setFocusCardIndex(index)}
+            onTouchStart={() => setFocusCardIndex(index)}
+            onFocus={() => setFocusCardIndex(index)}
             whileHover={{ scale: 1.2 }}
             whileFocus={{ scale: 1.2 }}
             className='w-fit -ml-24'
-            style={{ zIndex: getZIndex(index) }}
+            animate={{
+              scale: focusCardIndex === index ? 1.2 : 1,
+              zIndex: getZIndex(index),
+            }}
           >
             <CardComponent
               card={card}
