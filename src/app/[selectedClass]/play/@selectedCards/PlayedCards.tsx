@@ -86,7 +86,7 @@ export default function PlayedCards<X extends Card>() {
     playBottomAction(card),
   ];
 
-  return <div className='flex gap-4 min-h-[266px]'>
+  return <div className='flex gap-4 min-h-[266px] min-w-[440px]'>
     <AnimatePresence>
       {selectedCards
         .map((card, index) => <div

@@ -15,15 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body
-        style={{
-          backgroundImage: 'url(/fh-background.webp)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
-        }}
-      >
+      <body>
         <SpeedInsights />
         <main role='main'>
           <WebSocketProvider>

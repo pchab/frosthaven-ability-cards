@@ -34,5 +34,6 @@ export default function CurrentHand<X extends Card>({
   return <CardPile
     cards={currentHand}
     actions={actions}
+    maxCardLength={currentCards.length}
   />;
 }

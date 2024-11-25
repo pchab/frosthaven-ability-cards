@@ -28,6 +28,7 @@ export default function DiscardedCards() {
     <CardPile
       cards={discardPile}
       actions={actions}
+      maxCardLength={currentCards.length}
     />
     {discardPile.length > 1 &&
       <div className='flex flex-col justify-between'>

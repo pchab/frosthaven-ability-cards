@@ -17,17 +17,17 @@ export default function PlayLayout({
   selectedCards: ReactNode;
   activeEffects: ReactNode;
 }) {
-  return <div className='h-full p-2 flex flex-row'>
+  return <div className='h-full p-2 flex flex-col-reverse lg:flex-row'>
     <Heading title='Play your cards' />
 
     <IdentityProvider>
-      <div className='h-full basis-2/3'>
+      <div className='h-full p-2 m-2 flex flex-col items-center'>
         {currentHand}
         {discardedCards}
         {lostCards}
       </div>
 
-      <div className='h-full basis-1/3 p-2 m-2 flex flex-col items-center'>
+      <div className='h-full p-2 m-2 flex flex-col items-center'>
         {children}
         {selectedCards}
         {activeEffects}

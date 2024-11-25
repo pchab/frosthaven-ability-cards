@@ -17,18 +17,18 @@ export default function SelectCardsLayout({
       {children}
     </div>
 
-    <div className='grid grid-cols-4 gap-4'>
+    <div className='grid grid-cols-3 lg:grid-cols-4 gap-4'>
       <div className='col-span-full'>
         {selectedCards}
       </div>
 
       <div className='col-span-full flex flex-row gap-4 w-full justify-between'>
-        <AvailableCardsByLevel level={'X'} />
 
         <div className='grow'>
           <AvailableCardsByLevel level={1} />
         </div>
       </div>
+      <AvailableCardsByLevel level={'X'} />
       {cardsForLevelUp}
     </div>
   </div>);
