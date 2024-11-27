@@ -36,11 +36,22 @@ export function CardComponent<X extends Card>({
       setIsActionWheelOpen(false);
     }
   };
+  const handleTouchOutside: EventListener = (event) => {
+    const changedTouch = (event as TouchEvent).changedTouches[0];
+    const elem = document.elementFromPoint(changedTouch.clientX, changedTouch.clientY);
+    if (!innerRef.current?.contains(elem as Node)) {
+      setIsActionWheelOpen(false);
+    }
+  };
   useEffect(() => {
     if (isActionWheelOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchend', handleTouchOutside);
     }
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchend', handleTouchOutside);
+    };
   }, [isActionWheelOpen]);
 
   return <LazyMotion features={domAnimation}>

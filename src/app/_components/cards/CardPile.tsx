@@ -44,9 +44,9 @@ export default function CardPile<X extends Card>({
 
   useEffect(() => setFocusCardIndex(null), [cards.length]);
 
-  const handleTouchMove = (event: React.TouchEvent) => {
+  const handleTouchMove = ({ touches }: React.TouchEvent) => {
     if (pileRef.current) {
-      const touch = event.touches[0];
+      const touch = touches[0];
       const pile = pileRef.current;
       const pileRect = pile.getBoundingClientRect();
       const touchX = touch.clientX - pileRect.left;
