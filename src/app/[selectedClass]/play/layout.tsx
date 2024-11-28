@@ -17,7 +17,7 @@ export default function PlayLayout({
   selectedCards: ReactNode;
   activeEffects: ReactNode;
 }) {
-  return <div className='h-full p-2 flex flex-col-reverse lg:flex-row'>
+  return <div className='h-full p-2 flex flex-col-reverse lg:flex-row justify-center'>
     <Heading title='Play your cards' />
 
     <IdentityProvider>

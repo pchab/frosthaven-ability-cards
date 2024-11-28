@@ -23,8 +23,9 @@ export const WebSocketContext = createContext<{
 
 export default function WebSocketProvider({ children }: { children: ReactNode }) {
   const wsClient = useRef<WebSocket | null>(null);
-  const secretaryId = useRef<string>('');
+  const [secretaryId, setSecretaryId] = useState<string>('');
   const [isConnectModalOpen, setConnectModalOpen] = useState(false);
+  const [isConnected, setConnected] = useState(false);
 
   const updateGameState = (state: Partial<CharacterState>, info: string[]) => {
     if (!wsClient.current) return;
@@ -69,21 +70,23 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
     if (!id || !host) return;
     connectToSecretary({ host, id }).then((client) => {
       wsClient.current = client;
-      secretaryId.current = id;
+      setSecretaryId(id);
+      setConnected(true);
     });
     return () => wsClient.current?.close();
   }, []);
 
   return <WebSocketContext value={{
-    isConnected: !!wsClient.current,
-    id: secretaryId.current,
+    isConnected,
+    id: secretaryId,
     update: updateGameState
   }}>
     {isConnectModalOpen && <Modal onCancel={() => setConnectModalOpen(false)}>
       <ConnectForm onConnect={({ client, id }) => {
         wsClient.current = client;
-        secretaryId.current = id;
+        setSecretaryId(id);
         setConnectModalOpen(false);
+        setConnected(true);
       }} />
     </Modal>}
     <Menu onOpenConnectModal={() => setConnectModalOpen(true)} />

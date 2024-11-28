@@ -11,7 +11,7 @@ export default function ConnectForm({
     id: string;
   }) => void;
 }) {
-  const { isConnected, id } = useContext(WebSocketContext);
+  const { id: currentId, isConnected } = useContext(WebSocketContext);
   const [state, connect, isPending] = useActionState(
     async (_: any, formData: FormData) => {
       const host = formData.get('secretary-host')! as string;
@@ -44,7 +44,7 @@ export default function ConnectForm({
 
     <div className='col-span-full'>
       {isPending && <p>Connecting...</p>}
-      {isConnected && <p>Connected to {id}</p>}
+      {isConnected && <p>Connected to {currentId}</p>}
       {state && <p>{state}</p>}
     </div>
   </form>;
