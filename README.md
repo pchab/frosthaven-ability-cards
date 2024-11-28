@@ -13,7 +13,7 @@ The latest version of this application is hosted [here](https://frosthaven-abili
 
 I haven't unlocked all the classes in the physical game yet, but I'll be adding them as I go.
 If you want to add a class, please open an issue or a PR.
-See [PR #2](https://github.com/pchab/frosthaven-ability-cards/pull/2) for an example.
+See [PR #17](https://github.com/pchab/frosthaven-ability-cards/pull/17) for an example.
 
 ## Getting Started
 
