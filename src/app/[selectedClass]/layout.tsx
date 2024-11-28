@@ -3,6 +3,7 @@ import { classNameToURI, classURIToName, frosthavenClasses } from '@/domain/fros
 import type { FrosthavenClassNames } from '@/domain/frosthaven-class.type';
 import type { ResolvingMetadata } from 'next';
 import { type ReactNode } from 'react';
+import DisplayClassMat from './DisplayClassMat';
 
 export const dynamicParams = false;
 
@@ -45,6 +46,9 @@ export default async function Layout({
   const fhClassName = classURIToName(selectedClass);
 
   return <ClassProvider fhClassName={fhClassName}>
+    <div className='absolute left-0 top-0 p-4 flex flex-col items-end gap-2'>
+      <DisplayClassMat />
+    </div>
     {children}
   </ClassProvider>;
 }
