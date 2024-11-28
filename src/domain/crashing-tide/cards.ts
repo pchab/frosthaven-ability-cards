@@ -9,6 +9,10 @@ export const crashingTideCards: Card[] = createCards([
     name: 'blood in the water',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
     initiative: 53,
+    availableEnhancements: [
+      { type: 'diamond', position: { x: 46, y: 37 } },
+      { type: 'square', position: { x: 91, y: 152 } },
+    ],
   },
   {
     level: 4,

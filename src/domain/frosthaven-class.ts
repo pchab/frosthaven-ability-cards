@@ -12,6 +12,7 @@ import { pyroclast } from "@/domain/pyroclast/class";
 import { snowdancer } from './snowdancer/class';
 import { trapper } from './trapper/class';
 import type { FrosthavenClassNames } from './frosthaven-class.type';
+import { crashingTide } from './crashing-tide/class';
 
 const starterClasses = [
   bannerSpear,
@@ -22,6 +23,7 @@ const starterClasses = [
   geminate,
 ];
 const unlockedClasses = [
+  crashingTide,
   deepwraith,
   fist,
   hive,

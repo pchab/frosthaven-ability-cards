@@ -19,7 +19,8 @@ import { useRouter } from 'next/navigation';
 import type { Enhancement, EnhancementSlot } from '@/domain/enhancement/enhancement.type';
 import { bannerSpearCards } from '@/domain/banner-spear/cards';
 import Button from '../_components/inputs/Button';
-import {pyroclast} from "@/domain/pyroclast/class";
+import { pyroclast } from "@/domain/pyroclast/class";
+import { frosthavenClasses } from '@/domain/frosthaven-class';
 
 const RADIUS = 5;
 
@@ -67,22 +68,7 @@ export default function TestCard(
     cardName = bannerSpearCards[0].name
   } = searchParams;
 
-  const allClasses = [
-    bannerSpear,
-    blinkblade,
-    boneshaper,
-    deathwalker,
-    drifter,
-    geminate,
-    deepwraith,
-    fist,
-    hive,
-    painConduit,
-    pyroclast,
-    snowdancer,
-    trapper,
-  ];
-  const selectedClass = allClasses.find(({ name }) => name === className);
+  const selectedClass = frosthavenClasses.find(({ name }) => name === className);
   const selectedCard = selectedClass?.cards.find(({ name }) => name === cardName) ?? selectedClass?.cards[0];
   const [currentCard, setCard] = useState(selectedCard);
   const router = useRouter();
@@ -129,7 +115,7 @@ export default function TestCard(
       }}
       defaultValue={className}
     >
-      {allClasses.map((fhClass) => {
+      {frosthavenClasses.map((fhClass) => {
         return <option
           key={fhClass.name}
           value={fhClass.name}>{fhClass.name}</option>;
