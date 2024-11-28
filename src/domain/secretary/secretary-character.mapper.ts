@@ -10,7 +10,7 @@ export function mapCharacterNameToSecretary(name: FrosthavenClass<Card>['name'])
     [FrosthavenClassNames.Deathwalker]: 'deathwalker',
     [FrosthavenClassNames.Deepwraith]: 'kelp',
     [FrosthavenClassNames.Drifter]: 'drifter',
-    [FrosthavenClassNames.Fist]: 'fist',
+    [FrosthavenClassNames.FrozenFist]: 'fist',
     [FrosthavenClassNames.Geminate]: 'geminate',
     [FrosthavenClassNames.Hive]: 'prism',
     [FrosthavenClassNames.PainConduit]: 'shackles',

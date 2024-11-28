@@ -6,7 +6,7 @@ import { boneshaper } from '@/domain/boneshaper/class';
 import { deathwalker } from '@/domain/deathwalker/class';
 import { deepwraith } from '@/domain/deepwraith/class';
 import { drifter } from '@/domain/drifter/class';
-import { fist } from '@/domain/fist/class';
+import { fist } from '@/domain/frozen-fist/class';
 import { geminate } from '@/domain/geminate/class';
 import { hive } from '@/domain/hive/class';
 import { painConduit } from '@/domain/pain-conduit/class';

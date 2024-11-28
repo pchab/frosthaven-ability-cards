@@ -1,7 +1,7 @@
 import { createCards } from '../card.factory';
 import { Card, CardActions } from '../cards.type';
 
-const fistPath = '/fist/abilities';
+const fistPath = '/frozen-fist/abilities';
 
 export const fistCards: Card[] = createCards([
   {

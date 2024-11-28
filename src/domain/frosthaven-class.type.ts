@@ -11,7 +11,7 @@ export enum FrosthavenClassNames {
   Deathwalker = 'Deathwalker',
   Deepwraith = 'Deepwraith',
   Drifter = 'Drifter',
-  Fist = 'Fist',
+  FrozenFist = 'Frozen Fist',
   Geminate = 'Geminate',
   CrashingTide = 'Crashing Tide',
   Hive = 'Hive',

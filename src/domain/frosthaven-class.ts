@@ -4,7 +4,7 @@ import { boneshaper } from './boneshaper/class';
 import { deathwalker } from './deathwalker/class';
 import { deepwraith } from './deepwraith/class';
 import { drifter } from './drifter/class';
-import { fist } from './fist/class';
+import { frozenFist } from './frozen-fist/class';
 import { geminate } from './geminate/class';
 import { hive } from './hive/class';
 import { painConduit } from './pain-conduit/class';
@@ -25,7 +25,7 @@ const starterClasses = [
 const unlockedClasses = [
   crashingTide,
   deepwraith,
-  fist,
+  frozenFist,
   hive,
   painConduit,
   pyroclast,
