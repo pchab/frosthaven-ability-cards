@@ -1,17 +1,6 @@
 'use client';
 
 import { bannerSpear } from '@/domain/banner-spear/class';
-import { blinkblade } from '@/domain/blinkblade/class';
-import { boneshaper } from '@/domain/boneshaper/class';
-import { deathwalker } from '@/domain/deathwalker/class';
-import { deepwraith } from '@/domain/deepwraith/class';
-import { drifter } from '@/domain/drifter/class';
-import { fist } from '@/domain/frozen-fist/class';
-import { geminate } from '@/domain/geminate/class';
-import { hive } from '@/domain/hive/class';
-import { painConduit } from '@/domain/pain-conduit/class';
-import { snowdancer } from '@/domain/snowdancer/class';
-import { trapper } from '@/domain/trapper/class';
 import { CardComponent } from '../_components/cards/Card';
 import { CardActions } from '@/domain/cards.type';
 import { useEffect, useRef, useState, use } from 'react';
@@ -19,7 +8,6 @@ import { useRouter } from 'next/navigation';
 import type { Enhancement, EnhancementSlot } from '@/domain/enhancement/enhancement.type';
 import { bannerSpearCards } from '@/domain/banner-spear/cards';
 import Button from '../_components/inputs/Button';
-import { pyroclast } from "@/domain/pyroclast/class";
 import { frosthavenClasses } from '@/domain/frosthaven-class';
 
 const RADIUS = 5;
