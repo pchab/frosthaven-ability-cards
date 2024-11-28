@@ -27,6 +27,12 @@ const config: Config = {
       minHeight: {
         'card': '200px',
       },
+      width: {
+        'mat': '600px',
+      },
+      height: {
+        'mat': '392px',
+      },
     },
   },
   plugins: [],
