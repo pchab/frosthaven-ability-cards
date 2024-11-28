@@ -13,6 +13,7 @@ export enum FrosthavenClassNames {
   Drifter = 'Drifter',
   Fist = 'Fist',
   Geminate = 'Geminate',
+  CrashingTide = 'Crashing Tide',
   Hive = 'Hive',
   PainConduit = 'Pain Conduit',
   Pyroclast = 'Pyroclast',
