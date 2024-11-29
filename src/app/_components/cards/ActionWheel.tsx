@@ -28,7 +28,7 @@ export default function ActionWheel({
   actions: WheelAction[];
 }) {
   return <m.div
-    className='absolute w-full h-full bg-transparent z-30'
+    className='absolute top-1/2 left-1/2 bg-transparent z-30'
     initial={{ scale: 0, opacity: 0, rotate: 90 }}
     animate={{ scale: 1, opacity: 1, rotate: 0 }}
     exit={{ scale: 0, opacity: 0, rotate: 90 }}

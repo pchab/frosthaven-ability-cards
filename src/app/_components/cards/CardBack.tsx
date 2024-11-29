@@ -13,7 +13,7 @@ export default function CardBack({ flipped }: { flipped: boolean }) {
     transition={{ duration: 0.7 }}
     initial={{ rotateY: 180 }}
     animate={{ rotateY: flipped ? 360 : 180 }}
-    className='absolute'
+    className='absolute pointer-events-none'
   >
     <Image
       src={cardBacKPath}
