@@ -13,6 +13,7 @@ export function mapCharacterNameToSecretary(name: FrosthavenClass<Card>['name'])
     [FrosthavenClassNames.FrozenFist]: 'fist',
     [FrosthavenClassNames.Geminate]: 'geminate',
     [FrosthavenClassNames.Hive]: 'prism',
+    [FrosthavenClassNames.Infuser]: 'astral',
     [FrosthavenClassNames.PainConduit]: 'shackles',
     [FrosthavenClassNames.Pyroclast]: 'meteor',
     [FrosthavenClassNames.Snowdancer]: 'snowflake',
