@@ -1,12 +1,14 @@
 'use client';
 
 import { CardComponent } from '@/app/_components/cards/Card';
+import CharacterMat from '@/app/_components/class/CharacterMat';
 import Button from '@/app/_components/inputs/Button';
+import { ClassContext } from '@/context/ClassContext';
 import { CardStatus, type Card } from '@/domain/cards.type';
 import { useCards, type Action } from '@/hooks/useCards';
 import useSecretary from '@/hooks/useSecretary';
 import { AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { use, useState } from 'react';
 
 type SelectedActions = [
   Action | undefined,
@@ -18,6 +20,7 @@ function areAllActionsSelected(actions: SelectedActions): actions is [Action, Ac
 }
 
 export default function PlayedCards<X extends Card>() {
+  const fhClass = use(ClassContext);
   const {
     currentCards,
     playCards,
@@ -86,26 +89,28 @@ export default function PlayedCards<X extends Card>() {
     playBottomAction(card),
   ];
 
-  return <div className='flex gap-4 min-h-[266px] min-w-[440px]'>
-    <AnimatePresence>
-      {selectedCards
-        .map((card, index) => <div
-          key={card.name}
-          className='flex flex-col'
-        >
-          <CardComponent card={card}
-            actions={getPlayableActions(card)}
-          />
-          <div className='flex flex-col items-center p-4'>
-            <div className='text-xs'>Selected Action:</div>
-            <div className='text-sm uppercase'>{selectedActions[index]}</div>
-          </div>
-        </div>)}
-    </AnimatePresence>
-    <div className='place-self-center'>
-      {selectedCards.length === 2 && areAllActionsSelected(selectedActions) &&
-        <Button onClick={endTurn}>End Turn</Button>
-      }
+  return <CharacterMat fhClassName={fhClass.name}>
+    <div className='h-full w-full flex gap-4 items-center justify-between p-12'>
+      <AnimatePresence>
+        {selectedCards
+          .map((card, index) => <div
+            key={card.name}
+            className='flex flex-col'
+          >
+            <CardComponent card={card}
+              actions={getPlayableActions(card)}
+            />
+            <div className='flex flex-col items-center p-4'>
+              <div className='text-xs'>Selected Action:</div>
+              <div className='text-sm uppercase'>{selectedActions[index]}</div>
+            </div>
+          </div>)}
+      </AnimatePresence>
+      <div className='place-self-center'>
+        {selectedCards.length === 2 && areAllActionsSelected(selectedActions) &&
+          <Button onClick={endTurn}>End Turn</Button>
+        }
+      </div>
     </div>
-  </div>;
+  </CharacterMat>;
 }

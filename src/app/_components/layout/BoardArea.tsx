@@ -7,7 +7,7 @@ export default function BoardArea({
   title: string;
   children?: ReactNode;
 }) {
-  return <div className='border-solid border-l-2 rounded-lg w-full'>
+  return <div className='border-solid border-l-2 rounded-lg'>
     <div className='flex'>
       <h2 className='text-lg px-2 bg-slate-700 border-t-2 border-r-2 rounded-t-lg'>{title}</h2>
       <div className='grow bg-transparent border-b-2 mr-2'></div>
