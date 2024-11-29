@@ -75,7 +75,7 @@ export default function CardPile<X extends Card>({
 
   return <div
     ref={pileRef}
-    className={`flex gap-4 ml-24 min-h-card ${minWidthValue}`}
+    className={`flex min-h-card ${minWidthValue}`}
     onMouseLeave={() => setFocusCardIndex(null)}
     onTouchMove={handleTouchMove}
   >
@@ -89,7 +89,7 @@ export default function CardPile<X extends Card>({
             onFocus={() => setFocusCardIndex(index)}
             whileHover={{ scale: 1.2 }}
             whileFocus={{ scale: 1.2 }}
-            className='w-fit -ml-24'
+            className={'-mr-card-1/2'}
             animate={{
               scale: focusCardIndex === index ? 1.2 : 1,
               zIndex: getZIndex(index),
