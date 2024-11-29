@@ -30,15 +30,12 @@ export default function ActiveEffects<X extends Card>() {
 
   // 620px is the width of a 4 cards
   return <div className='grid grid-cols-3 gap-4 min-w-[461px] min-h-card'>
-
-    <LazyMotion features={domAnimation}>
-      <AnimatePresence mode='popLayout'>
-        {activeEffects
-          .map((card) => cardHasSlots(card)
-            ? <CardWithSlots key={card.name} card={card} actions={[removeEffectAction(card)]} />
-            : <CardComponent key={card.name} card={card} actions={[removeEffectAction(card)]} />
-          )}
-      </AnimatePresence>
-    </LazyMotion>
+    <AnimatePresence mode='popLayout'>
+      {activeEffects
+        .map((card) => cardHasSlots(card)
+          ? <CardWithSlots key={card.name} card={card} actions={[removeEffectAction(card)]} />
+          : <CardComponent key={card.name} card={card} actions={[removeEffectAction(card)]} />
+        )}
+    </AnimatePresence>
   </div>
 }

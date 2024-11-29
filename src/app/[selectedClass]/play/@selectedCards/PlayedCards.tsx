@@ -79,17 +79,15 @@ export default function PlayedCards<X extends Card>() {
   ];
 
   return <div className='flex gap-4 min-h-card min-w-[302px]'>
-    <LazyMotion features={domAnimation}>
-      <AnimatePresence mode='popLayout'>
-        {selectedCards
-          .map((card, index) => <CardComponent
-            key={card.name}
-            card={card}
-            actions={getPlayableActions(card)}
-          >
-            {selectedActions[index] && getSelectedActionMasks(selectedActions[index])}
-          </CardComponent>)}
-      </AnimatePresence>
-    </LazyMotion>
+    <AnimatePresence mode='popLayout'>
+      {selectedCards
+        .map((card, index) => <CardComponent
+          key={card.name}
+          card={card}
+          actions={getPlayableActions(card)}
+        >
+          {selectedActions[index] && getSelectedActionMasks(selectedActions[index])}
+        </CardComponent>)}
+    </AnimatePresence>
   </div>;
 }
