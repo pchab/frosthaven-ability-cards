@@ -28,10 +28,12 @@ export default function CardPile<X extends Card>({
   cards,
   actions,
   maxCardLength = 1,
+  folded = false,
 }: {
   cards: X[];
   actions: PileActions<X>;
   maxCardLength?: number;
+  folded?: boolean;
 }) {
   const [focusCardIndex, setFocusCardIndex] = useState<number | null>(null);
   const pileRef = useRef<HTMLDivElement>(null);
@@ -75,7 +77,7 @@ export default function CardPile<X extends Card>({
 
   return <div
     ref={pileRef}
-    className={`flex gap-4 ml-24 min-h-card ${minWidthValue}`}
+    className={`flex min-h-card ${minWidthValue} ${folded && 'pointer-events-none'}`}
     onMouseLeave={() => setFocusCardIndex(null)}
     onTouchMove={handleTouchMove}
   >
@@ -89,15 +91,19 @@ export default function CardPile<X extends Card>({
             onFocus={() => setFocusCardIndex(index)}
             whileHover={{ scale: 1.2 }}
             whileFocus={{ scale: 1.2 }}
-            className='w-fit -ml-24'
             animate={{
+              marginLeft: index === 0 ?
+                0
+                : folded ? - 128 : -64,
               scale: focusCardIndex === index ? 1.2 : 1,
               zIndex: getZIndex(index),
             }}
           >
             <CardComponent
               card={card}
-              actions={actions(card)} />
+              actions={actions(card)}
+              flipped={folded}
+            />
           </m.div>)}
       </AnimatePresence>
     </LazyMotion>
