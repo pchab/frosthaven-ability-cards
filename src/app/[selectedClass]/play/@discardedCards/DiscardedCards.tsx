@@ -3,8 +3,11 @@
 import { CardStatus, type Card } from '@/domain/cards.type';
 import { useCards } from '@/app/[selectedClass]/play/useCards';
 import CardPile from '@/app/_components/cards/CardPile';
+import { use } from 'react';
+import { ClassContext } from '@/context/ClassContext';
 
 export default function DiscardedCards() {
+  const fhClass = use(ClassContext);
   const {
     currentCards,
     recoverCard,
@@ -25,6 +28,6 @@ export default function DiscardedCards() {
   return <CardPile
     cards={discardPile}
     actions={actions}
-    maxCardLength={currentCards.length}
+    maxCardLength={fhClass.handSize}
   />;
 }
