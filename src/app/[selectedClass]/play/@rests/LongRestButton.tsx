@@ -23,7 +23,11 @@ export default function LongRestButton<X extends Card>({
   return <>
     {doesLongRest &&
       <Modal onCancel={() => setDoesLongRest(false)}>
-        <CardPile cards={cards} actions={confirmLongRestAction} />
+        <CardPile
+          cards={cards}
+          actions={confirmLongRestAction}
+          maxCardLength={cards.length}
+        />
       </Modal>
     }
     <Button onClick={() => setDoesLongRest(true)}>Long Rest</Button>

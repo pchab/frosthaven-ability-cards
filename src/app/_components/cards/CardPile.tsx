@@ -22,6 +22,14 @@ const minWidthValues = [
   'min-w-cards-14',
 ];
 
+type LongHandSize = 11 | 12 | 13 | 14;
+const marginRightForLongHand = {
+  11: '-mr-[78px]',
+  12: '-mr-[83px]',
+  13: '-mr-[88px]',
+  14: '-mr-[93px]',
+}
+
 export type PileActions<X extends Card> = (card: X) => WheelAction[];
 
 export default function CardPile<X extends Card>({
@@ -89,7 +97,10 @@ export default function CardPile<X extends Card>({
             onFocus={() => setFocusCardIndex(index)}
             whileHover={{ scale: 1.2 }}
             whileFocus={{ scale: 1.2 }}
-            className={'-mr-card-1/2'}
+            className={maxCardLength < 11
+              ? '-mr-card-1/2'
+              : marginRightForLongHand[maxCardLength as LongHandSize]
+            }
             animate={{
               scale: focusCardIndex === index ? 1.2 : 1,
               zIndex: getZIndex(index),
