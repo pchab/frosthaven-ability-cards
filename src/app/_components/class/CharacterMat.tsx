@@ -1,23 +1,27 @@
-'use client';
-
 import type { FrosthavenClassNames } from '@/domain/frosthaven-class.type';
 import { domAnimation, LazyMotion } from 'framer-motion';
 import * as m from 'framer-motion/m';
 import Image from 'next/image';
-import { useState } from 'react';
+import type { ReactNode } from 'react';
 
 export default function CharacterMat({
-  className,
+  fhClassName,
+  children,
+  onClick,
+  flipped = false,
 }: {
-  className: FrosthavenClassNames;
+  fhClassName: FrosthavenClassNames;
+  children: ReactNode;
+  onClick?: () => void;
+  flipped?: boolean;
 }) {
-  const [displayFront, setDisplayFront] = useState(true);
-  const fhClassName = className.toLocaleLowerCase().replaceAll(' ', '-');
-  const matPath = `/${fhClassName}/mats/fh-${fhClassName}.webp`;
-  const matBackPath = `/${fhClassName}/mats/fh-${fhClassName}-back.webp`;
+  const fhClassPath = fhClassName.toLocaleLowerCase().replaceAll(' ', '-');
+  const matPath = `/${fhClassPath}/mats/fh-${fhClassPath}.webp`;
+  const matBackPath = `/${fhClassPath}/mats/fh-${fhClassPath}-back.webp`;
 
-  return <div onClick={() => setDisplayFront(!displayFront)}
-    className='absolute m-auto left-0 right-0 top-0 bottom-0 w-mat h-mat'
+  return <div
+    className='w-mat h-mat'
+    onClick={onClick}
     style={{
       'perspective': '1600px',
       'transformStyle': 'preserve-3d',
@@ -25,23 +29,22 @@ export default function CharacterMat({
     <LazyMotion features={domAnimation}>
       <m.div
         transition={{ duration: 0.7 }}
-        animate={{ rotateY: displayFront ? 0 : 180 }}
-        className='absolute border-solid border-2 border-white'
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        className='absolute'
       >
         <Image
           src={matPath}
           alt={`${fhClassName} mat`}
           width={600}
           height={392}
-          className='backface-hidden'
           style={{ 'backfaceVisibility': 'hidden' }}
         />
       </m.div>
       <m.div
         transition={{ duration: 0.7 }}
         initial={{ rotateY: 180 }}
-        animate={{ rotateY: displayFront ? 180 : 360 }}
-        className='absolute border-solid border-2 border-white'
+        animate={{ rotateY: flipped ? 360 : 180 }}
+        className='absolute'
       >
         <Image
           src={matBackPath}
@@ -51,6 +54,7 @@ export default function CharacterMat({
           style={{ 'backfaceVisibility': 'hidden' }}
         />
       </m.div>
+      {children}
     </LazyMotion>
   </div>;
 }
