@@ -1,14 +1,18 @@
 'use client';
 
 import CardPile from '@/app/_components/cards/CardPile';
+import { ClassContext } from '@/context/ClassContext';
 import { CardStatus, type Card } from '@/domain/cards.type';
-import { useCards } from '@/hooks/useCards';
+import { isGeminate } from '@/domain/geminate/class';
+import { useCards } from '@/app/[selectedClass]/play/useCards';
+import { use } from 'react';
 
 export default function CurrentHand<X extends Card>({
   classFilter = () => true,
 }: {
   classFilter?: (card: X) => boolean;
 }) {
+  const selectedClass = use(ClassContext);
   const {
     currentCards,
     selectCard,
@@ -17,7 +21,7 @@ export default function CurrentHand<X extends Card>({
   } = useCards<X>();
 
   const currentHand = currentCards
-    .filter(card => classFilter(card))
+    .filter(classFilter)
     .filter(({ status }) => status === CardStatus.inHand);
 
   const actions = (card: X) => [{
@@ -34,6 +38,6 @@ export default function CurrentHand<X extends Card>({
   return <CardPile
     cards={currentHand}
     actions={actions}
-    maxCardLength={currentCards.length}
+    maxCardLength={isGeminate(selectedClass) ? selectedClass.handSize / 2 : selectedClass.handSize}
   />;
 }

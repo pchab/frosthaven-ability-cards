@@ -8,7 +8,7 @@ import CharacterToken from '../class/CharacterToken';
 import type { WheelAction } from './ActionWheel';
 import { CardComponent } from './Card';
 import { ClassContext } from '@/context/ClassContext';
-import { useCards } from '@/hooks/useCards';
+import { useCards } from '@/app/[selectedClass]/play/useCards';
 
 type CardWithSlots = Required<Pick<Card, 'slots'>> & Card;
 

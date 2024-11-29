@@ -1,7 +1,7 @@
 'use client';
 
 import { Card } from '@/domain/cards.type';
-import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import * as m from 'framer-motion/m';
 import Image from 'next/image';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
@@ -54,33 +54,31 @@ export function CardComponent<X extends Card>({
     };
   }, [isActionWheelOpen]);
 
-  return <LazyMotion features={domAnimation}>
-    <m.div
-      ref={innerRef}
-      onClick={onClickCard}
-      className='relative'
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -40, opacity: 0 }}
-    >
-      <AnimatePresence>
-        {isActionWheelOpen && <ActionWheel actions={actions} />}
-      </AnimatePresence>
-      {children}
-      <Image
-        useMap={`#${mapName}`}
-        src={card.path}
-        alt={`card ${card.name}`}
-        width={143}
-        height={200}
-      />
-      {card.availableEnhancements
-        ?.map(({ position }, index) => !!card.enhancements?.[index]
-          && <EnhanceSticker
-            key={`${card.name}-enhance-slot-${index}`}
-            enhancement={card.enhancements?.[index]!}
-            position={position}
-          />)}
-    </m.div>
-  </LazyMotion>;
+  return <m.div
+    ref={innerRef}
+    onClick={onClickCard}
+    className='relative'
+    initial={{ y: -40, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    exit={{ y: -40, opacity: 0 }}
+  >
+    <AnimatePresence>
+      {isActionWheelOpen && <ActionWheel actions={actions} />}
+    </AnimatePresence>
+    {children}
+    <Image
+      useMap={`#${mapName}`}
+      src={card.path}
+      alt={`card ${card.name}`}
+      width={143}
+      height={200}
+    />
+    {card.availableEnhancements
+      ?.map(({ position }, index) => !!card.enhancements?.[index]
+        && <EnhanceSticker
+          key={`${card.name}-enhance-slot-${index}`}
+          enhancement={card.enhancements?.[index]!}
+          position={position}
+        />)}
+  </m.div>;
 }

@@ -2,6 +2,12 @@ import { type Card } from '@/domain/cards.type';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { indexedDBStorage } from './indexed-db.storage';
 import { create } from 'zustand';
+import type { Action } from '@/app/[selectedClass]/play/useCards';
+
+export type SelectedActions = [
+  Action | undefined,
+  Action | undefined,
+];
 
 type AbilityCardsState = {
   level: number;
@@ -9,13 +15,15 @@ type AbilityCardsState = {
   availableCards: Card[];
   states: Card[][];
   currentStateIndex: number;
+  selectedActions: SelectedActions;
 }
 
 type AbilityCardsActions = {
   setLevel: (level: number) => void;
-  selectCards: (cards: Card[]) => void;
-  enhanceCard: (card: Card) => void;
   validateCardSelection: () => void;
+  enhanceCard: (card: Card) => void;
+  selectCards: (cards: Card[]) => void;
+  setSelectedActions: (actions: SelectedActions) => void;
   setStateIndex: (index: number) => void;
   updateStates: <X extends Card>(states: X[][]) => void;
   reset: () => void;
@@ -49,6 +57,7 @@ export const initialState: AbilityCardsState = {
   availableCards: [],
   states: [[]],
   currentStateIndex: 0,
+  selectedActions: [undefined, undefined],
 }
 
 export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions>()(
@@ -56,12 +65,13 @@ export const useFrosthavenStore = create<AbilityCardsState & AbilityCardsActions
     (set) => ({
       ...initialState,
       setLevel: (level: number) => set({ level }),
-      selectCards: (cards: Card[]) => set({ cards, states: [cards], currentStateIndex: 0 }),
       validateCardSelection: () => set(({ cards }) => ({ states: [cards], currentStateIndex: 0 })),
       enhanceCard: (card: Card) => set(({ cards, availableCards }) => ({
         cards: cards.with(cards.findIndex(({ name }) => name === card.name), card),
         availableCards: availableCards.with(availableCards.findIndex(({ name }) => name === card.name), card),
       })),
+      selectCards: (cards: Card[]) => set({ cards, states: [cards], currentStateIndex: 0 }),
+      setSelectedActions: (selectedActions) => set({ selectedActions }),
       updateStates: <X extends Card>(states: X[][]) => set({ states, currentStateIndex: states.length - 1 }),
       setStateIndex: (index: number) => set({ currentStateIndex: index }),
       reset: async () => {

@@ -2,9 +2,9 @@
 
 import { ClassContext } from '@/context/ClassContext';
 import type { Card } from '@/domain/cards.type';
+import { classNameToURI } from '@/domain/frosthaven-class';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { geminate, isGeminateCards } from '@/domain/geminate/class';
-import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useRouter } from 'next/navigation';
 import { use } from 'react';
@@ -49,7 +49,7 @@ export function useSelectCards<X extends Card>() {
   const validateSelection = () => {
     if (selectedClass && cards.length === selectedClass.handSize) {
       validateCardSelection();
-      router.push(`/${mapCharacterNameToSecretary(selectedClass.name)}/play`);
+      router.push(`/${classNameToURI(selectedClass.name)}/play`);
     }
   };
 

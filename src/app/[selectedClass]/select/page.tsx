@@ -4,7 +4,7 @@ import { useFrosthavenStore } from '@/stores/cards.store';
 import Image from 'next/image';
 import { useShallow } from 'zustand/shallow';
 import Button from '@/app/_components/inputs/Button';
-import { useSelectCards } from '@/hooks/useSelectCards';
+import { useSelectCards } from '@/app/[selectedClass]/select/useSelectCards';
 import { ClassContext } from '@/context/ClassContext';
 import { use } from 'react';
 

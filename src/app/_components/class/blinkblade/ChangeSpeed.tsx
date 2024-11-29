@@ -21,8 +21,8 @@ export default function ChangeSpeed() {
 
   return <Button
     onClick={changeSpeed}>
-    <div className='flex justify-center items-center gap-2 min-h-24 min-w-48'>
-      <label>Change Speed</label>
+    <div className='flex justify-center items-center gap-2 h-24 w-24'>
+      <label className='hidden'>Change Speed</label>
       <BlinkbladeSpeedIcon speed={currentSpeed as BlinkbladeSpeed} />
     </div>
   </Button>;

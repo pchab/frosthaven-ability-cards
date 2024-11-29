@@ -3,7 +3,7 @@
 import CardPile from '@/app/_components/cards/CardPile';
 import BoardArea from '@/app/_components/layout/BoardArea';
 import type { Card } from '@/domain/cards.type';
-import { useSelectCards } from '@/hooks/useSelectCards';
+import { useSelectCards } from '@/app/[selectedClass]/select/useSelectCards';
 import { useFrosthavenStore } from '@/stores/cards.store';
 
 export default function AvailableCardsByLevel<X extends Card>({

@@ -42,6 +42,8 @@ export function useCards<X extends Card>() {
     updateStates: store.updateStates,
     currentStateIndex: store.currentStateIndex,
     setStateIndex: store.setStateIndex,
+    selectedActions: store.selectedActions,
+    setSelectedActions: store.setSelectedActions,
   })));
   const currentCards = useMemo(() => states[currentStateIndex] as X[], [states, currentStateIndex]);
 

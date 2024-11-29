@@ -3,8 +3,8 @@
 import { CardComponent } from '@/app/_components/cards/Card';
 import CardWithSlots from '@/app/_components/cards/CardWithSlots';
 import { Card, CardActions, CardStatus } from '@/domain/cards.type';
-import { AnimatePresence } from 'framer-motion';
-import { useCards } from '@/hooks/useCards';
+import { useCards } from '@/app/[selectedClass]/play/useCards';
+import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
 
 function cardHasSlots(card: Card): card is Required<Pick<Card, 'slots'>> & Card {
   return !!card.slots;
@@ -28,13 +28,17 @@ export default function ActiveEffects<X extends Card>() {
     },
   });
 
-  return <div className='flex flex-wrap gap-4 min-w-cards-2 min-h-card'>
-    <AnimatePresence>
-      {activeEffects
-        .map((card) => cardHasSlots(card)
-          ? <CardWithSlots key={card.name} card={card} actions={[removeEffectAction(card)]} />
-          : <CardComponent key={card.name} card={card} actions={[removeEffectAction(card)]} />
-        )}
-    </AnimatePresence>
+  // 620px is the width of a 4 cards
+  return <div className='grid grid-cols-3 gap-4 min-w-[461px] min-h-card'>
+
+    <LazyMotion features={domAnimation}>
+      <AnimatePresence mode='popLayout'>
+        {activeEffects
+          .map((card) => cardHasSlots(card)
+            ? <CardWithSlots key={card.name} card={card} actions={[removeEffectAction(card)]} />
+            : <CardComponent key={card.name} card={card} actions={[removeEffectAction(card)]} />
+          )}
+      </AnimatePresence>
+    </LazyMotion>
   </div>
 }

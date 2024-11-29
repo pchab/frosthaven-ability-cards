@@ -9,7 +9,7 @@ import type { GeminateCard } from '@/domain/geminate/cards';
 import { isGeminate } from '@/domain/geminate/class';
 import { use, useState } from 'react';
 import EnhanceCard from '../(enhance)/EnhanceCard';
-import { useSelectCards } from '@/hooks/useSelectCards';
+import { useSelectCards } from '@/app/[selectedClass]/select/useSelectCards';
 import { SelectedCards } from './SelectedCards';
 import { SelectedGeminateCards } from './SelectedCards.geminate';
 

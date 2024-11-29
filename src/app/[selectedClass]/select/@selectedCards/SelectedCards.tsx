@@ -3,7 +3,7 @@
 import CardPile, { type PileActions } from '@/app/_components/cards/CardPile';
 import { ClassContext } from '@/context/ClassContext';
 import { type Card } from '@/domain/cards.type';
-import { useSelectCards } from '@/hooks/useSelectCards';
+import { useSelectCards } from '@/app/[selectedClass]/select/useSelectCards';
 import { use } from 'react';
 
 export function SelectedCards<X extends Card>({

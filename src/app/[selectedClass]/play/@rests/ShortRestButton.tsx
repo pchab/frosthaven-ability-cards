@@ -1,10 +1,12 @@
+'use client';
+
+import { CardComponent } from '@/app/_components/cards/Card';
+import Button from '@/app/_components/inputs/Button';
+import Modal from '@/app/_components/layout/Modal';
 import { type Card } from '@/domain/cards.type';
-import { useCards } from '@/hooks/useCards';
+import { useCards } from '@/app/[selectedClass]/play/useCards';
 import Image from 'next/image';
 import { useState } from 'react';
-import { CardComponent } from '../../cards/Card';
-import Modal from '../../layout/Modal';
-import Button from '../Button';
 
 function getRandomCard<X extends Card>(arr: X[]) {
   return arr[Math.floor(Math.random() * arr.length)];

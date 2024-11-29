@@ -1,21 +1,12 @@
 'use client';
 
 import { CardComponent } from '@/app/_components/cards/Card';
-import Button from '@/app/_components/inputs/Button';
 import { CardStatus, type Card } from '@/domain/cards.type';
-import { useCards, type Action } from '@/hooks/useCards';
-import useSecretary from '@/hooks/useSecretary';
-import { AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
-
-type SelectedActions = [
-  Action | undefined,
-  Action | undefined,
-];
-
-function areAllActionsSelected(actions: SelectedActions): actions is [Action, Action] {
-  return actions.every(action => action !== undefined);
-}
+import { useCards, type Action } from '@/app/[selectedClass]/play/useCards';
+import useSecretary from '@/app/_components/secretary/useSecretary';
+import { useFrosthavenStore } from '@/stores/cards.store';
+import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
+import { useShallow } from 'zustand/shallow';
 
 function getSelectedActionMasks(action: Action) {
   const masks = [];
@@ -33,15 +24,17 @@ function getSelectedActionMasks(action: Action) {
 }
 
 export default function PlayedCards<X extends Card>() {
+  const { currentCards } = useCards<X>();
   const {
-    currentCards,
-    playCards,
-  } = useCards<X>();
-  const [selectedActions, setSelectedActions] = useState<SelectedActions>([undefined, undefined]);
+    selectedActions,
+    setSelectedActions,
+  } = useFrosthavenStore(useShallow((store) => ({
+    selectedActions: store.selectedActions,
+    setSelectedActions: store.setSelectedActions,
+  })))
   const {
     isConnected,
     setInitiative,
-    setInactive,
   } = useSecretary();
 
   const selectedCards = currentCards
@@ -78,22 +71,6 @@ export default function PlayedCards<X extends Card>() {
     onClick: () => setInitiative(card),
   })
 
-  const endTurn = () => {
-    if (areAllActionsSelected(selectedActions)) {
-      const [firstCard, secondCard] = selectedCards;
-      const [firstAction, secondAction] = selectedActions;
-      setSelectedActions([undefined, undefined]);
-      playCards([
-        { action: firstAction, card: firstCard },
-        { action: secondAction, card: secondCard },
-      ]);
-
-      if (isConnected) {
-        setInactive();
-      }
-    }
-  };
-
   const getPlayableActions = (card: X) => [
     playDefaultAction(card),
     playTopAction(card),
@@ -101,21 +78,18 @@ export default function PlayedCards<X extends Card>() {
     playBottomAction(card),
   ];
 
-  return <div className='flex gap-4 min-h-card min-w-[440px]'>
-    <AnimatePresence>
-      {selectedCards
-        .map((card, index) => <CardComponent
-          key={card.name}
-          card={card}
-          actions={getPlayableActions(card)}
-        >
-          {selectedActions[index] && getSelectedActionMasks(selectedActions[index])}
-        </CardComponent>)}
-    </AnimatePresence>
-    <div className='place-self-center'>
-      {selectedCards.length === 2 && areAllActionsSelected(selectedActions) &&
-        <Button onClick={endTurn}>End Turn</Button>
-      }
-    </div>
+  return <div className='flex gap-4 min-h-card min-w-[302px]'>
+    <LazyMotion features={domAnimation}>
+      <AnimatePresence mode='popLayout'>
+        {selectedCards
+          .map((card, index) => <CardComponent
+            key={card.name}
+            card={card}
+            actions={getPlayableActions(card)}
+          >
+            {selectedActions[index] && getSelectedActionMasks(selectedActions[index])}
+          </CardComponent>)}
+      </AnimatePresence>
+    </LazyMotion>
   </div>;
 }

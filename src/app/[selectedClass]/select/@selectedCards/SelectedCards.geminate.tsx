@@ -4,7 +4,7 @@ import CardPile, { type PileActions } from '@/app/_components/cards/CardPile';
 import GeminateFormIcon from '@/app/_components/class/geminate/GeminateFormIcon';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { geminate } from '@/domain/geminate/class';
-import { useSelectCards } from '@/hooks/useSelectCards';
+import { useSelectCards } from '@/app/[selectedClass]/select/useSelectCards';
 
 export function SelectedGeminateCards({
   actions = () => [],
