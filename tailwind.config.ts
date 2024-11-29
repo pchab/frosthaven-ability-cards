@@ -28,9 +28,11 @@ const config: Config = {
         'card': '200px',
       },
       width: {
+        'card': '143px',
         'mat': '600px',
       },
       height: {
+        'card': '200px',
         'mat': '392px',
       },
     },

@@ -33,7 +33,6 @@ export default function CharacterMat({
           alt={`${fhClassName} mat`}
           width={600}
           height={392}
-          className='backface-hidden'
           style={{ 'backfaceVisibility': 'hidden' }}
         />
       </m.div>

@@ -7,17 +7,20 @@ import Image from 'next/image';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import ActionWheel, { type WheelAction } from './ActionWheel';
 import EnhanceSticker from './Enhance/EnhanceSticker';
+import CardBack from './CardBack';
 
 export function CardComponent<X extends Card>({
   card,
   children,
   actions = [],
   mapName,
+  flipped = false,
 }: {
   card: X;
   children?: ReactNode;
   actions?: WheelAction[];
   mapName?: string;
+  flipped?: boolean;
 }) {
   const innerRef = useRef<HTMLDivElement>(null);
   const [isActionWheelOpen, setIsActionWheelOpen] = useState(false);
@@ -54,33 +57,39 @@ export function CardComponent<X extends Card>({
     };
   }, [isActionWheelOpen]);
 
-  return <LazyMotion features={domAnimation}>
-    <m.div
-      ref={innerRef}
-      onClick={onClickCard}
-      className='relative'
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -40, opacity: 0 }}
-    >
-      <AnimatePresence>
-        {isActionWheelOpen && <ActionWheel actions={actions} />}
-      </AnimatePresence>
-      {children}
-      <Image
-        useMap={`#${mapName}`}
-        src={card.path}
-        alt={`card ${card.name}`}
-        width={143}
-        height={200}
-      />
-      {card.availableEnhancements
-        ?.map(({ position }, index) => !!card.enhancements?.[index]
-          && <EnhanceSticker
-            key={`${card.name}-enhance-slot-${index}`}
-            enhancement={card.enhancements?.[index]!}
-            position={position}
-          />)}
-    </m.div>
-  </LazyMotion>;
+  return <div
+    className='relative w-card h-card'
+    style={{
+      'perspective': '1600px',
+      'transformStyle': 'preserve-3d',
+    }}>
+    <LazyMotion features={domAnimation}>
+      <m.div
+        ref={innerRef}
+        onClick={onClickCard}
+        className='absolute'
+        animate={{ rotateY: flipped ? 180 : 0 }}
+      >
+        <AnimatePresence>
+          {isActionWheelOpen && <ActionWheel actions={actions} />}
+        </AnimatePresence>
+        {children}
+        <Image
+          useMap={`#${mapName}`}
+          src={card.path}
+          alt={`card ${card.name}`}
+          width={143}
+          height={200}
+        />
+        {card.availableEnhancements
+          ?.map(({ position }, index) => !!card.enhancements?.[index]
+            && <EnhanceSticker
+              key={`${card.name}-enhance-slot-${index}`}
+              enhancement={card.enhancements?.[index]!}
+              position={position}
+            />)}
+      </m.div>
+      <CardBack flipped={flipped} />
+    </LazyMotion>
+  </div>;
 }
