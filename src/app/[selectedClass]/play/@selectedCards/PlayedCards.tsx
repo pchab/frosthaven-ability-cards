@@ -17,6 +17,21 @@ function areAllActionsSelected(actions: SelectedActions): actions is [Action, Ac
   return actions.every(action => action !== undefined);
 }
 
+function getSelectedActionMasks(action: Action) {
+  const masks = [];
+  if (['top', 'default'].includes(action)) {
+    masks.push(<div
+      key={'mask-action-top'}
+      className='m-2 absolute bg-black/80 left-0 w-action h-action top-[108px]' />);
+  }
+  if (['bottom', 'default'].includes(action)) {
+    masks.push(<div
+      key={'mask-action-bottom'}
+      className='m-2 absolute bg-black/80 left-0 w-action h-action top-[12px]' />);
+  }
+  return masks;
+}
+
 export default function PlayedCards<X extends Card>() {
   const {
     currentCards,
@@ -86,21 +101,16 @@ export default function PlayedCards<X extends Card>() {
     playBottomAction(card),
   ];
 
-  return <div className='flex gap-4 min-h-[266px] min-w-[440px]'>
+  return <div className='flex gap-4 min-h-card min-w-[440px]'>
     <AnimatePresence>
       {selectedCards
-        .map((card, index) => <div
+        .map((card, index) => <CardComponent
           key={card.name}
-          className='flex flex-col'
+          card={card}
+          actions={getPlayableActions(card)}
         >
-          <CardComponent card={card}
-            actions={getPlayableActions(card)}
-          />
-          <div className='flex flex-col items-center p-4'>
-            <div className='text-xs'>Selected Action:</div>
-            <div className='text-sm uppercase'>{selectedActions[index]}</div>
-          </div>
-        </div>)}
+          {selectedActions[index] && getSelectedActionMasks(selectedActions[index])}
+        </CardComponent>)}
     </AnimatePresence>
     <div className='place-self-center'>
       {selectedCards.length === 2 && areAllActionsSelected(selectedActions) &&

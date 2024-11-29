@@ -30,13 +30,21 @@ const config: Config = {
       width: {
         'mat': '600px',
         'card': '143px',
+        'card-1/2': '71px',
+        'action': '127px',
       },
       height: {
         'mat': '392px',
         'card': '200px',
+        'card-1/2': '100px',
+        'action': '78px',
       },
       margin: {
         'card-1/2': '71px',
+      },
+      spacing: {
+        'card-h-1/2': '100px',
+        'card-w-1/2': '71px',
       }
     },
   },
