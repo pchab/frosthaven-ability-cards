@@ -29,7 +29,13 @@ export default function IdentityProvider({
     update: updateGameState,
   } = use(WebSocketContext);
   const currentClass = use(ClassContext);
-  const [identity, setIdentity] = useState<Identity | null>(null);
+  const [identity, setIdentity] = useState<Identity | null>(
+    isGeminate(currentClass)
+      ? GeminateForm.melee
+      : isBlinkblade(currentClass)
+        ? BlinkbladeSpeed.FAST
+        : null
+  );
 
   const updateIdentityToGHS = (form: Identity) => {
     if (!updateGameState || !currentClass) return;
