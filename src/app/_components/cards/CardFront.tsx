@@ -59,7 +59,7 @@ export default function CardFront<X extends Card>({
   return <m.div
     ref={innerRef}
     transition={{ duration: 0.7 }}
-    animate={{ rotateY: flipped ? 180 : 0 }}
+    animate={{ rotateY: flipped ? -180 : 0 }}
     className='absolute'
   >
     <AnimatePresence>
@@ -73,6 +73,7 @@ export default function CardFront<X extends Card>({
       alt={`card ${card.name}`}
       width={143}
       height={200}
+      style={{ 'backfaceVisibility': 'hidden' }}
     />
     {card.availableEnhancements
       ?.map(({ position }, index) => !!card.enhancements?.[index]

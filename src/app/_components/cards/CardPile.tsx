@@ -77,12 +77,12 @@ export default function CardPile<X extends Card>({
 
   return <div
     ref={pileRef}
-    className={`flex min-h-card ${minWidthValue} ${folded && 'pointer-events-none'}`}
+    className={`flex min-h-card ${minWidthValue} ${folded ? 'pointer-events-none' : ''}`}
     onMouseLeave={() => setFocusCardIndex(null)}
     onTouchMove={handleTouchMove}
   >
     <LazyMotion features={domAnimation}>
-      <AnimatePresence mode='popLayout'>
+      <AnimatePresence initial={false} mode='popLayout'>
         {cards
           .map((card, index) => <m.div
             key={card.name}
@@ -91,12 +91,21 @@ export default function CardPile<X extends Card>({
             onFocus={() => setFocusCardIndex(index)}
             whileHover={{ scale: 1.2 }}
             whileFocus={{ scale: 1.2 }}
+            initial={{
+              y: -40,
+              opacity: 0,
+              marginRight: folded ? -128 : -64,
+            }}
             animate={{
-              marginLeft: index === 0 ?
-                0
-                : folded ? - 128 : -64,
+              marginRight: folded ? -128 : -64,
               scale: focusCardIndex === index ? 1.2 : 1,
+              y: 0,
+              opacity: 1,
               zIndex: getZIndex(index),
+            }}
+            exit={{
+              y: -40,
+              opacity: 0,
             }}
           >
             <CardComponent

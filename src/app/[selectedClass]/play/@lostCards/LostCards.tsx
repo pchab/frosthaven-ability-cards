@@ -21,6 +21,6 @@ export default function LostCards() {
   return <CardPile
     cards={lostPile}
     actions={recoverAction}
-    maxCardLength={currentCards.length}
+    folded={true}
   />;
 }
