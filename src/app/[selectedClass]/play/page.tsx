@@ -56,7 +56,7 @@ export default function PlayPage<X extends Card>() {
     }
   };
 
-  return <div className='flex gap-4'>
+  return <div className='flex flex-col lg:flex-row gap-4 justify-center items-center'>
     {isGeminate(selectedClass) && <ChangeForm />}
     {isBlinkblade(selectedClass) && <ChangeSpeed />}
     <div className='grid grid-cols-2 grid-rows-2 place-items-center gap-2'>
