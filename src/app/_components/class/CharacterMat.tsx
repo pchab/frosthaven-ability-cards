@@ -17,11 +17,7 @@ export default function CharacterMat({
   const matBackPath = `/${fhClassName}/mats/fh-${fhClassName}-back.webp`;
 
   return <div onClick={() => setDisplayFront(!displayFront)}
-    className='absolute m-auto left-0 right-0 top-0 bottom-0 w-mat h-mat'
-    style={{
-      'perspective': '1600px',
-      'transformStyle': 'preserve-3d',
-    }}>
+    className='absolute m-auto left-0 right-0 top-0 bottom-0 w-mat h-mat perspective-distant transform-3d'>
     <LazyMotion features={domAnimation}>
       <m.div
         transition={{ duration: 0.7 }}
@@ -34,7 +30,6 @@ export default function CharacterMat({
           width={600}
           height={392}
           className='backface-hidden'
-          style={{ 'backfaceVisibility': 'hidden' }}
         />
       </m.div>
       <m.div
@@ -48,7 +43,7 @@ export default function CharacterMat({
           alt={`${fhClassName} mat back`}
           width={600}
           height={392}
-          style={{ 'backfaceVisibility': 'hidden' }}
+          className='backface-hidden'
         />
       </m.div>
     </LazyMotion>
