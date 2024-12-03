@@ -14,8 +14,7 @@ export default function SelectClass({
   const { name } = fhClass;
 
   return <Link
-    href={`/${classNameToURI(name)}/select`}
-    className='border-0 flex items-center justify-center'>
+    href={`/${classNameToURI(name)}/select`}>
     <ClassIcon fhClass={fhClass} />
   </Link>;
 }

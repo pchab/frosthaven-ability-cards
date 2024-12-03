@@ -5,20 +5,23 @@ import { CardStatus, type Card } from '@/domain/cards.type';
 import { useCards, type Action } from '@/app/[selectedClass]/play/useCards';
 import useSecretary from '@/app/_components/secretary/useSecretary';
 import { useFrosthavenStore } from '@/stores/cards.store';
-import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { useShallow } from 'zustand/shallow';
+
+const bottomActionMask = <div
+  key={'mask-action-top'}
+  className='m-2 absolute bg-black/80 left-0 w-action h-action top-[108px]' />;
+const topActionMask = <div
+  key={'mask-action-bottom'}
+  className='m-2 absolute bg-black/80 left-0 w-action h-action top-[12px]' />;
 
 function getSelectedActionMasks(action: Action) {
   const masks = [];
   if (['top', 'default'].includes(action)) {
-    masks.push(<div
-      key={'mask-action-top'}
-      className='m-2 absolute bg-black/80 left-0 w-action h-action top-[108px]' />);
+    masks.push(bottomActionMask);
   }
   if (['bottom', 'default'].includes(action)) {
-    masks.push(<div
-      key={'mask-action-bottom'}
-      className='m-2 absolute bg-black/80 left-0 w-action h-action top-[12px]' />);
+    masks.push(topActionMask);
   }
   return masks;
 }
