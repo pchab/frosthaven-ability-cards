@@ -29,7 +29,7 @@ export default function ConnectForm({
     null,
   );
 
-  return <form action={connect} className='bg-gradient-to-b from-black to-blue-500 rounded-lg grid grid-cols-4 gap-4 justify-items-center items-center p-4 border-2 border-solid'>
+  return <form action={connect} className='bg-linear-to-b from-black to-blue-500 rounded-lg grid grid-cols-4 gap-4 justify-items-center items-center p-4 border-2 border-solid'>
     <h3 className='col-span-full text-xl'>Connect to GH Secretary</h3>
 
     <label className='col-span-1' htmlFor='secretary-host'>Host :</label>
