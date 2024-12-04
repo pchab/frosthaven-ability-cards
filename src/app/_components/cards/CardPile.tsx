@@ -25,7 +25,7 @@ const minWidthValues = [
 type LongHandSize = 11 | 12 | 13 | 14;
 const marginRightForLongHand = {
   11: '-mr-[78px]',
-  12: '-mr-[83px]',
+  12: '-mr-[84px]',
   13: '-mr-[88px]',
   14: '-mr-[93px]',
 }
