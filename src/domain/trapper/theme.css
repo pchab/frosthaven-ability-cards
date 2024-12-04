@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="trapper"] {
+    --color-trapper: #BB9662;
+    --color-primary: var(--color-trapper);
+  }
+}

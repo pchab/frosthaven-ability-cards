@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="hive"] {
+    --color-hive: #867209;
+    --color-primary: var(--color-hive);
+  }
+}

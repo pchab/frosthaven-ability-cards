@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="snowdancer"] {
+    --color-snowdancer: #73A8B4;
+    --color-primary: var(--color-snowdancer);
+  }
+}

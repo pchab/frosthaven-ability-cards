@@ -1,4 +1,19 @@
 @import 'tailwindcss';
+@import '../domain/banner-spear/theme.css';
+@import '../domain/blinkblade/theme.css';
+@import '../domain/boneshaper/theme.css';
+@import '../domain/crashing-tide/theme.css';
+@import '../domain/deathwalker/theme.css';
+@import '../domain/deepwraith/theme.css';
+@import '../domain/drifter/theme.css';
+@import '../domain/frozen-fist/theme.css';
+@import '../domain/geminate/theme.css';
+@import '../domain/hive/theme.css';
+@import '../domain/infuser/theme.css';
+@import '../domain/pain-conduit/theme.css';
+@import '../domain/pyroclast/theme.css';
+@import '../domain/snowdancer/theme.css';
+@import '../domain/trapper/theme.css';
 
 @theme {
   --min-width-cards-1: 143px;
@@ -32,6 +47,8 @@
 
   --spacing-card-h-1\/2: 100px;
   --spacing-card-w-1\/2: 71px;
+
+  --color-primary: white;
 }
 
 html{

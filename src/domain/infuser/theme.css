@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="infuser"] {
+    --color-infuser: #5EAA3E;
+    --color-primary: var(--color-infuser);
+  }
+}

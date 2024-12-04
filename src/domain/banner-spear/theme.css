@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="banner-spear"] {
+    --color-banner-spear: #E0A21A;
+    --color-primary: var(--color-banner-spear);
+  }
+}

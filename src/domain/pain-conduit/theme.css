@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="pain-conduit"] {
+    --color-pain-conduit: #7476A7;
+    --color-primary: var(--color-pain-conduit);
+  }
+}

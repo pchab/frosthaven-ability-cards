@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="boneshaper"] {
+    --color-boneshaper: #0D6B30;
+    --color-primary: var(--color-boneshaper);
+  }
+}

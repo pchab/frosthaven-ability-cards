@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="frozen-fist"] {
+  --color-frozen-fist: #6790AD;
+    --color-primary: var(--color-frozen-fist);
+  }
+}

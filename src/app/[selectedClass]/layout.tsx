@@ -45,10 +45,12 @@ export default async function Layout({
   const { selectedClass } = await params;
   const fhClassName = classURIToName(selectedClass);
 
-  return <ClassProvider fhClassName={fhClassName}>
-    <div className='absolute left-0 top-0 p-4 flex flex-col items-end gap-2'>
-      <DisplayClassMat />
-    </div>
-    {children}
-  </ClassProvider>;
+  return <div data-theme={selectedClass}>
+    <ClassProvider fhClassName={fhClassName}>
+      <div className='absolute left-0 top-0 p-4 flex flex-col items-end gap-2'>
+        <DisplayClassMat />
+      </div>
+      {children}
+    </ClassProvider>
+  </div>;
 }

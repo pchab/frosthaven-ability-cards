@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="deathwalker"] {
+    --color-deathwalker: #A0BEE1;
+    --color-primary: var(--color-deathwalker);
+  }
+}

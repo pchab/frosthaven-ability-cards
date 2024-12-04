@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="crashing-tide"] {
+    --color-crashing-tide: #4BB891;
+    --color-primary: var(--color-crashing-tide);
+  }
+}

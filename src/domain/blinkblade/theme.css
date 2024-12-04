@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="blinkblade"] {
+    --color-blinkblade: #1396C5;
+    --color-primary: var(--color-blinkblade);
+  }
+}

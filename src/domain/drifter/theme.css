@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="drifter"] {
+    --color-drifter: #715A4D;
+    --color-primary: var(--color-drifter);
+  }
+}

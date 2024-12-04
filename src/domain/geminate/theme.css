@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="geminate"] {
+    --color-geminate: #CA2D7E;
+    --color-primary: var(--color-geminate);
+  }
+}

@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="deepwraith"] {
+    --color-deepwraith: #614278;
+    --color-primary: var(--color-deepwraith);
+  }
+}

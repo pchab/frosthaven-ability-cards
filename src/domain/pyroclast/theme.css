@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="pyroclast"] {
+    --color-pyroclast: #EB5B38;
+    --color-primary: var(--color-pyroclast);
+  }
+}
