@@ -9,7 +9,7 @@ export function isDrifter(frosthavenClass: FrosthavenClass<Card>): boolean {
 export const drifter: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.Drifter,
   handSize: 12,
-  path: '/drifter/icons/fh-drifter-color-icon.webp',
-  iconSize: { width: 45, height: 60 },
+  path: '/drifter/icons/fh-drifter-color-icon.svg',
+  iconSize: { width: 448, height: 600 },
   cards: drifterCards,
 };

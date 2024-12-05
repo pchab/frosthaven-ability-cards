@@ -5,7 +5,7 @@ import { trapperCards } from './cards';
 export const trapper: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.Trapper,
   handSize: 9,
-  path: '/trapper/icons/fh-trapper-color-icon.webp',
-  iconSize: { width: 60, height: 60 },
+  path: '/trapper/icons/fh-trapper-color-icon.svg',
+  iconSize: { width: 600, height: 577 },
   cards: trapperCards,
 };

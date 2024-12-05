@@ -5,7 +5,7 @@ import { bannerSpearCards } from './cards';
 export const bannerSpear: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.BannerSpear,
   handSize: 10,
-  path: '/banner-spear/icons/fh-banner-spear-color-icon.webp',
-  iconSize: { width: 18, height: 60 },
+  path: '/banner-spear/icons/fh-banner-spear-color-icon.svg',
+  iconSize: { width: 183, height: 600 },
   cards: bannerSpearCards,
 };

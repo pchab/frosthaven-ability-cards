@@ -8,5 +8,10 @@ export default function ClassIcon({
   fhClass: FrosthavenClass<Card>;
 }) {
   const { name, path, iconSize } = fhClass;
-  return <Image src={path} alt={name} {...iconSize} />;
+  return <Image
+    className='max-w-icon max-h-icon'
+    src={path}
+    alt={name}
+    {...iconSize}
+  />;
 }

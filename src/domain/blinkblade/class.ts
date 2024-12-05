@@ -9,7 +9,7 @@ export function isBlinkblade(fhClass: FrosthavenClass<Card>): boolean {
 export const blinkblade: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.Blinkblade,
   handSize: 10,
-  path: '/blinkblade/icons/fh-blinkblade-color-icon.webp',
-  iconSize: { width: 60, height: 48 },
+  path: '/blinkblade/icons/fh-blinkblade-color-icon.svg',
+  iconSize: { width: 600, height: 487 },
   cards: blinkbladeCards,
 };

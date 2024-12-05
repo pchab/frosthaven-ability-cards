@@ -6,6 +6,6 @@ export const painConduit: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.PainConduit,
   handSize: 10,
   path: '/pain-conduit/icons/fh-pain-conduit-color-icon.svg',
-  iconSize: { width: 63, height: 60 },
+  iconSize: { width: 630, height: 600 },
   cards: painConduitCards,
 };

@@ -5,7 +5,7 @@ import { infuserCards } from './cards';
 export const infuser: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.Infuser,
   handSize: 11,
-  path: '/infuser/icons/fh-infuser-color-icon.webp',
-  iconSize: { width: 52, height: 60 },
+  path: '/infuser/icons/fh-infuser-color-icon.svg',
+  iconSize: { width: 522, height: 600 },
   cards: infuserCards,
 };
