@@ -14,7 +14,7 @@ export default function DisplayClassMat() {
       <CharacterMat className={fhClass.name}></CharacterMat>
     </Modal>}
     <button
-      className='rounded-full border-solid border-2 border-white px-2'
+      className='rounded-full border-solid border-2 border-white px-2 bg-primary'
       onClick={() => setDisplay(true)}>
       ?
     </button>
