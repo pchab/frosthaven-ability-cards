@@ -22,28 +22,26 @@ export default function CharacterMat({
       <m.div
         transition={{ duration: 0.7 }}
         animate={{ rotateY: displayFront ? 0 : 180 }}
-        className='absolute border-solid border-2 border-primary'
+        className='absolute border-solid border-2 border-primary backface-hidden'
       >
         <Image
           src={matPath}
           alt={`${fhClassName} mat`}
           width={600}
           height={392}
-          className='backface-hidden'
         />
       </m.div>
       <m.div
         transition={{ duration: 0.7 }}
         initial={{ rotateY: 180 }}
         animate={{ rotateY: displayFront ? 180 : 360 }}
-        className='absolute border-solid border-2 border-primary'
+        className='absolute border-solid border-2 border-primary backface-hidden'
       >
         <Image
           src={matBackPath}
           alt={`${fhClassName} mat back`}
           width={600}
           height={392}
-          className='backface-hidden'
         />
       </m.div>
     </LazyMotion>
