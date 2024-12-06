@@ -29,7 +29,7 @@ export default function useSecretary<X extends Card>() {
     }
 
     const newGameState = updateGameStateForFigure(currentCharacter.name, { initiative: newInitiative })!;
-    updateGameState(newGameState, ["setInitiative", currentCharacter.title, `"${newInitiative}"`]);
+    updateGameState(newGameState, ["setInitiative", currentCharacter.title || currentClass.name, `"${newInitiative}"`]);
   };
 
   const setInactive = () => {
@@ -54,7 +54,7 @@ export default function useSecretary<X extends Card>() {
       gameState = updateGameStateForFigure(nextActingFigure.replace('fh-', ''), { active: true, off: false });
     }
 
-    updateGameState(gameState!, ["unsetActive", currentCharacter.title]);
+    updateGameState(gameState!, ["unsetActive", currentCharacter.title || currentClass.name]);
   }
 
   return {
