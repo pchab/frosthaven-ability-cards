@@ -5,14 +5,22 @@ export enum BlinkbladeSpeed {
   FAST,
 }
 
-export type CharacterState = {
+export type Figure = {
   name: string;
+  active: boolean;
+  off: boolean;
+  [key: string]: any;
+}
+
+export type CharacterState = Figure & {
   initiative: number;
   identity: BlinkbladeSpeed | GeminateForm;
-  [key: string]: any;
 };
 
 export type GameState = {
   [key: string]: any;
   characters: CharacterState[];
+  monsters: Figure[];
+  figures: string[];
+  revision: number;
 };

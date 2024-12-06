@@ -13,7 +13,7 @@ export async function connectToSecretary({
   return new Promise<WebSocket>((resolve, reject) => {
     client.onmessage = (event) => {
       const { type, payload } = JSON.parse(event.data) as { type: string, payload: GameState };
-      if (type === 'game' || type === 'game-update') {
+      if (type === 'game' || type === 'game-update' || type === 'game-undo') {
         setGameState(payload);
       }
     };

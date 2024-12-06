@@ -1,15 +1,15 @@
 'use client';
 
-import type { Identity } from '@/domain/frosthaven-class.type';
-import { createContext, use, useEffect, useState } from 'react';
-import { getGameState } from '@/stores/game.store';
-import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
-import { WebSocketContext } from './WebSocketContext';
-import { isGeminate } from '@/domain/geminate/class';
-import { GeminateForm } from '@/domain/geminate/cards';
 import { isBlinkblade } from '@/domain/blinkblade/class';
-import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
+import type { Identity } from '@/domain/frosthaven-class.type';
+import { GeminateForm } from '@/domain/geminate/cards';
+import { isGeminate } from '@/domain/geminate/class';
+import { BlinkbladeSpeed, CharacterState } from '@/domain/secretary/game.state';
+import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
+import { getCharacterState, getGameState, updateGameStateForFigure } from '@/stores/game.store';
+import { createContext, use, useEffect, useState } from 'react';
 import { ClassContext } from './ClassContext';
+import { WebSocketContext } from './WebSocketContext';
 
 export const IdentityContext = createContext<{
   identity: Identity | null;
@@ -39,10 +39,10 @@ export default function IdentityProvider({
 
   const updateIdentityToGHS = (form: Identity) => {
     if (!updateGameState || !currentClass) return;
+    const { name, title } = getCharacterState(currentClass.name)!;
 
-    const undoInfo = ["nextIdentity"];
+    const undoInfo = ["nextIdentity", title, name];
     if (isGeminate(currentClass)) {
-      undoInfo.push("geminate");
       if (form === GeminateForm.melee) {
         undoInfo.push("range", "melee");
       }
@@ -52,7 +52,6 @@ export default function IdentityProvider({
     }
 
     if (isBlinkblade(currentClass)) {
-      undoInfo.push("blinkblade");
       if (form === BlinkbladeSpeed.FAST) {
         undoInfo.push("slow", "fast");
       }
@@ -60,7 +59,8 @@ export default function IdentityProvider({
         undoInfo.push("fast", "slow");
       }
     }
-    updateGameState({ identity: form }, undoInfo);
+    const newGameState = updateGameStateForFigure<CharacterState>(name, { identity: form })!;
+    updateGameState(newGameState, undoInfo);
   }
 
   useEffect(() => {

@@ -3,7 +3,8 @@ import { WebSocketContext } from '@/context/WebSocketContext';
 import { isBlinkblade } from '@/domain/blinkblade/class';
 import type { Card } from '@/domain/cards.type';
 import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
-import { getGameState } from '@/stores/game.store';
+import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
+import { getCharacterState, getGameState, updateGameStateForFigure } from '@/stores/game.store';
 import { use } from 'react';
 
 export default function useSecretary<X extends Card>() {
@@ -13,30 +14,47 @@ export default function useSecretary<X extends Card>() {
   } = use(WebSocketContext);
   const currentClass = use(ClassContext);
 
-  const updateInitiative = (initiative: number) => {
-    updateGameState && updateGameState({ initiative }, ["setInitiative", `"${initiative}"`]);
-  }
-
   const setInitiative = ({ initiative }: X) => {
     if (!updateGameState || !currentClass) return;
+    const currentCharacter = getCharacterState(currentClass.name);
+    if (!currentCharacter) return;
+
+    let newInitiative = initiative;
 
     if (isBlinkblade(currentClass)) {
-      const currentSpeed = getGameState()
-        ?.characters
-        .find(({ name }) => name === currentClass.name.toLowerCase())
-        ?.identity;
+      const currentSpeed = currentCharacter.identity;
       if (currentSpeed === BlinkbladeSpeed.SLOW) {
-        return updateInitiative(initiative + 30);
+        newInitiative += 30;
       }
     }
 
-    updateInitiative(initiative);
+    const newGameState = updateGameStateForFigure(currentCharacter.name, { initiative: newInitiative })!;
+    updateGameState(newGameState, ["setInitiative", currentCharacter.title, `"${newInitiative}"`]);
   };
 
   const setInactive = () => {
     if (!updateGameState || !currentClass) return;
+    let gameState = getGameState();
+    if (!gameState) return;
+    const { characters, figures } = gameState;
+    const ghsCharacterName = mapCharacterNameToSecretary(currentClass.name);
 
-    updateGameState({ active: false, off: true }, ["unsetActive"]);
+    const currentCharacter = characters
+      .find(character => character.name === ghsCharacterName);
+
+    // Set the current character to inactive
+    if (!currentCharacter || currentCharacter.off || !currentCharacter.active) return;
+    gameState = updateGameStateForFigure(ghsCharacterName, { active: false, off: true });
+
+    // Set the next character to active if current character is not the last one
+    const currentInitiativeOrder = figures
+      .findIndex(figure => figure === `fh-${ghsCharacterName}`);
+    if (currentInitiativeOrder < figures.length - 1) {
+      const nextActingFigure = figures[currentInitiativeOrder + 1];
+      gameState = updateGameStateForFigure(nextActingFigure.replace('fh-', ''), { active: true, off: false });
+    }
+
+    updateGameState(gameState!, ["unsetActive", currentCharacter.title]);
   }
 
   return {
