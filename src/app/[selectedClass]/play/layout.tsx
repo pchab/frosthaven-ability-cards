@@ -37,8 +37,10 @@ export default function PlayLayout({
           {selectedCards}
         </div>
         {activeEffects}
-        {rests}
-        {ghsStatus}
+        <div className='flex gap-4'>
+          {rests}
+          {ghsStatus}
+        </div>
       </div>
     </IdentityProvider>
   </div>;
