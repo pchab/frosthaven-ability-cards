@@ -1,15 +1,14 @@
 'use client';
 
-import type { Identity } from '@/domain/frosthaven-class.type';
-import { createContext, use, useEffect, useState } from 'react';
-import { getGameState } from '@/stores/game.store';
-import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
-import { WebSocketContext } from './WebSocketContext';
-import { isGeminate } from '@/domain/geminate/class';
-import { GeminateForm } from '@/domain/geminate/cards';
 import { isBlinkblade } from '@/domain/blinkblade/class';
+import type { Identity } from '@/domain/frosthaven-class.type';
+import { GeminateForm } from '@/domain/geminate/cards';
+import { isGeminate } from '@/domain/geminate/class';
 import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
+import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
+import { createContext, use, useEffect, useState } from 'react';
 import { ClassContext } from './ClassContext';
+import useSecretary from '@/app/_components/secretary/useSecretary';
 
 export const IdentityContext = createContext<{
   identity: Identity | null;
@@ -26,8 +25,9 @@ export default function IdentityProvider({
 }) {
   const {
     isConnected,
-    update: updateGameState,
-  } = use(WebSocketContext);
+    currentCharacter,
+    setGhsIdentity,
+  } = useSecretary();
   const currentClass = use(ClassContext);
   const [identity, setIdentity] = useState<Identity | null>(
     isGeminate(currentClass)
@@ -37,50 +37,16 @@ export default function IdentityProvider({
         : null
   );
 
-  const updateIdentityToGHS = (form: Identity) => {
-    if (!updateGameState || !currentClass) return;
-
-    const undoInfo = ["nextIdentity"];
-    if (isGeminate(currentClass)) {
-      undoInfo.push("geminate");
-      if (form === GeminateForm.melee) {
-        undoInfo.push("range", "melee");
-      }
-      if (form === GeminateForm.ranged) {
-        undoInfo.push("melee", "range");
-      }
-    }
-
-    if (isBlinkblade(currentClass)) {
-      undoInfo.push("blinkblade");
-      if (form === BlinkbladeSpeed.FAST) {
-        undoInfo.push("slow", "fast");
-      }
-      if (form === BlinkbladeSpeed.SLOW) {
-        undoInfo.push("fast", "slow");
-      }
-    }
-    updateGameState({ identity: form }, undoInfo);
-  }
-
   useEffect(() => {
-    if (!isConnected || !currentClass) return;
-    const gameState = getGameState();
-    if (!gameState) return;
-
-    const { characters } = gameState;
-    const currentCharacter = characters
-      .find(({ name }) => name === mapCharacterNameToSecretary(currentClass.name));
-
-    if (!currentCharacter) return;
+    if (!isConnected || !currentClass || !currentCharacter) return;
     const { identity } = currentCharacter;
     setIdentity(identity);
-  }, [isConnected, currentClass]);
+  }, [currentCharacter, isConnected, currentClass]);
 
   const changeIdentity = (identity: Identity) => {
     setIdentity(identity);
     if (isConnected) {
-      updateIdentityToGHS(identity);
+      setGhsIdentity(identity);
     }
   }
 

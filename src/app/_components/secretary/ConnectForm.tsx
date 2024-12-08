@@ -2,14 +2,17 @@ import Button from '../inputs/Button';
 import { useActionState, useContext } from 'react';
 import { connectToSecretary } from './webSocketClient';
 import { WebSocketContext } from '@/context/WebSocketContext';
+import type { GameState } from '@/domain/secretary/game.state';
 
 export default function ConnectForm({
   onConnect,
+  onData,
 }: {
   onConnect: (args: {
     client: WebSocket;
     id: string;
   }) => void;
+  onData: (data: GameState) => void;
 }) {
   const { id: currentId, isConnected } = useContext(WebSocketContext);
   const [state, connect, isPending] = useActionState(
@@ -17,7 +20,7 @@ export default function ConnectForm({
       const host = formData.get('secretary-host')! as string;
       const id = formData.get('secretary-id')! as string;
       try {
-        const client = await connectToSecretary({ host, id });
+        const client = await connectToSecretary({ host, secretaryId: id, onData });
         onConnect({ client, id });
         return 'Connected';
       }

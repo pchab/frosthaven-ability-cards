@@ -27,7 +27,7 @@ export default function PlayPage<X extends Card>() {
   } = useCards<X>();
   const {
     isConnected,
-    setInactive,
+    setGhsInactive,
   } = useSecretary();
 
   const {
@@ -51,7 +51,7 @@ export default function PlayPage<X extends Card>() {
       ]);
 
       if (isConnected) {
-        setInactive();
+        setGhsInactive();
       }
     }
   };

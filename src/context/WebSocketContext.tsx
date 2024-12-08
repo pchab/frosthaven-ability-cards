@@ -4,18 +4,16 @@ import Menu from '@/app/Menu';
 import Modal from '@/app/_components/layout/Modal';
 import ConnectForm from '@/app/_components/secretary/ConnectForm';
 import { connectToSecretary } from '@/app/_components/secretary/webSocketClient';
-import type { CharacterState } from '@/domain/secretary/game.state';
-import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
-import { getClass } from '@/stores/class.store';
-import { getGameState, setGameState } from '@/stores/game.store';
+import type { GameState } from '@/domain/secretary/game.state';
 import { createContext, useEffect, useRef, useState, type ReactNode } from 'react';
 
-type WsGameStateUpdate = (state: Partial<CharacterState>, info: string[]) => void;
+type WsGameStateUpdate = (state: GameState, info: string[]) => void;
 
 export const WebSocketContext = createContext<{
   isConnected: boolean;
   id: string;
-  update?: WsGameStateUpdate | null;
+  gameState?: GameState;
+  sendGameStateToGhs?: WsGameStateUpdate;
 }>({
   isConnected: false,
   id: '',
@@ -26,51 +24,34 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
   const [secretaryId, setSecretaryId] = useState<string>('');
   const [isConnectModalOpen, setConnectModalOpen] = useState(false);
   const [isConnected, setConnected] = useState(false);
+  const [gameState, setGameState] = useState<GameState>();
 
-  const updateGameState = (state: Partial<CharacterState>, info: string[]) => {
+  const sendGameStateToGhs = (newState: GameState, info: string[]) => {
     if (!wsClient.current) return;
-    const oldGameState = getGameState();
-    if (!oldGameState) return;
-    const currentClass = getClass();
-    if (!currentClass) return;
+    setGameState(newState);
 
-    const {
-      characters,
-      revision,
-      ...rest
-    } = oldGameState;
-    const currentCharacterIndex = characters
-      .findIndex(({ name }) => name === mapCharacterNameToSecretary(currentClass.name));
-    const character = characters[currentCharacterIndex];
-
-    const newGameState = {
-      ...rest,
-      revision: revision + 1,
-      characters: characters.with(currentCharacterIndex, {
-        ...character,
-        ...state,
-      }),
-    }
-    info.splice(1, 0, character.title);
     wsClient.current.send(JSON.stringify({
       code: secretaryId,
       password: secretaryId,
       type: "game",
-      payload: newGameState,
+      payload: newState,
       revision: 0,
       undoinfo: info,
       undolength: 1,
     }));
-    setGameState(newGameState);
-  }
+  };
 
   useEffect(() => {
     const host = localStorage.getItem('secretary-host');
     const id = localStorage.getItem('secretary-id');
     if (!id || !host) return;
-    connectToSecretary({ host, id }).then((client) => {
+    setSecretaryId(id);
+    connectToSecretary({
+      host,
+      secretaryId: id,
+      onData: setGameState,
+    }).then((client) => {
       wsClient.current = client;
-      setSecretaryId(id);
       setConnected(true);
     });
     return () => wsClient.current?.close();
@@ -79,7 +60,8 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
   return <WebSocketContext value={{
     isConnected,
     id: secretaryId,
-    update: updateGameState
+    gameState,
+    sendGameStateToGhs,
   }}>
     {isConnectModalOpen && <Modal onCancel={() => setConnectModalOpen(false)}>
       <ConnectForm onConnect={({ client, id }) => {
@@ -87,7 +69,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
         setSecretaryId(id);
         setConnectModalOpen(false);
         setConnected(true);
-      }} />
+      }} onData={setGameState} />
     </Modal>}
     <Menu onOpenConnectModal={() => setConnectModalOpen(true)} />
     {children}
