@@ -1,12 +1,13 @@
 import type { GameState } from '@/domain/secretary/game.state';
-import { setGameState } from '@/stores/game.store';
 
 export async function connectToSecretary({
   host,
-  id,
+  secretaryId,
+  onData,
 }: {
   host: string;
-  id: string;
+  secretaryId: string;
+  onData: (data: GameState) => void
 }) {
   const client = new WebSocket(host);
 
@@ -14,18 +15,19 @@ export async function connectToSecretary({
     client.onmessage = (event) => {
       const { type, payload } = JSON.parse(event.data) as { type: string, payload: GameState };
       if (type === 'game' || type === 'game-update' || type === 'game-undo') {
-        setGameState(payload);
+        onData(payload);
       }
     };
 
     client.onopen = () => {
-      localStorage.setItem('secretary-id', id);
+      localStorage.setItem('secretary-id', secretaryId);
       localStorage.setItem('secretary-host', host);
       client.send(JSON.stringify({
-        code: id,
-        password: id,
+        code: secretaryId,
+        password: secretaryId,
         type: "request-game",
       }));
+
       resolve(client);
     };
 
