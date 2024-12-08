@@ -23,4 +23,5 @@ export type GameState = {
   monsters: Figure[];
   figures: string[];
   revision: number;
+  state: 'draw' | 'next';
 };

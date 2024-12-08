@@ -12,7 +12,8 @@ type WsGameStateUpdate = (state: GameState, info: string[]) => void;
 export const WebSocketContext = createContext<{
   isConnected: boolean;
   id: string;
-  update?: WsGameStateUpdate | null;
+  gameState?: GameState;
+  sendGameStateToGhs?: WsGameStateUpdate;
 }>({
   isConnected: false,
   id: '',
@@ -23,9 +24,11 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
   const [secretaryId, setSecretaryId] = useState<string>('');
   const [isConnectModalOpen, setConnectModalOpen] = useState(false);
   const [isConnected, setConnected] = useState(false);
+  const [gameState, setGameState] = useState<GameState>();
 
-  const updateGameState = (newState: GameState, info: string[]) => {
+  const sendGameStateToGhs = (newState: GameState, info: string[]) => {
     if (!wsClient.current) return;
+    setGameState(newState);
 
     wsClient.current.send(JSON.stringify({
       code: secretaryId,
@@ -36,15 +39,19 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
       undoinfo: info,
       undolength: 1,
     }));
-  }
+  };
 
   useEffect(() => {
     const host = localStorage.getItem('secretary-host');
     const id = localStorage.getItem('secretary-id');
     if (!id || !host) return;
-    connectToSecretary({ host, id }).then((client) => {
+    setSecretaryId(id);
+    connectToSecretary({
+      host,
+      secretaryId: id,
+      onData: setGameState,
+    }).then((client) => {
       wsClient.current = client;
-      setSecretaryId(id);
       setConnected(true);
     });
     return () => wsClient.current?.close();
@@ -53,7 +60,8 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
   return <WebSocketContext value={{
     isConnected,
     id: secretaryId,
-    update: updateGameState
+    gameState,
+    sendGameStateToGhs,
   }}>
     {isConnectModalOpen && <Modal onCancel={() => setConnectModalOpen(false)}>
       <ConnectForm onConnect={({ client, id }) => {
@@ -61,7 +69,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
         setSecretaryId(id);
         setConnectModalOpen(false);
         setConnected(true);
-      }} />
+      }} onData={setGameState} />
     </Modal>}
     <Menu onOpenConnectModal={() => setConnectModalOpen(true)} />
     {children}

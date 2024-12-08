@@ -37,7 +37,7 @@ export default function PlayedCards<X extends Card>() {
   })))
   const {
     isConnected,
-    setInitiative,
+    setGhsInitiative,
   } = useSecretary();
 
   const selectedCards = currentCards
@@ -71,7 +71,7 @@ export default function PlayedCards<X extends Card>() {
   });
   const selectInitiative = (card: X) => ({
     name: 'Select Initiative',
-    onClick: () => setInitiative(card),
+    onClick: () => setGhsInitiative(card),
   })
 
   const getPlayableActions = (card: X) => [
