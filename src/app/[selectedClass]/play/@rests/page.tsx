@@ -15,7 +15,7 @@ export default function RestsPage() {
     return <></>;
   }
 
-  return <div className='flex justify-between gap-4'>
+  return <div className='flex flex-col justify-between gap-4'>
     <ShortRestButton cards={discardPile} />
     <LongRestButton cards={discardPile} />
   </div>;

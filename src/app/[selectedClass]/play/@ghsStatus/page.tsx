@@ -33,7 +33,7 @@ export default function GhsStatus() {
         }
       </p>}
       {state === 'draw' && <p>
-        Choose Initiative: {currentCharacter?.initiative || '-'}
+        Chosen Initiative: {currentCharacter?.initiative || '-'}
       </p>}
     </div>
   </BoardArea>
