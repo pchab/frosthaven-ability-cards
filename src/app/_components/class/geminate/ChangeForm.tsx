@@ -3,7 +3,7 @@
 import { GeminateForm } from '@/domain/geminate/cards';
 import { use } from 'react';
 import Button from '../../inputs/Button';
-import GeminateFormIcon from './GeminateFormIcon';
+import FormIcon from './FormIcon';
 import { IdentityContext } from '@/context/IdentityContext';
 
 export default function ChangeForm() {
@@ -23,6 +23,6 @@ export default function ChangeForm() {
     className='flex justify-center items-center gap-2 h-24 w-24'
     onClick={changeForm}>
     <label className='hidden'>Change form</label>
-    <GeminateFormIcon form={currentForm as GeminateForm} />
+    <FormIcon form={currentForm as GeminateForm} />
   </div>;
 }

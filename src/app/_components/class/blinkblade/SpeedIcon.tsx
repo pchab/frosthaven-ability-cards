@@ -12,7 +12,7 @@ const slowIcon = {
   height: 60,
 };
 
-export default function BlinkbladeSpeedIcon({
+export default function SpeedIcon({
   speed,
 }: {
   speed: BlinkbladeSpeed;

@@ -4,17 +4,17 @@ import { isBlinkblade } from '@/domain/blinkblade/class';
 import type { Identity } from '@/domain/frosthaven-class.type';
 import { GeminateForm } from '@/domain/geminate/cards';
 import { isGeminate } from '@/domain/geminate/class';
-import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
-import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
+import { BlinkbladeSpeed, MetalMosaicPressure } from '@/domain/secretary/game.state';
 import { createContext, use, useEffect, useState } from 'react';
 import { ClassContext } from './ClassContext';
 import useSecretary from '@/app/_components/secretary/useSecretary';
+import { isMetalMosaic } from '@/domain/metal-mosaic/class';
 
 export const IdentityContext = createContext<{
-  identity: Identity | null;
+  identity: Identity;
   changeIdentity: (identity: Identity) => void;
 }>({
-  identity: null,
+  identity: 0,
   changeIdentity: () => { },
 });
 
@@ -29,12 +29,14 @@ export default function IdentityProvider({
     setGhsIdentity,
   } = useSecretary();
   const currentClass = use(ClassContext);
-  const [identity, setIdentity] = useState<Identity | null>(
+  const [identity, setIdentity] = useState<Identity>(
     isGeminate(currentClass)
       ? GeminateForm.melee
       : isBlinkblade(currentClass)
         ? BlinkbladeSpeed.FAST
-        : null
+        : isMetalMosaic(currentClass)
+          ? MetalMosaicPressure.REGULAR
+          : 0
   );
 
   useEffect(() => {
