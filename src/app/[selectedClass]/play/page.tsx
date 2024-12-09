@@ -1,14 +1,15 @@
 'use client';
 
+import { useCards, type Action } from '@/app/[selectedClass]/play/useCards';
 import ChangeSpeed from '@/app/_components/class/blinkblade/ChangeSpeed';
 import ChangeForm from '@/app/_components/class/geminate/ChangeForm';
 import Button from '@/app/_components/inputs/Button';
+import BoardArea from '@/app/_components/layout/BoardArea';
+import useSecretary from '@/app/_components/secretary/useSecretary';
 import { ClassContext } from '@/context/ClassContext';
 import { isBlinkblade } from '@/domain/blinkblade/class';
 import { CardStatus, type Card } from '@/domain/cards.type';
 import { isGeminate } from '@/domain/geminate/class';
-import { useCards, type Action } from '@/app/[selectedClass]/play/useCards';
-import useSecretary from '@/app/_components/secretary/useSecretary';
 import { useFrosthavenStore, type SelectedActions } from '@/stores/cards.store';
 import { use } from 'react';
 import { useShallow } from 'zustand/shallow';
@@ -28,6 +29,9 @@ export default function PlayPage<X extends Card>() {
   const {
     isConnected,
     setGhsInactive,
+    state,
+    currentCharacter,
+    currentPlayingFigure,
   } = useSecretary();
 
   const {
@@ -56,17 +60,38 @@ export default function PlayPage<X extends Card>() {
     }
   };
 
-  return <div className='flex flex-col lg:flex-row gap-4 justify-center items-center'>
-    {isGeminate(selectedClass) && <ChangeForm />}
-    {isBlinkblade(selectedClass) && <ChangeSpeed />}
-    <div className='grid grid-cols-2 grid-rows-2 place-items-center gap-2'>
-      <Button onClick={undo}>Undo</Button>
-      <Button onClick={redo}>Redo</Button>
-      <div className='col-span-2'>
-        {selectedCards.length === 2 && areAllActionsSelected(selectedActions) &&
-          <Button onClick={endTurn}>End Turn</Button>
-        }
+  const getCurrentPlayingString = () => {
+    if (!currentPlayingFigure) {
+      return 'End of round';
+    }
+    if (currentPlayingFigure.name === currentCharacter?.name) {
+      return 'Your turn';
+    }
+    return `Current Turn: ${currentPlayingFigure.name}`;
+  }
+
+  return <BoardArea title={`GHS Status: ${isConnected ? '🟢' : '🔴'}`}>
+    <div className='flex flex-col gap-4 items-center'>
+      <div className='text-lg font-bold'>
+        {state === 'next' && <p>{getCurrentPlayingString()}</p>}
+        {state === 'draw' && <p>
+          Chosen Initiative: {currentCharacter?.initiative || '-'}
+        </p>}
+      </div>
+      <div className='flex flex-col lg:flex-row gap-4 justify-center items-center min-w-[302px]'>
+        {isGeminate(selectedClass) && <ChangeForm />}
+        {isBlinkblade(selectedClass) && <ChangeSpeed />}
+        <div className='grid grid-cols-2 grid-rows-2 place-items-center gap-2'>
+          <Button onClick={undo}>Undo</Button>
+          <Button onClick={redo}>Redo</Button>
+
+          <div className='col-span-2'>
+            {selectedCards.length === 2 && areAllActionsSelected(selectedActions) &&
+              <Button onClick={endTurn}>End Turn</Button>
+            }
+          </div>
+        </div>
       </div>
     </div>
-  </div>;
+  </BoardArea>;
 }
