@@ -19,11 +19,10 @@ export default function ChangeSpeed() {
     changeIdentity(newSpeed);
   };
 
-  return <Button
+  return <div
+    className='flex justify-center items-center gap-2 h-24 w-24'
     onClick={changeSpeed}>
-    <div className='flex justify-center items-center gap-2 h-24 w-24'>
-      <label className='hidden'>Change Speed</label>
-      <BlinkbladeSpeedIcon speed={currentSpeed as BlinkbladeSpeed} />
-    </div>
-  </Button>;
+    <label className='hidden'>Change Speed</label>
+    <BlinkbladeSpeedIcon speed={currentSpeed as BlinkbladeSpeed} />
+  </div>;
 }

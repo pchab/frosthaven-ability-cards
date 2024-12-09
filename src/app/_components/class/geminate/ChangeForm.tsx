@@ -19,11 +19,10 @@ export default function ChangeForm() {
     changeIdentity(newForm);
   };
 
-  return <Button
+  return <div
+    className='flex justify-center items-center gap-2 h-24 w-24'
     onClick={changeForm}>
-    <div className='flex justify-center items-center gap-2 h-24 w-24'>
-      <label className='hidden'>Change form</label>
-      <GeminateFormIcon form={currentForm as GeminateForm} />
-    </div>
-  </Button>;
+    <label className='hidden'>Change form</label>
+    <GeminateFormIcon form={currentForm as GeminateForm} />
+  </div>;
 }
