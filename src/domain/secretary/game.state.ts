@@ -1,9 +1,6 @@
+import type { BlinkbladeSpeed } from '../blinkblade/class';
 import type { GeminateForm } from '../geminate/cards';
-
-export enum BlinkbladeSpeed {
-  SLOW,
-  FAST,
-}
+import type { MetalMosaicPressure } from '../metal-mosaic/class';
 
 export type Figure = {
   name: string;
@@ -16,7 +13,7 @@ export type Figure = {
 export type CharacterState = Figure & {
   initiative: number;
   title: string;
-  identity: BlinkbladeSpeed | GeminateForm;
+  identity: BlinkbladeSpeed | GeminateForm | MetalMosaicPressure;
 };
 
 export type GameState = {

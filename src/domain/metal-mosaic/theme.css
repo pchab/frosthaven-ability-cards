@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="metal-mosaic"] {
+    --color-metal-mosaic: #A38B69;
+    --color-primary: var(--color-metal-mosaic);
+  }
+}

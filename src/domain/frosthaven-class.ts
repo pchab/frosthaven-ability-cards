@@ -1,3 +1,4 @@
+import { pyroclast } from "@/domain/pyroclast/class";
 import { bannerSpear } from './banner-spear/class';
 import { blinkblade } from './blinkblade/class';
 import { boneshaper } from './boneshaper/class';
@@ -5,15 +6,15 @@ import { crashingTide } from './crashing-tide/class';
 import { deathwalker } from './deathwalker/class';
 import { deepwraith } from './deepwraith/class';
 import { drifter } from './drifter/class';
+import type { FrosthavenClassNames } from './frosthaven-class.type';
 import { frozenFist } from './frozen-fist/class';
 import { geminate } from './geminate/class';
 import { hive } from './hive/class';
 import { infuser } from './infuser/class';
+import { metalMosaic } from './metal-mosaic/class';
 import { painConduit } from './pain-conduit/class';
-import { pyroclast } from "@/domain/pyroclast/class";
 import { snowdancer } from './snowdancer/class';
 import { trapper } from './trapper/class';
-import type { FrosthavenClassNames } from './frosthaven-class.type';
 
 const starterClasses = [
   bannerSpear,
@@ -29,6 +30,7 @@ const unlockedClasses = [
   frozenFist,
   hive,
   infuser,
+  metalMosaic,
   painConduit,
   pyroclast,
   snowdancer,
