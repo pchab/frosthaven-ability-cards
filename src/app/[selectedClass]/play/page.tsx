@@ -9,6 +9,7 @@ import useSecretary from '@/app/_components/secretary/useSecretary';
 import { ClassContext } from '@/context/ClassContext';
 import { isBlinkblade } from '@/domain/blinkblade/class';
 import { CardStatus, type Card } from '@/domain/cards.type';
+import { upperFirstLetter } from '@/domain/frosthaven-class';
 import { isGeminate } from '@/domain/geminate/class';
 import { useFrosthavenStore, type SelectedActions } from '@/stores/cards.store';
 import { use } from 'react';
@@ -67,7 +68,7 @@ export default function PlayPage<X extends Card>() {
     if (currentPlayingFigure.name === currentCharacter?.name) {
       return 'Your turn';
     }
-    return `Current Turn: ${currentPlayingFigure.name}`;
+    return `Current Turn: ${currentPlayingFigure.title || upperFirstLetter(currentPlayingFigure.name)}`;
   }
 
   return <BoardArea title={`GHS Status: ${isConnected ? '🟢' : '🔴'}`}>
