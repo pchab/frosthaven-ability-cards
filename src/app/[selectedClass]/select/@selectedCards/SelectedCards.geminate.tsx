@@ -1,10 +1,10 @@
 'use client';
 
+import { useSelectCards } from '@/app/[selectedClass]/select/useSelectCards';
 import CardPile, { type PileActions } from '@/app/_components/cards/CardPile';
 import FormIcon from '@/app/_components/class/geminate/FormIcon';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { geminate } from '@/domain/geminate/class';
-import { useSelectCards } from '@/app/[selectedClass]/select/useSelectCards';
 
 export function SelectedGeminateCards({
   actions = () => [],
@@ -21,7 +21,7 @@ export function SelectedGeminateCards({
   const pileActions = (card: GeminateCard) => [removeAction(card), ...actions(card)];
 
   return <div className='flex flex-col gap-4 items-center'>
-    {[GeminateForm.melee, GeminateForm.ranged].map((form) => {
+    {[GeminateForm.MELEE, GeminateForm.RANGED].map((form) => {
       const cardsByForm = cards.filter((card) => card.form === form);
       return <div
         key={`select-cards-form-${form}`}

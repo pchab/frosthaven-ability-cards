@@ -1,11 +1,11 @@
 'use client';
 
-import { MetalMosaicPressure } from '@/domain/secretary/game.state';
-import { use } from 'react';
 import { IdentityContext } from '@/context/IdentityContext';
+import { MetalMosaicPressure } from '@/domain/metal-mosaic/class';
+import { use } from 'react';
+import PressureDownIcon from './PressureDownIcon';
 import PressureIcon from './PressureIcon';
 import PressureUpIcon from './PressureUpIcon';
-import PressureDownIcon from './PressureDownIcon';
 
 export default function ChangePressure() {
   const {

@@ -1,4 +1,4 @@
-import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
+import { BlinkbladeSpeed } from '@/domain/blinkblade/class';
 import Image from 'next/image';
 
 const fastIcon = {

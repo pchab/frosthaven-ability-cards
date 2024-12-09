@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 export default function PressureDownIcon() {
-  const path = `/metal-mosaic/icons/fh-metal-mosaic-pressure-down-color-icon.webp`;
+  const path = '/metal-mosaic/icons/fh-metal-mosaic-pressure-down-color-icon.webp';
 
   return <Image
     src={path}

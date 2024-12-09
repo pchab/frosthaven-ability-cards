@@ -2,12 +2,12 @@
 
 import { ClassContext } from '@/context/ClassContext';
 import { WebSocketContext } from '@/context/WebSocketContext';
-import { isBlinkblade } from '@/domain/blinkblade/class';
+import { BlinkbladeSpeed, isBlinkblade } from '@/domain/blinkblade/class';
 import type { Card } from '@/domain/cards.type';
 import type { Identity } from '@/domain/frosthaven-class.type';
 import { GeminateForm } from '@/domain/geminate/cards';
 import { isGeminate } from '@/domain/geminate/class';
-import { BlinkbladeSpeed, CharacterState, type Figure, type GameState } from '@/domain/secretary/game.state';
+import { CharacterState, type Figure, type GameState } from '@/domain/secretary/game.state';
 import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
 import { use, useEffect, useState } from 'react';
 
@@ -111,10 +111,10 @@ export default function useSecretary<X extends Card>() {
 
     const undoInfo = ["nextIdentity", title || currentClass.name, name];
     if (isGeminate(currentClass)) {
-      if (form === GeminateForm.melee) {
+      if (form === GeminateForm.MELEE) {
         undoInfo.push("range", "melee");
       }
-      if (form === GeminateForm.ranged) {
+      if (form === GeminateForm.RANGED) {
         undoInfo.push("melee", "range");
       }
     }
