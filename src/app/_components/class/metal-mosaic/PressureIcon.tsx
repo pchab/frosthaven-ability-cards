@@ -1,4 +1,4 @@
-import { type MetalMosaicPressure } from '@/domain/secretary/game.state';
+import type { MetalMosaicPressure } from '@/domain/metal-mosaic/class';
 import Image from 'next/image';
 
 export default function PressureIcon({

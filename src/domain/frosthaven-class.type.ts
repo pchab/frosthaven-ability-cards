@@ -1,6 +1,7 @@
+import type { BlinkbladeSpeed } from './blinkblade/class';
 import { type Card } from './cards.type';
 import type { GeminateForm } from './geminate/cards';
-import type { BlinkbladeSpeed, MetalMosaicPressure } from './secretary/game.state';
+import type { MetalMosaicPressure } from './metal-mosaic/class';
 
 export type Identity = GeminateForm | BlinkbladeSpeed | MetalMosaicPressure;
 

@@ -9,7 +9,7 @@ export default function FormIcon({
 }: {
   form: GeminateForm;
 }) {
-  const formPath = form === GeminateForm.melee
+  const formPath = form === GeminateForm.MELEE
     ? meleeFormPath
     : rangedFormPath;
 

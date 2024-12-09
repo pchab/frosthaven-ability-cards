@@ -13,9 +13,9 @@ export default function ChangeForm() {
   } = use(IdentityContext);
 
   const changeForm = () => {
-    const newForm = currentForm === GeminateForm.melee
-      ? GeminateForm.ranged
-      : GeminateForm.melee;
+    const newForm = currentForm === GeminateForm.MELEE
+      ? GeminateForm.RANGED
+      : GeminateForm.MELEE;
     changeIdentity(newForm);
   };
 

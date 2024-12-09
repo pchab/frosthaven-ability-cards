@@ -2,8 +2,8 @@ import { createCards } from '../card.factory';
 import { Card, CardActions } from '../cards.type';
 
 export enum GeminateForm {
-  'melee',
-  'ranged',
+  MELEE,
+  RANGED,
 };
 export type GeminateCard = Card & { form: GeminateForm };
 
@@ -14,14 +14,14 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 'X',
     name: 'feeding frenzy',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     initiative: 62,
   },
   {
     level: 'X',
     name: 'reckless jab',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'square', position: { x: 91, y: 40 }, },
       { type: 'diamond', position: { x: 90, y: 138 }, },
@@ -32,14 +32,14 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 'X',
     name: 'reshape the guise',
     actions: { top: CardActions.discard, bottom: CardActions.activeLost },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     initiative: 38,
   },
   {
     level: 'X',
     name: 'smoldering hatred',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'diamond', position: { x: 61, y: 37 }, },
       { type: 'square', position: { x: 73, y: 164 }, },
@@ -50,7 +50,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'changelings boon',
     actions: { top: CardActions.discard, bottom: CardActions.activeLost },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 47 }, },
       { type: 'diamond', position: { x: 89, y: 70 }, },
@@ -62,7 +62,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'drag down',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'square', position: { x: 49, y: 47 }, },
       { type: 'hex', position: { x: 89, y: 58, size: 14 }, },
@@ -74,7 +74,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'draining pincers',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'diamond', position: { x: 90, y: 37 }, },
       { type: 'square', position: { x: 74, y: 143 }, },
@@ -85,7 +85,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'flailing tendrils',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'hex', position: { x: 98, y: 42.5, size: 15 }, },
       { type: 'hex', position: { x: 120, y: 55, size: 15 }, },
@@ -97,7 +97,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'hornbeetle carapace',
     actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     slots: [
       { x: 24, y: 67 },
       { x: 54, y: 67 },
@@ -113,7 +113,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'hornet stingers',
     actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 139 }, },
     ],
@@ -123,7 +123,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'icebound quills',
     actions: { top: CardActions.lose, bottom: CardActions.activeDiscard },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'diamond', position: { x: 69, y: 46 }, },
       { type: 'square', position: { x: 89, y: 165 }, },
@@ -134,14 +134,14 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'firefly swarm',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     initiative: 76,
   },
   {
     level: 1,
     name: 'hail of thorns',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 140 }, },
     ],
@@ -151,7 +151,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'harvest the essence',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 69, y: 36 }, },
       { type: 'square', position: { x: 71, y: 164 }, },
@@ -162,7 +162,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'into my embrace',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'diamond', position: { x: 52, y: 46 }, },
       { type: 'diamondPlus', position: { x: 64, y: 139 }, },
@@ -173,7 +173,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'mind spike',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'square', position: { x: 61, y: 141 }, },
     ],
@@ -183,7 +183,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'scarab flight',
     actions: { top: CardActions.discard, bottom: CardActions.activeLost },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     slots: [
       { x: 21, y: 161 },
       { x: 51, y: 161 },
@@ -200,7 +200,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 1,
     name: 'selfless offering',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 58, y: 48 }, },
       { type: 'square', position: { x: 90, y: 142 }, },
@@ -211,7 +211,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 2,
     name: 'venomous barbs',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'diamond', position: { x: 73, y: 152 }, },
     ],
@@ -221,7 +221,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 2,
     name: 'locust host',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'diamond', position: { x: 38, y: 38 }, },
       { type: 'square', position: { x: 89, y: 140 }, },
@@ -233,7 +233,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 3,
     name: 'mandible storm',
     actions: { top: CardActions.discard, bottom: CardActions.activeLost },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 127 }, },
     ],
@@ -243,7 +243,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 3,
     name: 'dragonfly surge',
     actions: { top: CardActions.lose, bottom: CardActions.activeDiscard },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'diamond', position: { x: 62, y: 47 }, },
     ],
@@ -253,7 +253,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 4,
     name: 'thresh and flail',
     actions: { top: CardActions.lose, bottom: CardActions.discard },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 51 }, },
       { type: 'diamond', position: { x: 90, y: 69 }, },
@@ -266,7 +266,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 4,
     name: 'luminous descent',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 49, y: 48 }, },
       { type: 'square', position: { x: 108, y: 48 }, },
@@ -278,7 +278,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 5,
     name: 'formless grace',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'square', position: { x: 74, y: 141 }, },
     ],
@@ -288,7 +288,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 5,
     name: 'chitinous horde',
     actions: { top: CardActions.activeDiscard, bottom: CardActions.activeLost },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 56 }, },
     ],
@@ -298,7 +298,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 6,
     name: 'corrosive acids',
     actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'square', position: { x: 65, y: 38 }, },
       { type: 'hex', position: { x: 91, y: 42, size: 15 }, },
@@ -310,7 +310,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 6,
     name: 'hirudotherapy',
     actions: { top: CardActions.discard, bottom: CardActions.discard },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'square', position: { x: 62, y: 147 }, },
     ],
@@ -320,7 +320,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 7,
     name: 'two pronged entrapment',
     actions: { top: CardActions.activeDiscard, bottom: CardActions.lose },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 35 }, },
     ],
@@ -330,7 +330,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 7,
     name: 'alluring pheromones',
     actions: { top: CardActions.discard, bottom: CardActions.lose },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'hex', position: { x: 104, y: 59, size: 15 }, },
     ],
@@ -340,7 +340,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 8,
     name: 'accelerated metabolism',
     actions: { top: CardActions.discard, bottom: CardActions.activeLost },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 128 }, },
       { type: 'circle', position: { x: 108, y: 128 }, },
@@ -351,7 +351,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 8,
     name: 'oscillating entity',
     actions: { top: CardActions.activeLost, bottom: CardActions.discard },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     availableEnhancements: [
       { type: 'diamond', position: { x: 53, y: 32 }, },
       { type: 'diamond', position: { x: 71, y: 32 }, },
@@ -363,7 +363,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 9,
     name: 'harbinger of ruin',
     actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
-    form: GeminateForm.melee,
+    form: GeminateForm.MELEE,
     slots: [
       { x: 24, y: 73 },
       { x: 54, y: 73 },
@@ -379,7 +379,7 @@ export const geminateCards: GeminateCard[] = createCards([
     level: 9,
     name: 'voice of salvation',
     actions: { top: CardActions.activeDiscard, bottom: CardActions.activeLost },
-    form: GeminateForm.ranged,
+    form: GeminateForm.RANGED,
     slots: [
       { x: 21, y: 160 },
       { x: 51, y: 160 },
