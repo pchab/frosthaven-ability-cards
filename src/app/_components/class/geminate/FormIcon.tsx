@@ -4,7 +4,7 @@ import Image from 'next/image';
 const meleeFormPath = '/geminate/icons/fh-geminate-melee-color-icon.webp';
 const rangedFormPath = '/geminate/icons/fh-geminate-ranged-color-icon.webp';
 
-export default function GeminateFormIcon({
+export default function FormIcon({
   form,
 }: {
   form: GeminateForm;

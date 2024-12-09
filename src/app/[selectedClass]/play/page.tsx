@@ -3,6 +3,7 @@
 import { useCards, type Action } from '@/app/[selectedClass]/play/useCards';
 import ChangeSpeed from '@/app/_components/class/blinkblade/ChangeSpeed';
 import ChangeForm from '@/app/_components/class/geminate/ChangeForm';
+import ChangePressure from '@/app/_components/class/metal-mosaic/ChangePressure';
 import Button from '@/app/_components/inputs/Button';
 import BoardArea from '@/app/_components/layout/BoardArea';
 import useSecretary from '@/app/_components/secretary/useSecretary';
@@ -11,6 +12,7 @@ import { isBlinkblade } from '@/domain/blinkblade/class';
 import { CardStatus, type Card } from '@/domain/cards.type';
 import { upperFirstLetter } from '@/domain/frosthaven-class';
 import { isGeminate } from '@/domain/geminate/class';
+import { isMetalMosaic } from '@/domain/metal-mosaic/class';
 import { useFrosthavenStore, type SelectedActions } from '@/stores/cards.store';
 import { use } from 'react';
 import { useShallow } from 'zustand/shallow';
@@ -82,6 +84,7 @@ export default function PlayPage<X extends Card>() {
       <div className='flex flex-col lg:flex-row gap-4 justify-center items-center min-w-[302px]'>
         {isGeminate(selectedClass) && <ChangeForm />}
         {isBlinkblade(selectedClass) && <ChangeSpeed />}
+        {isMetalMosaic(selectedClass) && <ChangePressure />}
         <div className='grid grid-cols-2 grid-rows-2 place-items-center gap-2'>
           <Button onClick={undo}>Undo</Button>
           <Button onClick={redo}>Redo</Button>

@@ -3,7 +3,7 @@
 import { BlinkbladeSpeed } from '@/domain/secretary/game.state';
 import { use } from 'react';
 import Button from '../../inputs/Button';
-import BlinkbladeSpeedIcon from './BlinkbladeSpeedIcon';
+import SpeedIcon from './SpeedIcon';
 import { IdentityContext } from '@/context/IdentityContext';
 
 export default function ChangeSpeed() {
@@ -23,6 +23,6 @@ export default function ChangeSpeed() {
     className='flex justify-center items-center gap-2 h-24 w-24'
     onClick={changeSpeed}>
     <label className='hidden'>Change Speed</label>
-    <BlinkbladeSpeedIcon speed={currentSpeed as BlinkbladeSpeed} />
+    <SpeedIcon speed={currentSpeed as BlinkbladeSpeed} />
   </div>;
 }

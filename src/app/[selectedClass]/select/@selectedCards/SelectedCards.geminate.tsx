@@ -1,7 +1,7 @@
 'use client';
 
 import CardPile, { type PileActions } from '@/app/_components/cards/CardPile';
-import GeminateFormIcon from '@/app/_components/class/geminate/GeminateFormIcon';
+import FormIcon from '@/app/_components/class/geminate/FormIcon';
 import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
 import { geminate } from '@/domain/geminate/class';
 import { useSelectCards } from '@/app/[selectedClass]/select/useSelectCards';
@@ -28,7 +28,7 @@ export function SelectedGeminateCards({
         className='flex flex-row justify-center items-center'
       >
         <div className='flex flex-col p-4'>
-          <GeminateFormIcon form={form} />
+          <FormIcon form={form} />
           <p className='text-lg'>{cardsByForm.length}/{handSizeByForm}</p>
         </div>
         <CardPile
