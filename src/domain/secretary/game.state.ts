@@ -7,6 +7,7 @@ export enum BlinkbladeSpeed {
 
 export type Figure = {
   name: string;
+  title?: string;
   active: boolean;
   off: boolean;
   [key: string]: any;
@@ -14,6 +15,7 @@ export type Figure = {
 
 export type CharacterState = Figure & {
   initiative: number;
+  title: string;
   identity: BlinkbladeSpeed | GeminateForm;
 };
 
