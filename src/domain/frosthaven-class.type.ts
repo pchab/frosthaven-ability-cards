@@ -1,8 +1,8 @@
 import { type Card } from './cards.type';
 import type { GeminateForm } from './geminate/cards';
-import type { BlinkbladeSpeed } from './secretary/game.state';
+import type { BlinkbladeSpeed, MetalMosaicPressure } from './secretary/game.state';
 
-export type Identity = GeminateForm | BlinkbladeSpeed;
+export type Identity = GeminateForm | BlinkbladeSpeed | MetalMosaicPressure;
 
 export enum FrosthavenClassNames {
   BannerSpear = 'Banner Spear',
@@ -16,6 +16,7 @@ export enum FrosthavenClassNames {
   CrashingTide = 'Crashing Tide',
   Hive = 'Hive',
   Infuser = 'Infuser',
+  MetalMosaic = 'Metal Mosaic',
   PainConduit = 'Pain Conduit',
   Pyroclast = 'Pyroclast',
   Snowdancer = 'Snowdancer',
