@@ -3,7 +3,7 @@ import { type FrosthavenClass, FrosthavenClassNames } from '../frosthaven-class.
 import { GeminateCard, geminateCards } from './cards';
 
 export function isGeminate(frosthavenClass: FrosthavenClass<Card>): frosthavenClass is FrosthavenClass<GeminateCard> {
-  return frosthavenClass.name === FrosthavenClassNames.Geminate;
+  return frosthavenClass.name === 'Geminate';
 }
 
 export function isGeminateCards(fhClass: FrosthavenClass<Card>, cards: Card[]): cards is GeminateCard[] {
@@ -11,7 +11,7 @@ export function isGeminateCards(fhClass: FrosthavenClass<Card>, cards: Card[]): 
 }
 
 export const geminate: FrosthavenClass<GeminateCard> = {
-  name: FrosthavenClassNames.Geminate,
+  name: 'Geminate',
   handSize: 14,
   path: '/geminate/icons/fh-geminate-color-icon.svg',
   iconSize: { width: 582, height: 600 },

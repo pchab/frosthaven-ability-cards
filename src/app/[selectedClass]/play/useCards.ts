@@ -1,4 +1,4 @@
-import { CardActions, CardStatus, type Card } from '@/domain/cards.type';
+import type { CardStatus, Card } from '@/domain/cards.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useMemo } from 'react';
 import { useShallow } from 'zustand/shallow';
@@ -7,25 +7,25 @@ export type Action = 'top' | 'bottom' | 'default';
 
 function newStatusAfterAction(cardActions: Card['actions'], action: Action): CardStatus {
   if (action === 'default') {
-    return CardStatus.discarded;
+    return 'discarded';
   }
   const cardAction = cardActions[action];
   switch (cardAction) {
-    case CardActions.discard:
-      return CardStatus.discarded;
-    case CardActions.lose:
-      return CardStatus.lost;
-    case CardActions.activeDiscard:
-    case CardActions.activeLost:
-      return action === 'top' ? CardStatus.activeTop : CardStatus.activeBottom;
+    case 'discard':
+      return 'discarded';
+    case 'lose':
+      return 'lost';
+    case 'activeDiscard':
+    case 'activeLost':
+      return action === 'top' ? 'activeTop' : 'activeBottom';
   }
 }
 
 function getActiveAction(cardStatus: Card['status']): keyof Card['actions'] {
-  if (cardStatus === CardStatus.activeTop) {
+  if (cardStatus === 'activeTop') {
     return 'top';
   }
-  if (cardStatus === CardStatus.activeBottom) {
+  if (cardStatus === 'activeBottom') {
     return 'bottom';
   }
   throw new Error('Invalid card status');
@@ -55,12 +55,12 @@ export function useCards<X extends Card>() {
   };
 
   const selectCard = changeCardStatus(
-    CardStatus.selected,
-    () => currentCards.filter(c => c.status === CardStatus.selected).length < 2,
+    'selected',
+    () => currentCards.filter(c => c.status === 'selected').length < 2,
   );
-  const discardCard = changeCardStatus(CardStatus.discarded);
-  const loseCard = changeCardStatus(CardStatus.lost);
-  const recoverCard = changeCardStatus(CardStatus.inHand);
+  const discardCard = changeCardStatus('discarded');
+  const loseCard = changeCardStatus('lost');
+  const recoverCard = changeCardStatus('inHand');
 
   const playCards = (cardsPlayed: { action: Action; card: X }[]) => {
     const newState = [
@@ -80,7 +80,7 @@ export function useCards<X extends Card>() {
     const newTokenPosition = (card.tokenPosition ?? 0) + 1;
     if (newTokenPosition >= card.slots.length) {
       const action = getActiveAction(card.status);
-      const newStatus = card.actions[action] === CardActions.activeDiscard ? CardStatus.discarded : CardStatus.lost;
+      const newStatus = card.actions[action] === 'activeDiscard' ? 'discarded' : 'lost';
       const newState = currentCards.with(cardIndex, { ...card, status: newStatus, tokenPosition: 0 });
       updateStates([...states.slice(0, currentStateIndex + 1), newState]);
     } else {
@@ -102,13 +102,13 @@ export function useCards<X extends Card>() {
 
   const makeRest = (lost: X) => {
     const recovered = currentCards
-      .filter(({ status }) => status === CardStatus.discarded)
+      .filter(({ status }) => status === 'discarded')
       .filter(({ name }) => name !== lost.name);
 
     const newState = [
-      ...currentCards.filter(c => c.status !== CardStatus.discarded),
-      ...recovered.map(c => ({ ...c, status: CardStatus.inHand })),
-      { ...lost, status: CardStatus.lost },
+      ...currentCards.filter(c => c.status !== 'discarded'),
+      ...recovered.map(c => ({ ...c, status: 'inHand' })),
+      { ...lost, status: 'lost' },
     ];
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };

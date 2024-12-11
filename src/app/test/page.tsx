@@ -147,8 +147,8 @@ export default function TestCard(
       <div>
         <h3 className='font-bold'>Details:</h3>
         <div>Level: {currentCard.level}</div>
-        <div>Top: {CardActions[currentCard.actions.top]}</div>
-        <div>Bottom: {CardActions[currentCard.actions.bottom]}</div>
+        <div>Top: {currentCard.actions.top}</div>
+        <div>Bottom: {currentCard.actions.bottom}</div>
         <div className='flex flex-col gap-2'>
           Enhance :
           {currentCard.availableEnhancements?.map((enhancement, index) => {

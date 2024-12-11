@@ -7,7 +7,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 'X',
     name: 'freezing shell',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 134 } },
     ],
@@ -16,13 +16,13 @@ export const fistCards: Card[] = createCards([
   {
     level: 'X',
     name: 'primal bellow',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     initiative: 84,
   },
   {
     level: 'X',
     name: 'shard launch',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 95, y: 50 } },
     ],
@@ -31,7 +31,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 1,
     name: 'cold boulder',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 143 } },
     ],
@@ -40,19 +40,19 @@ export const fistCards: Card[] = createCards([
   {
     level: 1,
     name: 'encased punch',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     initiative: 19,
   },
   {
     level: 1,
     name: 'frost eruption',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     initiative: 61,
   },
   {
     level: 1,
     name: 'fury of the mountain',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeDiscard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 132 } },
     ],
@@ -61,7 +61,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 1,
     name: 'ice blast',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 56, y: 52 } },
       { type: 'square', position: { x: 91, y: 139 } },
@@ -71,7 +71,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 1,
     name: 'one with the mountain',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 63, y: 143 } },
     ],
@@ -80,7 +80,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 1,
     name: 'piercing pummel',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.lose },
+    actions: { top: 'activeDiscard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'circle', position: { x: 73, y: 123 } },
       { type: 'diamond', position: { x: 64, y: 138 } },
@@ -91,13 +91,13 @@ export const fistCards: Card[] = createCards([
   {
     level: 1,
     name: 'voice from below',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     initiative: 22,
   },
   {
     level: 2,
     name: 'crushing crystals',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 162 } },
     ],
@@ -106,7 +106,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 2,
     name: 'draw of the bedrock',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeDiscard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 29 } },
       { type: 'square', position: { x: 65, y: 129 } },
@@ -117,7 +117,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 3,
     name: 'frozen over',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 71, y: 84 } },
     ],
@@ -126,7 +126,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 3,
     name: 'lacerating eruption',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 146 } },
     ],
@@ -135,7 +135,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 4,
     name: 'packed solid',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 133 } },
       { type: 'square', position: { x: 89, y: 158 } },
@@ -145,7 +145,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 4,
     name: 'the mountains fist',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 26 } },
       { type: 'square', position: { x: 91, y: 142 } },
@@ -155,7 +155,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 5,
     name: 'ice uppercut',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 37 } },
       { type: 'square', position: { x: 91, y: 141 } },
@@ -165,7 +165,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 5,
     name: 'preserved fury',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 50 } },
     ],
@@ -174,7 +174,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 6,
     name: 'glacier slam',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 88, y: 135 } },
     ],
@@ -183,7 +183,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 6,
     name: 'thick frost',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 70, y: 35 } },
       { type: 'square', position: { x: 88, y: 127 } },
@@ -193,7 +193,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 7,
     name: 'gift of the mountain',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeLost },
+    actions: { top: 'activeDiscard', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 134 } },
     ],
@@ -202,7 +202,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 7,
     name: 'seeing stars',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 64, y: 52 } },
       { type: 'circle', position: { x: 73, y: 141 } },
@@ -213,7 +213,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 8,
     name: 'draw strength',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 63, y: 40 } },
     ],
@@ -222,7 +222,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 8,
     name: 'shattering blow',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 90, y: 62 } },
       { type: 'circle', position: { x: 88, y: 125 } },
@@ -233,7 +233,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 9,
     name: 'bring down the mountain',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 38, y: 48 } },
       { type: 'square', position: { x: 89, y: 127 } },
@@ -244,7 +244,7 @@ export const fistCards: Card[] = createCards([
   {
     level: 9,
     name: 'frozen spike',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 40, y: 29 } },
       { type: 'circle', position: { x: 90, y: 132 } },

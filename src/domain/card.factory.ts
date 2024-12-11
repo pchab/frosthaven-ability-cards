@@ -1,4 +1,4 @@
-import { Card, CardStatus } from './cards.type';
+import type { Card } from './cards.type';
 
 function nameToImagePath(name: string): string {
   return name.toLowerCase().replace(/ /g, '-');
@@ -6,7 +6,7 @@ function nameToImagePath(name: string): string {
 
 export function createCards<X extends Card>(cards: Omit<X, 'status' | 'path'>[], basePath: string): X[] {
   return cards.map((card) => ({
-    status: CardStatus.inHand,
+    status: 'inHand',
     path: `${basePath}/fh-${nameToImagePath(card.name)}.webp`,
     ...card,
   } as X));

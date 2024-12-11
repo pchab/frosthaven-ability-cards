@@ -3,7 +3,7 @@ import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.
 import { infuserCards } from './cards';
 
 export const infuser: FrosthavenClass<Card> = {
-  name: FrosthavenClassNames.Infuser,
+  name: 'Infuser',
   handSize: 11,
   path: '/infuser/icons/fh-infuser-color-icon.svg',
   iconSize: { width: 522, height: 600 },

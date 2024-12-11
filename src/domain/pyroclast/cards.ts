@@ -7,7 +7,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 'X',
     name: 'force of the earth',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 54, y: 58 } },
     ],
@@ -20,7 +20,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 'X',
     name: 'metamorphic rock',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 167 } },
     ],
@@ -29,7 +29,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 'X',
     name: 'wildfire',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 130 } },
     ],
@@ -43,7 +43,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 1,
     name: 'cloud of ash',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 133 } },
     ],
@@ -52,7 +52,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 1,
     name: 'cooling',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 69, y: 125 } },
     ],
@@ -66,7 +66,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 1,
     name: 'eruption',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 91, y: 146 } },
     ],
@@ -75,7 +75,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 1,
     name: 'flowing fire',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 68, y: 35 } },
       { type: 'circle', position: { x: 90, y: 128 } },
@@ -89,13 +89,13 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 1,
     name: 'igneous path',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     initiative: 18,
   },
   {
     level: 1,
     name: 'lava bomb',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 62, y: 39 } },
       { type: 'square', position: { x: 99, y: 39 } },
@@ -106,7 +106,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 1,
     name: 'liquid stone',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 63, y: 60 } },
       { type: 'square', position: { x: 99, y: 60 } },
@@ -117,7 +117,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 1,
     name: 'melted armor',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 90, y: 37 } },
     ],
@@ -131,7 +131,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 1,
     name: 'quenched rage',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 91, y: 31 } },
     ],
@@ -146,7 +146,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 1,
     name: 'under pressure',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 91, y: 44 } },
     ],
@@ -155,7 +155,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 2,
     name: 'deep fury',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 91, y: 31 } },
       { type: 'diamondPlus', position: { x: 71, y: 127 } },
@@ -168,7 +168,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 2,
     name: 'searing smoke',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 74, y: 145 } },
     ],
@@ -177,7 +177,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 3,
     name: 'hardened spike',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeDiscard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 128 } },
     ],
@@ -190,7 +190,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 3,
     name: 'living magma',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 91, y: 134 } },
     ],
@@ -203,7 +203,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 4,
     name: 'hand of flame',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 74, y: 41 } },
       { type: 'square', position: { x: 74, y: 152 } },
@@ -213,7 +213,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 4,
     name: 'heat wave',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 135 } },
     ],
@@ -225,7 +225,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 5,
     name: 'magma orbs',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 56, y: 51 } },
       { type: 'square', position: { x: 104, y: 51 } },
@@ -235,7 +235,7 @@ export const pyroclastCards: Card[] = createCards([
   {
     level: 5,
     name: 'rain of fire',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 75, y: 152 } },
     ],
@@ -243,7 +243,7 @@ export const pyroclastCards: Card[] = createCards([
   },
   {
     level: 6, name: 'obsidian shield',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeDiscard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 126 } },
     ],
@@ -257,7 +257,7 @@ export const pyroclastCards: Card[] = createCards([
   },
   {
     level: 6, name: 'return to the source',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 62, y: 27 } },
       { type: 'circle', position: { x: 89, y: 125 } },
@@ -269,7 +269,7 @@ export const pyroclastCards: Card[] = createCards([
   },
   {
     level: 7, name: 'erupting rage',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 62, y: 35 } },
       { type: 'square', position: { x: 99, y: 35 } },
@@ -279,12 +279,12 @@ export const pyroclastCards: Card[] = createCards([
   },
   {
     level: 7, name: 'swelter',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     initiative: 32,
   },
   {
     level: 8, name: 'cinder lance',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 39 } },
       { type: 'square', position: { x: 67, y: 163 } },
@@ -293,7 +293,7 @@ export const pyroclastCards: Card[] = createCards([
   },
   {
     level: 8, name: 'feed the beast',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 92, y: 129 } },
     ],
@@ -301,12 +301,12 @@ export const pyroclastCards: Card[] = createCards([
   },
   {
     level: 9, name: 'calamity',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     initiative: 35,
   },
   {
     level: 9, name: 'stone armor',
-    actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeLost', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 75, y: 129 } },
     ],

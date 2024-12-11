@@ -8,7 +8,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 1,
     name: 'ancient-drill',
     initiative: 90,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 71, y: 38 }, },
       { type: 'circle', position: { x: 90, y: 136 }, },
@@ -18,7 +18,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 1,
     name: 'beam-axe',
     initiative: 29,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 38 }, },
       { type: 'circle', position: { x: 90, y: 133 }, },
@@ -28,25 +28,25 @@ export const metalMosaicCards: Card[] = createCards([
     level: 2,
     name: 'bronze-plating',
     initiative: 18,
-    actions: { bottom: CardActions.activeDiscard, top: CardActions.activeDiscard },
+    actions: { bottom: 'activeDiscard', top: 'activeDiscard' },
   },
   {
     level: 7,
     name: 'cryogenic-hibernation',
     initiative: 19,
-    actions: { bottom: CardActions.activeDiscard, top: CardActions.discard },
+    actions: { bottom: 'activeDiscard', top: 'discard' },
   },
   {
     level: 'X',
     name: 'curious-gear',
     initiative: 12,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
   },
   {
     level: 8,
     name: 'curious-machinery',
     initiative: 11,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 124 }, },
     ],
@@ -55,7 +55,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 3,
     name: 'electrical-discharge',
     initiative: 26,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 73, y: 31 }, },
       { type: 'circle', position: { x: 89, y: 125 }, },
@@ -65,7 +65,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 4,
     name: 'energy-conversion',
     initiative: 23,
-    actions: { bottom: CardActions.lose, top: CardActions.activeDiscard },
+    actions: { bottom: 'lose', top: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 90, y: 31 }, },
       { type: 'circle', position: { x: 89, y: 127 }, },
@@ -75,7 +75,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 5,
     name: 'heat-conduction',
     initiative: 11,
-    actions: { bottom: CardActions.activeDiscard, top: CardActions.activeDiscard },
+    actions: { bottom: 'activeDiscard', top: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 52 }, },
     ],
@@ -84,7 +84,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 7,
     name: 'heated-drill',
     initiative: 80,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 90, y: 31 }, },
       { type: 'circle', position: { x: 70, y: 157 }, },
@@ -94,7 +94,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 4,
     name: 'magnetic-field',
     initiative: 21,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 28 }, },
     ],
@@ -103,7 +103,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 1,
     name: 'memory-drive',
     initiative: 64,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 144 }, },
     ],
@@ -112,7 +112,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 8,
     name: 'piston-barrage',
     initiative: 33,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 127 }, },
       { type: 'circle', position: { x: 90, y: 28 }, },
@@ -122,7 +122,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 9,
     name: 'polarity-shift',
     initiative: 79,
-    actions: { bottom: CardActions.discard, top: CardActions.activeDiscard },
+    actions: { bottom: 'discard', top: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 65, y: 91 }, },
     ],
@@ -131,7 +131,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 1,
     name: 'power-core',
     initiative: 83,
-    actions: { bottom: CardActions.lose, top: CardActions.discard },
+    actions: { bottom: 'lose', top: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 70, y: 126 }, },
     ],
@@ -140,7 +140,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 1,
     name: 'pressure-build-up',
     initiative: 20,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 90, y: 38 }, },
       { type: 'circle', position: { x: 90, y: 156 }, },
@@ -150,13 +150,13 @@ export const metalMosaicCards: Card[] = createCards([
     level: 'X',
     name: 'processing',
     initiative: 95,
-    actions: { bottom: CardActions.activeDiscard, top: CardActions.discard },
+    actions: { bottom: 'activeDiscard', top: 'discard' },
   },
   {
     level: 5,
     name: 'radiation',
     initiative: 37,
-    actions: { bottom: CardActions.discard, top: CardActions.activeDiscard },
+    actions: { bottom: 'discard', top: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 73, y: 39 }, },
       { type: 'circle', position: { x: 89, y: 127 }, },
@@ -166,7 +166,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 'X',
     name: 'recursion',
     initiative: 50,
-    actions: { bottom: CardActions.activeDiscard, top: CardActions.activeDiscard },
+    actions: { bottom: 'activeDiscard', top: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 34 }, },
       { type: 'square', position: { x: 89, y: 129 }, },
@@ -176,7 +176,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 2,
     name: 'release-valve',
     initiative: 30,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 139 }, },
     ],
@@ -185,7 +185,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 1,
     name: 'rocket-boots',
     initiative: 22,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 70, y: 52 }, },
       { type: 'square', position: { x: 73, y: 131 }, },
@@ -195,7 +195,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 6,
     name: 'scalding-blast',
     initiative: 45,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 70, y: 146 }, },
     ],
@@ -204,7 +204,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 1,
     name: 'steam-armor',
     initiative: 17,
-    actions: { bottom: CardActions.activeDiscard, top: CardActions.discard },
+    actions: { bottom: 'activeDiscard', top: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 128 }, },
     ],
@@ -213,7 +213,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 6,
     name: 'steam-core',
     initiative: 71,
-    actions: { bottom: CardActions.discard, top: CardActions.activeDiscard },
+    actions: { bottom: 'discard', top: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 70, y: 30 }, },
       { type: 'square', position: { x: 90, y: 133 }, },
@@ -223,7 +223,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 1,
     name: 'steel-piston',
     initiative: 40,
-    actions: { bottom: CardActions.activeDiscard, top: CardActions.discard },
+    actions: { bottom: 'activeDiscard', top: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 40 }, },
       { type: 'circle', position: { x: 90, y: 131 }, },
@@ -233,7 +233,7 @@ export const metalMosaicCards: Card[] = createCards([
     level: 3,
     name: 'stress-vents',
     initiative: 15,
-    actions: { bottom: CardActions.activeDiscard, top: CardActions.activeDiscard },
+    actions: { bottom: 'activeDiscard', top: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 127 }, },
     ],
@@ -242,12 +242,12 @@ export const metalMosaicCards: Card[] = createCards([
     level: 1,
     name: 'super-heat-transfer',
     initiative: 25,
-    actions: { bottom: CardActions.discard, top: CardActions.discard },
+    actions: { bottom: 'discard', top: 'discard' },
   },
   {
     level: 9,
     name: 'unstable-core',
     initiative: 10,
-    actions: { bottom: CardActions.lose, top: CardActions.activeDiscard },
+    actions: { bottom: 'lose', top: 'activeDiscard' },
   },
 ], metalMosaicPath);

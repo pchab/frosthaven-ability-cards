@@ -3,14 +3,14 @@ import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.
 import { blinkbladeCards } from './cards';
 
 export function isBlinkblade(fhClass: FrosthavenClass<Card>): boolean {
-  return fhClass.name === FrosthavenClassNames.Blinkblade;
+  return fhClass.name === 'Blinkblade';
 }
 
 export type BlinkbladeSpeed = 'slow' | 'fast';
 export const speeds: BlinkbladeSpeed[] = ['slow', 'fast'] as const;
 
 export const blinkblade: FrosthavenClass<Card> = {
-  name: FrosthavenClassNames.Blinkblade,
+  name: 'Blinkblade',
   handSize: 10,
   path: '/blinkblade/icons/fh-blinkblade-color-icon.svg',
   iconSize: { width: 600, height: 487 },

@@ -9,7 +9,7 @@ import BoardArea from '@/app/_components/layout/BoardArea';
 import useSecretary from '@/app/_components/secretary/useSecretary';
 import { ClassContext } from '@/context/ClassContext';
 import { isBlinkblade } from '@/domain/blinkblade/class';
-import { CardStatus, type Card } from '@/domain/cards.type';
+import { type Card } from '@/domain/cards.type';
 import { upperFirstLetter } from '@/domain/frosthaven-class';
 import { isGeminate } from '@/domain/geminate/class';
 import { isMetalMosaic } from '@/domain/metal-mosaic/class';
@@ -45,7 +45,7 @@ export default function PlayPage<X extends Card>() {
     setSelectedActions: store.setSelectedActions,
   })));
   const selectedCards = currentCards
-    .filter(card => card.status === CardStatus.selected);
+    .filter(card => card.status === 'selected');
 
   const endTurn = () => {
     if (areAllActionsSelected(selectedActions)) {

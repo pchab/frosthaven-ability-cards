@@ -7,7 +7,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 'X',
     name: 'destructive fury',
-    actions: { top: CardActions.lose, bottom: CardActions.lose },
+    actions: { top: 'lose', bottom: 'lose' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 55, y: 58 } },
       { type: 'diamond', position: { x: 49, y: 151 } },
@@ -17,7 +17,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 'X',
     name: 'fortitude',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 70, y: 34 } },
     ],
@@ -26,7 +26,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 'X',
     name: 'no remorse',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 69, y: 59 } },
       { type: 'square', position: { x: 90, y: 134 } },
@@ -38,7 +38,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'bloodletting',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 40 } },
       { type: 'square', position: { x: 72, y: 151 } },
@@ -48,7 +48,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'continuous health',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     slots: [
       { x: 42, y: 145 },
       { x: 71, y: 145 },
@@ -65,7 +65,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'crushing weight',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     slots: [
       { x: 42, y: 54 },
       { x: 72, y: 54 },
@@ -82,7 +82,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'deadly shot',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 64, y: 62 } },
     ],
@@ -91,7 +91,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'draining arrows',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 57, y: 62 } },
     ],
@@ -100,7 +100,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'precision aim',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     slots: [
       { x: 42, y: 54 },
       { x: 72, y: 54 },
@@ -117,7 +117,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'prudent preparation',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 45 } },
       { type: 'diamond', position: { x: 89, y: 69 } },
@@ -128,7 +128,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'relentless',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     slots: [
       { x: 38, y: 154 },
       { x: 67, y: 154 },
@@ -142,7 +142,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'sustained momentum',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     slots: [
       { x: 42, y: 148 },
       { x: 71, y: 148 },
@@ -159,7 +159,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'unbreakable',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     slots: [
       { x: 42, y: 148 },
       { x: 71, y: 148 },
@@ -173,7 +173,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'vile assault',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 73, y: 45 } },
       { type: 'diamond', position: { x: 73, y: 69 } },
@@ -184,7 +184,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 1,
     name: 'violent inheritance',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 45 } },
       { type: 'circle', position: { x: 89, y: 140 } },
@@ -194,7 +194,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 2,
     name: 'ever forward',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 68, y: 72 } },
       { type: 'circle', position: { x: 63, y: 152 } },
@@ -204,7 +204,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 2,
     name: 'shockwave',
-    actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeLost', bottom: 'activeDiscard' },
     slots: [
       { x: 39, y: 58 },
       { x: 69, y: 58 },
@@ -221,7 +221,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 3,
     name: 'dual bow',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'square', position: { x: 66, y: 60 } },
     ],
@@ -230,7 +230,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 3,
     name: 'fierce barrage',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     slots: [
       { x: 38, y: 148 },
       { x: 67, y: 148 },
@@ -247,7 +247,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 4,
     name: 'chunk of flesh',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     slots: [
       { x: 38, y: 148 },
       { x: 67, y: 148 },
@@ -265,7 +265,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 4,
     name: 'gift of the prey',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 91, y: 40 } },
       { type: 'circle', position: { x: 91, y: 138 } },
@@ -275,7 +275,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 5,
     name: 'break through',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 91, y: 135 } },
     ],
@@ -284,7 +284,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 5,
     name: 'survivalist',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     slots: [
       { x: 42, y: 54 },
       { x: 72, y: 54 },
@@ -301,7 +301,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 6,
     name: 'accurate strikes',
-    actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeLost', bottom: 'activeDiscard' },
     slots: [
       { x: 42, y: 58 },
       { x: 72, y: 58 },
@@ -318,7 +318,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 6,
     name: 'consume stamina',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 72, y: 38 } },
       { type: 'circle', position: { x: 89, y: 143 } },
@@ -328,7 +328,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 7,
     name: 'like the wind',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     slots: [
       { x: 41, y: 58 },
       { x: 71, y: 58 },
@@ -342,7 +342,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 7,
     name: 'unending fight',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 39 } },
       { type: 'diamond', position: { x: 90, y: 81 } },
@@ -352,7 +352,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 8,
     name: 'against all odds',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     slots: [
       { x: 38, y: 150 },
       { x: 67, y: 150 },
@@ -366,7 +366,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 8,
     name: 'inevitable conclusion',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 49, y: 31 } },
       { type: 'diamond', position: { x: 73, y: 152 } },
@@ -376,7 +376,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 9,
     name: 'everlasting',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     slots: [
       { x: 25, y: 67 },
       { x: 54, y: 67 },
@@ -391,7 +391,7 @@ export const drifterCards: Card[] = createCards([
   {
     level: 9,
     name: 'use every part',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 71, y: 41 } },
     ],

@@ -7,7 +7,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 'X',
     name: 'battle prowess',
-    actions: { top: CardActions.discard, bottom: CardActions.lose},
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'square', position: { x: 87, y: 54 }, },
     ],
@@ -16,13 +16,13 @@ export const infuserCards: Card[] = createCards([
   {
     level: 'X',
     name: 'crystalline aegis',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     initiative: 17,
   },
   {
     level: 'X',
     name: 'imbue with life',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.lose },
+    actions: { top: 'activeDiscard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 66, y: 43 }, },
       { type: 'summonSquare', position: { x: 98, y: 43 }, },
@@ -33,7 +33,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 1,
     name: 'boon of the tempest',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 144 }, },
     ],
@@ -42,25 +42,25 @@ export const infuserCards: Card[] = createCards([
   {
     level: 1,
     name: 'bounty of the earth',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeLost },
+    actions: { top: 'activeDiscard', bottom: 'activeLost' },
     initiative: 23,
   },
   {
     level: 1,
     name: 'caress of the night',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     initiative: 87,
   },
   {
     level: 1,
     name: 'emerald edge',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     initiative: 70,
   },
   {
     level: 1,
     name: 'formless bladestorm',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 129 }, },
     ],
@@ -69,7 +69,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 1,
     name: 'onyx shards',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 60, y: 50 }, },
       { type: 'square', position: { x: 95, y: 50 }, },
@@ -79,7 +79,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 1,
     name: 'rising momentum',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 88, y: 37 }, },
       { type: 'square', position: { x: 88, y: 129 }, },
@@ -89,7 +89,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 1,
     name: 'slashing cyclone',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'square', position: { x: 47, y: 48 }, },
       { type: 'circle', position: { x: 88, y: 135 }, },
@@ -99,7 +99,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 1,
     name: 'stoic vigilance',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeDiscard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 44 }, },
       { type: 'square', position: { x: 89, y: 71 }, },
@@ -110,7 +110,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 1,
     name: 'torrential cleave',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 70, y: 61 }, },
       { type: 'hex', position: { x: 119.5, y: 51.5, size: 15 }, },
@@ -121,7 +121,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 1,
     name: 'unstoppable impulse',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 49 }, },
       { type: 'square', position: { x: 90, y: 184 }, },
@@ -131,7 +131,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 2,
     name: 'remote impact',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 60, y: 49 }, },
       { type: 'hex', position: { x: 125, y: 46, size: 15 }, },
@@ -142,7 +142,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 2,
     name: 'veil of protection',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'square', position: { x: 88, y: 48 }, },
     ],
@@ -151,7 +151,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 3,
     name: 'guide the flow',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 88, y: 33 }, },
       { type: 'square', position: { x: 88, y: 129 }, },
@@ -161,7 +161,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 3,
     name: 'reinforced riposte',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 176 }, },
     ],
@@ -170,7 +170,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 4,
     name: 'coalescing darkness',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 51, y: 137 }, },
       { type: 'square', position: { x: 98, y: 137 }, },
@@ -180,7 +180,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 4,
     name: 'desperate throw',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 43, y: 36 }, },
       { type: 'diamondPlus', position: { x: 70, y: 82 }, },
@@ -191,7 +191,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 5,
     name: 'gemstone resonance',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeDiscard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 59, y: 69 }, },
       { type: 'circle', position: { x: 89, y: 132 }, },
@@ -201,7 +201,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 5,
     name: 'obsidian spear',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 88, y: 36 }, },
       { type: 'hex', position: { x: 107, y: 77.5, size: 15 }, },
@@ -213,7 +213,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 6,
     name: 'gale barrage',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 95, y: 54 }, },
       { type: 'square', position: { x: 87, y: 127 }, },
@@ -223,7 +223,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 6,
     name: 'propulsive tailwind',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 166 }, },
     ],
@@ -232,7 +232,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 7,
     name: 'diamondization',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.lose },
+    actions: { top: 'activeDiscard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'square', position: { x: 86, y: 31 }, },
     ],
@@ -241,7 +241,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 7,
     name: 'malachite shockwave',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 44, y: 48 }, },
       { type: 'square', position: { x: 88, y: 132 }, },
@@ -251,7 +251,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 8,
     name: 'swift pivot',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeLost },
+    actions: { top: 'activeDiscard', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'square', position: { x: 55, y: 125 }, },
       { type: 'diamond', position: { x: 55, y: 147 }, },
@@ -262,7 +262,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 8,
     name: 'untether the shackles',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 66, y: 35 }, },
       { type: 'summonSquare', position: { x: 99, y: 35 }, },
@@ -273,7 +273,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 9,
     name: 'ancient rites of power',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 63, y: 131 }, },
     ],
@@ -282,7 +282,7 @@ export const infuserCards: Card[] = createCards([
   {
     level: 9,
     name: 'sky splitting strike',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 33 }, },
     ],

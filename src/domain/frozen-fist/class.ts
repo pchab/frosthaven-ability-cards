@@ -3,7 +3,7 @@ import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.
 import { fistCards } from './cards';
 
 export const frozenFist: FrosthavenClass<Card> = {
-  name: FrosthavenClassNames.FrozenFist,
+  name: 'Frozen Fist',
   handSize: 8,
   path: '/frozen-fist/icons/fh-frozen-fist-color-icon.svg',
   iconSize: { width: 600, height: 533 },

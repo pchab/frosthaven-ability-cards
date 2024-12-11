@@ -1,7 +1,7 @@
 'use client';
 
 import { CardComponent } from '@/app/_components/cards/Card';
-import { CardStatus, type Card } from '@/domain/cards.type';
+import type { Card } from '@/domain/cards.type';
 import { useCards, type Action } from '@/app/[selectedClass]/play/useCards';
 import useSecretary from '@/app/_components/secretary/useSecretary';
 import { useFrosthavenStore } from '@/stores/cards.store';
@@ -41,7 +41,7 @@ export default function PlayedCards<X extends Card>() {
   } = useSecretary();
 
   const selectedCards = currentCards
-    .filter(card => card.status === CardStatus.selected);
+    .filter(card => card.status === 'selected');
 
   const selectAction = (action: Action) => (card: X) => {
     const cardIndex = selectedCards.indexOf(card);

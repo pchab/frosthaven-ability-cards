@@ -7,7 +7,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 'X',
     name: 'delayed malady',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     slots: [
       { x: 38, y: 153 },
       { x: 67, y: 153 },
@@ -20,7 +20,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 'X',
     name: 'pleasure in pain',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamondPlus', position: { x: 41, y: 58 }, },
       { type: 'circle', position: { x: 90, y: 129 }, },
@@ -31,7 +31,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 'X',
     name: 'unstable effigy',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 62, y: 48 }, },
       { type: 'summonSquare', position: { x: 87, y: 48 }, },
@@ -42,7 +42,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 1,
     name: 'blood ritual',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 72, y: 46 }, },
     ],
@@ -51,7 +51,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 1,
     name: 'cleansing fire',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 66, y: 40 }, },
       { type: 'circle', position: { x: 91, y: 152 }, },
@@ -61,7 +61,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 1,
     name: 'explosive wounds',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 138 }, },
     ],
@@ -70,7 +70,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 1,
     name: 'line of transference',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 62, y: 35 }, },
       { type: 'circle', position: { x: 91, y: 151 }, },
@@ -80,7 +80,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 1,
     name: 'scarred effigy',
-    actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeLost', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 61, y: 41 }, },
       { type: 'summonSquare', position: { x: 86, y: 41 }, },
@@ -93,7 +93,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 1,
     name: 'shared affliction',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 130 }, },
     ],
@@ -102,7 +102,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 1,
     name: 'swift vengeance',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 95, y: 47 }, },
       { type: 'circle', position: { x: 89, y: 132 }, },
@@ -112,7 +112,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 1,
     name: 'the agony of others',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     slots: [
       { x: 38, y: 160 },
       { x: 67, y: 160 },
@@ -126,7 +126,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 1,
     name: 'transferred injury',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 87, y: 27 }, },
       { type: 'square', position: { x: 89, y: 74 }, },
@@ -137,7 +137,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 1,
     name: 'unending torment',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 71, y: 42 }, },
       { type: 'square', position: { x: 71, y: 138 }, },
@@ -147,13 +147,13 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 2,
     name: 'infection purge',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     initiative: 45,
   },
   {
     level: 2,
     name: 'reversal of fate',
-    actions: { top: CardActions.lose, bottom: CardActions.activeDiscard },
+    actions: { top: 'lose', bottom: 'activeDiscard' },
     slots: [
       { x: 69, y: 165 },
     ],
@@ -166,7 +166,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 3,
     name: 'burned at both ends',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 131 }, },
     ],
@@ -175,7 +175,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 3,
     name: 'reprisal',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 61 }, },
       { type: 'circle', position: { x: 91, y: 165 }, },
@@ -185,7 +185,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 4,
     name: 'down to the dirt',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 71, y: 42 }, },
       { type: 'circle', position: { x: 90, y: 134 }, },
@@ -195,7 +195,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 4,
     name: 'mirrored misery',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 130 }, },
     ],
@@ -204,7 +204,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 5,
     name: 'chained by despair',
-    actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeLost', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 131 }, },
     ],
@@ -213,7 +213,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 5,
     name: 'chained by spite',
-    actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeLost', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 135 }, },
       { type: 'square', position: { x: 71, y: 157 }, },
@@ -223,7 +223,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 6,
     name: 'hopelessness',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 137 }, },
     ],
@@ -232,7 +232,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 6,
     name: 'phantom limb',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 73, y: 34 }, },
       { type: 'circle', position: { x: 61, y: 132 }, },
@@ -242,7 +242,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 7,
     name: 'penance',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 131 }, },
       { type: 'square', position: { x: 70, y: 153 }, },
@@ -252,7 +252,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 7,
     name: 'reject the gift',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeDiscard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 134 }, },
     ],
@@ -261,7 +261,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 8,
     name: 'wave of anguish',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 63, y: 32 }, },
       { type: 'square', position: { x: 97, y: 32 }, },
@@ -272,7 +272,7 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 8,
     name: 'wracked with pain',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 71, y: 142 }, },
     ],
@@ -281,13 +281,13 @@ export const painConduitCards: Card[] = createCards([
   {
     level: 9,
     name: 'redemption',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     initiative: 33,
   },
   {
     level: 9,
     name: 'the end of everything',
-    actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeLost', bottom: 'activeDiscard' },
     initiative: 99,
   },
 ], painConduitPath);

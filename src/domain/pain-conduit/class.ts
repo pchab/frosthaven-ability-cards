@@ -3,7 +3,7 @@ import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.
 import { painConduitCards } from './cards';
 
 export const painConduit: FrosthavenClass<Card> = {
-  name: FrosthavenClassNames.PainConduit,
+  name: 'Pain Conduit',
   handSize: 10,
   path: '/pain-conduit/icons/fh-pain-conduit-color-icon.svg',
   iconSize: { width: 630, height: 600 },

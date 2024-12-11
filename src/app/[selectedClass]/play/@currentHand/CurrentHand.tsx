@@ -2,7 +2,7 @@
 
 import CardPile from '@/app/_components/cards/CardPile';
 import { ClassContext } from '@/context/ClassContext';
-import { CardStatus, type Card } from '@/domain/cards.type';
+import type { Card } from '@/domain/cards.type';
 import { isGeminate } from '@/domain/geminate/class';
 import { useCards } from '@/app/[selectedClass]/play/useCards';
 import { use } from 'react';
@@ -22,7 +22,7 @@ export default function CurrentHand<X extends Card>({
 
   const currentHand = currentCards
     .filter(classFilter)
-    .filter(({ status }) => status === CardStatus.inHand);
+    .filter(({ status }) => status === 'inHand');
 
   const actions = (card: X) => [{
     name: 'Select Card',

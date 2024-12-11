@@ -7,7 +7,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 'X',
     name: 'approach oblivion',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 46, y: 37 } },
       { type: 'square', position: { x: 91, y: 152 } },
@@ -17,7 +17,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 'X',
     name: 'exploding corpse',
-    actions: { top: CardActions.lose, bottom: CardActions.activeDiscard },
+    actions: { top: 'lose', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 41, y: 50 } },
     ],
@@ -26,7 +26,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 'X',
     name: 'wrath of the turned earth',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     slots: [
       { x: 37, y: 158 },
       { x: 67, y: 158 },
@@ -37,7 +37,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 1,
     name: 'angry spirits',
-    actions: { top: CardActions.activeLost, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeLost', bottom: 'activeDiscard' },
     slots: [
       { x: 71, y: 167 },
     ],
@@ -51,13 +51,13 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 1,
     name: 'command the wretched',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     initiative: 83,
   },
   {
     level: 1,
     name: 'damned horde',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 71, y: 43 } },
       { type: 'summonSquare', position: { x: 115, y: 43 } },
@@ -70,7 +70,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 1,
     name: 'dark tidings',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 152 } },
     ],
@@ -79,7 +79,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 1,
     name: 'decaying will',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 65, y: 41 } },
     ],
@@ -88,13 +88,13 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 1,
     name: 'eternal torment',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     initiative: 70,
   },
   {
     level: 1,
     name: 'fell remedy',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 57, y: 43 } },
     ],
@@ -103,7 +103,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 1,
     name: 'flow of the black river',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 91, y: 135 } },
       { type: 'square', position: { x: 91, y: 168 } },
@@ -112,7 +112,7 @@ export const boneshaperCards: Card[] = createCards([
   },
   {
     level: 1, name: 'life in death',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeLost },
+    actions: { top: 'activeDiscard', bottom: 'activeLost' },
     slots: [
       { x: 37, y: 159 },
       { x: 67, y: 159 },
@@ -128,7 +128,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 1,
     name: 'malicious conversion',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 90, y: 33 } },
     ],
@@ -137,7 +137,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 1,
     name: 'returned servant',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 71, y: 43 } },
       { type: 'summonSquare', position: { x: 115, y: 43 } },
@@ -149,13 +149,13 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 1,
     name: 'transfer of essence',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     initiative: 62,
   },
   {
     level: 2,
     name: 'bone dagger',
-    actions: { top: CardActions.lose, bottom: CardActions.activeDiscard },
+    actions: { top: 'lose', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 73, y: 46 } },
       { type: 'square', position: { x: 88, y: 126 } },
@@ -165,7 +165,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 2,
     name: 'unearthed horror',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 71, y: 48 } },
       { type: 'summonSquare', position: { x: 115, y: 48 } },
@@ -176,7 +176,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 3,
     name: 'grave digging',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 71, y: 43 } },
       { type: 'summonSquare', position: { x: 115, y: 43 } },
@@ -187,19 +187,19 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 3,
     name: 'putrid cloud',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     initiative: 28,
   },
   {
     level: 4,
     name: 'critical failure',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     initiative: 95,
   },
   {
     level: 4,
     name: 'flesh shield',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeDiscard', bottom: 'activeDiscard' },
     slots: [
       { x: 72, y: 176 },
     ],
@@ -211,7 +211,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 5,
     name: 'solid bones',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 92, y: 149 } },
     ],
@@ -220,7 +220,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 5,
     name: 'unforgivable methods',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 65, y: 43 } },
       { type: 'summonSquare', position: { x: 99, y: 43 } },
@@ -231,7 +231,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 6,
     name: 'rotting multitude',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 71, y: 43 } },
       { type: 'summonSquare', position: { x: 115, y: 43 } },
@@ -242,7 +242,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 6,
     name: 'twisted decree',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 58, y: 151 } },
     ],
@@ -250,7 +250,7 @@ export const boneshaperCards: Card[] = createCards([
   },
   {
     level: 7, name: 'recycled limbs',
-    actions: { top: CardActions.lose, bottom: CardActions.activeDiscard },
+    actions: { top: 'lose', bottom: 'activeDiscard' },
     slots: [
       { x: 37, y: 161 },
       { x: 67, y: 161 },
@@ -260,7 +260,7 @@ export const boneshaperCards: Card[] = createCards([
   },
   {
     level: 7, name: 'soul claim',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeDiscard },
+    actions: { top: 'activeDiscard', bottom: 'activeDiscard' },
     slots: [
       { x: 37, y: 65 },
       { x: 67, y: 65 },
@@ -271,7 +271,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 8,
     name: 'endless numbers',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 63, y: 35 } },
       { type: 'summonSquare', position: { x: 93, y: 35 } },
@@ -282,7 +282,7 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 8,
     name: 'wailing from beyond',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 56, y: 38 } },
       { type: 'square', position: { x: 88, y: 38 } },
@@ -294,13 +294,13 @@ export const boneshaperCards: Card[] = createCards([
   {
     level: 9,
     name: 'behold the shrouded sun',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     initiative: 10,
   },
   {
     level: 9,
     name: 'unholy prowess',
-    actions: { top: CardActions.activeLost, bottom: CardActions.activeLost },
+    actions: { top: 'activeLost', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 71, y: 37 } },
       { type: 'summonSquare', position: { x: 115, y: 37 } },

@@ -1,6 +1,6 @@
 'use client';
 
-import { CardStatus, type Card } from '@/domain/cards.type';
+import type { Card } from '@/domain/cards.type';
 import CardPile from '@/app/_components/cards/CardPile';
 import { useCards } from '@/app/[selectedClass]/play/useCards';
 import { ClassContext } from '@/context/ClassContext';
@@ -14,7 +14,7 @@ export default function LostCards() {
   } = useCards();
 
   const lostPile = currentCards
-    .filter(({ status }) => status === CardStatus.lost);
+    .filter(({ status }) => status === 'lost');
 
   const recoverAction = (card: Card) => [{
     name: 'Recover Card',

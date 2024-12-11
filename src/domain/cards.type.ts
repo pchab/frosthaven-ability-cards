@@ -6,21 +6,17 @@ export type SlotArea = {
   radius?: number
 }
 
-export enum CardStatus {
-  'lost',
-  'discarded',
-  'inHand',
-  'selected',
-  'activeTop',
-  'activeBottom',
-}
+export type CardStatus = 'lost'
+  | 'discarded'
+  | 'inHand'
+  | 'selected'
+  | 'activeTop'
+  | 'activeBottom';
 
-export enum CardActions {
-  'activeDiscard',
-  'activeLost',
-  'discard',
-  'lose',
-}
+export type CardActions = 'activeDiscard'
+  | 'activeLost'
+  | 'discard'
+  | 'lose';
 
 export type Card = {
   name: string;

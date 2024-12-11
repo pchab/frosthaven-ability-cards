@@ -3,7 +3,7 @@ import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.
 import { deepwraithCards } from './cards';
 
 export const deepwraith: FrosthavenClass<Card> = {
-  name: FrosthavenClassNames.Deepwraith,
+  name: 'Deepwraith',
   handSize: 10,
   path: '/deepwraith/icons/fh-deepwraith-color-icon.svg',
   iconSize: { width: 478, height: 600 },

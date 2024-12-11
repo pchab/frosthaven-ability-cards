@@ -2,7 +2,7 @@
 
 import { CardComponent } from '@/app/_components/cards/Card';
 import CardWithSlots from '@/app/_components/cards/CardWithSlots';
-import { Card, CardActions, CardStatus } from '@/domain/cards.type';
+import { Card } from '@/domain/cards.type';
 import { useCards } from '@/app/[selectedClass]/play/useCards';
 import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
 
@@ -18,13 +18,13 @@ export default function ActiveEffects<X extends Card>() {
   } = useCards<X>();
 
   const activeEffects = currentCards
-    .filter(({ status }) => [CardStatus.activeTop, CardStatus.activeBottom].includes(status));
+    .filter(({ status }) => ['activeTop', 'activeBottom'].includes(status));
 
   const removeEffectAction = (card: X) => ({
     name: 'Remove effect',
     onClick: () => {
-      const action = card.status === CardStatus.activeTop ? card.actions.top : card.actions.bottom;
-      action === CardActions.activeDiscard ? discardCard(card) : loseCard(card)
+      const action = card.status === 'activeTop' ? card.actions.top : card.actions.bottom;
+      action === 'activeDiscard' ? discardCard(card) : loseCard(card)
     },
   });
 

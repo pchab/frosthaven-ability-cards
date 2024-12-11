@@ -7,13 +7,13 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 'X',
     name: 'forceful spirits',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     initiative: 34,
   },
   {
     level: 'X',
     name: 'rest in the shade',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 39, y: 54 } },
     ],
@@ -22,7 +22,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 'X',
     name: 'wave of anguish',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 142 } },
       { type: 'square', position: { x: 93, y: 165 } },
@@ -32,7 +32,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 1,
     name: 'anger of the dead',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'square', position: { x: 71, y: 34 } },
     ],
@@ -41,7 +41,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 1,
     name: 'black barrage',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 70, y: 50 } },
       { type: 'square', position: { x: 92, y: 152 } },
@@ -51,7 +51,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 1,
     name: 'call of doom',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 46, y: 40 } },
       { type: 'square', position: { x: 91, y: 148 } },
@@ -61,13 +61,13 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 1,
     name: 'call to the abyss',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     initiative: 82,
   },
   {
     level: 1,
     name: 'dark fog',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 64, y: 36 } },
       { type: 'square', position: { x: 93, y: 151 } },
@@ -77,7 +77,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 1,
     name: 'eclipse',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 91, y: 153 } },
     ],
@@ -86,7 +86,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 1,
     name: 'fluid night',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 90, y: 37 } },
     ],
@@ -95,7 +95,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 1,
     name: 'lingering rot',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 49, y: 44 } },
       { type: 'square', position: { x: 90, y: 142 } },
@@ -105,7 +105,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 1,
     name: 'shadow step',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 39 } },
       { type: 'diamond', position: { x: 89, y: 81 } },
@@ -116,13 +116,13 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 1,
     name: 'strength of the abyss',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     initiative: 50,
   },
   {
     level: 1,
     name: 'sunless apparition',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 72, y: 44 } },
     ],
@@ -131,7 +131,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 2,
     name: 'deepening despair',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 51, y: 51 } },
       { type: 'circle', position: { x: 90, y: 169 } },
@@ -141,7 +141,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 2,
     name: 'restless spirits',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 73, y: 38 } },
       { type: 'square', position: { x: 92, y: 137 } },
@@ -151,7 +151,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 3,
     name: 'dead bolt',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 70, y: 49 } },
       { type: 'square', position: { x: 91, y: 151 } },
@@ -161,7 +161,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 3,
     name: 'ritual sacrifice',
-    actions: { top: CardActions.discard, bottom: CardActions.activeDiscard },
+    actions: { top: 'discard', bottom: 'activeDiscard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 89, y: 49 } },
       { type: 'square', position: { x: 90, y: 171 } },
@@ -171,7 +171,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 4,
     name: 'fleeting dusk',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 40, y: 47 } },
     ],
@@ -180,7 +180,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 4,
     name: 'pulled across',
-    actions: { top: CardActions.lose, bottom: CardActions.discard },
+    actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 89, y: 134 } },
     ],
@@ -189,7 +189,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 5,
     name: 'dominate',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 90, y: 36 } },
       { type: 'circle', position: { x: 91, y: 147 } },
@@ -199,7 +199,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 5,
     name: 'medium',
-    actions: { top: CardActions.discard, bottom: CardActions.activeLost },
+    actions: { top: 'discard', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 32 } },
     ],
@@ -208,7 +208,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 6,
     name: 'the night takes shape',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'summonSquare', position: { x: 73, y: 37 } },
       { type: 'summonSquare', position: { x: 73, y: 52 } },
@@ -219,7 +219,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 6,
     name: 'vengeful storm',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'square', position: { x: 91, y: 38 } },
     ],
@@ -228,13 +228,13 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 7,
     name: 'hungry grasps',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     initiative: 25,
   },
   {
     level: 7,
     name: 'proliferation of the abyss',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.discard },
+    actions: { top: 'activeDiscard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 89, y: 134 } },
       { type: 'square', position: { x: 92, y: 175 } },
@@ -244,7 +244,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 8,
     name: 'frozen in fear',
-    actions: { top: CardActions.discard, bottom: CardActions.lose },
+    actions: { top: 'discard', bottom: 'lose' },
     availableEnhancements: [
       { type: 'square', position: { x: 90, y: 153 } },
     ],
@@ -253,7 +253,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 8,
     name: 'lashing tendrils',
-    actions: { top: CardActions.activeLost, bottom: CardActions.discard },
+    actions: { top: 'activeLost', bottom: 'discard' },
     availableEnhancements: [
       { type: 'square', position: { x: 93, y: 129 } },
     ],
@@ -262,7 +262,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 9,
     name: 'black lance',
-    actions: { top: CardActions.discard, bottom: CardActions.discard },
+    actions: { top: 'discard', bottom: 'discard' },
     availableEnhancements: [
       { type: 'circle', position: { x: 74, y: 138 } },
     ],
@@ -271,7 +271,7 @@ export const deathwalkerCards: Card[] = createCards([
   {
     level: 9,
     name: 'when your time comes',
-    actions: { top: CardActions.activeDiscard, bottom: CardActions.activeLost },
+    actions: { top: 'activeDiscard', bottom: 'activeLost' },
     availableEnhancements: [
       { type: 'diamond', position: { x: 65, y: 67 } },
     ],

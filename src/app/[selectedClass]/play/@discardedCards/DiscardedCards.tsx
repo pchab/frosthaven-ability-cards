@@ -1,6 +1,6 @@
 'use client';
 
-import { CardStatus, type Card } from '@/domain/cards.type';
+import type { Card } from '@/domain/cards.type';
 import { useCards } from '@/app/[selectedClass]/play/useCards';
 import CardPile from '@/app/_components/cards/CardPile';
 import { use } from 'react';
@@ -17,7 +17,7 @@ export default function DiscardedCards() {
   } = useCards();
 
   const discardPile = currentCards
-    .filter(({ status }) => status === CardStatus.discarded);
+    .filter(({ status }) => status === 'discarded');
 
   const actions = (card: Card) => [{
     name: 'Recover Card',
