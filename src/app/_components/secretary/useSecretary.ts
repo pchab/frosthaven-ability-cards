@@ -2,10 +2,10 @@
 
 import { ClassContext } from '@/context/ClassContext';
 import { WebSocketContext } from '@/context/WebSocketContext';
-import { BlinkbladeSpeed, isBlinkblade } from '@/domain/blinkblade/class';
+import { isBlinkblade, speeds } from '@/domain/blinkblade/class';
 import type { Card } from '@/domain/cards.type';
 import type { Identity } from '@/domain/frosthaven-class.type';
-import { GeminateForm } from '@/domain/geminate/cards';
+import { forms } from '@/domain/geminate/cards';
 import { isGeminate } from '@/domain/geminate/class';
 import { CharacterState, type Figure, type GameState } from '@/domain/secretary/game.state';
 import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
@@ -71,7 +71,7 @@ export default function useSecretary<X extends Card>() {
 
     if (isBlinkblade(currentClass)) {
       const currentSpeed = currentCharacter.identity;
-      if (currentSpeed === BlinkbladeSpeed.SLOW) {
+      if (speeds[currentSpeed] === 'slow') {
         newInitiative += 30;
       }
     }
@@ -105,29 +105,32 @@ export default function useSecretary<X extends Card>() {
     }
   }
 
-  const setGhsIdentity = (form: Identity) => {
+  const setGhsIdentity = (identity: Identity, fromTo: [string, string]) => {
     if (!gameState || !currentClass || !currentCharacter) return;
     const { name, title } = currentCharacter;
 
-    const undoInfo = ["nextIdentity", title || currentClass.name, name];
+    const undoInfo = ["nextIdentity", title || currentClass.name, name, ...fromTo];
     if (isGeminate(currentClass)) {
-      if (form === GeminateForm.MELEE) {
+      const form = forms[identity];
+      if (form === 'melee') {
         undoInfo.push("range", "melee");
       }
-      if (form === GeminateForm.RANGED) {
+      if (form === 'ranged') {
         undoInfo.push("melee", "range");
       }
     }
 
     if (isBlinkblade(currentClass)) {
-      if (form === BlinkbladeSpeed.FAST) {
+      const speed = speeds[identity];
+      if (speed === 'fast') {
         undoInfo.push("slow", "fast");
       }
-      if (form === BlinkbladeSpeed.SLOW) {
+      if (speed === 'slow') {
         undoInfo.push("fast", "slow");
       }
     }
-    const newGameState = updateGameStateForFigure(gameState, name, { identity: form })!;
+
+    const newGameState = updateGameStateForFigure(gameState, name, { identity })!;
     if (sendGameStateToGhs) {
       sendGameStateToGhs(newGameState, undoInfo);
     }

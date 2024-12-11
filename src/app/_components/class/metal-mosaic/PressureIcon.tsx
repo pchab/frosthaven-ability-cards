@@ -1,34 +1,19 @@
 'use client';
 
 import { IdentityContext } from '@/context/IdentityContext';
-import { MetalMosaicPressure } from '@/domain/metal-mosaic/class';
+import { pressures } from '@/domain/metal-mosaic/class';
 import Image from 'next/image';
 import { use } from 'react';
 
-function getPressureDescription(pressure: MetalMosaicPressure) {
-  switch (pressure) {
-    case MetalMosaicPressure.LOW:
-      return 'low';
-    case MetalMosaicPressure.REGULAR:
-      return 'regular';
-    case MetalMosaicPressure.HIGH:
-      return 'high';
-    case MetalMosaicPressure.OVER:
-      return 'over';
-  }
-}
-
 export default function PressureIcon() {
-  const {
-    identity: currentPressure,
-  } = use(IdentityContext);
+  const { identity } = use(IdentityContext);
 
-  const pressureString = getPressureDescription(currentPressure as MetalMosaicPressure);
-  const path = `/metal-mosaic/icons/fh-metal-mosaic-pressure-${pressureString}-color-icon.webp`;
+  const currentPressure = pressures[identity];
+  const path = `/metal-mosaic/icons/fh-metal-mosaic-pressure-${currentPressure}-color-icon.webp`;
 
   return <Image
     src={path}
-    alt={`pressure-${pressureString}`}
+    alt={`pressure-${currentPressure}`}
     width={60}
     height={60}
   />;

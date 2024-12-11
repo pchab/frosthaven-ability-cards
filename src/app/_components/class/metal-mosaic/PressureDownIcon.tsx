@@ -1,25 +1,30 @@
 'use client';
 
 import { IdentityContext } from '@/context/IdentityContext';
-import { MetalMosaicPressure } from '@/domain/metal-mosaic/class';
+import { pressures, type MetalMosaicPressure } from '@/domain/metal-mosaic/class';
 import Image from 'next/image';
 import { use } from 'react';
 
 const path = '/metal-mosaic/icons/fh-metal-mosaic-pressure-down-color-icon.webp';
+const pressureDecrementMapping = {
+  regular: 'low',
+  high: 'regular',
+  over: 'high',
+};
 
 export default function PressureDownIcon() {
   const {
-    identity: currentPressure,
+    identity,
     changeIdentity,
   } = use(IdentityContext);
 
+  const currentPressure = pressures[identity];
   const decreasePressure = () => {
-    if (currentPressure === MetalMosaicPressure.LOW) return;
+    if (currentPressure === 'low') return;
 
-    const newPressure = currentPressure === MetalMosaicPressure.REGULAR
-      ? MetalMosaicPressure.LOW
-      : currentPressure - 1;
-    changeIdentity(newPressure);
+    const newPressure = pressureDecrementMapping[currentPressure] as MetalMosaicPressure;
+    const fromTo: [string, string] = [currentPressure, newPressure];
+    changeIdentity(pressures.indexOf(newPressure), fromTo);
   };
 
   return <Image

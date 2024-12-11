@@ -13,7 +13,7 @@ export type Figure = {
 export type CharacterState = Figure & {
   initiative: number;
   title: string;
-  identity: BlinkbladeSpeed | GeminateForm | MetalMosaicPressure;
+  identity: number;
 };
 
 export type GameState = {

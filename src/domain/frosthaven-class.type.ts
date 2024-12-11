@@ -1,9 +1,6 @@
-import type { BlinkbladeSpeed } from './blinkblade/class';
 import { type Card } from './cards.type';
-import type { GeminateForm } from './geminate/cards';
-import type { MetalMosaicPressure } from './metal-mosaic/class';
 
-export type Identity = GeminateForm | BlinkbladeSpeed | MetalMosaicPressure;
+export type Identity = number;
 
 export enum FrosthavenClassNames {
   BannerSpear = 'Banner Spear',

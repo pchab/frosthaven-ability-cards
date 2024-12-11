@@ -1,13 +1,13 @@
 'use client';
 
 import useSecretary from '@/app/_components/secretary/useSecretary';
-import type { Identity } from '@/domain/frosthaven-class.type';
 import { createContext, use, useEffect, useState } from 'react';
 import { ClassContext } from './ClassContext';
+import type { Identity } from '@/domain/frosthaven-class.type';
 
 export const IdentityContext = createContext<{
-  identity: Identity;
-  changeIdentity: (identity: Identity) => void;
+  identity: number;
+  changeIdentity: (identity: Identity, fromTo: [string, string]) => void;
 }>({
   identity: 0,
   changeIdentity: () => { },
@@ -32,10 +32,10 @@ export default function IdentityProvider({
     setIdentity(identity);
   }, [currentCharacter, isConnected, currentClass]);
 
-  const changeIdentity = (identity: Identity) => {
+  const changeIdentity = (identity: Identity, fromTo: [string, string]) => {
     setIdentity(identity);
     if (isConnected) {
-      setGhsIdentity(identity);
+      setGhsIdentity(identity, fromTo);
     }
   }
 

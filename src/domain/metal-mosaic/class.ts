@@ -2,12 +2,8 @@ import type { Card } from '../cards.type';
 import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.type';
 import { metalMosaicCards } from './cards';
 
-export enum MetalMosaicPressure {
-  REGULAR,
-  HIGH,
-  OVER,
-  LOW,
-}
+export type MetalMosaicPressure = 'low' | 'regular' | 'high' | 'over';
+export const pressures: MetalMosaicPressure[] = ['regular', 'high', 'over', 'low'] as const;
 
 export function isMetalMosaic(fhClass: FrosthavenClass<Card>): boolean {
   return fhClass.name === FrosthavenClassNames.MetalMosaic;

@@ -1,17 +1,12 @@
 import { GeminateForm } from '@/domain/geminate/cards';
 import Image from 'next/image';
 
-const meleeFormPath = '/geminate/icons/fh-geminate-melee-color-icon.webp';
-const rangedFormPath = '/geminate/icons/fh-geminate-ranged-color-icon.webp';
-
 export default function FormIcon({
   form,
 }: {
   form: GeminateForm;
 }) {
-  const formPath = form === GeminateForm.MELEE
-    ? meleeFormPath
-    : rangedFormPath;
+  const formPath = `/geminate/icons/fh-geminate-${form}-color-icon.webp`
 
   return <Image
     src={formPath}

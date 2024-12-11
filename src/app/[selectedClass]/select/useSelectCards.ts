@@ -12,8 +12,8 @@ import { useShallow } from 'zustand/shallow';
 
 type CheckHandSize<X extends Card> = (cards: X[]) => boolean;
 const geminateCheckHandsize: CheckHandSize<GeminateCard> = (cards: GeminateCard[]) => (
-  cards.filter((card) => card.form === GeminateForm.MELEE).length <= geminate.handSize / 2
-  && cards.filter((card) => card.form === GeminateForm.RANGED).length <= geminate.handSize / 2
+  cards.filter((card) => card.form === 'melee').length <= geminate.handSize / 2
+  && cards.filter((card) => card.form === 'ranged').length <= geminate.handSize / 2
 );
 
 export function useSelectCards<X extends Card>() {

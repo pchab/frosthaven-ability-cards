@@ -3,19 +3,21 @@
 import { use } from 'react';
 import SpeedIcon from './SpeedIcon';
 import { IdentityContext } from '@/context/IdentityContext';
-import { BlinkbladeSpeed } from '@/domain/blinkblade/class';
+import { BlinkbladeSpeed, speeds } from '@/domain/blinkblade/class';
 
 export default function ChangeSpeed() {
   const {
-    identity: currentSpeed,
+    identity,
     changeIdentity,
   } = use(IdentityContext);
 
+  const currentSpeed = speeds[identity];
   const changeSpeed = () => {
-    const newSpeed = currentSpeed === BlinkbladeSpeed.FAST
-      ? BlinkbladeSpeed.SLOW
-      : BlinkbladeSpeed.FAST;
-    changeIdentity(newSpeed);
+    const newSpeed = currentSpeed === 'fast'
+      ? 'slow'
+      : 'fast';
+    const fromTo: [string, string] = [currentSpeed, newSpeed];
+    changeIdentity(speeds.indexOf(newSpeed), fromTo);
   };
 
   return <div

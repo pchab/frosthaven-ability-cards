@@ -17,7 +17,7 @@ export default function SpeedIcon({
 }: {
   speed: BlinkbladeSpeed;
 }) {
-  const { path, width, height } = speed === BlinkbladeSpeed.FAST
+  const { path, width, height } = speed === 'fast'
     ? fastIcon
     : slowIcon;
 

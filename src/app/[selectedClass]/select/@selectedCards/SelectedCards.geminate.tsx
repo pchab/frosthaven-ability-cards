@@ -21,14 +21,14 @@ export function SelectedGeminateCards({
   const pileActions = (card: GeminateCard) => [removeAction(card), ...actions(card)];
 
   return <div className='flex flex-col gap-4 items-center'>
-    {[GeminateForm.MELEE, GeminateForm.RANGED].map((form) => {
+    {['melee', 'ranged'].map((form) => {
       const cardsByForm = cards.filter((card) => card.form === form);
       return <div
         key={`select-cards-form-${form}`}
         className='flex flex-row justify-center items-center'
       >
         <div className='flex flex-col p-4'>
-          <FormIcon form={form} />
+          <FormIcon form={form as GeminateForm} />
           <p className='text-lg'>{cardsByForm.length}/{handSizeByForm}</p>
         </div>
         <CardPile

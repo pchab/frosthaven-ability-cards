@@ -1,25 +1,30 @@
 'use client';
 
 import { IdentityContext } from '@/context/IdentityContext';
-import { MetalMosaicPressure } from '@/domain/metal-mosaic/class';
+import { pressures, type MetalMosaicPressure } from '@/domain/metal-mosaic/class';
 import Image from 'next/image';
 import { use } from 'react';
 
 const path = '/metal-mosaic/icons/fh-metal-mosaic-pressure-up-color-icon.webp';
+const pressureIncrementMapping = {
+  low: 'regular',
+  regular: 'high',
+  high: 'over',
+};
 
 export default function PressureUpIcon() {
   const {
-    identity: currentPressure,
+    identity,
     changeIdentity,
   } = use(IdentityContext);
 
+  const currentPressure = pressures[identity];
   const increasePressure = () => {
-    if (currentPressure === MetalMosaicPressure.OVER) return;
+    if (currentPressure === 'over') return;
 
-    const newPressure = currentPressure === MetalMosaicPressure.LOW
-      ? MetalMosaicPressure.REGULAR
-      : currentPressure + 1;
-    changeIdentity(newPressure);
+    const newPressure = pressureIncrementMapping[currentPressure] as MetalMosaicPressure;
+    const fromTo: [string, string] = [currentPressure, newPressure];
+    changeIdentity(pressures.indexOf(newPressure), fromTo);
   };
 
   return <Image

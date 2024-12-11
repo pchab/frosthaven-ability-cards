@@ -6,10 +6,8 @@ export function isBlinkblade(fhClass: FrosthavenClass<Card>): boolean {
   return fhClass.name === FrosthavenClassNames.Blinkblade;
 }
 
-export enum BlinkbladeSpeed {
-  SLOW,
-  FAST,
-}
+export type BlinkbladeSpeed = 'slow' | 'fast';
+export const speeds: BlinkbladeSpeed[] = ['slow', 'fast'] as const;
 
 export const blinkblade: FrosthavenClass<Card> = {
   name: FrosthavenClassNames.Blinkblade,
