@@ -1,5 +1,6 @@
 'use client';
 
+import { classNameToURI } from '@/domain/frosthaven-class';
 import type { FrosthavenClassNames } from '@/domain/frosthaven-class.type';
 import { domAnimation, LazyMotion } from 'framer-motion';
 import * as m from 'framer-motion/m';
@@ -12,7 +13,7 @@ export default function CharacterMat({
   className: FrosthavenClassNames;
 }) {
   const [displayFront, setDisplayFront] = useState(true);
-  const fhClassName = className.toLocaleLowerCase().replaceAll(' ', '-');
+  const fhClassName = classNameToURI(className);
   const matPath = `/${fhClassName}/mats/fh-${fhClassName}.webp`;
   const matBackPath = `/${fhClassName}/mats/fh-${fhClassName}-back.webp`;
 

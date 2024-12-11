@@ -47,7 +47,7 @@ export function upperFirstLetter(word: string) {
 }
 
 export function classNameToURI(className: FrosthavenClassNames): string {
-  return className.replace(' ', '-').toLowerCase();
+  return className.replaceAll(' ', '-').toLowerCase();
 }
 
 export function classURIToName(className: string): FrosthavenClassNames {

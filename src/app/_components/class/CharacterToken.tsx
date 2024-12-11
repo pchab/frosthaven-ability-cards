@@ -1,3 +1,4 @@
+import { classNameToURI } from '@/domain/frosthaven-class';
 import type { FrosthavenClassNames } from '@/domain/frosthaven-class.type';
 import Image from 'next/image';
 
@@ -6,7 +7,7 @@ export default function CharacterToken({
 }: {
   className: FrosthavenClassNames;
 }) {
-  const fhClassName = className.toLocaleLowerCase().replaceAll(' ', '-');
+  const fhClassName = classNameToURI(className);
   const tokenPath = `/${fhClassName}/icons/fh-${fhClassName}-character-token.webp`;
 
   return <Image
