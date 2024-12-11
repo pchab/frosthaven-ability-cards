@@ -1,5 +1,6 @@
 import type { PersistedState } from './cards.store';
 import updateAvailableCards from './migrations/update-available-cards';
+import updateCardsStatus from './migrations/update-cards-status';
 
 const STORE_NAME = 'fh-cards-store';
 
@@ -12,7 +13,7 @@ const db = (function () {
       }
 
       return new Promise<IDBDatabase>((resolve) => {
-        const request = indexedDB.open(STORE_NAME, 4);
+        const request = indexedDB.open(STORE_NAME, 6);
 
         request.onsuccess = () => {
           resolve(request.result);
@@ -27,6 +28,7 @@ const db = (function () {
           if (transaction) {
             // APPLY MIGRATIONS HERE
             await updateAvailableCards(transaction);
+            await updateCardsStatus(transaction);
           }
           resolve(db);
         };
