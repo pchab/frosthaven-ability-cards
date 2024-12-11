@@ -3,7 +3,12 @@ import type { Card } from '@/domain/cards.type';
 import type { PersistedCard } from './cards.store';
 import { FrosthavenClass } from '@/domain/frosthaven-class.type';
 import { del, get, put, startTransaction } from './indexed-db';
-import { getClass } from './class.store';
+import { classURIToName, frosthavenClasses } from '@/domain/frosthaven-class';
+
+function getClass<X extends Card>() {
+  const selectedClassName = classURIToName(document.location.pathname.split('/')[1] as FrosthavenClass<X>['name']);
+  return frosthavenClasses.find(({ name }) => name === selectedClassName) as FrosthavenClass<X>;
+}
 
 function departializeCardForClass<X extends Card>(fhClass: FrosthavenClass<X>) {
   return ({
@@ -48,7 +53,7 @@ export const indexedDBStorage: StateStorage = {
     });
   },
   setItem: async (name: string, value: string): Promise<void> => {
-    const selectedClass = await getClass();
+    const selectedClass = getClass();
     if (!selectedClass) {
       return;
     }
@@ -56,7 +61,7 @@ export const indexedDBStorage: StateStorage = {
     await put(transaction)(selectedClass.name, value);
   },
   removeItem: async (name: string): Promise<void> => {
-    const selectedClass = await getClass();
+    const selectedClass = getClass();
     if (!selectedClass) {
       return;
     }
