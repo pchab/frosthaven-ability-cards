@@ -6,14 +6,16 @@ export type SlotArea = {
   radius?: number
 }
 
-export type CardStatus = 'lost'
-  | 'discarded'
+export type CardStatus =
   | 'inHand'
+  | 'discarded'
+  | 'lost'
   | 'selected'
   | 'activeTop'
   | 'activeBottom';
 
-export type CardActions = 'activeDiscard'
+export type CardActions =
+  | 'activeDiscard'
   | 'activeLost'
   | 'discard'
   | 'lose';

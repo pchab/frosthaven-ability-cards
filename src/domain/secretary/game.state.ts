@@ -1,7 +1,3 @@
-import type { BlinkbladeSpeed } from '../blinkblade/class';
-import type { GeminateForm } from '../geminate/cards';
-import type { MetalMosaicPressure } from '../metal-mosaic/class';
-
 export type Figure = {
   name: string;
   title?: string;

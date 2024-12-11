@@ -4,9 +4,6 @@ import { ClassContext } from '@/context/ClassContext';
 import { WebSocketContext } from '@/context/WebSocketContext';
 import { isBlinkblade, speeds } from '@/domain/blinkblade/class';
 import type { Card } from '@/domain/cards.type';
-import type { Identity } from '@/domain/frosthaven-class.type';
-import { forms } from '@/domain/geminate/cards';
-import { isGeminate } from '@/domain/geminate/class';
 import { CharacterState, type Figure, type GameState } from '@/domain/secretary/game.state';
 import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
 import { use, useEffect, useState } from 'react';
@@ -78,7 +75,7 @@ export default function useSecretary<X extends Card>() {
 
     const newGameState = updateGameStateForFigure(gameState, currentCharacter.name, { initiative: newInitiative })!;
     if (sendGameStateToGhs) {
-      sendGameStateToGhs(newGameState, ["setInitiative", currentCharacter.title || currentClass.name, `"${newInitiative}"`]);
+      sendGameStateToGhs(newGameState, ['setInitiative', currentCharacter.title || currentClass.name, `'${newInitiative}'`]);
     }
   };
 
@@ -101,34 +98,15 @@ export default function useSecretary<X extends Card>() {
     }
 
     if (sendGameStateToGhs) {
-      sendGameStateToGhs(newGameState!, ["unsetActive", currentCharacter.title || currentClass.name]);
+      sendGameStateToGhs(newGameState!, ['unsetActive', currentCharacter.title || currentClass.name]);
     }
   }
 
-  const setGhsIdentity = (identity: Identity, fromTo: [string, string]) => {
+  const setGhsIdentity = (identity: number, fromTo: [string, string]) => {
     if (!gameState || !currentClass || !currentCharacter) return;
     const { name, title } = currentCharacter;
 
-    const undoInfo = ["nextIdentity", title || currentClass.name, name, ...fromTo];
-    if (isGeminate(currentClass)) {
-      const form = forms[identity];
-      if (form === 'melee') {
-        undoInfo.push("range", "melee");
-      }
-      if (form === 'ranged') {
-        undoInfo.push("melee", "range");
-      }
-    }
-
-    if (isBlinkblade(currentClass)) {
-      const speed = speeds[identity];
-      if (speed === 'fast') {
-        undoInfo.push("slow", "fast");
-      }
-      if (speed === 'slow') {
-        undoInfo.push("fast", "slow");
-      }
-    }
+    const undoInfo = ['nextIdentity', title || currentClass.name, name, ...fromTo];
 
     const newGameState = updateGameStateForFigure(gameState, name, { identity })!;
     if (sendGameStateToGhs) {

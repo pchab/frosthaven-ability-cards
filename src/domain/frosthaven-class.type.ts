@@ -1,7 +1,5 @@
 import { type Card } from './cards.type';
 
-export type Identity = number;
-
 export type FrosthavenClassNames =
   | 'Banner Spear'
   | 'Blinkblade'

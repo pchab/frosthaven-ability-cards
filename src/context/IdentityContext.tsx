@@ -3,11 +3,10 @@
 import useSecretary from '@/app/_components/secretary/useSecretary';
 import { createContext, use, useEffect, useState } from 'react';
 import { ClassContext } from './ClassContext';
-import type { Identity } from '@/domain/frosthaven-class.type';
 
 export const IdentityContext = createContext<{
   identity: number;
-  changeIdentity: (identity: Identity, fromTo: [string, string]) => void;
+  changeIdentity: (identity: number, fromTo: [string, string]) => void;
 }>({
   identity: 0,
   changeIdentity: () => { },
@@ -24,7 +23,7 @@ export default function IdentityProvider({
     setGhsIdentity,
   } = useSecretary();
   const currentClass = use(ClassContext);
-  const [identity, setIdentity] = useState<Identity>(0);
+  const [identity, setIdentity] = useState(0);
 
   useEffect(() => {
     if (!isConnected || !currentClass || !currentCharacter) return;
@@ -32,7 +31,7 @@ export default function IdentityProvider({
     setIdentity(identity);
   }, [currentCharacter, isConnected, currentClass]);
 
-  const changeIdentity = (identity: Identity, fromTo: [string, string]) => {
+  const changeIdentity = (identity: number, fromTo: [string, string]) => {
     setIdentity(identity);
     if (isConnected) {
       setGhsIdentity(identity, fromTo);
