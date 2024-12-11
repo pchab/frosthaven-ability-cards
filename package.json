@@ -10,27 +10,25 @@
   },
   "dependencies": {
     "@vercel/speed-insights": "^1.1.0",
-    "babel-plugin-react-compiler": "^19.0.0-beta-37ed2a7-20241206",
+    "babel-plugin-react-compiler": "^19.0.0-beta-201e55d-20241215",
     "framer-motion": "^12.0.0-alpha.1",
-    "next": "^15.0.4",
+    "next": "^15.1.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "zustand": "^5.0.2"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.0.0-beta.4",
-    "@types/node": "^22.10.1",
+    "@tailwindcss/postcss": "^4.0.0-beta.8",
+    "@types/node": "^22.10.2",
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
     "eslint": "^9.16.0",
-    "eslint-config-next": "^15.0.4",
-    "tailwindcss": "^4.0.0-beta.4",
+    "eslint-config-next": "^15.1.1",
+    "tailwindcss": "^4.0.0-beta.8",
     "typescript": "^5.7.2"
   },
   "overrides": {
     "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "@types/react": "19.0.0",
-    "@types/react-dom": "19.0.0"
+    "react-dom": "19.0.0"
   }
 }
