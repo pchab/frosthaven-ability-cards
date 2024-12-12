@@ -75,12 +75,10 @@ export default function PlayPage<X extends Card>() {
 
   return <BoardArea title={`GHS Status: ${isConnected ? '🟢' : '🔴'}`}>
     <div className='flex flex-col gap-4 items-center'>
-      <div className='text-lg font-bold'>
-        {state === 'next' && <p>{currentPlayingString}</p>}
-        {state === 'draw' && <p>
-          Chosen Initiative: {currentCharacter?.initiative || '-'}
-        </p>}
-      </div>
+      <h3 className='text-lg font-bold'>
+        {state === 'next' && currentPlayingString}
+        {state === 'draw' && `Chosen Initiative: ${currentCharacter?.initiative || '-'}`}
+      </h3>
       <div className='flex flex-col lg:flex-row gap-4 justify-center items-center min-w-[302px]'>
         {isGeminate(selectedClass) && <ChangeForm />}
         {isBlinkblade(selectedClass) && <ChangeSpeed />}

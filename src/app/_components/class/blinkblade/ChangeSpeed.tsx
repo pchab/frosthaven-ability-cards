@@ -21,9 +21,9 @@ export default function ChangeSpeed() {
   };
 
   return <div
+    aria-label='change speed'
     className='flex justify-center items-center gap-2 h-24 w-24'
     onClick={changeSpeed}>
-    <label className='hidden'>Change Speed</label>
     <SpeedIcon speed={currentSpeed as BlinkbladeSpeed} />
   </div>;
 }

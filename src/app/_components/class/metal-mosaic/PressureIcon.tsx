@@ -12,6 +12,7 @@ export default function PressureIcon() {
   const path = `/metal-mosaic/icons/fh-metal-mosaic-pressure-${currentPressure}-color-icon.webp`;
 
   return <Image
+    aria-label={`${currentPressure} pressure`}
     src={path}
     alt={`pressure-${currentPressure}`}
     width={60}

@@ -28,10 +28,11 @@ export default function PressureDownIcon() {
   };
 
   return <Image
+    aria-label='decrease pressure'
     onClick={decreasePressure}
     src={path}
     alt={`pressure-down`}
-    width={42}
-    height={60}
+    width={417}
+    height={600}
   />;
 }

@@ -56,6 +56,7 @@ export function CardComponent<X extends Card>({
 
   return <LazyMotion features={domAnimation}>
     <m.div
+      aria-label={card.name}
       ref={innerRef}
       onClick={onClickCard}
       className='relative'
@@ -68,7 +69,7 @@ export function CardComponent<X extends Card>({
       </AnimatePresence>
       {children}
       <Image
-        useMap={`#${mapName}`}
+        {...(mapName ? { useMap: `#${mapName}` } : {})}
         src={card.path}
         alt={`card ${card.name}`}
         width={143}

@@ -28,11 +28,11 @@ export default function PressureUpIcon() {
   };
 
   return <Image
-    className='-m-2'
+    aria-label='increase pressure'
     onClick={increasePressure}
     src={path}
     alt={`pressure-up`}
-    width={42}
-    height={60}
+    width={417}
+    height={600}
   />;
 }
