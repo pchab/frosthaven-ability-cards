@@ -31,7 +31,7 @@ export default function PressureDownIcon() {
     onClick={decreasePressure}
     src={path}
     alt={`pressure-down`}
-    width={417}
-    height={600}
+    width={42}
+    height={60}
   />;
 }

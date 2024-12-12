@@ -28,7 +28,6 @@ export default function ActiveEffects<X extends Card>() {
     },
   });
 
-  // 620px is the width of a 4 cards
   return <div className='grid grid-cols-3 gap-4 min-w-[461px] min-h-card'>
     <AnimatePresence mode='popLayout'>
       {activeEffects

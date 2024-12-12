@@ -14,7 +14,7 @@ import { upperFirstLetter } from '@/domain/frosthaven-class';
 import { isGeminate } from '@/domain/geminate/class';
 import { isMetalMosaic } from '@/domain/metal-mosaic/class';
 import { useFrosthavenStore, type SelectedActions } from '@/stores/cards.store';
-import { use } from 'react';
+import { use, useMemo } from 'react';
 import { useShallow } from 'zustand/shallow';
 
 function areAllActionsSelected(actions: SelectedActions): actions is [Action, Action] {
@@ -63,7 +63,7 @@ export default function PlayPage<X extends Card>() {
     }
   };
 
-  const getCurrentPlayingString = () => {
+  const currentPlayingString = useMemo(() => {
     if (!currentPlayingFigure) {
       return 'End of round';
     }
@@ -71,12 +71,12 @@ export default function PlayPage<X extends Card>() {
       return 'Your turn';
     }
     return `Current Turn: ${currentPlayingFigure.title || upperFirstLetter(currentPlayingFigure.name)}`;
-  }
+  }, [currentPlayingFigure, currentCharacter?.name]);
 
   return <BoardArea title={`GHS Status: ${isConnected ? '🟢' : '🔴'}`}>
     <div className='flex flex-col gap-4 items-center'>
       <div className='text-lg font-bold'>
-        {state === 'next' && <p>{getCurrentPlayingString()}</p>}
+        {state === 'next' && <p>{currentPlayingString}</p>}
         {state === 'draw' && <p>
           Chosen Initiative: {currentCharacter?.initiative || '-'}
         </p>}

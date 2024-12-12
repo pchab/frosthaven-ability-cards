@@ -28,10 +28,11 @@ export default function PressureUpIcon() {
   };
 
   return <Image
+    className='-m-2'
     onClick={increasePressure}
     src={path}
     alt={`pressure-up`}
-    width={417}
-    height={600}
+    width={42}
+    height={60}
   />;
 }
