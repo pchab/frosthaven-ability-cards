@@ -1,7 +1,7 @@
 import { Card } from '@/domain/cards.type';
 import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
 import * as m from 'framer-motion/m';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { WheelAction } from './ActionWheel';
 import { CardComponent } from './Card';
 
@@ -30,6 +30,30 @@ const marginRightForLongHand = {
   14: '-mr-[93px]',
 }
 
+function getTouchedCardIndex<X extends Card>(
+  pile: HTMLDivElement,
+  { touches }: React.TouchEvent,
+  cards: X[],
+): number {
+  const touch = touches[0];
+  const pileRect = pile.getBoundingClientRect();
+  const touchX = touch.clientX - pileRect.left;
+  const touchY = touch.clientY - pileRect.top;
+
+  return cards.findIndex((_, index) => {
+    const card = pile.children[index] as HTMLElement;
+    const cardRect = card.getBoundingClientRect();
+    const cardX = cardRect.left - pileRect.left;
+    const cardY = cardRect.top - pileRect.top;
+    return (
+      touchX >= cardX &&
+      touchX <= cardX + cardRect.width &&
+      touchY >= cardY &&
+      touchY <= cardY + cardRect.height
+    );
+  });
+}
+
 export type PileActions<X extends Card> = (card: X) => WheelAction[];
 
 export default function CardPile<X extends Card>({
@@ -44,42 +68,26 @@ export default function CardPile<X extends Card>({
   const [focusCardIndex, setFocusCardIndex] = useState<number | null>(null);
   const pileRef = useRef<HTMLDivElement>(null);
 
-  function getZIndex(index: number) {
-    return focusCardIndex !== null
-      ? 20 - Math.abs(focusCardIndex - index)
-      : 20 - Math.abs(cards.length - 1 - index);
-  }
+  const getZIndex = useCallback((index: number) => focusCardIndex !== null
+    ? 20 - Math.abs(focusCardIndex - index)
+    : 20 - Math.abs(cards.length - 1 - index),
+    [cards.length, focusCardIndex]);
 
-  useEffect(() => setFocusCardIndex(null), [cards.length]);
 
-  const handleTouchMove = ({ touches }: React.TouchEvent) => {
+  const handleTouchMove = useCallback((event: React.TouchEvent) => {
     if (pileRef.current) {
-      const touch = touches[0];
-      const pile = pileRef.current;
-      const pileRect = pile.getBoundingClientRect();
-      const touchX = touch.clientX - pileRect.left;
-      const touchY = touch.clientY - pileRect.top;
-
-      const touchedCard = cards.findIndex((_, index) => {
-        const card = pile.children[index] as HTMLElement;
-        const cardRect = card.getBoundingClientRect();
-        const cardX = cardRect.left - pileRect.left;
-        const cardY = cardRect.top - pileRect.top;
-        return (
-          touchX >= cardX &&
-          touchX <= cardX + cardRect.width &&
-          touchY >= cardY &&
-          touchY <= cardY + cardRect.height
-        );
-      });
+      const touchedCard = getTouchedCardIndex(pileRef.current, event, cards);
 
       if (touchedCard !== -1) {
         setFocusCardIndex(touchedCard);
       }
     }
-  };
+  }, [cards]);
 
   const minWidthValue = maxCardLength > 1 ? minWidthValues[maxCardLength - 1] : '';
+
+  const changeFocus = useCallback((index: number | null) => () => setFocusCardIndex(index), []);
+  useEffect(changeFocus(null), [cards.length]);
 
   return <div
     ref={pileRef}
@@ -92,9 +100,9 @@ export default function CardPile<X extends Card>({
         {cards
           .map((card, index) => <m.div
             key={card.name}
-            onMouseEnter={() => setFocusCardIndex(index)}
-            onTouchStart={() => setFocusCardIndex(index)}
-            onFocus={() => setFocusCardIndex(index)}
+            onMouseEnter={changeFocus(index)}
+            onTouchStart={changeFocus(index)}
+            onFocus={changeFocus(index)}
             whileHover={{ scale: 1.2 }}
             whileFocus={{ scale: 1.2 }}
             className={maxCardLength < 11

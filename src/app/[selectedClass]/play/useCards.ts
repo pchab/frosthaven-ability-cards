@@ -1,6 +1,6 @@
 import type { CardStatus, Card } from '@/domain/cards.type';
 import { useFrosthavenStore } from '@/stores/cards.store';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useShallow } from 'zustand/shallow';
 
 export type Action = 'top' | 'bottom' | 'default';
@@ -47,12 +47,12 @@ export function useCards<X extends Card>() {
   })));
   const currentCards = useMemo(() => states[currentStateIndex] as X[], [states, currentStateIndex]);
 
-  const changeCardStatus = (newStatus: CardStatus, condition?: () => boolean) => (card: X) => {
+  const changeCardStatus = useCallback((newStatus: CardStatus, condition?: () => boolean) => (card: X) => {
     if (condition && !condition()) return;
     const otherCards = currentCards.filter(c => c !== card);
     const newState = [...otherCards, { ...card, status: newStatus }];
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
-  };
+  }, [currentCards, states, currentStateIndex, updateStates]);
 
   const selectCard = changeCardStatus(
     'selected',
@@ -62,16 +62,16 @@ export function useCards<X extends Card>() {
   const loseCard = changeCardStatus('lost');
   const recoverCard = changeCardStatus('inHand');
 
-  const playCards = (cardsPlayed: { action: Action; card: X }[]) => {
+  const playCards = useCallback((cardsPlayed: { action: Action; card: X }[]) => {
     const newState = [
       ...currentCards.filter(card => !cardsPlayed.map(({ card }) => card.name).includes(card.name)),
       ...cardsPlayed.map(({ action, card }) => ({ ...card, status: newStatusAfterAction(card.actions, action) })),
     ];
 
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
-  };
+  }, [currentCards, states, currentStateIndex, updateStates]);
 
-  const moveTokenForward = (card: X) => {
+  const moveTokenForward = useCallback((card: X) => {
     if (!card.slots) {
       throw new Error(`Card ${card.name} doest not have slots`)
     }
@@ -87,9 +87,9 @@ export function useCards<X extends Card>() {
       const newState = currentCards.with(cardIndex, { ...card, tokenPosition: newTokenPosition });
       updateStates([...states.slice(0, currentStateIndex + 1), newState]);
     }
-  };
+  }, [currentCards, states, currentStateIndex, updateStates]);
 
-  const moveTokenBackward = (card: X) => {
+  const moveTokenBackward = useCallback((card: X) => {
     if (!card.slots) {
       throw new Error(`Card ${card.name} doest not have slots`)
     }
@@ -98,9 +98,9 @@ export function useCards<X extends Card>() {
     const newTokenPosition = Math.max(card.tokenPosition ? card.tokenPosition - 1 : 0, 0);
     const newState = currentCards.with(cardIndex, { ...card, tokenPosition: newTokenPosition });
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
-  };
+  }, [currentCards, states, currentStateIndex, updateStates]);
 
-  const makeRest = (lost: X) => {
+  const makeRest = useCallback((lost: X) => {
     const recovered = currentCards
       .filter(({ status }) => status === 'discarded')
       .filter(({ name }) => name !== lost.name);
@@ -111,17 +111,17 @@ export function useCards<X extends Card>() {
       { ...lost, status: 'lost' },
     ];
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
-  };
+  }, [currentCards, states, currentStateIndex, updateStates]);
 
-  const undo = () => {
+  const undo = useCallback(() => {
     if (currentStateIndex === 0) return;
     setStateIndex(currentStateIndex - 1);
-  };
+  }, [currentStateIndex, setStateIndex]);
 
-  const redo = () => {
+  const redo = useCallback(() => {
     if (currentStateIndex === states.length - 1) return;
     setStateIndex(currentStateIndex + 1);
-  };
+  }, [states, currentStateIndex, setStateIndex]);
 
   return {
     currentCards,

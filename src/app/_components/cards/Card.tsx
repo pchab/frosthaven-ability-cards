@@ -4,7 +4,7 @@ import { Card } from '@/domain/cards.type';
 import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
 import * as m from 'framer-motion/m';
 import Image from 'next/image';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import ActionWheel, { type WheelAction } from './ActionWheel';
 import EnhanceSticker from './Enhance/EnhanceSticker';
 
@@ -22,27 +22,29 @@ export function CardComponent<X extends Card>({
   const innerRef = useRef<HTMLDivElement>(null);
   const [isActionWheelOpen, setIsActionWheelOpen] = useState(false);
 
-  const onClickCard = () => {
+  console.count(card.name);
+
+  const onClickCard = useCallback(() => {
     if (actions.length === 0) return;
     if (actions.length === 1) {
       actions[0].onClick();
       return;
     }
     setIsActionWheelOpen(!isActionWheelOpen);
-  };
+  }, [actions, isActionWheelOpen]);
 
-  const handleClickOutside: EventListener = (event) => {
+  const handleClickOutside: EventListener = useCallback((event) => {
     if (!innerRef.current?.contains(event.target as Node)) {
       setIsActionWheelOpen(false);
     }
-  };
-  const handleTouchOutside: EventListener = (event) => {
+  }, [innerRef]);
+  const handleTouchOutside: EventListener = useCallback((event) => {
     const changedTouch = (event as TouchEvent).changedTouches[0];
     const elem = document.elementFromPoint(changedTouch.clientX, changedTouch.clientY);
     if (!innerRef.current?.contains(elem as Node)) {
       setIsActionWheelOpen(false);
     }
-  };
+  }, [innerRef]);
   useEffect(() => {
     if (isActionWheelOpen) {
       document.addEventListener('mousedown', handleClickOutside);
@@ -52,7 +54,7 @@ export function CardComponent<X extends Card>({
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchend', handleTouchOutside);
     };
-  }, [isActionWheelOpen]);
+  }, [isActionWheelOpen, handleClickOutside, handleTouchOutside]);
 
   return <LazyMotion features={domAnimation}>
     <m.div

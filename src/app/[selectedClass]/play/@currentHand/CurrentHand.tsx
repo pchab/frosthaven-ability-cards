@@ -5,7 +5,7 @@ import { ClassContext } from '@/context/ClassContext';
 import type { Card } from '@/domain/cards.type';
 import { isGeminate } from '@/domain/geminate/class';
 import { useCards } from '@/app/[selectedClass]/play/useCards';
-import { use } from 'react';
+import { use, useCallback, useMemo } from 'react';
 
 export default function CurrentHand<X extends Card>({
   classFilter = () => true,
@@ -20,11 +20,13 @@ export default function CurrentHand<X extends Card>({
     loseCard,
   } = useCards<X>();
 
-  const currentHand = currentCards
+  const currentHand = useMemo(() => currentCards
     .filter(classFilter)
-    .filter(({ status }) => status === 'inHand');
+    .filter(({ status }) => status === 'inHand'),
+    [currentCards, classFilter],
+  );
 
-  const actions = (card: X) => [{
+  const actions = useCallback((card: X) => [{
     name: 'Select Card',
     onClick: () => selectCard(card),
   }, {
@@ -33,7 +35,7 @@ export default function CurrentHand<X extends Card>({
   }, {
     name: 'Lose Card',
     onClick: () => loseCard(card),
-  }];
+  }], [selectCard, discardCard, loseCard]);
 
   return <CardPile
     cards={currentHand}

@@ -3,7 +3,7 @@
 import type { Card } from '@/domain/cards.type';
 import { useCards } from '@/app/[selectedClass]/play/useCards';
 import CardPile from '@/app/_components/cards/CardPile';
-import { use } from 'react';
+import { use, useCallback, useMemo } from 'react';
 import { ClassContext } from '@/context/ClassContext';
 import ShortRestButton from './ShortRestButton';
 import LongRestButton from './LongRestButton';
@@ -16,16 +16,18 @@ export default function DiscardedCards() {
     loseCard,
   } = useCards();
 
-  const discardPile = currentCards
-    .filter(({ status }) => status === 'discarded');
+  const discardPile = useMemo(() => currentCards
+    .filter(({ status }) => status === 'discarded'),
+    [currentCards],
+  );
 
-  const actions = (card: Card) => [{
+  const actions = useCallback((card: Card) => [{
     name: 'Recover Card',
     onClick: () => recoverCard(card),
   }, {
     name: 'Lose Card',
     onClick: () => loseCard(card),
-  }];
+  }], [recoverCard, loseCard]);
 
   return <div className='relative'>
     <CardPile

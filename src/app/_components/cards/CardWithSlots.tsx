@@ -3,7 +3,7 @@
 import type { Card, SlotArea } from '@/domain/cards.type';
 import { isDrifter } from '@/domain/drifter/class';
 import * as m from 'framer-motion/m';
-import { use, useEffect, useState } from 'react';
+import { use, useEffect, useMemo, useState } from 'react';
 import CharacterToken from '../class/CharacterToken';
 import type { WheelAction } from './ActionWheel';
 import { CardComponent } from './Card';
@@ -37,7 +37,10 @@ export default function CardWithSlots<X extends CardWithSlots>({
     onClick: () => moveTokenBackward(card),
   };
 
-  const canMoveBackward = selectedClass && isDrifter(selectedClass) && tokenPosition > 0;
+  const canMoveBackward = useMemo(
+    () => selectedClass && isDrifter(selectedClass) && tokenPosition > 0,
+    [selectedClass, tokenPosition],
+  );
   const tokenActions = canMoveBackward
     ? [moveTokenForwardAction, moveTokenBackwardAction]
     : [moveTokenForwardAction];

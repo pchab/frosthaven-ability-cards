@@ -9,8 +9,6 @@ export default function PlayLayout({
   lostCards,
   selectedCards,
   activeEffects,
-  rests,
-  ghsStatus,
 }: {
   children: ReactNode;
   currentHand: ReactNode;

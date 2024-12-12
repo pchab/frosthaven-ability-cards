@@ -5,7 +5,7 @@ import Button from '@/app/_components/inputs/Button';
 import Modal from '@/app/_components/layout/Modal';
 import { type Card } from '@/domain/cards.type';
 import { useCards } from '@/app/[selectedClass]/play/useCards';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export default function LongRestButton<X extends Card>({
   cards,
@@ -15,10 +15,10 @@ export default function LongRestButton<X extends Card>({
   const [doesLongRest, setDoesLongRest] = useState(false);
   const { makeRest } = useCards();
 
-  const confirmLongRestAction = (lostCard: X) => [{
+  const confirmLongRestAction = useCallback((lostCard: X) => [{
     name: 'Confirm Long Rest',
     onClick: () => makeRest(lostCard),
-  }];
+  }], [makeRest]);
 
   return <>
     {doesLongRest &&

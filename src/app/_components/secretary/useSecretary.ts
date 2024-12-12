@@ -6,7 +6,49 @@ import { isBlinkblade, speeds } from '@/domain/blinkblade/class';
 import type { Card } from '@/domain/cards.type';
 import { CharacterState, type Figure, type GameState } from '@/domain/secretary/game.state';
 import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
-import { use, useEffect, useState } from 'react';
+import { use, useCallback, useEffect, useState } from 'react';
+
+function updateGameStateForFigure<F extends Figure>(
+  oldGameState: GameState,
+  figureName: F['name'],
+  newFigureState: Partial<F>,
+): GameState {
+  const {
+    characters,
+    monsters,
+    revision,
+    ...rest
+  } = oldGameState;
+
+  const currentCharacterIndex = characters
+    .findIndex(({ name }) => name === figureName);
+  const currentMonsterIndex = monsters
+    .findIndex(({ name }) => name === figureName);
+
+  const newFiguresState = {
+    characters,
+    monsters,
+  };
+  if (currentCharacterIndex > -1) {
+    newFiguresState.characters = characters.with(currentCharacterIndex, {
+      ...characters[currentCharacterIndex],
+      ...newFigureState,
+    });
+  } else if (currentMonsterIndex > -1) {
+    newFiguresState.monsters = monsters.with(currentMonsterIndex, {
+      ...monsters[currentMonsterIndex],
+      ...newFigureState,
+    });
+  }
+
+  // update playSeconds
+  const newGameState = {
+    ...rest,
+    revision: revision + 1,
+    ...newFiguresState,
+  }
+  return newGameState;
+}
 
 export default function useSecretary<X extends Card>() {
   const {
@@ -19,50 +61,8 @@ export default function useSecretary<X extends Card>() {
   const [currentPlayingFigure, setCurrentPlayingFigure] = useState<Figure>();
   const [state, setState] = useState<GameState['state']>();
 
-  function updateGameStateForFigure<F extends Figure>(
-    oldGameState: GameState,
-    figureName: F['name'],
-    newFigureState: Partial<F>,
-  ): GameState {
-    const {
-      characters,
-      monsters,
-      revision,
-      ...rest
-    } = oldGameState;
-
-    const currentCharacterIndex = characters
-      .findIndex(({ name }) => name === figureName);
-    const currentMonsterIndex = monsters
-      .findIndex(({ name }) => name === figureName);
-
-    const newFiguresState = {
-      characters,
-      monsters,
-    };
-    if (currentCharacterIndex > -1) {
-      newFiguresState.characters = characters.with(currentCharacterIndex, {
-        ...characters[currentCharacterIndex],
-        ...newFigureState,
-      });
-    } else if (currentMonsterIndex > -1) {
-      newFiguresState.monsters = monsters.with(currentMonsterIndex, {
-        ...monsters[currentMonsterIndex],
-        ...newFigureState,
-      });
-    }
-
-    // update playSeconds
-    const newGameState = {
-      ...rest,
-      revision: revision + 1,
-      ...newFiguresState,
-    }
-    return newGameState;
-  }
-
-  const setGhsInitiative = ({ initiative }: X) => {
-    if (!isConnected || !currentClass || !currentCharacter || !gameState) return;
+  const setGhsInitiative = useCallback(({ initiative }: X) => {
+    if (!currentCharacter || !gameState) return;
 
     let newInitiative = initiative;
 
@@ -77,10 +77,10 @@ export default function useSecretary<X extends Card>() {
     if (sendGameStateToGhs) {
       sendGameStateToGhs(newGameState, ['setInitiative', currentCharacter.title || currentClass.name, `'${newInitiative}'`]);
     }
-  };
+  }, [currentClass, currentCharacter, gameState, sendGameStateToGhs]);
 
-  const setGhsInactive = () => {
-    if (!isConnected || !currentClass || !gameState) return;
+  const setGhsInactive = useCallback(() => {
+    if (!gameState) return;
     let newGameState = gameState;
     const { figures } = gameState;
     const ghsCharacterName = mapCharacterNameToSecretary(currentClass.name);
@@ -100,10 +100,10 @@ export default function useSecretary<X extends Card>() {
     if (sendGameStateToGhs) {
       sendGameStateToGhs(newGameState!, ['unsetActive', currentCharacter.title || currentClass.name]);
     }
-  }
+  }, [currentClass.name, currentCharacter, gameState, sendGameStateToGhs]);
 
-  const setGhsIdentity = (identity: number, fromTo: [string, string]) => {
-    if (!gameState || !currentClass || !currentCharacter) return;
+  const setGhsIdentity = useCallback((identity: number, fromTo: [string, string]) => {
+    if (!gameState || !currentCharacter) return;
     const { name, title } = currentCharacter;
 
     const undoInfo = ['nextIdentity', title || currentClass.name, name, ...fromTo];
@@ -112,7 +112,7 @@ export default function useSecretary<X extends Card>() {
     if (sendGameStateToGhs) {
       sendGameStateToGhs(newGameState, undoInfo);
     }
-  }
+  }, [currentClass.name, currentCharacter, gameState, sendGameStateToGhs]);
 
   useEffect(() => {
     if (!gameState) return;

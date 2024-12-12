@@ -7,6 +7,7 @@ import useSecretary from '@/app/_components/secretary/useSecretary';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { AnimatePresence } from 'framer-motion';
 import { useShallow } from 'zustand/shallow';
+import { useCallback, useMemo } from 'react';
 
 const bottomActionMask = <div
   key={'mask-action-top'}
@@ -40,10 +41,11 @@ export default function PlayedCards<X extends Card>() {
     setGhsInitiative,
   } = useSecretary();
 
-  const selectedCards = currentCards
-    .filter(card => card.status === 'selected');
+  const selectedCards = useMemo(() => currentCards
+    .filter(card => card.status === 'selected'),
+    [currentCards]);
 
-  const selectAction = (action: Action) => (card: X) => {
+  const selectAction = useCallback((action: Action) => (card: X) => {
     const cardIndex = selectedCards.indexOf(card);
     const [firstAction, secondAction] = [...selectedActions];
 
@@ -55,7 +57,7 @@ export default function PlayedCards<X extends Card>() {
         action !== 'default' && action === secondAction
           ? undefined : secondAction]
     );
-  };
+  }, [selectedCards, selectedActions, setSelectedActions]);
 
   const playTopAction = (card: X) => ({
     name: 'Play top',
