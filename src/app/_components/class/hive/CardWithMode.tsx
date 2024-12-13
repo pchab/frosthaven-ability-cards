@@ -2,33 +2,30 @@
 
 import type { WheelAction } from '../../cards/ActionWheel';
 import { CardComponent } from '../../cards/Card';
-import { useCards } from '@/app/[selectedClass]/play/useCards';
 import type { HiveCard } from '@/domain/hive/cards';
 import ModeToken from './ModeToken';
+import { useHiveMode } from './useHiveMode';
 
-type CardWithMode = Required<Pick<HiveCard, 'mode'>> & HiveCard;
+export type HiveCardWithRequiredMode = Required<Pick<HiveCard, 'mode'>> & HiveCard;
 
 export default function CardWithMode({
   card,
   actions,
 }: {
-  card: CardWithMode;
+  card: HiveCardWithRequiredMode;
   actions: WheelAction[];
 }) {
-  const { moveTokenForward, transferHive } = useCards<CardWithMode>();
+  const { mode, isSelectedMode } = card;
+  const { transferHive } = useHiveMode();
 
-  const moveTokenForwardAction = {
-    name: 'Move token forward',
-    onClick: () => moveTokenForward(card),
-  };
   const transferAction = {
     name: 'Transfer Hive',
     onClick: () => transferHive(card),
   };
 
-  const tokenActions = [moveTokenForwardAction, transferAction];
+  const tokenActions = [transferAction];
 
   return <CardComponent card={card} actions={[...actions, ...tokenActions]}>
-    <ModeToken position={{ ...card.mode }} />
+    {isSelectedMode && mode && <ModeToken position={{ ...mode }} />}
   </CardComponent>;
 }

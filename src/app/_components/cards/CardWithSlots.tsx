@@ -8,11 +8,11 @@ import CharacterToken from '../class/CharacterToken';
 import type { WheelAction } from './ActionWheel';
 import { CardComponent } from './Card';
 import { ClassContext } from '@/context/ClassContext';
-import { useCards } from '@/app/[selectedClass]/play/useCards';
+import { useCardsSlots } from './useCardsSlots';
 
-type CardWithSlots = Required<Pick<Card, 'slots'>> & Card;
+export type CardWithRequiredSlots = Required<Pick<Card, 'slots'>> & Card;
 
-export default function CardWithSlots<X extends CardWithSlots>({
+export default function CardWithSlots<X extends CardWithRequiredSlots>({
   card,
   actions,
 }: {
@@ -22,7 +22,7 @@ export default function CardWithSlots<X extends CardWithSlots>({
   const { slots, tokenPosition = 0 } = card;
   const selectedClass = use(ClassContext);
   const [{ x, y, radius = 10 }, setTokenPosition] = useState<SlotArea>(slots[tokenPosition]);
-  const { moveTokenForward, moveTokenBackward } = useCards<X>();
+  const { moveTokenForward, moveTokenBackward } = useCardsSlots();
 
   useEffect(() => {
     setTokenPosition(slots[tokenPosition]);

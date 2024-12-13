@@ -16,8 +16,8 @@ export default function ModeToken({
   return <Image
     src={tokenPath}
     alt='mode token'
-    width={600}
-    height={600}
+    width={size}
+    height={size}
     className='absolute'
     style={{ left: x - size / 2, top: y - size / 2 }}
   />;

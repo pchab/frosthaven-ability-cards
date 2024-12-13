@@ -47,7 +47,7 @@ export const hiveCards: HiveCard[] = createCards([
       { type: 'square', position: { x: 91, y: 152 } },
     ],
     initiative: 88,
-    mode: { x: 23, y: 76 },
+    mode: { x: 23, y: 75 },
   },
   {
     level: 1,
@@ -131,7 +131,7 @@ export const hiveCards: HiveCard[] = createCards([
       { type: 'square', position: { x: 91, y: 166 } },
     ],
     initiative: 84,
-    mode: { x: 24, y: 77 },
+    mode: { x: 24, y: 76 },
   },
   {
     level: 1,
