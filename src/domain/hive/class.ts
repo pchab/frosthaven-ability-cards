@@ -1,6 +1,10 @@
 import type { Card } from '../cards.type';
-import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.type';
+import type { FrosthavenClass } from '../frosthaven-class.type';
 import { hiveCards } from './cards';
+
+export function isHive(frosthavenClass: FrosthavenClass<Card>): boolean {
+  return frosthavenClass.name === 'Hive';
+}
 
 export const hive: FrosthavenClass<Card> = {
   name: 'Hive',

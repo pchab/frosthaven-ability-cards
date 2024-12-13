@@ -1,5 +1,5 @@
 import type { Card } from '../cards.type';
-import { type FrosthavenClass, FrosthavenClassNames } from '../frosthaven-class.type';
+import { type FrosthavenClass } from '../frosthaven-class.type';
 import { GeminateCard, geminateCards } from './cards';
 
 export function isGeminate(frosthavenClass: FrosthavenClass<Card>): frosthavenClass is FrosthavenClass<GeminateCard> {

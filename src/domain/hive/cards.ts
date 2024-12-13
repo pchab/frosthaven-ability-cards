@@ -5,7 +5,7 @@ export type HiveCard = Card & {
   mode?: {
     x: number; y: number;
   },
-  selectedMode?: boolean;
+  isSelectedMode?: boolean;
 };
 
 const hivePath = '/hive/abilities';

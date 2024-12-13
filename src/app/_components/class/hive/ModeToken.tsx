@@ -1,13 +1,15 @@
 import Image from 'next/image';
 
+export type ModePosition = {
+  x: number;
+  y: number;
+  size?: number;
+};
+
 export default function ModeToken({
   position: { x, y, size = 20 },
 }: {
-  position: {
-    x: number;
-    y: number;
-    size?: number;
-  };
+  position: ModePosition;
 }) {
   const tokenPath = '/hive/icons/fh-hive-mode-color-icon.webp';
 

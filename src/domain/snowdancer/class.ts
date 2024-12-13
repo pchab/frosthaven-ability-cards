@@ -1,5 +1,5 @@
 import type { Card } from '../cards.type';
-import { FrosthavenClassNames, type FrosthavenClass } from '../frosthaven-class.type';
+import type { FrosthavenClass } from '../frosthaven-class.type';
 import { snowdancerCards } from './cards';
 
 export const snowdancer: FrosthavenClass<Card> = {

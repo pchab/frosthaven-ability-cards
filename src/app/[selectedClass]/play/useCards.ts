@@ -1,4 +1,5 @@
 import type { CardStatus, Card } from '@/domain/cards.type';
+import type { HiveCard } from '@/domain/hive/cards';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useMemo } from 'react';
 import { useShallow } from 'zustand/shallow';
@@ -91,12 +92,23 @@ export function useCards<X extends Card>() {
 
   const moveTokenBackward = (card: X) => {
     if (!card.slots) {
-      throw new Error(`Card ${card.name} doest not have slots`)
+      throw new Error(`Card ${card.name} doesn't not have slots`)
     }
 
     const cardIndex = currentCards.findIndex(c => c === card);
     const newTokenPosition = Math.max(card.tokenPosition ? card.tokenPosition - 1 : 0, 0);
     const newState = currentCards.with(cardIndex, { ...card, tokenPosition: newTokenPosition });
+    updateStates([...states.slice(0, currentStateIndex + 1), newState]);
+  };
+
+  const transferHive = (card: HiveCard) => {
+    if (!card.mode) {
+      throw new Error(`Card ${card.name} can't be transfered to`);
+    }
+
+    const cardIndex = currentCards.findIndex(c => c === card);
+    const newState = (currentCards as HiveCard[])
+      .with(cardIndex, { ...card, isSelectedMode: true });
     updateStates([...states.slice(0, currentStateIndex + 1), newState]);
   };
 
@@ -132,6 +144,7 @@ export function useCards<X extends Card>() {
     recoverCard,
     moveTokenForward,
     moveTokenBackward,
+    transferHive,
     makeRest,
     undo,
     redo,
