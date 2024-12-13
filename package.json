@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vercel/speed-insights": "^1.1.0",
+    "babel-plugin-react-compiler": "^19.0.0-beta-37ed2a7-20241206",
     "framer-motion": "^12.0.0-alpha.1",
     "next": "^15.0.4",
     "react": "19.0.0",
