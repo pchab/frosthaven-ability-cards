@@ -1,9 +1,16 @@
 import { createCards } from '../card.factory';
 import { Card, CardActions } from '../cards.type';
 
+export type HiveCard = Card & {
+  mode?: {
+    x: number; y: number;
+  },
+  selectedMode?: boolean;
+};
+
 const hivePath = '/hive/abilities';
 
-export const hiveCards: Card[] = createCards([
+export const hiveCards: HiveCard[] = createCards([
   {
     level: 'X',
     name: 'reassemble',
@@ -28,6 +35,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 94, y: 39 } },
     ],
     initiative: 86,
+    mode: { x: 40, y: 81 },
   },
   {
     level: 1,
@@ -39,6 +47,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'square', position: { x: 91, y: 152 } },
     ],
     initiative: 88,
+    mode: { x: 23, y: 76 },
   },
   {
     level: 1,
@@ -50,6 +59,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'circle', position: { x: 74, y: 151 } },
     ],
     initiative: 82,
+    mode: { x: 43, y: 80 },
   },
   {
     level: 1,
@@ -97,6 +107,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'circle', position: { x: 63, y: 151 } },
     ],
     initiative: 90,
+    mode: { x: 23, y: 76 },
   },
   {
     level: 1,
@@ -120,6 +131,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'square', position: { x: 91, y: 166 } },
     ],
     initiative: 84,
+    mode: { x: 24, y: 77 },
   },
   {
     level: 1,
@@ -143,6 +155,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'square', position: { x: 89, y: 165 } },
     ],
     initiative: 80,
+    mode: { x: 26, y: 78 },
   },
   {
     level: 2,
@@ -155,6 +168,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'circle', position: { x: 90, y: 152 } },
     ],
     initiative: 78,
+    mode: { x: 24, y: 79 },
   },
   {
     level: 2,
@@ -178,6 +192,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'square', position: { x: 91, y: 172 } },
     ],
     initiative: 92,
+    mode: { x: 24, y: 76 },
   },
   {
     level: 4,
@@ -199,6 +214,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'circle', position: { x: 90, y: 133 } },
     ],
     initiative: 98,
+    mode: { x: 23, y: 77 },
   },
   {
     level: 5,
@@ -219,6 +235,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'summonSquare', position: { x: 59, y: 61 } },
     ],
     initiative: 94,
+    mode: { x: 24, y: 86 },
   },
   {
     level: 6,
@@ -231,6 +248,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'circle', position: { x: 91, y: 141 } },
     ],
     initiative: 79,
+    mode: { x: 24, y: 81 },
   },
   {
     level: 6,
@@ -252,6 +270,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'square', position: { x: 90, y: 152 } },
     ],
     initiative: 85,
+    mode: { x: 23, y: 77 },
   },
   {
     level: 7,
@@ -281,6 +300,7 @@ export const hiveCards: Card[] = createCards([
       { type: 'square', position: { x: 91, y: 176 } },
     ],
     initiative: 96,
+    mode: { x: 24, y: 79 },
   },
   {
     level: 9,
@@ -302,5 +322,6 @@ export const hiveCards: Card[] = createCards([
       { type: 'circle', position: { x: 90, y: 132 } },
     ],
     initiative: 76,
+    mode: { x: 22, y: 77 },
   },
 ], hivePath);
