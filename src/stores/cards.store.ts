@@ -3,6 +3,7 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import { indexedDBStorage } from './indexed-db.storage';
 import { create } from 'zustand';
 import type { Action } from '@/app/[selectedClass]/play/useCards';
+import type { HiveCard } from '@/domain/hive/cards';
 
 export type SelectedActions = [
   Action | undefined,
@@ -29,7 +30,13 @@ type AbilityCardsActions = {
   reset: () => void;
 }
 
-export type PersistedCard = Pick<Card, 'name' | 'status' | 'tokenPosition' | 'enhancements'>;
+export type PersistedCard =
+  | Pick<Card,
+    | 'name'
+    | 'status'
+    | 'tokenPosition'
+    | 'enhancements'>
+  & Pick<HiveCard, 'isSelectedMode'>;
 export type PersistedState = {
   level: number;
   cards: PersistedCard[];
@@ -37,17 +44,19 @@ export type PersistedState = {
   states: PersistedCard[][];
   currentStateIndex: number;
 };
-export function partializeCard<X extends Card>({
+export function partializeCard<X extends HiveCard>({
   name,
   status,
   tokenPosition,
   enhancements,
+  isSelectedMode
 }: X): PersistedCard {
   return {
     name,
     status,
     tokenPosition,
     enhancements,
+    isSelectedMode,
   };
 }
 
