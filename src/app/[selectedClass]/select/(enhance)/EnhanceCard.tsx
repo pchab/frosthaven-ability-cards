@@ -92,6 +92,7 @@ export default function EnhanceCard<X extends Card>({
             coords={`${x},${y},${RADIUS}`}
             shape='circle'
             onMouseEnter={() => setCurrentEnhanceSlot(index)}
+            onTouchMove={() => setCurrentEnhanceSlot(index)}
           />;
         })}
       </map>

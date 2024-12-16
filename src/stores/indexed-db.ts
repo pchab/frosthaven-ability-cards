@@ -13,7 +13,7 @@ const db = (function () {
       }
 
       return new Promise<IDBDatabase>((resolve) => {
-        const request = indexedDB.open(STORE_NAME, 7);
+        const request = indexedDB.open(STORE_NAME, 10);
 
         request.onsuccess = () => {
           resolve(request.result);
