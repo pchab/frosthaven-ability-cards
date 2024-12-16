@@ -15,6 +15,7 @@ import { metalMosaic } from './metal-mosaic/class';
 import { painConduit } from './pain-conduit/class';
 import { snowdancer } from './snowdancer/class';
 import { trapper } from './trapper/class';
+import { shattersong } from './shattersong/class';
 
 const starterClasses = [
   bannerSpear,
@@ -25,15 +26,16 @@ const starterClasses = [
   geminate,
 ];
 const unlockedClasses = [
+  frozenFist,
+  snowdancer,
   crashingTide,
   deepwraith,
-  frozenFist,
   hive,
-  infuser,
   metalMosaic,
+  infuser,
   painConduit,
   pyroclast,
-  snowdancer,
+  shattersong,
   trapper,
 ];
 

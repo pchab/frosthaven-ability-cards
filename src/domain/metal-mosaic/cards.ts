@@ -1,5 +1,5 @@
 import { createCards } from '../card.factory';
-import { Card, CardActions } from '../cards.type';
+import { Card } from '../cards.type';
 
 const metalMosaicPath = '/metal-mosaic/abilities';
 

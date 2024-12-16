@@ -17,6 +17,7 @@ export function mapCharacterNameToSecretary(name: FrosthavenClass<Card>['name'])
     'Metal Mosaic': 'drill',
     'Pain Conduit': 'shackles',
     'Pyroclast': 'meteor',
+    'Shattersong': 'shards',
     'Snowdancer': 'snowflake',
     'Trapper': 'trap',
   }[name];

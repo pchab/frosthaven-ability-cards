@@ -1,5 +1,5 @@
 import { createCards } from '../card.factory';
-import { Card, CardActions } from '../cards.type';
+import { Card } from '../cards.type';
 
 export type GeminateForm = 'melee' | 'ranged';
 export const forms: GeminateForm[] = ['melee', 'ranged'] as const;

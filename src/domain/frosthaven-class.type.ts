@@ -15,6 +15,7 @@ export type FrosthavenClassNames =
   | 'Metal Mosaic'
   | 'Pain Conduit'
   | 'Pyroclast'
+  | 'Shattersong'
   | 'Snowdancer'
   | 'Trapper';
 

@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="shattersong"] {
+    --color-shattersong: #807681;
+    --color-primary: var(--color-shattersong);
+  }
+}
