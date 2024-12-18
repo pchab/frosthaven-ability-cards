@@ -1,5 +1,3 @@
-'use client';
-
 import * as m from 'framer-motion/m';
 import type { ReactNode } from 'react';
 

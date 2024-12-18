@@ -52,7 +52,7 @@ export default function useSecretary<X extends Card>() {
       });
     }
 
-    // update playSeconds
+    // TODO: update playSeconds
     const newGameState = {
       ...rest,
       revision: revision + 1,
