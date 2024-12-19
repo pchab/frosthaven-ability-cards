@@ -6,6 +6,7 @@ import CardPile from '@/app/_components/cards/CardPile';
 import CardWithSlots, { type CardWithRequiredSlots } from '@/app/_components/cards/CardWithSlots';
 import CardWithMode, { type HiveCardWithRequiredMode } from '@/app/_components/class/hive/CardWithMode';
 import { useHiveMode } from '@/app/_components/class/hive/useHiveMode';
+import BoardArea from '@/app/_components/layout/BoardArea';
 import Modal from '@/app/_components/layout/Modal';
 import { ClassContext } from '@/context/ClassContext';
 import { Card } from '@/domain/cards.type';
@@ -70,9 +71,13 @@ export default function ActiveEffects<X extends Card>() {
     },
   }];
 
+  const cardsWithMode = currentCards.filter(cardHasMode);
+
   return <div className='grid grid-cols-3 gap-4 min-w-[461px] min-h-card'>
     {isSelectingMode && <Modal onCancel={() => setIsSelectingMode(false)}>
-      <CardPile cards={currentCards.filter(cardHasMode)} actions={activateHiveModeAction} />
+      <BoardArea title="Select mode">
+        <CardPile cards={cardsWithMode} actions={activateHiveModeAction} maxCardLength={cardsWithMode.length} />
+      </BoardArea>
     </Modal>}
     <AnimatePresence mode='popLayout'>
       {activeEffects

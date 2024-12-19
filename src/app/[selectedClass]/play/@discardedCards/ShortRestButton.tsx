@@ -48,6 +48,6 @@ export default function ShortRestButton<X extends Card>({
         <CardComponent card={lostCard} actions={[confirmShortRestAction]} />
       </div>
     </Modal>}
-    <Button onClick={() => setLostCard(getRandomCard(cards))}>Short Rest</Button>
+    <button onClick={() => setLostCard(getRandomCard(cards))}>Short Rest</button>
   </>;
 }
