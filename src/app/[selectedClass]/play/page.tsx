@@ -6,6 +6,7 @@ import ClassIcon from '@/app/_components/class/ClassIcon';
 import ChangeForm from '@/app/_components/class/geminate/ChangeForm';
 import ChangePressure from '@/app/_components/class/metal-mosaic/ChangePressure';
 import BoardArea from '@/app/_components/layout/BoardArea';
+import SecretaryLink from '@/app/_components/secretary/SecretaryLink';
 import useSecretary from '@/app/_components/secretary/useSecretary';
 import { ClassContext } from '@/context/ClassContext';
 import { isBlinkblade } from '@/domain/blinkblade/class';
@@ -38,10 +39,14 @@ export default function PlayPage<X extends Card>() {
     return `Current Turn: ${currentPlayingFigure.title || upperFirstLetter(currentPlayingFigure.name)}`;
   }, [currentPlayingFigure, currentCharacter?.name]);
 
-  return <BoardArea title={`GHS Status: ${isConnected ? '🟢' : '🔴'}`} actions={[
-    <button key='undo' onClick={undo}>Undo</button>,
-    <button key='redo' onClick={redo}>Redo</button>
-  ]}>
+  return <BoardArea
+    title={
+      <SecretaryLink>GHS Status: {isConnected ? '🟢' : '🔴'}</SecretaryLink>
+    }
+    actions={[
+      <button key='undo' onClick={undo}>Undo</button>,
+      <button key='redo' onClick={redo}>Redo</button>
+    ]}>
     <div className='flex flex-col gap-4 items-center'>
       <div className='flex gap-4 justify-center items-center'>
         {!isGeminate(selectedClass) && <ClassIcon fhClass={selectedClass} />}

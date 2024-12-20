@@ -3,6 +3,7 @@ import { useActionState, useContext } from 'react';
 import { connectToSecretary } from './webSocketClient';
 import { WebSocketContext } from '@/context/WebSocketContext';
 import type { GameState } from '@/domain/secretary/game.state';
+import SecretaryLink from './SecretaryLink';
 
 export default function ConnectForm({
   onConnect,
@@ -33,7 +34,7 @@ export default function ConnectForm({
   );
 
   return <form action={connect} className='bg-linear-to-b from-black to-blue-500 rounded-lg grid grid-cols-4 gap-4 justify-items-center items-center p-4 border-2 border-solid'>
-    <h3 className='col-span-full text-xl'>Connect to GH Secretary</h3>
+    <h3 className='col-span-full text-xl'>Connect to <SecretaryLink>GH Secretary</SecretaryLink></h3>
 
     <label className='col-span-1' htmlFor='secretary-host'>Host :</label>
     <input className='col-span-3 bg-black min-w-96' type='text' name='secretary-host' defaultValue='wss://gloomhaven-secretary.de:8443/' />
