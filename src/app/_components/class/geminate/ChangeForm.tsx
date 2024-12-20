@@ -21,6 +21,7 @@ export default function ChangeForm() {
   };
 
   return <div
+    role='button'
     aria-label='change form'
     className='flex justify-center items-center gap-2 h-24 w-24'
     onClick={changeForm}>

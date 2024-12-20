@@ -25,19 +25,25 @@ export default function Menu({
       </m.button>
       <AnimatePresence>
         {isMenuOpen && <m.div
+          role='menu'
           className='bg-black border-solid rounded-lg border-2 p-4 flex flex-col items-center gap-2 z-50'
           initial={{ x: '100%' }}
           animate={{ x: '0%' }}
           exit={{ x: '100%' }}
           transition={{ duration: 0.3 }}
         >
-          <Link type='submit' href='https://github.com/pchab/frosthaven-ability-cards/issues/new' target='_blank'>
+          <Link
+            role='menuitem'
+            href='https://github.com/pchab/frosthaven-ability-cards/issues/new'
+            target='_blank'>
             Report Issue
           </Link>
-          <div onClick={() => {
-            onOpenConnectModal();
-            setIsMenuOpen(false);
-          }}>Connect to GH secretary</div>
+          <div
+            role='menuitem'
+            onClick={() => {
+              onOpenConnectModal();
+              setIsMenuOpen(false);
+            }}>Connect to GH secretary</div>
         </m.div>}
       </AnimatePresence>
     </LazyMotion>

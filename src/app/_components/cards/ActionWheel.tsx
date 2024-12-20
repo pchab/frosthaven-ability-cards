@@ -26,6 +26,7 @@ export default function ActionWheel({
   actions: WheelAction[];
 }) {
   return <m.div
+    role='menu'
     className='absolute w-full h-full bg-transparent z-30'
     initial={{ scale: 0, opacity: 0, rotate: 90 }}
     animate={{ scale: 1, opacity: 1, rotate: 0 }}
@@ -36,6 +37,7 @@ export default function ActionWheel({
       const { x, y } = getPositionForAction(actions, index);
       return (
         <m.button
+          role='menuitem'
           key={`action-${index}`}
           className={`absolute w-16 h-16 border-2 border-white rounded-full flex items-center justify-center text-xs font-medium bg-black/80`}
           style={{

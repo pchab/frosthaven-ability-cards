@@ -12,7 +12,7 @@ export default function EnhanceSticker({
 
   return <Image
     src={tokenPath}
-    alt='token'
+    alt={`enhancement-sticker-${enhancement}`}
     width={size}
     height={size}
     className='absolute'

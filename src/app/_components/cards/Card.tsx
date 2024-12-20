@@ -18,7 +18,7 @@ export function CardComponent<X extends Card>({
   children?: ReactNode;
   actions?: WheelAction[];
   mapName?: string;
-}) {
+}): ReactNode {
   const innerRef = useRef<HTMLDivElement>(null);
   const [isActionWheelOpen, setIsActionWheelOpen] = useState(false);
 
@@ -56,6 +56,7 @@ export function CardComponent<X extends Card>({
 
   return <LazyMotion features={domAnimation}>
     <m.div
+      role='button'
       aria-label={card.name}
       ref={innerRef}
       onClick={onClickCard}

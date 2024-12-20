@@ -28,6 +28,7 @@ export default function PressureUpIcon() {
   };
 
   return <Image
+    role='button'
     aria-label='increase pressure'
     onClick={increasePressure}
     src={path}
