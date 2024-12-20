@@ -1,4 +1,5 @@
 User-Agent: *
 Allow: /
+Disallow: /test
 
 Sitemap: https://frosthaven-cards.vercel.app/sitemap.xml

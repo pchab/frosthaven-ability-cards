@@ -2,11 +2,9 @@
 
 import { ClassContext } from '@/context/ClassContext';
 import type { Card } from '@/domain/cards.type';
-import { classNameToURI } from '@/domain/frosthaven-class';
-import { GeminateForm, type GeminateCard } from '@/domain/geminate/cards';
+import { type GeminateCard } from '@/domain/geminate/cards';
 import { geminate, isGeminateCards } from '@/domain/geminate/class';
 import { useFrosthavenStore } from '@/stores/cards.store';
-import { useRouter } from 'next/navigation';
 import { use } from 'react';
 import { useShallow } from 'zustand/shallow';
 
@@ -21,7 +19,6 @@ export function useSelectCards<X extends Card>() {
   const {
     cards,
     selectCards,
-    validateCardSelection,
     enhanceCard,
   } = useFrosthavenStore(useShallow((state) => ({
     cards: state.cards as X[],
@@ -29,7 +26,6 @@ export function useSelectCards<X extends Card>() {
     validateCardSelection: state.validateCardSelection,
     enhanceCard: state.enhanceCard,
   })));
-  const router = useRouter();
 
   const selectCard = (card: X) => {
     if (!selectedClass || cards.includes(card)) return;
@@ -46,18 +42,10 @@ export function useSelectCards<X extends Card>() {
 
   const removeCard = (card: X) => selectCards(cards.filter(({ name }) => name !== card.name));
 
-  const validateSelection = () => {
-    if (selectedClass && cards.length === selectedClass.handSize) {
-      validateCardSelection();
-      router.push(`/${classNameToURI(selectedClass.name)}/play`);
-    }
-  };
-
   return {
     cards,
     selectCard,
     removeCard,
-    validateSelection,
     enhanceCard,
   };
 }

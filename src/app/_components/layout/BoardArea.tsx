@@ -5,7 +5,7 @@ export default function BoardArea({
   actions,
   children,
 }: {
-  title: string;
+  title: string | ReactNode;
   actions?: ReactNode[];
   children?: ReactNode;
 }) {

@@ -22,7 +22,11 @@ export default function SelectedCardsPage<X extends Card>() {
     ? [{ name: 'Enhance Card', onClick: () => setEnhancingCard(card) }]
     : [];
 
-  return <BoardArea title={`Selected Cards: ${cards.length}/${selectedClass.handSize}`}>
+  const hasSelectedAllCards = cards.length === selectedClass.handSize;
+
+  return <BoardArea title={<p>
+    Selected Cards: <span className={hasSelectedAllCards ? '' : 'text-red-500'}>{cards.length}</span>/{selectedClass.handSize}
+  </p>}>
     {enhancingCard && <Modal onCancel={() => setEnhancingCard(null)}>
       <EnhanceCard card={enhancingCard} onEnhanceCard={(card: X) => {
         setEnhancingCard(null);
