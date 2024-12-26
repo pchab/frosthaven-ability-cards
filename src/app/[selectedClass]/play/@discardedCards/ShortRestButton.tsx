@@ -22,7 +22,7 @@ export default function ShortRestButton<X extends Card>({
   const { makeRest } = useCards();
 
   const confirmShortRestAction = {
-    name: 'Confirm Short Rest',
+    name: `Confirm Short Rest: lose ${lostCard?.name}`,
     onClick: () => {
       if (!lostCard) return;
       makeRest(lostCard);
@@ -30,10 +30,13 @@ export default function ShortRestButton<X extends Card>({
   };
 
   return <>
+    <button onClick={() => setLostCard(getRandomCard(cards))}>Short Rest</button>
     {lostCard && <Modal onCancel={() => setLostCard(undefined)}>
       <div className='flex flex-col gap-4 items-center'>
         {!hasRerolled &&
           <Button
+            autoFocus
+            label='Short Rest'
             onClick={() => {
               setHasRerolled(true);
               const newLostCard = getRandomCard(cards.filter(c => c !== lostCard));
@@ -48,6 +51,5 @@ export default function ShortRestButton<X extends Card>({
         <CardComponent card={lostCard} actions={[confirmShortRestAction]} />
       </div>
     </Modal>}
-    <button onClick={() => setLostCard(getRandomCard(cards))}>Short Rest</button>
   </>;
 }

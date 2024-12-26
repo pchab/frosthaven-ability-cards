@@ -71,7 +71,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
         setConnected(true);
       }} onData={setGameState} />
     </Modal>}
-    <Menu onOpenConnectModal={() => setConnectModalOpen(true)} />
     {children}
+    <Menu onOpenConnectModal={() => setConnectModalOpen(true)} />
   </WebSocketContext>;
 }

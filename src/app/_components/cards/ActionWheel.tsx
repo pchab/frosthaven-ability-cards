@@ -2,7 +2,7 @@ import * as m from 'framer-motion/m';
 import type { ReactNode } from 'react';
 
 export type WheelAction = {
-  name: ReactNode;
+  name: ReactNode | string;
   onClick: () => void;
 }
 
@@ -27,7 +27,7 @@ export default function ActionWheel({
 }) {
   return <m.div
     role='menu'
-    className='absolute w-full h-full bg-transparent z-30'
+    className='absolute top-0 w-full h-full bg-transparent z-30'
     initial={{ scale: 0, opacity: 0, rotate: 90 }}
     animate={{ scale: 1, opacity: 1, rotate: 0 }}
     exit={{ scale: 0, opacity: 0, rotate: 90 }}
@@ -37,6 +37,7 @@ export default function ActionWheel({
       const { x, y } = getPositionForAction(actions, index);
       return (
         <m.button
+          autoFocus={index === 0}
           role='menuitem'
           key={`action-${index}`}
           className={`absolute w-16 h-16 border-2 border-white rounded-full flex items-center justify-center text-xs font-medium bg-black/80`}
@@ -46,7 +47,7 @@ export default function ActionWheel({
           }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          onTap={action.onClick}
+          onClick={action.onClick}
         >
           {action.name}
         </m.button>

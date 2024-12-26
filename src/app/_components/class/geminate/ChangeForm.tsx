@@ -20,11 +20,10 @@ export default function ChangeForm() {
     changeIdentity(forms.indexOf(newForm), fromTo);
   };
 
-  return <div
-    role='button'
+  return <button
     aria-label='change form'
     className='flex justify-center items-center gap-2 h-24 w-24'
     onClick={changeForm}>
     <FormIcon form={forms[identity]} />
-  </div>;
+  </button>;
 }

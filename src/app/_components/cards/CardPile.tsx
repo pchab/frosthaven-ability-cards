@@ -95,8 +95,6 @@ export default function CardPile<X extends Card>({
             onMouseEnter={() => setFocusCardIndex(index)}
             onTouchStart={() => setFocusCardIndex(index)}
             onFocus={() => setFocusCardIndex(index)}
-            whileHover={{ scale: 1.2 }}
-            whileFocus={{ scale: 1.2 }}
             className={maxCardLength < 11
               ? '-mr-card-1/2'
               : marginRightForLongHand[maxCardLength as LongHandSize]

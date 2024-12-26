@@ -14,7 +14,7 @@ export default function DisplayClassMat() {
       <CharacterMat className={fhClass.name}></CharacterMat>
     </Modal>}
     <button
-      aria-label='display class mat'
+      aria-label='Display class mat'
       className='rounded-full border-solid border-2 border-white px-2 bg-primary'
       onClick={() => setDisplay(true)}>
       ?

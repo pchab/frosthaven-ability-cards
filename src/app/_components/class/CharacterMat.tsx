@@ -17,13 +17,15 @@ export default function CharacterMat({
   const matPath = `/${fhClassName}/mats/fh-${fhClassName}.webp`;
   const matBackPath = `/${fhClassName}/mats/fh-${fhClassName}-back.webp`;
 
-  return <div onClick={() => setDisplayFront(!displayFront)}
-    className='absolute m-auto left-0 right-0 top-0 bottom-0 w-mat h-mat perspective-distant transform-3d'>
+  return <button
+    autoFocus
+    onClick={() => setDisplayFront(!displayFront)}
+    className='w-mat h-mat perspective-distant transform-3d'>
     <LazyMotion features={domAnimation}>
       <m.div
         transition={{ duration: 0.7 }}
         animate={{ rotateY: displayFront ? 0 : 180 }}
-        className='absolute border-solid border-2 border-primary backface-hidden'
+        className='absolute top-0 border-solid border-2 border-primary backface-hidden'
       >
         <Image
           src={matPath}
@@ -36,7 +38,7 @@ export default function CharacterMat({
         transition={{ duration: 0.7 }}
         initial={{ rotateY: 180 }}
         animate={{ rotateY: displayFront ? 180 : 360 }}
-        className='absolute border-solid border-2 border-primary backface-hidden'
+        className='absolute top-0 border-solid border-2 border-primary backface-hidden'
       >
         <Image
           src={matBackPath}
@@ -46,5 +48,5 @@ export default function CharacterMat({
         />
       </m.div>
     </LazyMotion>
-  </div>;
+  </button>;
 }

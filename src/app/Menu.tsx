@@ -16,6 +16,7 @@ export default function Menu({
   return <div className='absolute right-0 top-0 p-4 flex flex-col items-end gap-2'>
     <LazyMotion features={domAnimation}>
       <m.button
+        aria-label='Open settings'
         className='rounded-full'
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         whileTap={{ rotate: 360 }}

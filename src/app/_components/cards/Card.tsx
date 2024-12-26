@@ -43,39 +43,51 @@ export function CardComponent<X extends Card>({
       setIsActionWheelOpen(false);
     }
   };
+  const handleKeyboardEvent = (event: KeyboardEvent) => {
+    if (event.key === 'Escape' || event.key === 'Enter') {
+      setIsActionWheelOpen(false);
+    }
+  };
   useEffect(() => {
     if (isActionWheelOpen) {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('touchend', handleTouchOutside);
+      document.addEventListener('keydown', handleKeyboardEvent);
     }
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('touchend', handleTouchOutside);
+      document.removeEventListener('keydown', handleKeyboardEvent);
     };
   }, [isActionWheelOpen]);
 
+  const cardLabel = actions.length === 1
+    ? actions[0].name as string
+    : card.name;
+
   return <LazyMotion features={domAnimation}>
     <m.div
-      role='button'
-      aria-label={card.name}
       ref={innerRef}
-      onClick={onClickCard}
       className='relative'
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -40, opacity: 0 }}
     >
+      {children}
+      <button
+        aria-label={cardLabel}
+        onClick={onClickCard}>
+        <Image
+          {...(mapName ? { useMap: `#${mapName}` } : {})}
+          src={card.path}
+          alt={`card ${card.name}`}
+          width={143}
+          height={200}
+        />
+      </button>
       <AnimatePresence>
         {isActionWheelOpen && <ActionWheel actions={actions} />}
       </AnimatePresence>
-      {children}
-      <Image
-        {...(mapName ? { useMap: `#${mapName}` } : {})}
-        src={card.path}
-        alt={`card ${card.name}`}
-        width={143}
-        height={200}
-      />
       {card.availableEnhancements
         ?.map(({ position }, index) => !!card.enhancements?.[index]
           && <EnhanceSticker

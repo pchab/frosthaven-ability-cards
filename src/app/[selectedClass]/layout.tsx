@@ -47,10 +47,10 @@ export default async function Layout({
 
   return <div data-theme={selectedClass}>
     <ClassProvider fhClassName={fhClassName}>
+      {children}
       <div className='absolute left-0 top-0 p-4 flex flex-col items-end gap-2'>
         <DisplayClassMat />
       </div>
-      {children}
     </ClassProvider>
   </div>;
 }

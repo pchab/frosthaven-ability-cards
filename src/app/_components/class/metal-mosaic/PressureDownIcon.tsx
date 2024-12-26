@@ -27,13 +27,14 @@ export default function PressureDownIcon() {
     changeIdentity(pressures.indexOf(newPressure), fromTo);
   };
 
-  return <Image
-    role='button'
-    aria-label='decrease pressure'
+  return <button
     onClick={decreasePressure}
-    src={path}
-    alt={`pressure-down`}
-    width={417}
-    height={600}
-  />;
+    aria-label='decrease pressure'>
+    <Image
+      src={path}
+      alt={`pressure-down`}
+      width={417}
+      height={600}
+    />
+  </button>;
 }

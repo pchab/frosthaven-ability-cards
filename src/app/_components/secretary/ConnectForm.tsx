@@ -43,7 +43,12 @@ export default function ConnectForm({
     <input className='col-span-3 bg-black min-w-96' type='text' name='secretary-id' placeholder='GH Secretary ID' />
 
     <div className='col-span-full'>
-      <Button type='submit'>Connect</Button>
+      <Button
+        label='Connect to GH Secretary'
+        type='submit'
+      >
+        Connect
+      </Button>
     </div>
 
     <div className='col-span-full'>

@@ -97,6 +97,11 @@ export default function EnhanceCard<X extends Card>({
         })}
       </map>
     </CardComponent>
-    <Button onClick={() => onEnhanceCard(currentCard)}>Enhance</Button>
+    <Button
+      label={`Enhance ${card.name}`}
+      onClick={() => onEnhanceCard(currentCard)}
+    >
+      Enhance
+    </Button>
   </div>;
 }

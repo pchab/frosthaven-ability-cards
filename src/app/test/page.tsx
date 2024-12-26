@@ -153,7 +153,7 @@ export default function TestCard(
           Enhance :
           {currentCard.availableEnhancements?.map((enhancement, index) => {
             const testEnhancement = getTestEnhancement(enhancement.type);
-            return <Button key={index} onClick={() => addEnhance(index, testEnhancement)}>{index}: {enhancement.type}</Button>;
+            return <Button label='test enhancement' key={index} onClick={() => addEnhance(index, testEnhancement)}>{index}: {enhancement.type}</Button>;
           })}
         </div>
       </div>

@@ -16,11 +16,12 @@ export default function LongRestButton<X extends Card>({
   const { makeRest } = useCards();
 
   const confirmLongRestAction = (lostCard: X) => [{
-    name: 'Confirm Long Rest',
+    name: `Confirm Long Rest: lose ${lostCard.name}`,
     onClick: () => makeRest(lostCard),
   }];
 
   return <>
+    <button onClick={() => setDoesLongRest(true)}>Long Rest</button>
     {doesLongRest &&
       <Modal onCancel={() => setDoesLongRest(false)}>
         <BoardArea title='Choose card to lose'>
@@ -32,6 +33,5 @@ export default function LongRestButton<X extends Card>({
         </BoardArea>
       </Modal>
     }
-    <button onClick={() => setDoesLongRest(true)}>Long Rest</button>
   </>;
 }

@@ -20,11 +20,10 @@ export default function ChangeSpeed() {
     changeIdentity(speeds.indexOf(newSpeed), fromTo);
   };
 
-  return <div
-    role='button'
+  return <button
     aria-label='change speed'
     className='flex justify-center items-center gap-2 h-24 w-24'
     onClick={changeSpeed}>
     <SpeedIcon speed={currentSpeed as BlinkbladeSpeed} />
-  </div>;
+  </button>;
 }
