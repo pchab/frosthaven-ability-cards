@@ -13,11 +13,13 @@ export function CardComponent<X extends Card>({
   children,
   actions = [],
   mapName,
+  autoFocus,
 }: {
   card: X;
   children?: ReactNode;
   actions?: WheelAction[];
   mapName?: string;
+  autoFocus?: boolean;
 }): ReactNode {
   const innerRef = useRef<HTMLDivElement>(null);
   const [isActionWheelOpen, setIsActionWheelOpen] = useState(false);
@@ -31,33 +33,34 @@ export function CardComponent<X extends Card>({
     setIsActionWheelOpen(!isActionWheelOpen);
   };
 
-  const handleClickOutside: EventListener = (event) => {
+  const handleClickOutsideEvent: EventListener = (event) => {
     if (!innerRef.current?.contains(event.target as Node)) {
       setIsActionWheelOpen(false);
     }
   };
-  const handleTouchOutside: EventListener = (event) => {
+  const handleTouchOutsideEvent: EventListener = (event) => {
     const changedTouch = (event as TouchEvent).changedTouches[0];
     const elem = document.elementFromPoint(changedTouch.clientX, changedTouch.clientY);
     if (!innerRef.current?.contains(elem as Node)) {
       setIsActionWheelOpen(false);
     }
   };
-  const handleKeyboardEvent = (event: KeyboardEvent) => {
-    if (event.key === 'Escape' || event.key === 'Enter') {
+  const handleKeyboardOutsideEvent = (event: KeyboardEvent) => {
+    if (event.key === 'Escape' || (event.key === 'Enter' && !innerRef.current?.contains(event.target as Node))) {
       setIsActionWheelOpen(false);
     }
   };
+
   useEffect(() => {
     if (isActionWheelOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('touchend', handleTouchOutside);
-      document.addEventListener('keydown', handleKeyboardEvent);
+      document.addEventListener('mousedown', handleClickOutsideEvent);
+      document.addEventListener('touchend', handleTouchOutsideEvent);
+      document.addEventListener('keydown', handleKeyboardOutsideEvent);
     }
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchend', handleTouchOutside);
-      document.removeEventListener('keydown', handleKeyboardEvent);
+      document.removeEventListener('mousedown', handleClickOutsideEvent);
+      document.removeEventListener('touchend', handleTouchOutsideEvent);
+      document.removeEventListener('keydown', handleKeyboardOutsideEvent);
     };
   }, [isActionWheelOpen]);
 
@@ -75,6 +78,7 @@ export function CardComponent<X extends Card>({
     >
       {children}
       <button
+        autoFocus={autoFocus}
         aria-label={cardLabel}
         onClick={onClickCard}>
         <Image
@@ -86,7 +90,7 @@ export function CardComponent<X extends Card>({
         />
       </button>
       <AnimatePresence>
-        {isActionWheelOpen && <ActionWheel actions={actions} />}
+        {isActionWheelOpen && <ActionWheel actions={actions} onAction={() => setIsActionWheelOpen(false)} />}
       </AnimatePresence>
       {card.availableEnhancements
         ?.map(({ position }, index) => !!card.enhancements?.[index]

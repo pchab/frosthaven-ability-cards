@@ -9,8 +9,6 @@ export default function PlayLayout({
   lostCards,
   selectedCards,
   activeEffects,
-  rests,
-  ghsStatus,
 }: {
   children: ReactNode;
   currentHand: ReactNode;
@@ -18,8 +16,6 @@ export default function PlayLayout({
   lostCards: ReactNode;
   selectedCards: ReactNode;
   activeEffects: ReactNode;
-  rests: ReactNode;
-  ghsStatus: ReactNode;
 }) {
   return <div className='h-full p-2 gap-4 flex flex-col-reverse lg:flex-row justify-center'>
     <Heading title='Play your cards' />

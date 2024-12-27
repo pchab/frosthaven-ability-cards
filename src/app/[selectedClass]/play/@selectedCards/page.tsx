@@ -104,7 +104,7 @@ export default function PlayedCards<X extends Card>() {
   };
 
   const actions = selectedCards.length === 2 && areAllActionsSelected(selectedActions)
-    ? [<button key='end-turn' onClick={endTurn}>End Turn</button>]
+    ? [<button autoFocus key='end-turn' onClick={endTurn}>End Turn</button>]
     : undefined;
 
   return <BoardArea title='Selected cards' actions={actions}>
@@ -112,6 +112,7 @@ export default function PlayedCards<X extends Card>() {
       <AnimatePresence mode='popLayout'>
         {selectedCards
           .map((card, index) => <CardComponent
+            autoFocus={index === 1}
             key={card.name}
             card={card}
             actions={getPlayableActions(card)}
