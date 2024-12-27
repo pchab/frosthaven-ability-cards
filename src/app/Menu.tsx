@@ -39,12 +39,12 @@ export default function Menu({
             target='_blank'>
             Report Issue
           </Link>
-          <div
+          <button
             role='menuitem'
             onClick={() => {
               onOpenConnectModal();
               setIsMenuOpen(false);
-            }}>Connect to GH secretary</div>
+            }}>Connect to GH secretary</button>
         </m.div>}
       </AnimatePresence>
     </LazyMotion>

@@ -40,7 +40,7 @@ export default function ConnectForm({
     <input className='col-span-3 bg-black min-w-96' type='text' name='secretary-host' defaultValue='wss://gloomhaven-secretary.de:8443/' />
 
     <label className='col-span-1' htmlFor='secretary-id'>ID :</label>
-    <input className='col-span-3 bg-black min-w-96' type='text' name='secretary-id' placeholder='GH Secretary ID' />
+    <input autoFocus className='col-span-3 bg-black min-w-96' type='text' name='secretary-id' placeholder='GH Secretary ID' />
 
     <div className='col-span-full'>
       <Button
