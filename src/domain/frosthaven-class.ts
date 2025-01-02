@@ -16,6 +16,7 @@ import { painConduit } from './pain-conduit/class';
 import { snowdancer } from './snowdancer/class';
 import { trapper } from './trapper/class';
 import { shattersong } from './shattersong/class';
+import { bladeswarm } from './bladeswarm/class';
 
 const starterClasses = [
   bannerSpear,
@@ -37,6 +38,7 @@ const unlockedClasses = [
   pyroclast,
   shattersong,
   trapper,
+  bladeswarm,
 ];
 
 export const frosthavenClasses = [

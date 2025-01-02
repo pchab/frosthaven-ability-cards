@@ -4,6 +4,7 @@ import { type FrosthavenClass } from '../frosthaven-class.type';
 export function mapCharacterNameToSecretary(name: FrosthavenClass<Card>['name']) {
   return {
     'Banner Spear': 'banner-spear',
+    'Bladeswarm': 'envx',
     'Blinkblade': 'blinkblade',
     'Boneshaper': 'boneshaper',
     'Crashing Tide': 'coral',
