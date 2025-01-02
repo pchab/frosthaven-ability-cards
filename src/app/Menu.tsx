@@ -13,7 +13,7 @@ export default function Menu({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  return <div className='absolute right-0 top-0 p-4 flex flex-col items-end gap-2'>
+  return <div className='absolute right-0 top-0 p-4 flex flex-col items-end gap-2 overflow-hidden'>
     <LazyMotion features={domAnimation}>
       <m.button
         aria-label='Open settings'
