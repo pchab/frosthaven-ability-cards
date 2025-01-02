@@ -8,6 +8,48 @@ import { CharacterState, type Figure, type GameState } from '@/domain/secretary/
 import { mapCharacterNameToSecretary } from '@/domain/secretary/secretary-character.mapper';
 import { use, useEffect, useState } from 'react';
 
+function updateGameStateForFigure<F extends Figure>(
+  oldGameState: GameState,
+  figureName: F['name'],
+  newFigureState: Partial<F>,
+): GameState {
+  const {
+    characters,
+    monsters,
+    revision,
+    ...rest
+  } = oldGameState;
+
+  const currentCharacterIndex = characters
+    .findIndex(({ name }) => name === figureName);
+  const currentMonsterIndex = monsters
+    .findIndex(({ name }) => name === figureName);
+
+  const newFiguresState = {
+    characters,
+    monsters,
+  };
+  if (currentCharacterIndex > -1) {
+    newFiguresState.characters = characters.with(currentCharacterIndex, {
+      ...characters[currentCharacterIndex],
+      ...newFigureState,
+    });
+  } else if (currentMonsterIndex > -1) {
+    newFiguresState.monsters = monsters.with(currentMonsterIndex, {
+      ...monsters[currentMonsterIndex],
+      ...newFigureState,
+    });
+  }
+
+  // TODO: update playSeconds
+  const newGameState = {
+    ...rest,
+    revision: revision + 1,
+    ...newFiguresState,
+  }
+  return newGameState;
+}
+
 export default function useSecretary<X extends Card>() {
   const {
     isConnected,
@@ -18,48 +60,6 @@ export default function useSecretary<X extends Card>() {
   const [currentCharacter, setCurrentCharacter] = useState<CharacterState>();
   const [currentPlayingFigure, setCurrentPlayingFigure] = useState<Figure>();
   const [state, setState] = useState<GameState['state']>();
-
-  function updateGameStateForFigure<F extends Figure>(
-    oldGameState: GameState,
-    figureName: F['name'],
-    newFigureState: Partial<F>,
-  ): GameState {
-    const {
-      characters,
-      monsters,
-      revision,
-      ...rest
-    } = oldGameState;
-
-    const currentCharacterIndex = characters
-      .findIndex(({ name }) => name === figureName);
-    const currentMonsterIndex = monsters
-      .findIndex(({ name }) => name === figureName);
-
-    const newFiguresState = {
-      characters,
-      monsters,
-    };
-    if (currentCharacterIndex > -1) {
-      newFiguresState.characters = characters.with(currentCharacterIndex, {
-        ...characters[currentCharacterIndex],
-        ...newFigureState,
-      });
-    } else if (currentMonsterIndex > -1) {
-      newFiguresState.monsters = monsters.with(currentMonsterIndex, {
-        ...monsters[currentMonsterIndex],
-        ...newFigureState,
-      });
-    }
-
-    // TODO: update playSeconds
-    const newGameState = {
-      ...rest,
-      revision: revision + 1,
-      ...newFiguresState,
-    }
-    return newGameState;
-  }
 
   const setGhsInitiative = ({ initiative }: X) => {
     if (!isConnected || !currentClass || !currentCharacter || !gameState) return;
