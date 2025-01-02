@@ -2,6 +2,7 @@ import { type Card } from './cards.type';
 
 export type FrosthavenClassNames =
   | 'Banner Spear'
+  | 'Bladeswarm'
   | 'Blinkblade'
   | 'Boneshaper'
   | 'Deathwalker'

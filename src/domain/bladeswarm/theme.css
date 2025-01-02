@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@layer base {
+  div[data-theme="bladeswarm"] {
+    --color-bladeswarm: #AE9588;
+    --color-primary: var(--color-bladeswarm);
+  }
+}
