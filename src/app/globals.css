@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import '../domain/banner-spear/theme.css';
+@import '../domain/bladeswarm/theme.css';
 @import '../domain/blinkblade/theme.css';
 @import '../domain/boneshaper/theme.css';
 @import '../domain/crashing-tide/theme.css';
