@@ -10,7 +10,7 @@ export type SelectedActions = [
   Action | undefined,
 ];
 
-type AbilityCardsState = {
+interface AbilityCardsState {
   level: number;
   cards: Card[];
   availableCards: Card[];
@@ -19,7 +19,7 @@ type AbilityCardsState = {
   selectedActions: SelectedActions;
 }
 
-type AbilityCardsActions = {
+interface AbilityCardsActions {
   setLevel: (level: number) => void;
   validateCardSelection: () => void;
   enhanceCard: (card: Card) => void;
@@ -37,7 +37,7 @@ export type PersistedCard =
     | 'tokenPosition'
     | 'enhancements'>
   & Pick<HiveCard, 'isSelectedMode'>;
-export type PersistedState = {
+export interface PersistedState {
   level: number;
   cards: PersistedCard[];
   availableCards: PersistedCard[];

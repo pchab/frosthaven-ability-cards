@@ -2,7 +2,6 @@
 
 import { bannerSpear } from '@/domain/banner-spear/class';
 import { CardComponent } from '../_components/cards/Card';
-import { CardActions } from '@/domain/cards.type';
 import { useEffect, useRef, useState, use } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Enhancement, EnhancementSlot } from '@/domain/enhancement/enhancement.type';
@@ -12,7 +11,7 @@ import { frosthavenClasses } from '@/domain/frosthaven-class';
 
 const RADIUS = 5;
 
-type HoverCircleArea = {
+interface HoverCircleArea {
   x: number;
   y: number;
   radius?: number;

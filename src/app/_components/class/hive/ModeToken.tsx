@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export type ModePosition = {
+export interface ModePosition {
   x: number;
   y: number;
   size?: number;

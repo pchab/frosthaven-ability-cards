@@ -9,7 +9,9 @@ export const IdentityContext = createContext<{
   changeIdentity: (identity: number, fromTo: [string, string]) => void;
 }>({
   identity: 0,
-  changeIdentity: () => { },
+  changeIdentity: () => {
+    // do nothing.
+  },
 });
 
 export default function IdentityProvider({

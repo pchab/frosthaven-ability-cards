@@ -96,7 +96,7 @@ export function CardComponent<X extends Card>({
         ?.map(({ position }, index) => !!card.enhancements?.[index]
           && <EnhanceSticker
             key={`${card.name}-enhance-slot-${index}`}
-            enhancement={card.enhancements?.[index]!}
+            enhancement={card.enhancements?.[index]}
             position={position}
           />)}
     </m.div>

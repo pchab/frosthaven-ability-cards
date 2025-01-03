@@ -18,7 +18,11 @@ export default function ClassProvider({
 }) {
   const reset = useFrosthavenStore((state) => state.reset);
   const fhClass = frosthavenClasses
-    .find(({ name }) => name === fhClassName)!;
+    .find(({ name }) => name === fhClassName);
+
+  if (!fhClass) {
+    throw new Error(`Unknown class ${fhClassName}`);
+  }
 
   useEffect(() => {
     reset();

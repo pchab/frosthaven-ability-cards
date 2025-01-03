@@ -1,6 +1,5 @@
 import type { Card } from '@/domain/cards.type';
 import { classNameToURI, frosthavenClasses } from '@/domain/frosthaven-class';
-import type { FrosthavenClass } from '@/domain/frosthaven-class.type';
 import type { MetadataRoute } from 'next';
 
 const prodUrl = 'https://frosthaven-cards.vercel.app';

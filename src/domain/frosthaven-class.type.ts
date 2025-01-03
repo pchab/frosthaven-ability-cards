@@ -20,7 +20,7 @@ export type FrosthavenClassNames =
   | 'Snowdancer'
   | 'Trapper';
 
-export type FrosthavenClass<X extends Card> = {
+export interface FrosthavenClass<X extends Card> {
   name: FrosthavenClassNames;
   handSize: number;
   path: string;

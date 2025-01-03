@@ -31,7 +31,7 @@ export async function connectToSecretary({
       resolve(client);
     };
 
-    client.onerror = (event) => {
+    client.onerror = () => {
       reject();
     };
   });

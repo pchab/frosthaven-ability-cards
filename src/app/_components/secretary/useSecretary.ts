@@ -73,7 +73,7 @@ export default function useSecretary<X extends Card>() {
       }
     }
 
-    const newGameState = updateGameStateForFigure(gameState, currentCharacter.name, { initiative: newInitiative })!;
+    const newGameState = updateGameStateForFigure(gameState, currentCharacter.name, { initiative: newInitiative });
     if (sendGameStateToGhs) {
       sendGameStateToGhs(newGameState, ['setInitiative', currentCharacter.title || currentClass.name, `'${newInitiative}'`]);
     }
@@ -98,7 +98,7 @@ export default function useSecretary<X extends Card>() {
     }
 
     if (sendGameStateToGhs) {
-      sendGameStateToGhs(newGameState!, ['unsetActive', currentCharacter.title || currentClass.name]);
+      sendGameStateToGhs(newGameState, ['unsetActive', currentCharacter.title || currentClass.name]);
     }
   }
 
@@ -108,7 +108,7 @@ export default function useSecretary<X extends Card>() {
 
     const undoInfo = ['nextIdentity', title || currentClass.name, name, ...fromTo];
 
-    const newGameState = updateGameStateForFigure(gameState, name, { identity })!;
+    const newGameState = updateGameStateForFigure(gameState, name, { identity });
     if (sendGameStateToGhs) {
       sendGameStateToGhs(newGameState, undoInfo);
     }

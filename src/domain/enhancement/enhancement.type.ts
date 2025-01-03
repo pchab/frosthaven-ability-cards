@@ -19,7 +19,7 @@ export type Enhancement = 'jump'
   | 'ward'
   | 'hex-attack';
 
-export type EnhancementSlot = {
+export interface EnhancementSlot {
   type: EnhancementType;
   position: { x: number; y: number; size?: number; };
 }
