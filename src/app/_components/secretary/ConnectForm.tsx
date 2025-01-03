@@ -39,10 +39,10 @@ export default function ConnectForm({
     <h3 className='col-span-full text-xl'>Connect to <SecretaryLink>GH Secretary</SecretaryLink></h3>
 
     <label className='col-span-1' htmlFor='secretary-host'>Host :</label>
-    <input className='col-span-3 bg-black min-w-96' type='text' name='secretary-host' defaultValue='wss://gloomhaven-secretary.de:8443/' />
+    <input required className='col-span-3 bg-black min-w-96' type='text' name='secretary-host' defaultValue='wss://gloomhaven-secretary.de:8443/' />
 
     <label className='col-span-1' htmlFor='secretary-id'>ID :</label>
-    <input autoFocus className='col-span-3 bg-black min-w-96' type='text' name='secretary-id' placeholder='GH Secretary ID' />
+    <input required autoFocus className='col-span-3 bg-black min-w-96' type='text' name='secretary-id' placeholder='GH Secretary ID' />
 
     <div className='col-span-full'>
       <Button
