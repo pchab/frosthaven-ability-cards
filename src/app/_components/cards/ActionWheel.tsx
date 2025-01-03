@@ -1,7 +1,7 @@
 import * as m from 'framer-motion/m';
 import type { ReactNode } from 'react';
 
-export type WheelAction = {
+export interface WheelAction {
   name: ReactNode | string;
   onClick: () => void;
 }

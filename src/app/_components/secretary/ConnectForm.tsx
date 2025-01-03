@@ -5,6 +5,8 @@ import { WebSocketContext } from '@/context/WebSocketContext';
 import type { GameState } from '@/domain/secretary/game.state';
 import SecretaryLink from './SecretaryLink';
 
+type State = 'Connected' | 'Failed to connect' | null;
+
 export default function ConnectForm({
   onConnect,
   onData,
@@ -17,9 +19,9 @@ export default function ConnectForm({
 }) {
   const { id: currentId, isConnected } = useContext(WebSocketContext);
   const [state, connect, isPending] = useActionState(
-    async (_: any, formData: FormData) => {
-      const host = formData.get('secretary-host')! as string;
-      const id = formData.get('secretary-id')! as string;
+    async (_state: State, formData: FormData) => {
+      const host = formData.get('secretary-host') as string;
+      const id = formData.get('secretary-id') as string;
       try {
         const client = await connectToSecretary({ host, secretaryId: id, onData });
         onConnect({ client, id });

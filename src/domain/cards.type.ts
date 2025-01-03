@@ -1,6 +1,6 @@
 import type { Enhancement, EnhancementSlot } from './enhancement/enhancement.type';
 
-export type SlotArea = {
+export interface SlotArea {
   x: number;
   y: number;
   radius?: number
@@ -20,7 +20,7 @@ export type CardActions =
   | 'discard'
   | 'lose';
 
-export type Card = {
+export interface Card {
   name: string;
   level: number | 'X';
   path: string;

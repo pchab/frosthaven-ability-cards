@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 
 const RADIUS = 10;
 
-type HoverCircleArea = {
+interface HoverCircleArea {
   x: number;
   y: number;
   radius?: number;

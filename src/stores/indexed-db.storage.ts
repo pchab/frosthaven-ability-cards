@@ -19,7 +19,10 @@ function departializeCardForClass<X extends HiveCard>(fhClass: FrosthavenClass<X
     enhancements,
     isSelectedMode,
   }: PersistedCard): X => {
-    const card = fhClass.cards.find((card) => card.name === name)!;
+    const card = fhClass.cards.find((card) => card.name === name);
+    if (!card) {
+      throw new Error(`Card ${name} not found in ${fhClass.name}`);
+    }
     return {
       ...card,
       status,
@@ -31,7 +34,7 @@ function departializeCardForClass<X extends HiveCard>(fhClass: FrosthavenClass<X
 }
 
 export const indexedDBStorage: StateStorage = {
-  getItem: async (name: string): Promise<string | null> => {
+  getItem: async (): Promise<string | null> => {
     const selectedClass = getClass();
     if (!selectedClass) {
       return null;
@@ -55,7 +58,7 @@ export const indexedDBStorage: StateStorage = {
       }
     });
   },
-  setItem: async (name: string, value: string): Promise<void> => {
+  setItem: async (_name: string, value: string): Promise<void> => {
     const selectedClass = getClass();
     if (!selectedClass) {
       return;
@@ -63,7 +66,7 @@ export const indexedDBStorage: StateStorage = {
     const transaction = await startTransaction();
     await put(transaction)(selectedClass.name, value);
   },
-  removeItem: async (name: string): Promise<void> => {
+  removeItem: async (): Promise<void> => {
     const selectedClass = getClass();
     if (!selectedClass) {
       return;

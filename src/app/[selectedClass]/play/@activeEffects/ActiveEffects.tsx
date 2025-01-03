@@ -42,7 +42,7 @@ export default function ActiveEffects<X extends Card>() {
     name: 'Remove effect',
     onClick: () => {
       const action = card.status === 'activeTop' ? card.actions.top : card.actions.bottom;
-      action === 'activeDiscard' ? discardCard(card) : loseCard(card)
+      return action === 'activeDiscard' ? discardCard(card) : loseCard(card);
     },
   });
 

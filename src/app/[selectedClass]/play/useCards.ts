@@ -1,5 +1,4 @@
 import type { CardStatus, Card } from '@/domain/cards.type';
-import type { HiveCard } from '@/domain/hive/cards';
 import { useFrosthavenStore } from '@/stores/cards.store';
 import { useMemo } from 'react';
 import { useShallow } from 'zustand/shallow';
