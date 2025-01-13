@@ -1,9 +1,11 @@
+import ActionWheel from '@/app/_components/cards/ActionWheel';
 import { CardComponent } from '@/app/_components/cards/Card';
 import EnhanceSticker from '@/app/_components/cards/Enhance/EnhanceSticker';
 import Button from '@/app/_components/inputs/Button';
 import type { Card } from '@/domain/cards.type';
 import type { Enhancement } from '@/domain/enhancement/enhancement.type';
 import { getEnhancementByType } from '@/domain/enhancement/enhancements';
+import { AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
 const RADIUS = 10;
@@ -78,7 +80,13 @@ export default function EnhanceCard<X extends Card>({
   const getAreaName = (index: number) => ['enhance', ...card.name.split(' '), 'slot', index].join('-');
 
   return <div className='flex flex-col gap-4'>
-    <CardComponent card={currentCard} mapName={mapName} actions={getEnhancementActions(currentEnhanceSlot)}>
+    <CardComponent card={currentCard} mapName={mapName} actions={[{
+      name: 'Cancel enhancement',
+      onClick: () => setCurrentEnhanceSlot(undefined),
+    }]}>
+      <AnimatePresence>
+        {currentEnhanceSlot !== undefined && <ActionWheel actions={getEnhancementActions(currentEnhanceSlot)} onAction={() => setCurrentEnhanceSlot(undefined)} />}
+      </AnimatePresence>
       <canvas
         ref={canvasRef}
         className='absolute pointer-events-none'
@@ -90,6 +98,7 @@ export default function EnhanceCard<X extends Card>({
           return <area
             key={getAreaName(index)}
             coords={`${x},${y},${RADIUS}`}
+            className='pointer-events-auto'
             shape='circle'
             onClick={() => setCurrentEnhanceSlot(index)}
           />;

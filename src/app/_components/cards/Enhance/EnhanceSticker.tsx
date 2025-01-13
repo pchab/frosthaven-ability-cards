@@ -15,7 +15,7 @@ export default function EnhanceSticker({
     alt={`enhancement-sticker-${enhancement}`}
     width={size}
     height={size}
-    className='absolute'
+    className='absolute pointer-events-none'
     style={{ left: x - size / 2, top: y - size / 2 }}
   />;
 }
