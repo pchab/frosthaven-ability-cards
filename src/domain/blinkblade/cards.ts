@@ -143,7 +143,7 @@ export const blinkbladeCards: Card[] = createCards([
     name: 'systems reboot',
     actions: { top: 'lose', bottom: 'discard' },
     availableEnhancements: [
-      { type: 'diamond', position: { x: 71, y: 46 } },
+      { type: 'diamondPlus', position: { x: 71, y: 46 } },
     ],
     initiative: 57,
   },
