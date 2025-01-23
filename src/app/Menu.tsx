@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
+import * as m from "motion/react-m"
+import { AnimatePresence, domAnimation, LazyMotion } from 'motion/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
-import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
-import * as m from 'framer-motion/m';
 
 export default function Menu({
   onOpenConnectModal,

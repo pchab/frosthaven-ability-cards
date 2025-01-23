@@ -1,13 +1,13 @@
 'use client';
 
+import { ClassContext } from '@/context/ClassContext';
 import type { Card, SlotArea } from '@/domain/cards.type';
 import { isDrifter } from '@/domain/drifter/class';
-import * as m from 'framer-motion/m';
+import * as m from 'motion/react-m';
 import { use, useEffect, useState } from 'react';
 import CharacterToken from '../class/CharacterToken';
 import type { WheelAction } from './ActionWheel';
 import { CardComponent } from './Card';
-import { ClassContext } from '@/context/ClassContext';
 import { useCardsSlots } from './useCardsSlots';
 
 export type CardWithRequiredSlots = Required<Pick<Card, 'slots'>> & Card;

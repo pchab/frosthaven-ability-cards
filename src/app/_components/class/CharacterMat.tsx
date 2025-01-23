@@ -2,8 +2,8 @@
 
 import { classNameToURI } from '@/domain/frosthaven-class';
 import type { FrosthavenClassNames } from '@/domain/frosthaven-class.type';
-import { domAnimation, LazyMotion } from 'framer-motion';
-import * as m from 'framer-motion/m';
+import { domAnimation, LazyMotion } from 'motion/react';
+import * as m from 'motion/react-m';
 import Image from 'next/image';
 import { useState } from 'react';
 

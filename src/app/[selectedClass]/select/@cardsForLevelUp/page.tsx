@@ -1,8 +1,8 @@
 'use client';
 
 import { useFrosthavenStore } from '@/stores/cards.store';
-import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
-import * as m from 'framer-motion/m';
+import { AnimatePresence, domAnimation, LazyMotion } from 'motion/react';
+import * as m from 'motion/react-m';
 import AvailableCardsByLevel from './AvailableCardsByLevel';
 
 export default function CardsForLevelUpPage() {

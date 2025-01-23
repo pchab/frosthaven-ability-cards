@@ -1,6 +1,6 @@
 import { Card } from '@/domain/cards.type';
-import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
-import * as m from 'framer-motion/m';
+import { AnimatePresence, domAnimation, LazyMotion } from 'motion/react';
+import * as m from 'motion/react-m';
 import { useEffect, useRef, useState } from 'react';
 import type { WheelAction } from './ActionWheel';
 import { CardComponent } from './Card';

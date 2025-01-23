@@ -1,8 +1,8 @@
 'use client';
 
 import { Card } from '@/domain/cards.type';
-import { AnimatePresence, domAnimation, LazyMotion } from 'framer-motion';
-import * as m from 'framer-motion/m';
+import { AnimatePresence, domAnimation, LazyMotion } from 'motion/react';
+import * as m from 'motion/react-m';
 import Image from 'next/image';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import ActionWheel, { type WheelAction } from './ActionWheel';

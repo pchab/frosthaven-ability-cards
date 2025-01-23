@@ -1,4 +1,4 @@
-import * as m from 'framer-motion/m';
+import * as m from 'motion/react-m';
 import type { ReactNode } from 'react';
 
 export interface WheelAction {

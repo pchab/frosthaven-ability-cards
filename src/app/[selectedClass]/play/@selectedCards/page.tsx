@@ -5,7 +5,7 @@ import type { Card } from '@/domain/cards.type';
 import { useCards, type Action } from '@/app/[selectedClass]/play/useCards';
 import useSecretary from '@/app/_components/secretary/useSecretary';
 import { useFrosthavenStore, type SelectedActions } from '@/stores/cards.store';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'motion/react';
 import { useShallow } from 'zustand/shallow';
 import BoardArea from '@/app/_components/layout/BoardArea';
 

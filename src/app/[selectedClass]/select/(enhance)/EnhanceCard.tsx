@@ -5,7 +5,7 @@ import Button from '@/app/_components/inputs/Button';
 import type { Card } from '@/domain/cards.type';
 import type { Enhancement } from '@/domain/enhancement/enhancement.type';
 import { getEnhancementByType } from '@/domain/enhancement/enhancements';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 
 const RADIUS = 10;

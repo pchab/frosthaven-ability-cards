@@ -12,7 +12,7 @@ import { ClassContext } from '@/context/ClassContext';
 import { Card } from '@/domain/cards.type';
 import type { HiveCard } from '@/domain/hive/cards';
 import { isHive } from '@/domain/hive/class';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'motion/react';
 import { use, useEffect, useState } from 'react';
 
 function cardHasSlots(card: Card): card is CardWithRequiredSlots {
