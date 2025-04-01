@@ -32,7 +32,7 @@ function areAllActionsSelected(actions: SelectedActions): actions is [Action, Ac
 }
 
 export default function PlayedCards<X extends Card>() {
-  const { currentCards, playCards } = useCards<X>();
+  const { currentCards, playCards, recoverCard } = useCards<X>();
   const {
     selectedActions,
     setSelectedActions,
@@ -116,6 +116,7 @@ export default function PlayedCards<X extends Card>() {
             key={card.name}
             card={card}
             actions={getPlayableActions(card)}
+            onCloseCard={() => recoverCard(selectedCards[index])}
           >
             {selectedActions[index] && getSelectedActionMasks(selectedActions[index])}
           </CardComponent>)}

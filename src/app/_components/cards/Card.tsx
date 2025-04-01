@@ -14,12 +14,14 @@ export function CardComponent<X extends Card>({
   actions = [],
   mapName,
   autoFocus,
+  onCloseCard,
 }: {
   card: X;
   children?: ReactNode;
   actions?: WheelAction[];
   mapName?: string;
   autoFocus?: boolean;
+  onCloseCard?: () => void;
 }): ReactNode {
   const innerRef = useRef<HTMLDivElement>(null);
   const [isActionWheelOpen, setIsActionWheelOpen] = useState(false);
@@ -89,6 +91,10 @@ export function CardComponent<X extends Card>({
           height={200}
         />
       </button>
+      {onCloseCard && <button
+        aria-label='remove card'
+        className='rounded-full border-solid border-1 border-white px-1 bg-primary z-50 text-xs absolute -top-1 -right-1'
+        onClick={onCloseCard}>X</button>}
       <AnimatePresence>
         {isActionWheelOpen && <ActionWheel actions={actions} onAction={() => setIsActionWheelOpen(false)} />}
       </AnimatePresence>
