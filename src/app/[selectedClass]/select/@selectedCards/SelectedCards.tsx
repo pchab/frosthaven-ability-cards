@@ -14,15 +14,10 @@ export function SelectedCards<X extends Card>({
   const { handSize } = use(ClassContext);
   const { cards, removeCard } = useSelectCards<X>();
 
-  const removeAction = (card: X) => ({
-    name: 'Remove Card',
-    onClick: () => removeCard(card),
-  });
-  const pileActions = (card: X) => [removeAction(card), ...actions(card)];
-
   return <CardPile
     cards={cards}
-    actions={pileActions}
+    actions={actions}
     maxCardLength={handSize}
+    onCloseCard={removeCard}
   />;
 }

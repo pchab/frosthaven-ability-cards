@@ -14,12 +14,6 @@ export function SelectedGeminateCards({
   const handSizeByForm = geminate.handSize / 2;
   const { cards, removeCard } = useSelectCards<GeminateCard>();
 
-  const removeAction = (card: GeminateCard) => ({
-    name: 'Remove Card',
-    onClick: () => removeCard(card),
-  });
-  const pileActions = (card: GeminateCard) => [removeAction(card), ...actions(card)];
-
   return <div className='flex flex-col gap-4 items-center'>
     {['melee', 'ranged'].map((form) => {
       const cardsByForm = cards.filter((card) => card.form === form);
@@ -33,8 +27,9 @@ export function SelectedGeminateCards({
         </div>
         <CardPile
           cards={cardsByForm}
-          actions={pileActions}
+          actions={actions}
           maxCardLength={handSizeByForm}
+          onCloseCard={removeCard}
         />
       </div>
     })}

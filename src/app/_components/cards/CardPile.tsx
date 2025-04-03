@@ -36,10 +36,12 @@ export default function CardPile<X extends Card>({
   cards,
   actions,
   maxCardLength = 1,
+  onCloseCard,
 }: {
   cards: X[];
   actions: PileActions<X>;
   maxCardLength?: number;
+  onCloseCard?: (card: X) => void;
 }) {
   const [focusCardIndex, setFocusCardIndex] = useState<number | null>(null);
   const pileRef = useRef<HTMLDivElement>(null);
@@ -106,6 +108,10 @@ export default function CardPile<X extends Card>({
           >
             <CardComponent
               card={card}
+              onCloseCard={onCloseCard && index === focusCardIndex
+                ? () => onCloseCard(card)
+                : undefined
+              }
               actions={actions(card)} />
           </m.div>)}
       </AnimatePresence>
