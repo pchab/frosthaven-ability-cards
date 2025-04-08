@@ -14,10 +14,12 @@ export type CardWithRequiredSlots = Required<Pick<Card, 'slots'>> & Card;
 
 export default function CardWithSlots<X extends CardWithRequiredSlots>({
   card,
-  actions,
+  actions = [],
+  onCloseCard,
 }: {
   card: X;
-  actions: WheelAction[];
+  actions?: WheelAction[];
+  onCloseCard?: () => void;
 }) {
   const { slots, tokenPosition = 0 } = card;
   const selectedClass = use(ClassContext);
@@ -28,21 +30,21 @@ export default function CardWithSlots<X extends CardWithRequiredSlots>({
     setTokenPosition(slots[tokenPosition]);
   }, [slots, tokenPosition]);
 
-  const moveTokenForwardAction = {
-    name: 'Move token forward',
-    onClick: () => moveTokenForward(card),
-  };
   const moveTokenBackwardAction = {
     name: 'Move token backward',
     onClick: () => moveTokenBackward(card),
   };
+  const moveTokenForwardAction = {
+    name: 'Move token forward',
+    onClick: () => moveTokenForward(card),
+  };
 
   const canMoveBackward = selectedClass && isDrifter(selectedClass) && tokenPosition > 0;
   const tokenActions = canMoveBackward
-    ? [moveTokenForwardAction, moveTokenBackwardAction]
+    ? [moveTokenBackwardAction, moveTokenForwardAction]
     : [moveTokenForwardAction];
 
-  return <CardComponent card={card} actions={[...actions, ...tokenActions]}>
+  return <CardComponent card={card} actions={[...actions, ...tokenActions]} onCloseCard={onCloseCard}>
     <m.div
       animate={{ x: x - radius, y: y - radius }}
       transition={{ ease: 'easeOut', duration: 0.2 }}

@@ -38,22 +38,19 @@ export default function ActiveEffects<X extends Card>() {
   const activeEffects = currentCards
     .filter(({ status }) => ['activeTop', 'activeBottom'].includes(status));
 
-  const removeEffectAction = (card: X) => ({
-    name: 'Remove effect',
-    onClick: () => {
-      const action = card.status === 'activeTop' ? card.actions.top : card.actions.bottom;
-      return action === 'activeDiscard' ? discardCard(card) : loseCard(card);
-    },
-  });
+  const removeEffectAction = (card: X) => {
+    const action = card.status === 'activeTop' ? card.actions.top : card.actions.bottom;
+    return action === 'activeDiscard' ? discardCard(card) : loseCard(card);
+  };
 
   const getCardComponent = (card: X) => {
     if (isHive(currentClass) && cardHasMode(card)) {
-      return <CardWithMode key={card.name} card={card} actions={[removeEffectAction(card)]} />;
+      return <CardWithMode key={card.name} card={card} onCloseCard={() => removeEffectAction(card)} />;
     }
     if (cardHasSlots(card)) {
-      return <CardWithSlots key={card.name} card={card} actions={[removeEffectAction(card)]} />;
+      return <CardWithSlots key={card.name} card={card} onCloseCard={() => removeEffectAction(card)} />;
     }
-    return <CardComponent key={card.name} card={card} actions={[removeEffectAction(card)]} />;
+    return <CardComponent key={card.name} card={card} onCloseCard={() => removeEffectAction(card)} />;
   };
 
   useEffect(() => {
@@ -76,7 +73,12 @@ export default function ActiveEffects<X extends Card>() {
   return <div className='grid grid-cols-3 gap-4 min-w-[461px] min-h-card'>
     {isSelectingMode && <Modal onCancel={() => setIsSelectingMode(false)}>
       <BoardArea title="Select mode">
-        <CardPile cards={cardsWithMode} actions={activateHiveModeAction} maxCardLength={cardsWithMode.length} />
+        <CardPile
+          cards={cardsWithMode}
+          actions={activateHiveModeAction}
+          maxCardLength={cardsWithMode.length}
+          onCloseCard={removeEffectAction}
+        />
       </BoardArea>
     </Modal>}
     <AnimatePresence mode='popLayout'>

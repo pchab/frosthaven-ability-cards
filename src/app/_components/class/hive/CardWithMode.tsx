@@ -10,10 +10,12 @@ export type HiveCardWithRequiredMode = Required<Pick<HiveCard, 'mode'>> & HiveCa
 
 export default function CardWithMode({
   card,
-  actions,
+  actions = [],
+  onCloseCard,
 }: {
   card: HiveCardWithRequiredMode;
-  actions: WheelAction[];
+  actions?: WheelAction[];
+  onCloseCard?: () => void;
 }) {
   const { mode, isSelectedMode } = card;
   const { transferHive } = useHiveMode();
@@ -25,7 +27,7 @@ export default function CardWithMode({
 
   const tokenActions = [transferAction];
 
-  return <CardComponent card={card} actions={[...actions, ...tokenActions]}>
+  return <CardComponent card={card} actions={[...actions, ...tokenActions]} onCloseCard={onCloseCard}>
     {isSelectedMode && mode && <ModeToken position={{ ...mode }} />}
   </CardComponent>;
 }
