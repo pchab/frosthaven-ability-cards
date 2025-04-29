@@ -64,11 +64,4 @@ body {
   height:100%;
   width:100%;
   color: white;
-  background-image: url(/fh-background.webp);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
