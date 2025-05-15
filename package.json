@@ -10,25 +10,25 @@
   },
   "dependencies": {
     "@vercel/speed-insights": "^1.2.0",
-    "babel-plugin-react-compiler": "^19.1.0-rc.1",
-    "motion": "^12.9.4",
-    "next": "^15.3.1",
+    "babel-plugin-react-compiler": "^19.1.0-rc.2",
+    "motion": "^12.11.3",
+    "next": "^15.3.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "zustand": "^5.0.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.25.1",
-    "@tailwindcss/postcss": "^4.1.4",
-    "@types/node": "^22.15.2",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "eslint": "^9.25.1",
-    "eslint-config-next": "^15.3.1",
-    "tailwindcss": "^4.1.4",
+    "@eslint/js": "^9.26.0",
+    "@tailwindcss/postcss": "^4.1.6",
+    "@types/node": "^22.15.18",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "eslint": "^9.26.0",
+    "eslint-config-next": "^15.3.2",
+    "tailwindcss": "^4.1.6",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.29.1"
+    "typescript-eslint": "^8.32.1"
   },
   "overrides": {
     "react": "19.1.0",
