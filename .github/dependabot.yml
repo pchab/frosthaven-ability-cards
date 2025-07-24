@@ -4,3 +4,22 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      react:
+        patterns:
+          - react
+          - react-dom
+          - "@types/react"
+          - "@types/react-dom"
+      eslint:
+        patterns:
+          - eslint
+          - "@eslint/*"
+      next:
+        patterns:
+          - next
+          - eslint-config-next
+      tailwind:
+        patterns:
+          - tailwindcss
+          - "@tailwindcss/postcss"
