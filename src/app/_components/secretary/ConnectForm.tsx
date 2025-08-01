@@ -1,30 +1,21 @@
 import Button from '../inputs/Button';
 import { useActionState, useContext } from 'react';
-import { connectToSecretary } from './webSocketClient';
 import { WebSocketContext } from '@/context/WebSocketContext';
-import type { GameState } from '@/domain/secretary/game.state';
 import SecretaryLink from './SecretaryLink';
 
 type State = 'Connected' | 'Failed to connect' | null;
 
-export default function ConnectForm({
-  onConnect,
-  onData,
-}: {
-  onConnect: (args: {
-    client: WebSocket;
-    id: string;
-  }) => void;
-  onData: (data: GameState) => void;
-}) {
-  const { id: currentId, isConnected } = useContext(WebSocketContext);
-  const [state, connect, isPending] = useActionState(
+export default function ConnectForm() {
+  const { id: currentId, isConnected, connect } = useContext(WebSocketContext);
+  const [state, submit, isPending] = useActionState(
     async (_state: State, formData: FormData) => {
       const host = formData.get('secretary-host') as string;
       const id = formData.get('secretary-id') as string;
       try {
-        const client = await connectToSecretary({ host, secretaryId: id, onData });
-        onConnect({ client, id });
+        if (!connect) {
+          throw new Error('WebSocket connection function is not available');
+        }
+        await connect({ host, id });
         return 'Connected';
       }
       catch (error) {
@@ -35,7 +26,7 @@ export default function ConnectForm({
     null,
   );
 
-  return <form action={connect} className='bg-linear-to-b from-black to-blue-500 rounded-lg grid grid-cols-4 gap-4 justify-items-center items-center p-4 border-2 border-solid'>
+  return <form action={submit} className='bg-linear-to-b from-black to-blue-500 rounded-lg grid grid-cols-4 gap-4 justify-items-center items-center p-4 border-2 border-solid'>
     <h3 className='col-span-full text-xl'>Connect to <SecretaryLink>GH Secretary</SecretaryLink></h3>
 
     <label className='col-span-1' htmlFor='secretary-host'>Host :</label>

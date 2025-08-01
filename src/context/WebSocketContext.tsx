@@ -14,6 +14,7 @@ export const WebSocketContext = createContext<{
   id: string;
   gameState?: GameState;
   sendGameStateToGhs?: WsGameStateUpdate;
+  connect?: ({ host, id }: { host: string, id: string }) => Promise<void>;
 }>({
   isConnected: false,
   id: '',
@@ -41,19 +42,33 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
     }));
   };
 
+  const connect = async ({ host, id }: { host: string, id: string }) => {
+    if (wsClient.current) {
+      wsClient.current.close();
+    }
+
+    const onDisconnect = async () => {
+      console.error('Connection lost, trying to reconnect...');
+      setTimeout(() => connect({ host, id }), 1000); // Reconnect after 1 second
+    };
+
+    const client = await connectToSecretary({
+      host,
+      secretaryId: id,
+      onData: setGameState,
+      onDisconnect,
+    });
+    wsClient.current = client;
+    setSecretaryId(id);
+    setConnected(true);
+    setConnectModalOpen(false);
+  };
+
   useEffect(() => {
     const host = localStorage.getItem('secretary-host');
     const id = localStorage.getItem('secretary-id');
     if (!id || !host) return;
-    setSecretaryId(id);
-    connectToSecretary({
-      host,
-      secretaryId: id,
-      onData: setGameState,
-    }).then((client) => {
-      wsClient.current = client;
-      setConnected(true);
-    });
+    connect({ host, id });
     return () => wsClient.current?.close();
   }, []);
 
@@ -62,14 +77,10 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
     id: secretaryId,
     gameState,
     sendGameStateToGhs,
+    connect,
   }}>
     {isConnectModalOpen && <Modal onCancel={() => setConnectModalOpen(false)}>
-      <ConnectForm onConnect={({ client, id }) => {
-        wsClient.current = client;
-        setSecretaryId(id);
-        setConnectModalOpen(false);
-        setConnected(true);
-      }} onData={setGameState} />
+      <ConnectForm />
     </Modal>}
     {children}
     <Menu onOpenConnectModal={() => setConnectModalOpen(true)} />

@@ -4,14 +4,16 @@ export async function connectToSecretary({
   host,
   secretaryId,
   onData,
+  onDisconnect,
 }: {
   host: string;
   secretaryId: string;
-  onData: (data: GameState) => void
+  onData: (data: GameState) => void;
+  onDisconnect: () => void;
 }) {
   const client = new WebSocket(host);
 
-  return new Promise<WebSocket>((resolve, reject) => {
+  return new Promise<WebSocket>((resolve) => {
     client.onmessage = (event) => {
       const { type, payload } = JSON.parse(event.data) as { type: string, payload: GameState };
       if (type === 'game' || type === 'game-update' || type === 'game-undo') {
@@ -27,12 +29,17 @@ export async function connectToSecretary({
         password: secretaryId,
         type: "request-game",
       }));
-
+      console.log('Connected to secretary:', host);
       resolve(client);
     };
 
     client.onerror = () => {
-      reject();
+      client.close();
+      onDisconnect();
+    };
+
+    client.onclose = () => {
+      console.log('Connection closed');
     };
   });
 }

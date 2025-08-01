@@ -41,12 +41,12 @@ export default function RootLayout({
   const style = {
     height: '100vh',
     width: '100vw',
-    'background-repeat': 'no-repeat',
-    'background-position': 'center',
-    'background-attachment': 'fixed',
-    '-moz-background-size': 'cover',
-    '-o-background-size': 'cover',
-    'background-size': 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+    MozBackgroundSize: 'cover',
+    OBackgroundSize: 'cover',
+    backgroundSize: 'cover',
     backgroundImage,
   };
 
