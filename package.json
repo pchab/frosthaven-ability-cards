@@ -11,7 +11,7 @@
   "dependencies": {
     "@vercel/speed-insights": "^1.2.0",
     "babel-plugin-react-compiler": "^19.1.0-rc.2",
-    "motion": "^12.23.9",
+    "motion": "^12.23.12",
     "next": "^15.4.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
