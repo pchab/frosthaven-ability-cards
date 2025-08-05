@@ -16,6 +16,21 @@ import { isGeminate } from '@/domain/geminate/class';
 import { isMetalMosaic } from '@/domain/metal-mosaic/class';
 import { use, useMemo } from 'react';
 
+function mapConnectionStatustoDisplay(connectionStatus: WebSocket['readyState']) {
+  switch (connectionStatus) {
+    case WebSocket.OPEN:
+      return '🟢';
+    case WebSocket.CONNECTING:
+      return '🔵';
+    case WebSocket.CLOSING:
+      return '🟡';
+    case WebSocket.CLOSED:
+      return '🔴';
+    default:
+      return '❓';
+  }
+}
+
 export default function PlayPage<X extends Card>() {
   const selectedClass = use(ClassContext);
   const {
@@ -23,7 +38,7 @@ export default function PlayPage<X extends Card>() {
     redo,
   } = useCards<X>();
   const {
-    isConnected,
+    connectionStatus,
     state,
     currentCharacter,
     currentPlayingFigure,
@@ -41,7 +56,7 @@ export default function PlayPage<X extends Card>() {
 
   return <BoardArea
     title={
-      <SecretaryLink>GHS Status: {isConnected ? '🟢' : '🔴'}</SecretaryLink>
+      <SecretaryLink>GHS Status: {mapConnectionStatustoDisplay(connectionStatus)}</SecretaryLink>
     }
     actions={[
       <button key='undo' onClick={undo}>Undo</button>,
@@ -54,7 +69,7 @@ export default function PlayPage<X extends Card>() {
         {isBlinkblade(selectedClass) && <ChangeSpeed />}
         {isMetalMosaic(selectedClass) && <ChangePressure />}
       </div>
-      {isConnected && <h3 className='text-lg font-bold'>
+      {connectionStatus === WebSocket.OPEN && <h3 className='text-lg font-bold'>
         {state === 'next' && currentPlayingString}
         {state === 'draw' && `Chosen Initiative: ${currentCharacter?.initiative || '-'}`}
       </h3>}

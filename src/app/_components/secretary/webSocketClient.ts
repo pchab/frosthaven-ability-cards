@@ -4,11 +4,13 @@ export async function connectToSecretary({
   host,
   secretaryId,
   onData,
+  onStatusChange,
   onDisconnect,
 }: {
   host: string;
   secretaryId: string;
   onData: (data: GameState) => void;
+  onStatusChange: (status: WebSocket['readyState']) => void;
   onDisconnect: () => void;
 }) {
   const client = new WebSocket(host);
@@ -22,6 +24,7 @@ export async function connectToSecretary({
     };
 
     client.onopen = () => {
+      onStatusChange(client.readyState);
       localStorage.setItem('secretary-id', secretaryId);
       localStorage.setItem('secretary-host', host);
       client.send(JSON.stringify({
@@ -34,11 +37,13 @@ export async function connectToSecretary({
     };
 
     client.onerror = () => {
+      onStatusChange(client.readyState);
       client.close();
       onDisconnect();
     };
 
     client.onclose = () => {
+      onStatusChange(client.readyState);
       console.log('Connection closed');
     };
   });

@@ -52,7 +52,7 @@ function updateGameStateForFigure<F extends Figure>(
 
 export default function useSecretary<X extends Card>() {
   const {
-    isConnected,
+    connectionStatus,
     gameState,
     sendGameStateToGhs,
   } = use(WebSocketContext);
@@ -62,7 +62,7 @@ export default function useSecretary<X extends Card>() {
   const [state, setState] = useState<GameState['state']>();
 
   const setGhsInitiative = ({ initiative }: X) => {
-    if (!isConnected || !currentClass || !currentCharacter || !gameState) return;
+    if (connectionStatus !== WebSocket.OPEN || !currentClass || !currentCharacter || !gameState) return;
 
     let newInitiative = initiative;
 
@@ -80,7 +80,7 @@ export default function useSecretary<X extends Card>() {
   };
 
   const setGhsInactive = () => {
-    if (!isConnected || !currentClass || !gameState) return;
+    if (connectionStatus !== WebSocket.OPEN || !currentClass || !gameState) return;
     let newGameState = gameState;
     const { figures } = gameState;
     const ghsCharacterName = mapCharacterNameToSecretary(currentClass.name);
@@ -128,7 +128,7 @@ export default function useSecretary<X extends Card>() {
   }, [gameState, currentClass.name]);
 
   return {
-    isConnected,
+    connectionStatus,
     state,
     currentCharacter,
     currentPlayingFigure,

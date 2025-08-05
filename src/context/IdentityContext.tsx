@@ -20,7 +20,7 @@ export default function IdentityProvider({
   children: React.ReactNode;
 }) {
   const {
-    isConnected,
+    connectionStatus,
     currentCharacter,
     setGhsIdentity,
   } = useSecretary();
@@ -28,14 +28,14 @@ export default function IdentityProvider({
   const [identity, setIdentity] = useState(0);
 
   useEffect(() => {
-    if (!isConnected || !currentClass || !currentCharacter) return;
+    if (connectionStatus !== WebSocket.OPEN || !currentClass || !currentCharacter) return;
     const { identity } = currentCharacter;
     setIdentity(identity);
-  }, [currentCharacter, isConnected, currentClass]);
+  }, [currentCharacter, connectionStatus, currentClass]);
 
   const changeIdentity = (identity: number, fromTo: [string, string]) => {
     setIdentity(identity);
-    if (isConnected) {
+    if (connectionStatus === WebSocket.OPEN) {
       setGhsIdentity(identity, fromTo);
     }
   }

@@ -6,7 +6,7 @@ import SecretaryLink from './SecretaryLink';
 type State = 'Connected' | 'Failed to connect' | null;
 
 export default function ConnectForm() {
-  const { id: currentId, isConnected, connect } = useContext(WebSocketContext);
+  const { id: currentId, connectionStatus, connect } = useContext(WebSocketContext);
   const [state, submit, isPending] = useActionState(
     async (_state: State, formData: FormData) => {
       const host = formData.get('secretary-host') as string;
@@ -46,7 +46,7 @@ export default function ConnectForm() {
 
     <div className='col-span-full'>
       {isPending && <p>Connecting...</p>}
-      {isConnected && <p>Connected to {currentId}</p>}
+      {connectionStatus === WebSocket.OPEN && <p>Connected to {currentId}</p>}
       {state && <p>{state}</p>}
     </div>
   </form>;

@@ -10,21 +10,21 @@ import { createContext, useEffect, useRef, useState, type ReactNode } from 'reac
 type WsGameStateUpdate = (state: GameState, info: string[]) => void;
 
 export const WebSocketContext = createContext<{
-  isConnected: boolean;
+  connectionStatus: WebSocket['readyState'];
   id: string;
   gameState?: GameState;
   sendGameStateToGhs?: WsGameStateUpdate;
   connect?: ({ host, id }: { host: string, id: string }) => Promise<void>;
 }>({
-  isConnected: false,
+  connectionStatus: WebSocket.CLOSED,
   id: '',
 });
 
 export default function WebSocketProvider({ children }: { children: ReactNode }) {
   const wsClient = useRef<WebSocket | null>(null);
+  const [connectionStatus, setConnectionStatus] = useState<WebSocket['readyState']>(WebSocket.CLOSED);
   const [secretaryId, setSecretaryId] = useState<string>('');
   const [isConnectModalOpen, setConnectModalOpen] = useState(false);
-  const [isConnected, setConnected] = useState(false);
   const [gameState, setGameState] = useState<GameState>();
 
   const sendGameStateToGhs = (newState: GameState, info: string[]) => {
@@ -34,7 +34,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
     wsClient.current.send(JSON.stringify({
       code: secretaryId,
       password: secretaryId,
-      type: "game",
+      type: 'game',
       payload: newState,
       revision: 0,
       undoinfo: info,
@@ -56,11 +56,11 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
       host,
       secretaryId: id,
       onData: setGameState,
+      onStatusChange: setConnectionStatus,
       onDisconnect,
     });
     wsClient.current = client;
     setSecretaryId(id);
-    setConnected(true);
     setConnectModalOpen(false);
   };
 
@@ -73,7 +73,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
   }, []);
 
   return <WebSocketContext value={{
-    isConnected,
+    connectionStatus,
     id: secretaryId,
     gameState,
     sendGameStateToGhs,

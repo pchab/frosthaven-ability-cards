@@ -41,7 +41,7 @@ export default function PlayedCards<X extends Card>() {
     setSelectedActions: store.setSelectedActions,
   })))
   const {
-    isConnected,
+    connectionStatus,
     setGhsInactive,
     setGhsInitiative,
   } = useSecretary();
@@ -83,7 +83,7 @@ export default function PlayedCards<X extends Card>() {
   const getPlayableActions = (card: X) => [
     playDefaultAction(card),
     playTopAction(card),
-    ...(isConnected ? [selectInitiative(card)] : []),
+    ...(connectionStatus === WebSocket.OPEN ? [selectInitiative(card)] : []),
     playBottomAction(card),
   ];
 
@@ -97,7 +97,7 @@ export default function PlayedCards<X extends Card>() {
         { action: secondAction, card: secondCard },
       ]);
 
-      if (isConnected) {
+      if (connectionStatus === WebSocket.OPEN) {
         setGhsInactive();
       }
     }
