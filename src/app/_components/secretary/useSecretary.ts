@@ -12,11 +12,13 @@ function updateGameStateForFigure<F extends Figure>(
   oldGameState: GameState,
   figureName: F['name'],
   newFigureState: Partial<F>,
+  lastUpdateInSeconds: number,
 ): GameState {
   const {
     characters,
     monsters,
     revision,
+    playSeconds,
     ...rest
   } = oldGameState;
 
@@ -41,13 +43,17 @@ function updateGameStateForFigure<F extends Figure>(
     });
   }
 
-  // TODO: update playSeconds
   const newGameState = {
     ...rest,
     revision: revision + 1,
+    playSeconds: playSeconds + (getNowInSeconds() - lastUpdateInSeconds),
     ...newFiguresState,
   }
   return newGameState;
+}
+
+function getNowInSeconds() {
+  return Math.floor(Date.now() / 1000);
 }
 
 export default function useSecretary<X extends Card>() {
@@ -60,6 +66,7 @@ export default function useSecretary<X extends Card>() {
   const [currentCharacter, setCurrentCharacter] = useState<CharacterState>();
   const [currentPlayingFigure, setCurrentPlayingFigure] = useState<Figure>();
   const [state, setState] = useState<GameState['state']>();
+  const [lastUpdateInSeconds, setLastUpdateInSeconds] = useState<number>(getNowInSeconds());
 
   const setGhsInitiative = ({ initiative }: X) => {
     if (connectionStatus !== WebSocket.OPEN || !currentClass || !currentCharacter || !gameState) return;
@@ -73,7 +80,7 @@ export default function useSecretary<X extends Card>() {
       }
     }
 
-    const newGameState = updateGameStateForFigure(gameState, currentCharacter.name, { initiative: newInitiative });
+    const newGameState = updateGameStateForFigure(gameState, currentCharacter.name, { initiative: newInitiative }, lastUpdateInSeconds);
     if (sendGameStateToGhs) {
       sendGameStateToGhs(newGameState, ['setInitiative', currentCharacter.title || currentClass.name, `'${newInitiative}'`]);
     }
@@ -87,14 +94,14 @@ export default function useSecretary<X extends Card>() {
 
     // Set the current character to inactive
     if (!currentCharacter || currentCharacter.off || !currentCharacter.active) return;
-    newGameState = updateGameStateForFigure(gameState, currentCharacter.name, { active: false, off: true });
+    newGameState = updateGameStateForFigure(gameState, currentCharacter.name, { active: false, off: true }, lastUpdateInSeconds);
 
     // Set the next character to active if current character is not the last one
     const currentInitiativeOrder = figures
       .findIndex(figure => figure === `fh-${ghsCharacterName}`);
     if (currentInitiativeOrder < figures.length - 1) {
       const nextActingFigure = figures[currentInitiativeOrder + 1];
-      newGameState = updateGameStateForFigure(newGameState, nextActingFigure.replace('fh-', ''), { active: true, off: false });
+      newGameState = updateGameStateForFigure(newGameState, nextActingFigure.replace('fh-', ''), { active: true, off: false }, lastUpdateInSeconds);
     }
 
     if (sendGameStateToGhs) {
@@ -108,7 +115,7 @@ export default function useSecretary<X extends Card>() {
 
     const undoInfo = ['nextIdentity', title || currentClass.name, name, ...fromTo];
 
-    const newGameState = updateGameStateForFigure(gameState, name, { identity });
+    const newGameState = updateGameStateForFigure(gameState, name, { identity }, lastUpdateInSeconds);
     if (sendGameStateToGhs) {
       sendGameStateToGhs(newGameState, undoInfo);
     }
@@ -122,6 +129,7 @@ export default function useSecretary<X extends Card>() {
     const currentPlayingFigure = [...(gameState.characters ?? []), ...(gameState.monsters ?? [])]
       .find(({ active }) => active);
 
+    setLastUpdateInSeconds(getNowInSeconds());
     setCurrentCharacter(currentCharacter);
     setCurrentPlayingFigure(currentPlayingFigure);
     setState(gameState.state);

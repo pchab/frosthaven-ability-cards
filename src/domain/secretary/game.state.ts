@@ -17,6 +17,7 @@ export interface GameState {
   characters: CharacterState[];
   monsters: Figure[];
   figures: string[];
+  playSeconds: number;
   revision: number;
   state: 'draw' | 'next';
 }
