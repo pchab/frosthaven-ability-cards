@@ -15,7 +15,7 @@ export default function Button({
   return <button
     {...props}
     type={type}
-    className='bg-slate-600 hover:bg-blue-400 border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid'
+    className='bg-black hover:bg-primary border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid'
     onClick={onClick}
   >
     {children}

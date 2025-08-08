@@ -29,9 +29,9 @@ export default function SelectCardsHeader() {
     />
     {canValidateSelection
       ? (<Link href={`/${classNameToURI(fhClass.name)}/play`}>
-        <div className={'bg-slate-600 hover:bg-blue-400 border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid'}>Confirm Selection</div>
+        <div className={'bg-black hover:bg-primary border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid'}>Confirm Selection</div>
       </Link>)
-      : (<div className={'bg-slate-600  border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid'}>Select your Cards</div>)
+      : (<div className={'bg-black  border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid'}>Select your Cards</div>)
     }
   </div>;
 }
