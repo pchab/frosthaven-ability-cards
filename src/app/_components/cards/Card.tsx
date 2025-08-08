@@ -84,6 +84,7 @@ export function CardComponent<X extends Card>({
         aria-label={cardLabel}
         onClick={onClickCard}>
         <Image
+          className='shadow-card shadow-gray-950/50'
           {...(mapName ? { useMap: `#${mapName}` } : {})}
           src={card.path}
           alt={`card ${card.name}`}

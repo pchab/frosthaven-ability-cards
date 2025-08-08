@@ -42,7 +42,7 @@ export default function ActionWheel({
           autoFocus={index === 0}
           role='menuitem'
           key={`action-${index}`}
-          className={`absolute w-16 h-16 border-2 border-primary rounded-full flex items-center justify-center text-xs font-medium bg-black/80 pointer-events-auto`}
+          className={`absolute w-16 h-16 border-2 border-primary rounded-full flex items-center justify-center text-xs font-medium bg-black/80 pointer-events-auto shadow-md shadow-primary`}
           style={{
             left: `calc(50% + ${x}px - 2rem)`, // 2rem is the width of the button (w-16)
             top: `calc(50% + ${y}px - 2rem)`, // 2rem is the height of the button (h-16)

@@ -53,6 +53,7 @@
   --spacing-icon: 60px;
 
   --color-primary: white;
+  --shadow-card: -10px 0 15px -3px rgb(0 0 0 / 0.1), -8px 0 4px -2px rgb(0 0 0 / 0.1)
 }
 
 html{
