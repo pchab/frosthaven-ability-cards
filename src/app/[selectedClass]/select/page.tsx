@@ -27,11 +27,11 @@ export default function SelectCardsHeader() {
     <input type='range' id='level' name='level' min='1' max='9'
       value={level} onChange={e => setLevel(Number(e.target.value))}
     />
-    <div className={`bg-slate-600 ${canValidateSelection && 'hover:bg-blue-400'} border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid`}>
-      {canValidateSelection
-        ? <Link href={`/${classNameToURI(fhClass.name)}/play`}>Confirm Selection</Link>
-        : <>Select your Cards</>
-      }
-    </div>
+    {canValidateSelection
+      ? (<Link href={`/${classNameToURI(fhClass.name)}/play`}>
+        <div className={'bg-slate-600 hover:bg-blue-400 border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid'}>Confirm Selection</div>
+      </Link>)
+      : (<div className={'bg-slate-600  border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid'}>Select your Cards</div>)
+    }
   </div>;
 }
