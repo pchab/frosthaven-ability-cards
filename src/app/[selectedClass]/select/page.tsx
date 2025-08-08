@@ -28,10 +28,21 @@ export default function SelectCardsHeader() {
       value={level} onChange={e => setLevel(Number(e.target.value))}
     />
     {canValidateSelection
-      ? (<Link href={`/${classNameToURI(fhClass.name)}/play`}>
-        <div className={'bg-black hover:bg-primary border-primary font-bold py-2 px-4 rounded-lg border-2 border-solid'}>Confirm Selection</div>
+      ? (<Link
+        href={`/${classNameToURI(fhClass.name)}/play`}
+        className="bg-black hover:bg-primary border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+      >
+        Confirm Selection
       </Link>)
-      : (<div className={'bg-black  border-primary font-bold py-2 px-4 rounded-lg border-2 border-solid'}>Select your Cards</div>)
+      : (<button
+        type="button"
+        disabled
+        aria-disabled="true"
+        className="bg-black border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid opacity-50 cursor-not-allowed"
+        title="Select your cards"
+      >
+        Select your Cards
+      </button>)
     }
-  </div>;
+  </div >;
 }
