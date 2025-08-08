@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className='bg-black text-primary font-sans antialiased'>
+      <body className='bg-slate-950 text-primary font-sans antialiased'>
         <SpeedInsights />
         <main role='main'>
           <WebSocketProvider>
