@@ -94,7 +94,7 @@ export function CardComponent<X extends Card>({
       </button>
       {onCloseCard && <button
         aria-label='remove card'
-        className='rounded-full border-solid border-1 border-white px-1 bg-primary z-40 text-xs absolute -top-1 -right-1'
+        className='rounded-full border border-solid border-white px-1 bg-primary z-40 text-xs absolute -top-1 -right-1'
         onClick={onCloseCard}>X</button>}
       <AnimatePresence>
         {isActionWheelOpen && <ActionWheel actions={actions} onAction={() => setIsActionWheelOpen(false)} />}
