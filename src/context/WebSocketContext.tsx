@@ -5,7 +5,7 @@ import Modal from '@/app/_components/layout/Modal';
 import ConnectForm from '@/app/_components/secretary/ConnectForm';
 import { connectToSecretary } from '@/app/_components/secretary/webSocketClient';
 import type { GameState } from '@/domain/secretary/game.state';
-import { createContext, useEffect, useRef, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 
 type WsGameStateUpdate = (state: GameState, info: string[]) => void;
 
@@ -42,7 +42,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
     }));
   };
 
-  const connect = async ({ host, id }: { host: string, id: string }) => {
+  const connect = useCallback(async ({ host, id }: { host: string, id: string }) => {
     if (wsClient.current) {
       wsClient.current.close();
     }
@@ -62,7 +62,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
     wsClient.current = client;
     setSecretaryId(id);
     setConnectModalOpen(false);
-  };
+  }, [setGameState, setConnectionStatus, setSecretaryId, setConnectModalOpen]);
 
   useEffect(() => {
     const host = localStorage.getItem('secretary-host');
@@ -70,7 +70,7 @@ export default function WebSocketProvider({ children }: { children: ReactNode })
     if (!id || !host) return;
     connect({ host, id });
     return () => wsClient.current?.close();
-  }, []);
+  }, [connect]);
 
   return <WebSocketContext value={{
     connectionStatus,
