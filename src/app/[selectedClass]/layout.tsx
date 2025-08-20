@@ -1,8 +1,7 @@
 import ClassProvider from '@/context/ClassContext';
 import { classNameToURI, classURIToName, frosthavenClasses } from '@/domain/frosthaven-class';
 import type { FrosthavenClassNames } from '@/domain/frosthaven-class.type';
-import type { ResolvingMetadata } from 'next';
-import { type ReactNode } from 'react';
+import type { Metadata, ResolvingMetadata } from 'next';
 import DisplayClassMat from './DisplayClassMat';
 
 export const dynamicParams = false;
@@ -23,7 +22,7 @@ export async function generateMetadata({
   params: Params;
 },
   parent: ResolvingMetadata,
-) {
+): Promise<Metadata> {
   const { selectedClass } = await params;
   const fhClassName = classURIToName(selectedClass);
   const keywords = (await parent).keywords ?? [];
@@ -38,10 +37,7 @@ export async function generateMetadata({
 export default async function Layout({
   params,
   children,
-}: {
-  params: Params;
-  children: ReactNode;
-}) {
+}: LayoutProps<'/[selectedClass]'>) {
   const { selectedClass } = await params;
   const fhClassName = classURIToName(selectedClass);
 

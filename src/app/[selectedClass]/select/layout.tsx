@@ -1,4 +1,3 @@
-import { type ReactNode } from 'react';
 import Heading from '@/app/_components/layout/Heading';
 import AvailableCardsByLevel from './@cardsForLevelUp/AvailableCardsByLevel';
 import BoardArea from '@/app/_components/layout/BoardArea';
@@ -7,11 +6,7 @@ export default function SelectCardsLayout({
   children,
   selectedCards,
   cardsForLevelUp,
-}: {
-  children: ReactNode;
-  selectedCards: ReactNode;
-  cardsForLevelUp: ReactNode;
-}) {
+}: LayoutProps<'/[selectedClass]/select'>) {
   return (<div className='p-8 flex flex-col gap-4 items-center'>
     <Heading title='Select your cards' />
     <BoardArea>
