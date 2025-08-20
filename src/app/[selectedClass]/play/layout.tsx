@@ -1,5 +1,4 @@
 import Heading from '@/app/_components/layout/Heading';
-import type { ReactNode } from 'react';
 import IdentityProvider from '@/context/IdentityContext';
 
 export default function PlayLayout({
@@ -9,14 +8,7 @@ export default function PlayLayout({
   lostCards,
   selectedCards,
   activeEffects,
-}: {
-  children: ReactNode;
-  currentHand: ReactNode;
-  discardedCards: ReactNode;
-  lostCards: ReactNode;
-  selectedCards: ReactNode;
-  activeEffects: ReactNode;
-}) {
+}: LayoutProps<'/[selectedClass]/play'>) {
   return <div className='h-full p-2 gap-4 flex flex-col-reverse lg:flex-row justify-center'>
     <Heading title='Play your cards' />
 
