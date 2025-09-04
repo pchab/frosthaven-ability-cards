@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "biome check",
+    "format": "biome format --write"
   },
   "dependencies": {
     "@vercel/speed-insights": "^1.2.0",
