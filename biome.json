@@ -6,7 +6,8 @@
 		"useIgnoreFile": false
 	},
 	"files": {
-		"ignoreUnknown": false
+		"ignoreUnknown": false,
+		"includes": ["src/**/*.ts", "src/**/*.tsx"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -18,8 +19,8 @@
 			"recommended": true
 		},
 		"domains": {
-      "next": "recommended"
-    }
+			"next": "recommended"
+		}
 	},
 	"javascript": {
 		"formatter": {
