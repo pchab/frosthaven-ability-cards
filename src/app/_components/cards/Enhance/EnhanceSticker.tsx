@@ -1,21 +1,26 @@
-import type { Enhancement, EnhancementSlot } from '@/domain/enhancement/enhancement.type';
-import Image from 'next/image';
+import Image from "next/image";
+import type {
+	Enhancement,
+	EnhancementSlot,
+} from "@/domain/enhancement/enhancement.type";
 
 export default function EnhanceSticker({
-  enhancement,
-  position: { x, y, size = 10 },
+	enhancement,
+	position: { x, y, size = 10 },
 }: {
-  enhancement: Enhancement;
-  position: EnhancementSlot['position'];
+	enhancement: Enhancement;
+	position: EnhancementSlot["position"];
 }) {
-  const tokenPath = `/enhancement-stickers/fh-${enhancement}-sticker.webp`;
+	const tokenPath = `/enhancement-stickers/fh-${enhancement}-sticker.webp`;
 
-  return <Image
-    src={tokenPath}
-    alt={`enhancement-sticker-${enhancement}`}
-    width={size}
-    height={size}
-    className='absolute pointer-events-none'
-    style={{ left: x - size / 2, top: y - size / 2 }}
-  />;
+	return (
+		<Image
+			src={tokenPath}
+			alt={`enhancement-sticker-${enhancement}`}
+			width={size}
+			height={size}
+			className="absolute pointer-events-none"
+			style={{ left: x - size / 2, top: y - size / 2 }}
+		/>
+	);
 }
