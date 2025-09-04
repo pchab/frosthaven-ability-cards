@@ -11,6 +11,8 @@ The latest version of this application is hosted [here](https://frosthaven-cards
 - Undo / Redo
 - Gloomhaven secretary connection
 
+[![Formatted with Biome](https://img.shields.io/badge/Formatted_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev/)
+
 ## Getting Started
 
 First, install then run the development server:
