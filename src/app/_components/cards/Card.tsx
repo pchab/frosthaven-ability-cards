@@ -3,8 +3,9 @@
 import { AnimatePresence, domAnimation, LazyMotion } from "motion/react";
 import * as m from "motion/react-m";
 import Image from "next/image";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { type ReactNode, useRef, useState } from "react";
 import type { Card } from "@/domain/cards.type";
+import { useOutsideEvent } from "../hooks/useOutsideEvent";
 import ActionWheel, { type WheelAction } from "./ActionWheel";
 import EnhanceSticker from "./Enhance/EnhanceSticker";
 
@@ -35,42 +36,7 @@ export function CardComponent<X extends Card>({
 		setIsActionWheelOpen(!isActionWheelOpen);
 	};
 
-	useEffect(() => {
-		const handleClickOutsideEvent: EventListener = (event) => {
-			if (!innerRef.current?.contains(event.target as Node)) {
-				setIsActionWheelOpen(false);
-			}
-		};
-		const handleTouchOutsideEvent: EventListener = (event) => {
-			const changedTouch = (event as TouchEvent).changedTouches[0];
-			const elem = document.elementFromPoint(
-				changedTouch.clientX,
-				changedTouch.clientY,
-			);
-			if (!innerRef.current?.contains(elem as Node)) {
-				setIsActionWheelOpen(false);
-			}
-		};
-		const handleKeyboardOutsideEvent = (event: KeyboardEvent) => {
-			if (
-				event.key === "Escape" ||
-				(event.key === "Enter" &&
-					!innerRef.current?.contains(event.target as Node))
-			) {
-				setIsActionWheelOpen(false);
-			}
-		};
-		if (isActionWheelOpen) {
-			document.addEventListener("mousedown", handleClickOutsideEvent);
-			document.addEventListener("touchend", handleTouchOutsideEvent);
-			document.addEventListener("keydown", handleKeyboardOutsideEvent);
-		}
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutsideEvent);
-			document.removeEventListener("touchend", handleTouchOutsideEvent);
-			document.removeEventListener("keydown", handleKeyboardOutsideEvent);
-		};
-	}, [isActionWheelOpen]);
+	useOutsideEvent(innerRef, () => setIsActionWheelOpen(false));
 
 	const cardLabel =
 		actions.length === 1 ? (actions[0].name as string) : card.name;

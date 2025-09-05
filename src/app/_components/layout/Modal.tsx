@@ -1,4 +1,7 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { type ReactNode, useRef } from "react";
+import { useOutsideEvent } from "../hooks/useOutsideEvent";
 
 export default function Modal({
 	children,
@@ -7,9 +10,14 @@ export default function Modal({
 	children: ReactNode;
 	onCancel: () => void;
 }) {
+	const ref = useRef<HTMLDivElement>(null);
+	useOutsideEvent(ref, onCancel);
+
 	return (
 		<div className="fixed top-0 left-0 w-full h-full flex flex-col gap-4 items-center justify-center bg-black/80 z-60">
-			{children}
+			<div ref={ref}>
+				{children}
+			</div>
 			<button
 				type="button"
 				aria-label="Close modal"
