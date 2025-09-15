@@ -26,9 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 		<html lang="en">
 			<body className="bg-gray-950 text-primary font-sans antialiased">
 				<SpeedInsights />
-				<main>
-					{children}
-				</main>
+				<main>{children}</main>
 			</body>
 		</html>
 	);

@@ -14,10 +14,8 @@ export default function Modal({
 	useOutsideEvent(ref, onCancel);
 
 	return (
-		<div className="fixed top-0 left-0 w-full h-full flex flex-col gap-4 items-center justify-center bg-black/80 z-60">
-			<div ref={ref}>
-				{children}
-			</div>
+		<div className="fixed inset-0 flex flex-col gap-4 items-center justify-center bg-black/80 z-60">
+			<div ref={ref}>{children}</div>
 			<button
 				type="button"
 				aria-label="Close modal"

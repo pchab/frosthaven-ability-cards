@@ -1,6 +1,6 @@
 import Heading from "@/app/_components/layout/Heading";
 import IdentityProvider from "@/context/IdentityContext";
-import WebSocketProvider from '@/context/WebSocketContext';
+import WebSocketProvider from "@/context/WebSocketContext";
 
 export default function PlayLayout({
 	children,

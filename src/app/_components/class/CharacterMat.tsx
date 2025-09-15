@@ -28,7 +28,7 @@ export default function CharacterMat({
 				<m.div
 					transition={{ duration: 0.7 }}
 					animate={{ rotateY: displayFront ? 0 : 180 }}
-					className="absolute top-0 border-solid border-2 border-primary backface-hidden"
+					className="absolute inset-0 border-solid border-2 border-primary backface-hidden"
 				>
 					<Image
 						src={matPath}
@@ -41,7 +41,7 @@ export default function CharacterMat({
 					transition={{ duration: 0.7 }}
 					initial={{ rotateY: 180 }}
 					animate={{ rotateY: displayFront ? 180 : 360 }}
-					className="absolute top-0 border-solid border-2 border-primary backface-hidden"
+					className="absolute inset-0 border-solid border-2 border-primary backface-hidden"
 				>
 					<Image
 						src={matBackPath}
