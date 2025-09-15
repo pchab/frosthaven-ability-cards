@@ -88,7 +88,7 @@ export default function CardPile<X extends Card>({
 	return (
 		<nav
 			ref={pileRef}
-			className={`flex min-h-card ${minWidthValue}`}
+			className={`flex min-h-card ${minWidthValue} isolate`}
 			onMouseLeave={() => setFocusCardIndex(null)}
 			onTouchMove={handleTouchMove}
 		>
