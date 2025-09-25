@@ -12,7 +12,7 @@
   "dependencies": {
     "@vercel/speed-insights": "^1.2.0",
     "babel-plugin-react-compiler": "^19.1.0-rc.3",
-    "motion": "^12.23.18",
+    "motion": "^12.23.22",
     "next": "^15.5.4",
     "react": "19.1.1",
     "zustand": "^5.0.8"
