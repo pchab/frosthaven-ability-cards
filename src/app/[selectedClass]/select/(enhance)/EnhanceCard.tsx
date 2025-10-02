@@ -1,5 +1,5 @@
 import { AnimatePresence } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ActionWheel from "@/app/_components/cards/ActionWheel";
 import { CardComponent } from "@/app/_components/cards/Card";
 import EnhanceSticker from "@/app/_components/cards/Enhance/EnhanceSticker";
@@ -44,17 +44,17 @@ export default function EnhanceCard<X extends Card>({
 		throw new Error("Card has no available enhancements");
 	}
 
-	useEffect(() => {
-		const canvas = canvasRef.current;
-		if (!canvas) return;
-		const context = canvas.getContext("2d");
-		if (!context) return;
+	const context = canvasRef.current?.getContext("2d");
+	if (context) {
 		context.reset();
-		if (currentEnhanceSlot === undefined) return;
-		const currentSlot = card.availableEnhancements?.[currentEnhanceSlot];
-		if (!currentSlot) return;
+	}
+	const currentSlot =
+		currentEnhanceSlot !== undefined
+			? card.availableEnhancements?.[currentEnhanceSlot]
+			: null;
+	if (context && currentSlot !== null) {
 		drawCircleArea(currentSlot.position, context);
-	}, [currentEnhanceSlot, card.availableEnhancements]);
+	}
 
 	const addEnhance = (index: number, enhanceName: Enhancement | undefined) => {
 		const newCard = { ...currentCard };

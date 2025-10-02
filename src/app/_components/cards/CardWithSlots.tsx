@@ -1,9 +1,9 @@
 "use client";
 
 import * as m from "motion/react-m";
-import { use, useEffect, useState } from "react";
+import { use } from "react";
 import { ClassContext } from "@/context/ClassContext";
-import type { Card, SlotArea } from "@/domain/cards.type";
+import type { Card } from "@/domain/cards.type";
 import { isDrifter } from "@/domain/drifter/class";
 import CharacterToken from "../class/CharacterToken";
 import type { WheelAction } from "./ActionWheel";
@@ -23,14 +23,8 @@ export default function CardWithSlots<X extends CardWithRequiredSlots>({
 }) {
 	const { slots, tokenPosition = 0 } = card;
 	const selectedClass = use(ClassContext);
-	const [{ x, y, radius = 10 }, setTokenPosition] = useState<SlotArea>(
-		slots[tokenPosition],
-	);
 	const { moveTokenForward, moveTokenBackward } = useCardsSlots();
-
-	useEffect(() => {
-		setTokenPosition(slots[tokenPosition]);
-	}, [slots, tokenPosition]);
+	const { x, y, radius = 10 } = slots[tokenPosition];
 
 	const moveTokenBackwardAction = {
 		name: "Move token backward",

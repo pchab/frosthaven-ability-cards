@@ -1,6 +1,6 @@
 import { AnimatePresence, domAnimation, LazyMotion } from "motion/react";
 import * as m from "motion/react-m";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { Card } from "@/domain/cards.type";
 import type { WheelAction } from "./ActionWheel";
 import { CardComponent } from "./Card";
@@ -51,9 +51,6 @@ export default function CardPile<X extends Card>({
 			? 20 - Math.abs(focusCardIndex - index)
 			: 20 - Math.abs(cards.length - 1 - index);
 	}
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: remove focus when cards change
-	useEffect(() => setFocusCardIndex(null), [cards.length]);
 
 	const handleTouchMove = ({ touches }: React.TouchEvent) => {
 		if (pileRef.current) {
