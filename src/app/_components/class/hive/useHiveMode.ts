@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useShallow } from "zustand/shallow";
 import type { HiveCard } from "@/domain/hive/cards";
 import { useFrosthavenStore } from "@/stores/cards.store";
@@ -11,10 +10,7 @@ export function useHiveMode() {
 			currentStateIndex: store.currentStateIndex,
 		})),
 	);
-	const currentCards = useMemo(
-		() => states[currentStateIndex] as HiveCard[],
-		[states, currentStateIndex],
-	);
+	const currentCards = states[currentStateIndex] as HiveCard[];
 
 	const activateHiveMode = (card: HiveCard) => {
 		if (!card.mode) {

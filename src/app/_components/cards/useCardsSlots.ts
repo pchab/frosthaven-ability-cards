@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useShallow } from "zustand/shallow";
 import type { Card } from "@/domain/cards.type";
 import { useFrosthavenStore } from "@/stores/cards.store";
@@ -21,10 +20,7 @@ export function useCardsSlots<X extends Card>() {
 			currentStateIndex: store.currentStateIndex,
 		})),
 	);
-	const currentCards = useMemo(
-		() => states[currentStateIndex] as X[],
-		[states, currentStateIndex],
-	);
+	const currentCards = states[currentStateIndex] as X[];
 
 	const moveTokenForward = (card: X) => {
 		if (!card.slots) {

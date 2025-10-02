@@ -8,8 +8,6 @@ import {
 	useRef,
 	useState,
 } from "react";
-import Modal from "@/app/_components/layout/Modal";
-import ConnectForm from "@/app/_components/secretary/ConnectForm";
 import { connectToSecretary } from "@/app/_components/secretary/webSocketClient";
 import Menu from "@/app/Menu";
 import type { GameState } from "@/domain/secretary/game.state";
@@ -37,7 +35,6 @@ export default function WebSocketProvider({
 		WebSocket["readyState"]
 	>(WebSocket.CLOSED);
 	const [secretaryId, setSecretaryId] = useState<string>("");
-	const [isConnectModalOpen, setConnectModalOpen] = useState(false);
 	const [gameState, setGameState] = useState<GameState>();
 
 	const sendGameStateToGhs = (newState: GameState, info: string[]) => {
@@ -77,7 +74,6 @@ export default function WebSocketProvider({
 			});
 			wsClient.current = client;
 			setSecretaryId(id);
-			setConnectModalOpen(false);
 		},
 		[],
 	);
@@ -100,13 +96,8 @@ export default function WebSocketProvider({
 				connect,
 			}}
 		>
-			{isConnectModalOpen && (
-				<Modal onCancel={() => setConnectModalOpen(false)}>
-					<ConnectForm />
-				</Modal>
-			)}
 			{children}
-			<Menu onOpenConnectModal={() => setConnectModalOpen(true)} />
+			<Menu />
 		</WebSocketContext>
 	);
 }

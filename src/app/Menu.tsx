@@ -5,16 +5,20 @@ import * as m from "motion/react-m";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Modal from "./_components/layout/Modal";
+import ConnectForm from "./_components/secretary/ConnectForm";
 
-export default function Menu({
-	onOpenConnectModal,
-}: {
-	onOpenConnectModal: () => void;
-}) {
+export default function Menu() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isConnectModalOpen, setConnectModalOpen] = useState(false);
 
 	return (
 		<div className="absolute right-0 top-0 p-4 flex flex-col items-end gap-2 overflow-hidden">
+			{isConnectModalOpen && (
+				<Modal onCancel={() => setConnectModalOpen(false)}>
+					<ConnectForm />
+				</Modal>
+			)}
 			<LazyMotion features={domAnimation}>
 				<m.button
 					aria-label="Open settings"
@@ -51,7 +55,7 @@ export default function Menu({
 								type="button"
 								role="menuitem"
 								onClick={() => {
-									onOpenConnectModal();
+									setConnectModalOpen(true);
 									setIsMenuOpen(false);
 								}}
 							>

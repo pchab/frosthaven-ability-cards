@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useMemo } from "react";
+import { use } from "react";
 import ChangeSpeed from "@/app/_components/class/blinkblade/ChangeSpeed";
 import ClassIcon from "@/app/_components/class/ClassIcon";
 import ChangeForm from "@/app/_components/class/geminate/ChangeForm";
@@ -39,15 +39,11 @@ export default function PlayPage<X extends Card>() {
 	const { connectionStatus, state, currentCharacter, currentPlayingFigure } =
 		useSecretary();
 
-	const currentPlayingString = useMemo(() => {
-		if (!currentPlayingFigure) {
-			return "End of round";
-		}
-		if (currentPlayingFigure.name === currentCharacter?.name) {
-			return "Your turn";
-		}
-		return `Current Turn: ${currentPlayingFigure.title || upperFirstLetter(currentPlayingFigure.name)}`;
-	}, [currentPlayingFigure, currentCharacter?.name]);
+	const currentPlayingString = !currentPlayingFigure
+		? "End of round"
+		: currentPlayingFigure.name === currentCharacter?.name
+			? "Your turn"
+			: `Current Turn: ${currentPlayingFigure.title || upperFirstLetter(currentPlayingFigure.name)}`;
 
 	return (
 		<BoardArea
