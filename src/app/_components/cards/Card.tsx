@@ -3,7 +3,7 @@
 import { AnimatePresence, domAnimation, LazyMotion } from "motion/react";
 import * as m from "motion/react-m";
 import Image from "next/image";
-import { type ReactNode, useRef, useState } from "react";
+import { Activity, type ReactNode, useRef, useState } from "react";
 import type { Card } from "@/domain/cards.type";
 import { useOutsideEvent } from "../hooks/useOutsideEvent";
 import ActionWheel, { type WheelAction } from "./ActionWheel";
