@@ -95,18 +95,19 @@ export default function ActiveEffects<X extends Card>() {
 
 	return (
 		<div className="grid grid-cols-3 gap-4 min-w-[461px] min-h-card">
-			{isSelectingMode && (
-				<Modal onCancel={() => setIsSelectingMode(false)}>
-					<BoardArea title="Select mode">
-						<CardPile
-							cards={cardsWithMode}
-							actions={activateHiveModeAction}
-							maxCardLength={cardsWithMode.length}
-							onCloseCard={removeEffectAction}
-						/>
-					</BoardArea>
-				</Modal>
-			)}
+			<Modal
+				display={isSelectingMode}
+				onCancel={() => setIsSelectingMode(false)}
+			>
+				<BoardArea title="Select mode">
+					<CardPile
+						cards={cardsWithMode}
+						actions={activateHiveModeAction}
+						maxCardLength={cardsWithMode.length}
+						onCloseCard={removeEffectAction}
+					/>
+				</BoardArea>
+			</Modal>
 			<AnimatePresence mode="popLayout">
 				{activeEffects.map((card) => getCardComponent(card))}
 			</AnimatePresence>
