@@ -37,8 +37,8 @@ export default function SelectedCardsPage<X extends Card>() {
 				</p>
 			}
 		>
-			{enhancingCard && (
-				<Modal onCancel={() => setEnhancingCard(null)}>
+			<Modal display={!!enhancingCard} onCancel={() => setEnhancingCard(null)}>
+				{enhancingCard && (
 					<EnhanceCard
 						card={enhancingCard}
 						onEnhanceCard={(card: X) => {
@@ -46,8 +46,8 @@ export default function SelectedCardsPage<X extends Card>() {
 							enhanceCard(card);
 						}}
 					/>
-				</Modal>
-			)}
+				)}
+			</Modal>
 
 			{isGeminate(selectedClass) ? (
 				<SelectedGeminateCards

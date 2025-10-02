@@ -34,36 +34,36 @@ export default function ShortRestButton<X extends Card>({
 			<button type="button" onClick={() => setLostCard(getRandomCard(cards))}>
 				Short Rest
 			</button>
-			{lostCard && (
-				<Modal onCancel={() => setLostCard(undefined)}>
-					<div className="flex flex-col gap-4 items-center">
-						{!hasRerolled && (
-							<Button
-								autoFocus
-								label="Short Rest"
-								onClick={() => {
-									setHasRerolled(true);
-									const newLostCard = getRandomCard(
-										cards.filter((c) => c !== lostCard),
-									);
-									setLostCard(newLostCard);
-								}}
-							>
-								<div className="flex gap-2 items-center">
-									Reroll Short Rest
-									<Image
-										src="/icons/fh-damage-color-icon.webp"
-										alt="Suffer damage"
-										width={24}
-										height={23}
-									/>
-								</div>
-							</Button>
-						)}
+			<Modal display={!!lostCard} onCancel={() => setLostCard(undefined)}>
+				<div className="flex flex-col gap-4 items-center">
+					{!hasRerolled && (
+						<Button
+							autoFocus
+							label="Short Rest"
+							onClick={() => {
+								setHasRerolled(true);
+								const newLostCard = getRandomCard(
+									cards.filter((c) => c !== lostCard),
+								);
+								setLostCard(newLostCard);
+							}}
+						>
+							<div className="flex gap-2 items-center">
+								Reroll Short Rest
+								<Image
+									src="/icons/fh-damage-color-icon.webp"
+									alt="Suffer damage"
+									width={24}
+									height={23}
+								/>
+							</div>
+						</Button>
+					)}
+					{lostCard && (
 						<CardComponent card={lostCard} actions={[confirmShortRestAction]} />
-					</div>
-				</Modal>
-			)}
+					)}
+				</div>
+			</Modal>
 		</>
 	);
 }
