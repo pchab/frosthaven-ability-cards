@@ -8,7 +8,9 @@ updates:
       react:
         patterns:
           - react
+          - react-dom
           - "@types/react"
+          - "@types/react-dom"
       biome:
         patterns:
           - "@biomejs/biome"
