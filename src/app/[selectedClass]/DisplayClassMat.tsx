@@ -11,11 +11,9 @@ export default function DisplayClassMat() {
 
 	return (
 		<>
-			{display && (
-				<Modal onCancel={() => setDisplay(false)}>
-					<CharacterMat className={fhClass.name}></CharacterMat>
-				</Modal>
-			)}
+			<Modal display={display} onCancel={() => setDisplay(false)}>
+				<CharacterMat className={fhClass.name}></CharacterMat>
+			</Modal>
 			<button
 				type="button"
 				aria-label="Display class mat"
