@@ -4,7 +4,7 @@ import { AnimatePresence, domAnimation, LazyMotion } from "motion/react";
 import * as m from "motion/react-m";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { Activity, useState } from "react";
 
 export default function Menu({
 	onOpenConnectModal,
@@ -31,7 +31,7 @@ export default function Menu({
 					/>
 				</m.button>
 				<AnimatePresence>
-					{isMenuOpen && (
+					<Activity mode={isMenuOpen ? "visible" : "hidden"}>
 						<m.div
 							role="menu"
 							className="bg-black border-solid rounded-lg border-2 p-4 flex flex-col items-center gap-2 z-50"
@@ -58,7 +58,7 @@ export default function Menu({
 								Connect to GH secretary
 							</button>
 						</m.div>
-					)}
+					</Activity>
 				</AnimatePresence>
 			</LazyMotion>
 		</div>

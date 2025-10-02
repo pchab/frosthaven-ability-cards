@@ -100,11 +100,12 @@ export default function WebSocketProvider({
 				connect,
 			}}
 		>
-			{isConnectModalOpen && (
-				<Modal onCancel={() => setConnectModalOpen(false)}>
-					<ConnectForm />
-				</Modal>
-			)}
+			<Modal
+				display={isConnectModalOpen}
+				onCancel={() => setConnectModalOpen(false)}
+			>
+				<ConnectForm />
+			</Modal>
 			{children}
 			<Menu onOpenConnectModal={() => setConnectModalOpen(true)} />
 		</WebSocketContext>
