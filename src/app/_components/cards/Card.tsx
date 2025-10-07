@@ -36,7 +36,9 @@ export function CardComponent<X extends Card>({
 		setIsActionWheelOpen(!isActionWheelOpen);
 	};
 
-	useOutsideEvent(innerRef, () => setIsActionWheelOpen(false));
+	useOutsideEvent(isActionWheelOpen ? innerRef : null, () =>
+		setIsActionWheelOpen(false),
+	);
 
 	const cardLabel =
 		actions.length === 1 ? (actions[0].name as string) : card.name;
