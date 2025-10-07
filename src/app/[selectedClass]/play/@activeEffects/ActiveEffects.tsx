@@ -27,6 +27,14 @@ function cardHasMode(card: HiveCard): card is HiveCardWithRequiredMode {
 	return !!card.mode;
 }
 
+/**
+ * Render active top and bottom card effects and the Hive mode selection UI when required.
+ *
+ * Displays active effects from the current card set, provides controls to remove those effects,
+ * and, when the current class is Hive, prompts the user to select a mode for Hive cards.
+ *
+ * @returns A React element containing the active effects layout and an optionally visible Hive mode modal.
+ */
 export default function ActiveEffects<X extends Card>() {
 	const { currentCards, discardCard, loseCard } = useCards<X>();
 	const { activateHiveMode } = useHiveMode();

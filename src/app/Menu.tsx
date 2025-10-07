@@ -8,6 +8,15 @@ import { useState } from "react";
 import Modal from "./_components/layout/Modal";
 import ConnectForm from "./_components/secretary/ConnectForm";
 
+/**
+ * Render the settings control UI: a toggleable slide-in menu with actions and a connect modal.
+ *
+ * The component manages its own open/closed state for the menu and the connect modal, and includes
+ * an animated settings button, an animated slide-in menu with actionable items, and a Modal that
+ * hosts the ConnectForm.
+ *
+ * @returns A React element containing the settings button, the slide-in menu panel, and the connect modal
+ */
 export default function Menu() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isConnectModalOpen, setConnectModalOpen] = useState(false);

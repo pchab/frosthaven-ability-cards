@@ -5,6 +5,11 @@ import { ClassContext } from "@/context/ClassContext";
 import CharacterMat from "../_components/class/CharacterMat";
 import Modal from "../_components/layout/Modal";
 
+/**
+ * Renders a button that toggles a modal displaying the current class's CharacterMat.
+ *
+ * @returns JSX containing a button (aria-label "Display class mat") and a Modal whose visibility is controlled by local state and which contains a CharacterMat using the class name from ClassContext.
+ */
 export default function DisplayClassMat() {
 	const [display, setDisplay] = useState(false);
 	const fhClass = use(ClassContext);

@@ -13,6 +13,15 @@ import EnhanceCard from "../(enhance)/EnhanceCard";
 import { SelectedCards } from "./SelectedCards";
 import { SelectedGeminateCards } from "./SelectedCards.geminate";
 
+/**
+ * Renders the UI for viewing and managing selected cards for the current class.
+ *
+ * Displays the selected count versus the class hand size (highlights the count when not complete),
+ * provides an enhancement modal for a chosen card, and renders either the geminate or regular
+ * selected-cards list with actions to initiate enhancements.
+ *
+ * @returns The JSX element for the selected cards page.
+ */
 export default function SelectedCardsPage<X extends Card>() {
 	const selectedClass = use(ClassContext);
 	const { cards, enhanceCard } = useSelectCards<X>();

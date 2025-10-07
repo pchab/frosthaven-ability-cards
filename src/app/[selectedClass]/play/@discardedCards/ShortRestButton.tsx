@@ -12,6 +12,12 @@ function getRandomCard<X extends Card>(arr: X[]) {
 	return arr[Math.floor(Math.random() * arr.length)];
 }
 
+/**
+ * Render a "Short Rest" control that selects a random card to lose and allows a single reroll before confirming.
+ *
+ * @param cards - The list of cards eligible to be selected for the short rest
+ * @returns A UI containing a "Short Rest" button that opens a modal showing the selected card, an option to reroll once to pick a different card, and a confirm action that applies the rest to the selected card
+ */
 export default function ShortRestButton<X extends Card>({
 	cards,
 }: {

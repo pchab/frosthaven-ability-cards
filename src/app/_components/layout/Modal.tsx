@@ -3,6 +3,14 @@
 import { type ReactNode, useRef } from "react";
 import { useOutsideEvent } from "../hooks/useOutsideEvent";
 
+/**
+ * Render a centered modal dialog that closes via the close button or when clicking outside its content.
+ *
+ * @param children - Content to render inside the modal
+ * @param display - Whether the modal is visible
+ * @param onCancel - Callback invoked when the modal should close (triggered by outside click or the close button)
+ * @returns The modal React element; hidden when `display` is `false`
+ */
 export default function Modal({
 	children,
 	onCancel,

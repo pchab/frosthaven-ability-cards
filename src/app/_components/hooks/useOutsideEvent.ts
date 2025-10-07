@@ -1,5 +1,14 @@
 import { type RefObject, useEffect } from "react";
 
+/**
+ * Invokes a callback when user interactions occur outside the referenced element.
+ *
+ * Observes mouse clicks, touch end points, and keyboard events (Escape or Enter pressed while the event target is outside)
+ * and calls the provided callback when the interaction target is outside the element referenced by `ref`.
+ *
+ * @param ref - Reference to the element treated as "inside"
+ * @param onOutsideEvent - Callback invoked when an outside interaction is detected
+ */
 export function useOutsideEvent<T extends HTMLElement>(
 	ref: RefObject<T | null>,
 	onOutsideEvent: () => void,
