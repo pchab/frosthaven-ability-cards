@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence } from "motion/react";
-import { use, useEffect, useState } from "react";
+import { use, useState } from "react";
 import { CardComponent } from "@/app/_components/cards/Card";
 import CardPile from "@/app/_components/cards/CardPile";
 import CardWithSlots, {
@@ -71,15 +71,14 @@ export default function ActiveEffects<X extends Card>() {
 		);
 	};
 
-	useEffect(() => {
-		if (!isHive(currentClass) || isSelectingMode || !currentCards.length)
-			return;
+	if (isHive(currentClass) && !isSelectingMode && currentCards.length) {
 		const hasSelectedMode = (currentCards as HiveCard[]).some(
 			(card) => card.isSelectedMode,
 		);
-		if (hasSelectedMode) return;
-		setIsSelectingMode(true);
-	}, [currentClass, currentCards, isSelectingMode]);
+		if (!hasSelectedMode) {
+			setIsSelectingMode(true);
+		}
+	}
 
 	const activateHiveModeAction = (card: HiveCard) => [
 		{

@@ -32,7 +32,7 @@ export default function CardWithMode({
 		<CardComponent
 			card={card}
 			actions={[...actions, ...tokenActions]}
-			onCloseCard={onCloseCard}
+			onCloseCard={card.isSelectedMode ? undefined : onCloseCard}
 		>
 			{isSelectedMode && mode && <ModeToken position={{ ...mode }} />}
 		</CardComponent>
