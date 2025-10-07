@@ -13,7 +13,7 @@ export default function Modal({
 	onCancel: () => void;
 }) {
 	const ref = useRef<HTMLDivElement>(null);
-	useOutsideEvent(ref, onCancel);
+	useOutsideEvent(display ? ref : null, onCancel);
 
 	return (
 		<Activity mode={display ? "visible" : "hidden"}>
