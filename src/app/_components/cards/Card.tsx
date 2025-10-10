@@ -9,6 +9,19 @@ import { useOutsideEvent } from "../hooks/useOutsideEvent";
 import ActionWheel, { type WheelAction } from "./ActionWheel";
 import EnhanceSticker from "./Enhance/EnhanceSticker";
 
+/**
+ * Renders an interactive card UI with optional actions, enhancements, and a close control.
+ *
+ * Renders a card image button that either triggers a single action, toggles an action wheel for multiple actions, or does nothing when no actions are provided. Also renders an optional close button, image map support, and enhancement stickers positioned according to the card metadata.
+ *
+ * @param card - Card data used to render the image, name, enhancements, and available enhancement positions.
+ * @param children - Optional content rendered above the card image.
+ * @param actions - Optional list of wheel actions; when one action is provided it is invoked directly, when multiple the action wheel is toggled.
+ * @param mapName - Optional image map name to attach to the card image.
+ * @param autoFocus - If true, the main card button will receive focus on mount.
+ * @param onCloseCard - Optional callback invoked when the close control is clicked.
+ * @returns The rendered card React node.
+ */
 export function CardComponent<X extends Card>({
 	card,
 	children,

@@ -7,6 +7,12 @@ import Modal from "@/app/_components/layout/Modal";
 import { useCards } from "@/app/[selectedClass]/play/useCards";
 import type { Card } from "@/domain/cards.type";
 
+/**
+ * Renders a "Long Rest" button that opens a modal allowing the user to select a card to lose.
+ *
+ * @param cards - The cards presented in the modal for selection
+ * @returns A React element containing the button and the modal with the card pile
+ */
 export default function LongRestButton<X extends Card>({
 	cards,
 }: {
