@@ -4,9 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
-  experimental: {
-    reactCompiler: true,
-  },
+  reactCompiler: true,
   typedRoutes: true,
 };
 

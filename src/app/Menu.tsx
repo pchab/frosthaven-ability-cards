@@ -4,7 +4,7 @@ import { AnimatePresence, domAnimation, LazyMotion } from "motion/react";
 import * as m from "motion/react-m";
 import Image from "next/image";
 import Link from "next/link";
-import { Activity, useState } from "react";
+import { useState } from "react";
 import Modal from "./_components/layout/Modal";
 import ConnectForm from "./_components/secretary/ConnectForm";
 
@@ -36,7 +36,7 @@ export default function Menu() {
 					/>
 				</m.button>
 				<AnimatePresence>
-					<Activity mode={isMenuOpen ? "visible" : "hidden"}>
+					{isMenuOpen && (
 						<m.div
 							role="menu"
 							className="bg-black border-solid rounded-lg border-2 p-4 flex flex-col items-center gap-2 z-50"
@@ -63,7 +63,7 @@ export default function Menu() {
 								Connect to GH secretary
 							</button>
 						</m.div>
-					</Activity>
+					)}
 				</AnimatePresence>
 			</LazyMotion>
 		</div>
