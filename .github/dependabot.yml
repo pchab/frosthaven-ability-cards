@@ -8,13 +8,9 @@ updates:
       react:
         patterns:
           - react
+          - react-dom
           - "@types/react"
-      biome:
-        patterns:
-          - "@biomejs/biome"
-      next:
-        patterns:
-          - next
+          - "@types/react-dom"
       tailwind:
         patterns:
           - tailwindcss
