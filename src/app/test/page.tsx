@@ -190,7 +190,6 @@ export default function TestCard(props: {
 							return (
 								<Button
 									label="test enhancement"
-									// biome-ignore lint/suspicious/noArrayIndexKey: test page
 									key={index}
 									onClick={() => addEnhance(index, testEnhancement)}
 								>
