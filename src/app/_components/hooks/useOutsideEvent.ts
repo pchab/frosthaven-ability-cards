@@ -31,7 +31,6 @@ export function useOutsideEvent<T extends HTMLElement>(
 		}
 	});
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: using new React 19.2 useEffectEvent
 	useEffect(() => {
 		if (!ref) return;
 
@@ -44,5 +43,5 @@ export function useOutsideEvent<T extends HTMLElement>(
 			document.removeEventListener("touchend", handleOutsideTouch);
 			document.removeEventListener("keydown", handleOutsideKeyboard);
 		};
-	}, [ref, onOutsideEvent]);
+	}, [ref]);
 }
