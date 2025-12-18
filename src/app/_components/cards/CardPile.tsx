@@ -22,6 +22,7 @@ const minWidthValues = [
 	"min-w-cards-14",
 ];
 
+const LongHandCutoff = 11;
 type LongHandSize = 11 | 12 | 13 | 14;
 const marginRightForLongHand = {
 	11: "-mr-[78px]",
@@ -98,7 +99,7 @@ export default function CardPile<X extends Card>({
 							onTouchStart={() => setFocusCardIndex(index)}
 							onFocus={() => setFocusCardIndex(index)}
 							className={
-								maxCardLength < 11
+								maxCardLength < LongHandCutoff
 									? "-mr-card-1/2"
 									: marginRightForLongHand[maxCardLength as LongHandSize]
 							}

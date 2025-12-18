@@ -12,7 +12,7 @@ export default function SelectCardsLayout({
 			<Heading title="Select your cards" />
 			<BoardArea>{children}</BoardArea>
 
-			<div className="flex flex-col gap-4 items-center w-[811px]">
+			<div className="flex flex-col gap-4 items-center w-card-3/2">
 				{selectedCards}
 
 				<AvailableCardsByLevel level={1} />

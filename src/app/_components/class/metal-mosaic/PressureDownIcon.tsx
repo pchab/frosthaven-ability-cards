@@ -27,7 +27,10 @@ export default function PressureDownIcon() {
 	const decreasePressure = () => {
 		const newPressure = pressureDecrementMapping[currentPressure];
 		if (newPressure === currentPressure) return;
-		const fromTo: [string, string] = [currentPressure, newPressure];
+		const fromTo: [MetalMosaicPressure, MetalMosaicPressure] = [
+			currentPressure,
+			newPressure,
+		];
 		changeIdentity(pressures.indexOf(newPressure), fromTo);
 	};
 

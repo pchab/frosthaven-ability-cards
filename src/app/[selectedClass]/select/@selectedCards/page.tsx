@@ -18,7 +18,7 @@ export default function SelectedCardsPage<X extends Card>() {
 	const { cards, enhanceCard } = useSelectCards<X>();
 	const [enhancingCard, setEnhancingCard] = useState<X | null>(null);
 
-	const enhanceAction = (card: X) =>
+	const enhanceAction: PileActions<X> = (card: X) =>
 		card.availableEnhancements
 			? [{ name: "Enhance Card", onClick: () => setEnhancingCard(card) }]
 			: [];
@@ -29,7 +29,7 @@ export default function SelectedCardsPage<X extends Card>() {
 		<BoardArea
 			title={
 				<p>
-					Selected Cards:{" "}
+					Selected Cards{" "}
 					<span className={hasSelectedAllCards ? "" : "text-red-500"}>
 						{cards.length}
 					</span>

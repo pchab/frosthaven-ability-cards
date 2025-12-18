@@ -39,7 +39,7 @@ export default function SelectCardsHeader() {
 			{canValidateSelection ? (
 				<Link
 					href={`/${classNameToURI(fhClass.name)}/play`}
-					className="bg-black hover:bg-primary border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+					className="bg-black hover:bg-primary border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 min-w-44"
 				>
 					Confirm Selection
 				</Link>
@@ -48,7 +48,7 @@ export default function SelectCardsHeader() {
 					type="button"
 					disabled
 					aria-disabled="true"
-					className="bg-black border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid opacity-50 cursor-not-allowed"
+					className="bg-black border-primary text-white font-bold py-2 px-4 rounded-lg border-2 border-solid opacity-50 cursor-not-allowed min-w-44"
 					title="Select your cards"
 				>
 					Select your Cards

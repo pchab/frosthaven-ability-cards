@@ -44,31 +44,17 @@ export default function ActiveEffects<X extends Card>() {
 	};
 
 	const getCardComponent = (card: X) => {
+		const props = {
+			key: card.name,
+			onCloseCard: () => removeEffectAction(card),
+		};
 		if (isHive(currentClass) && cardHasMode(card)) {
-			return (
-				<CardWithMode
-					key={card.name}
-					card={card}
-					onCloseCard={() => removeEffectAction(card)}
-				/>
-			);
+			return <CardWithMode {...props} card={card} />;
 		}
 		if (cardHasSlots(card)) {
-			return (
-				<CardWithSlots
-					key={card.name}
-					card={card}
-					onCloseCard={() => removeEffectAction(card)}
-				/>
-			);
+			return <CardWithSlots {...props} card={card} />;
 		}
-		return (
-			<CardComponent
-				key={card.name}
-				card={card}
-				onCloseCard={() => removeEffectAction(card)}
-			/>
-		);
+		return <CardComponent {...props} card={card} />;
 	};
 
 	if (isHive(currentClass) && !isSelectingMode && currentCards.length) {
@@ -93,7 +79,7 @@ export default function ActiveEffects<X extends Card>() {
 	const cardsWithMode = currentCards.filter(cardHasMode);
 
 	return (
-		<div className="grid grid-cols-3 gap-4 min-w-[461px] min-h-card">
+		<div className="grid grid-cols-3 gap-4 min-w-115 min-h-card">
 			<Modal
 				display={isSelectingMode}
 				onCancel={() => setIsSelectingMode(false)}

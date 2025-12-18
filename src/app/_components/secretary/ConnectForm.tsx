@@ -39,7 +39,7 @@ export default function ConnectForm() {
 			</h3>
 
 			<label className="col-span-1" htmlFor="secretary-host">
-				Host :
+				Host
 			</label>
 			<input
 				required
@@ -50,7 +50,7 @@ export default function ConnectForm() {
 			/>
 
 			<label className="col-span-1" htmlFor="secretary-id">
-				ID :
+				ID
 			</label>
 			<input
 				required

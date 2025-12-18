@@ -2,7 +2,7 @@
 
 import { use } from "react";
 import { IdentityContext } from "@/context/IdentityContext";
-import { forms } from "@/domain/geminate/cards";
+import { forms, type GeminateForm } from "@/domain/geminate/cards";
 import FormIcon from "./FormIcon";
 
 export default function ChangeForm() {
@@ -11,7 +11,7 @@ export default function ChangeForm() {
 	const currentForm = forms[identity];
 	const changeForm = () => {
 		const newForm = currentForm === "melee" ? "ranged" : "melee";
-		const fromTo: [string, string] = [currentForm, newForm];
+		const fromTo: [GeminateForm, GeminateForm] = [currentForm, newForm];
 		changeIdentity(forms.indexOf(newForm), fromTo);
 	};
 

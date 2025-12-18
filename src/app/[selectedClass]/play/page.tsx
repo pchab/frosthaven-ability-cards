@@ -49,7 +49,7 @@ export default function PlayPage<X extends Card>() {
 		<BoardArea
 			title={
 				<SecretaryLink>
-					GHS Status: {mapConnectionStatustoDisplay(connectionStatus)}
+					GHS Status {mapConnectionStatustoDisplay(connectionStatus)}
 				</SecretaryLink>
 			}
 			actions={[

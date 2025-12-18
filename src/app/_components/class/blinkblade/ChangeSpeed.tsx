@@ -11,7 +11,7 @@ export default function ChangeSpeed() {
 	const currentSpeed = speeds[identity];
 	const changeSpeed = () => {
 		const newSpeed = currentSpeed === "fast" ? "slow" : "fast";
-		const fromTo: [string, string] = [currentSpeed, newSpeed];
+		const fromTo: [BlinkbladeSpeed, BlinkbladeSpeed] = [currentSpeed, newSpeed];
 		changeIdentity(speeds.indexOf(newSpeed), fromTo);
 	};
 
@@ -22,7 +22,7 @@ export default function ChangeSpeed() {
 			className="flex justify-center items-center gap-2 h-24 w-24"
 			onClick={changeSpeed}
 		>
-			<SpeedIcon speed={currentSpeed as BlinkbladeSpeed} />
+			<SpeedIcon speed={currentSpeed} />
 		</button>
 	);
 }
