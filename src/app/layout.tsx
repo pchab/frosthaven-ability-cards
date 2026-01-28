@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import WebSocketProvider from "@/context/WebSocketContext";
 
 export const viewport: Viewport = {
 	width: "device-width",
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 		<html lang="en">
 			<body className="bg-gray-950 text-primary font-sans antialiased">
 				<SpeedInsights />
-				<main>{children}</main>
+				<main>
+					<WebSocketProvider>{children}</WebSocketProvider>
+				</main>
 			</body>
 		</html>
 	);

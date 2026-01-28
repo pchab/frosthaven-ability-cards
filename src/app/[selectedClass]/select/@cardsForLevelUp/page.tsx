@@ -17,7 +17,6 @@ export default function CardsForLevelUpPage() {
 						.map((level) => (
 							<m.div
 								key={level}
-								className="col-span-1"
 								initial={{ opacity: 0 }}
 								animate={{ opacity: 1 }}
 								exit={{ opacity: 0 }}
