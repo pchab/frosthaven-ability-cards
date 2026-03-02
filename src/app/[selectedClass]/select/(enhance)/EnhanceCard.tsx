@@ -1,4 +1,4 @@
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, domAnimation, LazyMotion } from "motion/react";
 import { useRef, useState } from "react";
 import ActionWheel from "@/app/_components/cards/ActionWheel";
 import { CardComponent } from "@/app/_components/cards/Card";
@@ -105,14 +105,18 @@ export default function EnhanceCard<X extends Card>({
 					},
 				]}
 			>
-				<AnimatePresence>
-					{currentEnhanceSlot !== undefined && (
-						<ActionWheel
-							actions={getEnhancementActions(currentEnhanceSlot)}
-							onAction={() => setCurrentEnhanceSlot(undefined)}
-						/>
-					)}
-				</AnimatePresence>
+
+				<LazyMotion features={domAnimation}>
+					<AnimatePresence>
+						{currentEnhanceSlot !== undefined && (
+							<ActionWheel
+								actions={getEnhancementActions(currentEnhanceSlot)}
+								onAction={() => setCurrentEnhanceSlot(undefined)}
+							/>
+						)}
+					</AnimatePresence>
+				</LazyMotion>
+
 				<canvas
 					ref={canvasRef}
 					className="absolute pointer-events-none"
